@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="notepad"
+  name="Notepad++"
+  revision="5700"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" condition="exists" path="Notepad++" />
+  <check type='logical' condition='or'>
+    <check type="file" condition="versiongreaterorequal" path="%ProgramFiles%\Notepad++\notepad++.exe" value="5.7.0.0" />
+    <check type="file" condition="versiongreaterorequal" path="%ProgramFiles(x86)%\Notepad++\notepad++.exe" value="5.7.0.0" />
+  </check>
+
+  <!-- remove plug-in's to prevent installer hanging -->
+  <install cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\plugins" del /f /q "%ProgramFiles%\Notepad++\plugins\*.dll"' />
+  <install cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Notepad++\plugins" del /f /q "%ProgramFiles(x86)%\Notepad++\plugins\*.dll"' />
+  <install cmd='"%SOFTWARE%\Notepad\npp.5.7.Installer.exe" /S' />
+
+  <!-- remove plug-in's to prevent installer hanging -->
+  <upgrade cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\plugins" del /f /q "%ProgramFiles%\Notepad++\plugins\*.dll"' />
+  <upgrade cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Notepad++\plugins" del /f /q "%ProgramFiles(x86)%\Notepad++\plugins\*.dll"' />
+  <upgrade cmd='"%SOFTWARE%\Notepad\npp.5.7.Installer.exe" /S' />
+
+  <!-- Windows 32-bit -->
+  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\plugins" del /f /q "%ProgramFiles%\Notepad++\plugins\*.dll"' />
+  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\uninstall.exe" "%ProgramFiles%\Notepad++\uninstall.exe" /S' />
+  <!-- Windows 64-bit -->
+  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Notepad++\plugins" del /f /q "%ProgramFiles(x86)%\Notepad++\plugins\*.dll"' />
+  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Notepad++\uninstall.exe" "%ProgramFiles(x86)%\Notepad++\uninstall.exe" /S' />
+
+</package>
+
+</packages>
