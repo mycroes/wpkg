@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) VLC can be really tricky but this should work fine
+-->
+
+<packages>
+
+<package
+  id="vlc"
+  name="VideoLAN Client"
+  revision="1130"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" condition="exists" path="VLC media player 1.1.3" />
+
+  <variable name="A" value="%ProgramFiles%\VideoLAN" />
+  <variable name="B" value="%ProgramFiles(x86)%\VideoLAN" />
+
+  <install cmd='%ComSpec% /c if exist "%A%\VLC\uninstall.exe" "%A%\VLC\uninstall.exe" /S _?=%A%\VLC' />
+  <install cmd='%ComSpec% /c if exist "%A%" RD /S /Q "%A%"' />
+
+  <install cmd='%ComSpec% /c if exist "%B%\VLC\uninstall.exe" "%B%\VLC\uninstall.exe" /S _?=%B%\VLC' />
+  <install cmd='%ComSpec% /c if exist "%B%" RD /S /Q "%B%"' />
+
+  <install cmd='"%SOFTWARE%\VLC\vlc-1.1.3-win32.exe" /S /NCRC' />
+  <install cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\VLC*.lnk"'>
+    <exit code="any" />
+  </install>
+
+  <upgrade cmd='%ComSpec% /c if exist "%A%\VLC\uninstall.exe" "%A%\VLC\uninstall.exe" /S _?=%A%\VLC' />
+  <upgrade cmd='%ComSpec% /c if exist "%A%" RD /S /Q "%A%"' />
+
+  <upgrade cmd='%ComSpec% /c if exist "%B%\VLC\uninstall.exe" "%B%\VLC\uninstall.exe" /S _?=%B%\VLC' />
+  <upgrade cmd='%ComSpec% /c if exist "%B%" RD /S /Q "%B%"' />
+
+  <upgrade cmd='"%SOFTWARE%\VLC\vlc-1.1.3-win32.exe" /S /NCRC' />
+  <upgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\VLC*.lnk"'>
+    <exit code="any" />
+  </upgrade>
+
+  <remove  cmd='%ComSpec% /c if exist "%A%\VLC\uninstall.exe" "%A%\VLC\uninstall.exe" /S _?=%A%\VLC' />
+  <remove  cmd='%ComSpec% /c if exist "%A%" RD /S /Q "%A%"' />
+  <remove  cmd='%ComSpec% /c if exist "%B%\VLC\uninstall.exe" "%B%\VLC\uninstall.exe" /S _?=%B%\VLC' />
+  <remove  cmd='%ComSpec% /c if exist "%B%" RD /S /Q "%B%"' />
+</package>
+  
+</packages>
