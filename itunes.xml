@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+TODO
+ 1) This will install the 32-bit version on both 32 and 64 bit OS. Uninstall will work fine on both, but a 64 bit version does exist
+ 2) Define individual versions as variables
+ 
+NOTES
+ 1) We always remove the Apple Update package no matter what as it might be left over from previous installations
+
+-->
+
+<packages>
+
+<package
+  id="itunes"
+  name="Apple iTunes"
+  revision="9215" 
+  reboot="false"
+  priority="10">
+
+  <depends package-id="applesupport" />
+  <depends package-id="applemobile" />
+  <depends package-id="bonjour" />
+  <depends package-id="quicktime" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="iTunes" value="9.2.1.5"/>
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\itunes\9.2.1.5\iTunes.msi"' />
+  <install cmd='msiexec %MSI% /x "%SOFTWARE%\itunes\9.2.1.5\AppleSoftwareUpdate.msi"'>
+    <exit code="1605" />
+    <exit code="0" />
+  </install>
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\itunes\9.2.1.5\iTunes.msi"'>
+    <exit code="any" />
+  </upgrade>
+  <upgrade cmd='msiexec %MSI% /x "%SOFTWARE%\itunes\9.2.1.5\AppleSoftwareUpdate.msi"'>
+    <exit code="1605" />
+    <exit code="0" />
+  </upgrade>
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\itunes\9.2.1.5\iTunes.msi"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\itunes\9.2.1.5\AppleSoftwareUpdate.msi"'>
+    <exit code="1605" />
+    <exit code="0" />
+  </remove>
+</package>
+
+<package
+  id="applemobile"
+  name="Apple Mobile Device Support"
+  revision="3.1.0.62"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall"  condition="versiongreaterorequal" path="Apple Mobile Device Support" value="3.1.0.62"/>
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\itunes\9.2.1.5\AppleMobileDeviceSupport.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\itunes\9.2.1.5\AppleMobileDeviceSupport.msi"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\itunes\9.2.1.5\AppleMobileDeviceSupport.msi"' />
+</package>
+
+<package
+  id="applesupport"
+  name="Apple Software Application Support"
+  revision="1.3.0"
+  reboot="false"
+  priority="10">
+
+  <variable name="pkg" value="AppleApplicationSupport.msi" />
+
+  <check type="uninstall"  condition="versiongreaterorequal" path="Apple Application Support" value="1.3.0"/>
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\itunes\9.2.1.5\%pkg%"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\itunes\9.2.1.5\%pkg%"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\itunes\9.2.1.5\%pkg%"' />
+</package>
+
+<package
+  id="bonjour"
+  name="Bonjour"
+  revision="2.0.2.0"
+  reboot="false"
+  priority="10">
+
+  <variable name="pkg" value="%SOFTWARE%\itunes\9.2.1.5\bonjour.msi" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Bonjour" value="2.0.2.0"/>
+  <install cmd='msiexec %MSI% /i "%pkg%"' />
+  <upgrade cmd='msiexec %MSI% /i "%pkg%"' />
+  <remove  cmd='msiexec %MSI% /x "%pkg%"' />
+</package>
+
+<package
+  id="quicktime"
+  name="Apple Quicktime"
+  revision="7.66.73.0"
+  reboot="false"
+  priority="10">
+
+  <variable name="pkg" value="%SOFTWARE%\itunes\9.2.1.5\QuickTime.msi" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="QuickTime" value="7.66.73.0"/>
+  <install cmd='msiexec %MSI% /i "%pkg%"' />
+  <install cmd='REG DELETE %RUN% /v "QuickTime Task" /f' />
+  <upgrade cmd='msiexec %MSI% /i "%pkg%"' />
+  <upgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f' />
+  <remove  cmd='msiexec %MSI% /x "%pkg%"' />
+</package>
+
+</packages>
