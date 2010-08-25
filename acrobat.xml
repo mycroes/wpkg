@@ -5,7 +5,7 @@
 <package
   id="acrobatreader"
   name="Adobe Acrobat Reader 9"
-  revision="933"
+  revision="9330"
   reboot="postponed"
   priority="10">
 
@@ -20,12 +20,8 @@
   <install cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd933_all_incr.msp" %MSP%'>
     <exit code="3010" />
   </install>
-  <install cmd='REG DELETE %RUN% /v "Adobe Reader Speed Launcher" /f'>
-    <exit code="1" />
-  </install>
-  <install cmd='REG DELETE %RUN% /v "Adobe ARM" /f'>
-    <exit code="1" />
-  </install>
+  <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f' />
+  <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f' />
 
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
      <exit code="3010" />
@@ -36,18 +32,14 @@
   <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd933_all_incr.msp" %MSP%'>
     <exit code="3010" />
   </upgrade>
-  <upgrade cmd='REG DELETE %RUN% /v "Adobe Reader Speed Launcher" /f'>
-    <exit code="1" />
-  </upgrade>
-  <upgrade cmd='REG DELETE %RUN% /v "Adobe ARM" /f'>
-    <exit code="1" />
-  </upgrade>
+  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f' />
+  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f' />
 
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd933_all_incr.msp" /package "%SOFTWARE%\Acrobat Reader\AcroRead.msi"' />
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd932_all_incr.msp" /package "%SOFTWARE%\Acrobat Reader\AcroRead.msi"' />
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\AcroRead.msi"' />
-  <remove cmd='REG DELETE %RUN% /v "Adobe Reader Speed Launcher" /f' />
-  <remove cmd='REG DELETE %RUN% /v "Adobe ARM" /f' />
+  <remove cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f' />
+  <remove cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f' />
 
 </package>
 
