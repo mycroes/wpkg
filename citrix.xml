@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="citrix_web"
+  name="Citrix Web ICA Client"
+  revision="2"
+  reboot="postponed"
+  priority="10">
+
+  <check type="uninstall" condition="exists" path="Citrix online plug-in - web" />
+  <install cmd='"%SOFTWARE%\Citrix\CitrixOnlinePluginWeb.exe" /silent /norestart' />
+  <upgrade cmd='"%SOFTWARE%\Citrix\CitrixOnlinePluginWeb.exe" /silent /norestart' />
+  <remove  cmd='"%ALLUSERSPROFILE%\Application Data\Citrix\Citrix online plug-in - web\TrolleyExpress.exe" /uninstall /cleanup' />
+
+</package>
+
+<package
+  id="citrix_xen"
+  name="Citrix XenApp Client"
+  revision="1"
+  reboot="postponed"
+  priority="10">
+
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Citrix XenApp Plugin for hosted Applications" />
+    <check type="uninstall" condition="exists" path="Citrix XenApp Plugin für gehostete Anwendungen" />
+  </check>
+
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Citrix\XenAppHosted.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Citrix\XenAppHosted.msi"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Citrix\XenAppHosted.msi"' />
+
+</package>
+
+</packages>
