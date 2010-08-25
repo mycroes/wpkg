@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  SOURCE
+  1) Download the full advanced installer from google.com (it doesn't have toolbars!)
+  2) Extract: .msi, 1033.mst, "program files" and "localappdata" using 7zip
+-->
+
+<packages>
+
+<package
+   id="googleearth"
+   name="Google Earth 5.2"
+   revision="5.2.1.1329"
+   reboot="false"
+   priority="10">
+
+   <check type="uninstall" condition="versiongreaterorequal" path="Google Earth" value="5.2.1.1329" />
+   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
+   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
+   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
+
+</package>
+
+</packages>
