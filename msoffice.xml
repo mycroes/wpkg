@@ -11,7 +11,7 @@
 <package
   id="office2007plus"
   name="MS Office Pro Plus 2007"
-  revision="1"
+  revision="2"
   reboot="postponed"
   priority="10">
 
@@ -29,7 +29,7 @@
 <package
   id="office2007std"
   name="MS Office Standard 2007"
-  revision="1"
+  revision="2"
   reboot="postponed"
   priority="10">
 
