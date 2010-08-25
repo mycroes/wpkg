@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) See below for full instructions
+-->
+
 <packages>
 
 <package
@@ -35,3 +41,16 @@
 </package>
 
 </packages>
+
+<!--
+  HOW TO OBTAIN THE FILES
+  1) Download Windows Live Installer from download.live.com.
+  2) Install or upgrade the Windows Live Messenger to latest version.
+  3) Browse to \Program Files\Common Files\Windows Live\.cache\ folder.
+  4) Locate the following files in the subfolders and copy them out:
+   a) crt.msi
+   b) contacts.msi
+   c) segoefont.msi
+   d) messenger.msi
+   e) dw20shared.msi (I couldn't find this and it seems to work without)
+-->
