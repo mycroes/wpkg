@@ -9,16 +9,16 @@
 <packages>
 
 <package
-   id="googleearth"
-   name="Google Earth 5.2"
-   revision="5.2.1.1329"
-   reboot="false"
-   priority="10">
+  id="googleearth"
+  name="Google Earth 5.2"
+  revision="5211547"
+  reboot="false"
+  priority="10">
 
-   <check type="uninstall" condition="versiongreaterorequal" path="Google Earth" value="5.2.1.1329" />
-   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
-   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
-   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
+  <check type="uninstall" condition="versiongreaterorequal" path="Google Earth" value="5.2.1.1547" />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
 
 </package>
 
