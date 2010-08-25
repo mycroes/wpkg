@@ -10,7 +10,7 @@
 <package
   id="directx"
   name="Directx 9.0c"
-  revision="2"
+  revision="3"
   priority="50">
 
   <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\x3daudio1_2.dll" value="9.21.1148.0"/>
