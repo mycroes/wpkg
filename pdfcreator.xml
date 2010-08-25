@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="pdfcreator"
+  name="PDFCreator 1.0.2"
+  revision="1000"
+  reboot="false"
+  priority="10">
+
+  <check type="logical" condition="or">
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\PDFCreator\PDFCreator.exe" value="1.0.2.0" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\PDFCreator\PDFCreator.exe" value="1.0.2.0" />
+  </check>
+
+  <install cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT"' >
+    <exit code="any" reboot="false" />
+  </install>
+  <install cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" /VERYSILENT"' >
+    <exit code="any" reboot="false" />
+  </install>
+  <install cmd='"%SOFTWARE%\PDFCreator\PDFCreator-1_0_2_setup.exe" /VERYSILENT /NORESTART /sp- /components="program,ghostscript,languages,languages\english" /tasks="!desktop_icon" /f' />
+  <install cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
+
+  <upgrade cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT"' >
+    <exit code="any" reboot="false" />
+  </upgrade>
+  <upgrade cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" /VERYSILENT"' >
+    <exit code="any" reboot="false" />
+  </upgrade>
+  <upgrade cmd='"%SOFTWARE%\PDFCreator\PDFCreator-1_0_2_setup.exe" /VERYSILENT /NORESTART /sp- /components="program,ghostscript,languages,languages\english" /tasks="!desktop_icon" /f' />
+  <upgrade cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
+
+  <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" %PROGRAMFILES%\PDFCreator\unins000.exe /VERYSILENT' />
+  <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" %PROGRAMFILES(x86)%\PDFCreator\unins000.exe /VERYSILENT' />
+
+</package>
+
+</packages>
