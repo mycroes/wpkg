@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) If the application has been installed running setup.exe WILL result in a prompt and upgrades thus do not work.
+
+-->
+
+<packages>
+
+<package
+  id="office2007plus"
+  name="MS Office Pro Plus 2007"
+  revision="1"
+  reboot="postponed"
+  priority="10">
+
+  <check type="uninstall" condition="exists" path="Microsoft Office Professional Plus 2007" />
+
+  <install cmd='"%SOFTWARE%\MS Office Pro Plus 2007 SP2\setup.exe"' />
+
+  <remove cmd="MsiExec.exe /X{90120000-0011-0000-0000-0000000FF1CE} %MSI%" />
+
+</package>
+
+<package
+  id="office2007std"
+  name="MS Office Standard 2007"
+  revision="1"
+  reboot="postponed"
+  priority="10">
+
+  <check type="uninstall" condition="exists" path="Microsoft Office Standard 2007" />
+
+  <install cmd='"%SOFTWARE%\MS Office Std 2007 SP2\setup.exe"' />
+
+  <remove cmd="MsiExec.exe /X{90120000-0012-0000-0000-0000000FF1CE} %MSI%" />
+
+</package>
+
+</packages>
