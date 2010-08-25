@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  NOTES
+  1) The redist packages errors out with -9 on silent install
+-->
+
 <packages>
 
 <package
   id="directx"
+  name="Directx 9.0c"
+  revision="2"
+  priority="50">
+
+  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\x3daudio1_2.dll" value="9.21.1148.0"/>
+
+  <install cmd='"%SOFTWARE%\DirectX\DXwebSetup.exe" /c:"DXwSetup.exe /windowsupdate" /q /r:n' >
+    <exit code="0" />
+    <exit code="3010" reboot="postponed" />
+  </install>
+
+  <upgrade cmd='"%SOFTWARE%\DirectX\DXwebSetup.exe" /c:"DXwSetup.exe /windowsupdate" /q /r:n' >
+    <exit code="0" />
+    <exit code="3010" reboot="postponed" />
+  </upgrade>
+</package>
+
+<package
+  id="directx_redist"
   name="DirectX 9.0c"
   revision="2"
-  reboot="postponed"
   priority="50">
 
   <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\x3daudio1_2.dll" value="9.21.1148.0"/>
@@ -15,7 +38,7 @@
   <install cmd='"%SOFTWARE%\DirectX\directx_Jun2010_redist.exe" /Q:a /C /T:"%TEMP%\dx"' />
   <install cmd='"%TEMP%\dx\dxsetup.exe" /SILENT'>
     <exit code="0" />
-    <exit code="3010" reboot="true" />
+    <exit code="3010" reboot="postponed" />
   </install>
   <install cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
 
@@ -23,7 +46,7 @@
   <upgrade cmd='"%SOFTWARE%\DirectX\directx_Jun2010_redist.exe" /Q /C /T:"%TEMP%\dx"' />
   <upgrade cmd='"%TEMP%\dx\dxsetup.exe" /SILENT'>
     <exit code="0" />
-    <exit code="3010" reboot="true" />
+    <exit code="3010" reboot="postponed" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
 
