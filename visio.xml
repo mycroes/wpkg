@@ -2,25 +2,15 @@
 
 <!--
   NOTES
-  1) visioviewer always depends on the latest version
+  1) visioviewer is always the latest version
 -->
 
 <packages>
 
 <package
   id="visioviewer"
-  name="MS Visio Viewer - latest version"
-  revision="1"
-  reboot="false"
-  priority="10">
-
-  <depends package-id="visioviewer2010" />
-</package>
-
-<package
-  id="visioviewer2010"
   name="MS Visio Viewer 2010"
-  revision="1"
+  revision="2"
   reboot="false"
   priority="10">
 
