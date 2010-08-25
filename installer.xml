@@ -23,10 +23,14 @@
   <check type="registry" condition="exists" path="HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\KB942288-v3" />
 
   <install cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB898461-x86-ENU.exe" /passive /norestart /nobackup' />
-  <install cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB942288-v3-x86.exe" /passive /norestart /nobackup' />
+  <install cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB942288-v3-x86.exe" /passive /norestart /nobackup'>
+    <exit code="3010" />
+  </install>
 
   <upgrade cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB898461-x86-ENU.exe" /passive /norestart /nobackup' />
-  <upgrade cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB942288-v3-x86.exe" /passive /norestart /nobackup' />
+  <upgrade cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB942288-v3-x86.exe" /passive /norestart /nobackup'>
+    <exit code="3010" />
+  </upgrade>
 
 </package>
 
