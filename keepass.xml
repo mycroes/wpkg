@@ -5,7 +5,7 @@
 <package
   id="keepass"
   name="KeePass"
-  revision="210"
+  revision="212"
   reboot="false"
   priority="10"> <!-- update to 212 when 2.12 is tested -->
 
@@ -16,11 +16,11 @@
   <upgrade cmd='"%SOFTWARE%\KeePass\KeePass-2.12-Setup.exe" /VERYSILENT /sp-' />
 
   <!-- Windows 32-bit -->
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\KeePass Password Safe 2" "%ProgramFiles%\KeePass Password Safe 2\unins000.exe" /VERYSILENT' />
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\KeePass Password Safe 2" RD /Q /S "%ProgramFiles%\KeePass Password Safe 2"' />
+  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\KeePass Password Safe 2\unins000.exe" "%ProgramFiles%\KeePass Password Safe 2\unins000.exe" /VERYSILENT' />
+  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\KeePass Password Safe 2" REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce" /v keepass /d "IF NOT EXIST \"%ProgramFiles%\KeePass Password Safe 2\keepass.exe\" RD /Q /S \"%ProgramFiles%\KeePass Password Safe 2\"" /f' />
   <!-- Windows 64-bit -->
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\KeePass Password Safe 2" "%ProgramFiles(x86)%\KeePass Password Safe 2\unins000.exe" /VERYSILENT' />
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\KeePass Password Safe 2" RD /Q /S "%ProgramFiles(x86)%\KeePass Password Safe 2"' />
+  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\KeePass Password Safe 2\unins000.exe" "%ProgramFiles(x86)%\KeePass Password Safe 2\unins000.exe" /VERYSILENT' />
+  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\KeePass Password Safe 2" REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce" /v keepass /d "IF NOT EXIST \"%ProgramFiles(x86)%\KeePass Password Safe 2\keepass.exe\" RD /Q /S \"%ProgramFiles(x86)%\KeePass Password Safe 2\"" /f' />
 
 </package>
 
