@@ -10,11 +10,11 @@
 <package
   id="visioviewer"
   name="MS Visio Viewer 2010"
-  revision="2"
+  revision="3"
   reboot="false"
   priority="10">
 
-  <check type="uninstall" condition="exists" path="Microsoft Office Visio Viewer 2010" />
+  <check type="uninstall" condition="exists" path="Microsoft Visio Viewer 2010" />
 
   <install cmd='"%SOFTWARE%\Visio Viewer\visioviewer2010.exe" %MSI%' />
 
