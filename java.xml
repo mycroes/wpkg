@@ -27,7 +27,7 @@
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <install cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /d 4 /f' />
+  <install cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
   <install cmd='net STOP JavaQuickStarterService' >
    <exit code='2' />
   </install>
@@ -48,7 +48,10 @@
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <upgrade cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /d 4 /f' />
+  <upgrade cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
+  <upgrade cmd='net STOP JavaQuickStarterService' >
+    <exit code='2' />
+  </upgrade>
 
   <remove cmd='net STOP JavaQuickStarterService' >
     <exit code='2' />
