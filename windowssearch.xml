@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+   id="windowssearch"
+   name="Windows Search 4.0"
+   revision="3"
+   reboot="postponed"
+   priority="10">
+
+   <check type="uninstall" condition="exists" path="Windows Search 4.0" />
+
+   <install cmd='"%SOFTWARE%\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" /passive /norestart' />
+
+   <upgrade cmd='"%SOFTWARE%\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" /passive /norestart' />
+
+   <!--
+   <remove cmd='msiexec /X{2EAF7E61-068E-11DF-953C-005056806466} /passive /norestart' />
+   -->
+
+</package>
+
+</packages>
