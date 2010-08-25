@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+
+<package
+  id="livemessenger"
+  name="Windows Live Messenger"
+  revision="8"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" condition="exists" path="Windows Live Messenger" />
+
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\SegoeFont.msi"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\crt.msi"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\Contacts.msi"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\Messenger.msi"' />
+
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\SegoeFont.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\crt.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\Contacts.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\Messenger.msi"' />
+
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Windows Live\SegoeFont.msi"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Windows Live\crt.msi"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Windows Live\Contacts.msi"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Windows Live\Messenger.msi"' />
+
+</package>
+
+<package
+  id="uninstall-msmsgs"
+  name="Windows Messenger Uninstall"
+  execute="once">
+  <install cmd='RunDll32 advpack.dll,LaunchINFSection %windir%\INF\msmsgs.inf,BLC.Remove' />
+</package>
+
+</packages>
