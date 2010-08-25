@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  TODO
+  1) Get setup.iss file
+-->
+
+<packages>
+
+<package
+  id="opal"
+  name="Opal Player"
+  revision="2000"
+  reboot="false"
+  priority="10">
+
+  <check type="logical" condition="or">
+    <check type="file" condition="versionequalto" path="%PROGRAMFILES%\Internet Explorer\Plugins\Opal\OpalATL.dll" value="2.1.1.1" />
+    <check type="file" condition="versionequalto" path="%PROGRAMFILES(x86)%\Internet Explorer\Plugins\Opal\OpalATL.dll" value="2.1.1.1" />
+  </check>
+
+  <install cmd='%COMSPEC% /C copy /y "%SOFTWARE%\MariNet\setup.iss" "c:\marinet.iss"' />
+  <install cmd='"%SOFTWARE%\MariNet\ieplug.exe" /s /a /s /sms /f1c:\marinet.iss' />
+  <install cmd='%COMSPEC% /C del /F /Q c:\marinet.iss' />
+
+  <upgrade cmd='%comspec% /c copy /y "%SOFTWARE%\MariNet\setup.iss" "c:\marinet.iss"' />
+  <upgrade cmd='"%SOFTWARE%\MariNet\ieplug.exe" /s /a /s /sms /f1c:\marinet.iss' />
+  <upgrade cmd='%COMSPEC% /C del /F /Q c:\marinet.iss' />
+
+  <remove  cmd='%comspec% /c RD /Q /S "%programfiles%\Internet Explorer\Plugins\Opal"' />
+  <remove  cmd='%COMSPEC% /C IF EXIST c:\marinet.iss del /F /Q c:\marinet.iss' />
+
+</package>
+
+</packages>
