@@ -5,7 +5,7 @@
 <package
   id="java"
   name="Java 6"
-  revision="621"
+  revision="1621"
   reboot="false"
   priority="10">
 
