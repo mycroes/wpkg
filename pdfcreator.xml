@@ -5,7 +5,7 @@
 <package
   id="pdfcreator"
   name="PDFCreator 1.0.2"
-  revision="1021"
+  revision="1022"
   reboot="false"
   priority="10">
 
