@@ -11,7 +11,7 @@
   id="installer"
   name="Windows Installer 4.5"
   revision="4"
-  reboot="false"
+  reboot="true"
   priority="100">
 
   <!--
