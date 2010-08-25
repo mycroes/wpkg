@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) Only for XP as Vista and 7 come with newer versions
+-->
+
+<packages>
+
+<package
+  id="installer"
+  name="Windows Installer 4.5"
+  revision="4"
+  reboot="false"
+  priority="100">
+
+  <!--
+  The uninstall check doesn't work since it's an update and not a "real" installed program - hence the registry check
+  <check type="uninstall" condition="exists" path="Hotfix for Windows XP (KP942288-v3)" />
+  -->
+
+  <check type="registry" condition="exists" path="HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\KB898461" />
+  <check type="registry" condition="exists" path="HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\KB942288-v3" />
+
+  <install cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB898461-x86-ENU.exe" /passive /norestart /nobackup' />
+  <install cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB942288-v3-x86.exe" /passive /norestart /nobackup' />
+
+  <upgrade cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB898461-x86-ENU.exe" /passive /norestart /nobackup' />
+  <upgrade cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB942288-v3-x86.exe" /passive /norestart /nobackup' />
+
+</package>
+
+</packages>
