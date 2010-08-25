@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="directx"
+  name="DirectX 9.0c"
+  revision="1"
+  reboot="false"
+  priority="50">
+
+  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\x3daudio1_2.dll" value="9.21.1148.0"/>
+
+  <install cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
+  <install cmd='"%SOFTWARE%\DirectX\directx_feb2010_redist.exe" /Q:a /C /T:"%TEMP%\dx"' />
+  <install cmd='"%TEMP%\dx\dxsetup.exe" /SILENT'>
+    <exit code="0" />
+    <exit code="-9" />
+    <exit code="3010" reboot="true" />
+  </install>
+  <install cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
+
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
+  <upgrade cmd='"%SOFTWARE%\DirectX\directx_feb2010_redist.exe" /Q /C /T:"%TEMP%\dx"' />
+  <upgrade cmd='"%TEMP%\dx\dxsetup.exe" /SILENT'>
+    <exit code="0" />
+    <exit code="-9" />
+    <exit code="3010" reboot="true" />
+  </upgrade>
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
+
+</package>
+
+</packages>
