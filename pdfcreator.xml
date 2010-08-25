@@ -5,7 +5,7 @@
 <package
   id="pdfcreator"
   name="PDFCreator 1.0.2"
-  revision="1024"
+  revision="1025"
   reboot="false"
   priority="10">
 
@@ -14,6 +14,7 @@
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\PDFCreator\PDFCreator.exe" value="1.0.0.2" />
   </check>
 
+  <!--
   <install cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT"' >
     <exit code="any" reboot="false" />
   </install>
@@ -31,6 +32,7 @@
   </upgrade>
   <upgrade cmd='"%SOFTWARE%\PDFCreator\PDFCreator-1_0_2_setup.exe" /VERYSILENT /nocancel /norestart /dontuseyahoosearch /sp- /components=\"!toolbar\" /tasks=\"!desktopicon,!quicklaunchicon\" /f /norestart' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
+  -->
 
   <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT' />
   <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" /VERYSILENT' />
