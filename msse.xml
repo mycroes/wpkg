@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) This is no elegant way (that I know of) to turn this into one installer for all platforms (xp32, win7_32, win7_64)
+
+  PACKAGES
+  mssefullinstall-x86fre-en-us-xp.exe
+  mssefullinstall-x86fre-en-us-vista-win7.exe
+  mssefullinstall-amd64fre-en-us-vista-win7.exe
+
+-->
+
+<packages>
+
+<package
+  id="msse_xp_32"
+  name="MS Security Essentials"
+  revision="12"
+  reboot="false"
+  priority="50">
+
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Microsoft Security Essentials" />
+    <check type="uninstall" condition="exists" path="Symantec Endpoint Protection" />
+    <check type="uninstall" condition="exists" path="Trend Micro OfficeScan Client" />
+  </check>
+
+  <install cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-xp.exe" /s /runwgacheck'>
+    <exit code="-2147156221" />
+    <exit code="-2147156213" />
+  </install>
+  <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+
+  <upgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-xp.exe" /s /runwgacheck'>
+    <exit code="-2147156221" />
+    <exit code="-2147156213" />
+  </upgrade>
+  <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+
+  <remove cmd='"%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
+
+</package>
+
+<package
+  id="msse_w7_32"
+  name="MS Security Essentials"
+  revision="12"
+  reboot="false"
+  priority="50">
+
+    <check type="logical" condition="or">
+      <check type="uninstall" condition="exists" path="Microsoft Security Essentials" />
+      <check type="uninstall" condition="exists" path="Symantec Endpoint Protection" />
+      <check type="uninstall" condition="exists" path="Trend Micro OfficeScan Client" />
+    </check>
+
+    <install cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-vista-win7.exe" /s /runwgacheck'>
+      <exit code="-2147156221" />
+      <exit code="-2147156213" />
+    </install>
+    <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+
+    <upgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-vista-win7.exe" /s /runwgacheck'>
+      <exit code="-2147156221" />
+      <exit code="-2147156213" />
+    </upgrade>
+    <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+
+    <remove cmd='"%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
+
+</package>
+
+<package
+  id="msse_w7_64"
+  name="MS Security Essentials"
+  revision="12"
+  reboot="false"
+  priority="50">
+
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Microsoft Security Essentials" />
+    <check type="uninstall" condition="exists" path="Symantec Endpoint Protection" />
+    <check type="uninstall" condition="exists" path="Trend Micro OfficeScan Client" />
+  </check>
+
+  <install cmd='"%SOFTWARE%\MSSE\mssefullinstall-amd64fre-en-us-vista-win7.exe" /s /runwgacheck'>
+    <exit code="-2147156221" />
+    <exit code="-2147156213" />
+  </install>
+  <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+
+  <upgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-amd64fre-en-us-vista-win7.exe" /s /runwgacheck'>
+    <exit code="-2147156221" />
+    <exit code="-2147156213" />
+  </upgrade>
+  <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+
+  <remove cmd='"%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
+
+</package>
+
+</packages>
