@@ -26,9 +26,9 @@
 
   <check type="uninstall" condition="exists" path="Microsoft Office Visio Viewer 2010" />
 
-  <install cmd='"%SOFTWARE%\VisioViewer\visioviewer2010.exe" %MSI%' />
+  <install cmd='"%SOFTWARE%\Visio Viewer\visioviewer2010.exe" %MSI%' />
 
-  <upgrade cmd='"%SOFTWARE%\VisioViewer\visioviewer2010.exe" %MSI%' />
+  <upgrade cmd='"%SOFTWARE%\Visio Viewer\visioviewer2010.exe" %MSI%' />
 
   <remove  cmd='msiexec %MSI% /x{95140000-0052-0409-0000-0000000FF1CE}' />
 
@@ -43,11 +43,11 @@
 
   <check type="uninstall" condition="exists" path="Microsoft Office Visio Viewer 2007" />
 
-  <install cmd='"%SOFTWARE%\VisioViewer\visioviewer2007.exe" %MSI%' />
-  <install cmd='"%SOFTWARE%\VisioViewer\visioviewer2007sp2-kb953335-fullfile-en-us.exe" %MSI%' />
+  <install cmd='"%SOFTWARE%\Visio Viewer\visioviewer2007.exe" %MSI%' />
+  <install cmd='"%SOFTWARE%\Visio Viewer\visioviewer2007sp2-kb953335-fullfile-en-us.exe" %MSI%' />
 
-  <upgrade cmd='"%SOFTWARE%\VisioViewer\visioviewer2007.exe" %MSI%' />
-  <upgrade cmd='"%SOFTWARE%\VisioViewer\visioviewer2007sp2-kb953335-fullfile-en-us.exe" %MSI%' />
+  <upgrade cmd='"%SOFTWARE%\Visio Viewer\visioviewer2007.exe" %MSI%' />
+  <upgrade cmd='"%SOFTWARE%\Visio Viewer\visioviewer2007sp2-kb953335-fullfile-en-us.exe" %MSI%' />
 
   <remove  cmd='msiexec %MSI% /x{95120000-0052-0409-0000-0000000FF1CE}' />
 
