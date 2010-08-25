@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+
+<package
+  id="uninstall-msmsgs"
+  name="Windows Messenger Uninstall"
+  execute="once">
+  <install cmd='RunDll32 advpack.dll,LaunchINFSection %windir%\INF\msmsgs.inf,BLC.Remove' />
+</package>
+
+</packages>
