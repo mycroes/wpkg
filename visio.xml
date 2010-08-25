@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) visioviewer always depends on the latest version
+-->
+
+<packages>
+
+<package
+  id="visioviewer"
+  name="MS Visio Viewer - latest version"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <depends package-id="visioviewer2010" />
+</package>
+
+<package
+  id="visioviewer2010"
+  name="MS Visio Viewer 2010"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" condition="exists" path="Microsoft Office Visio Viewer 2010" />
+
+  <install cmd='"%SOFTWARE%\VisioViewer\visioviewer2010.exe" %MSI%' />
+
+  <upgrade cmd='"%SOFTWARE%\VisioViewer\visioviewer2010.exe" %MSI%' />
+
+  <remove  cmd='msiexec %MSI% /x{95140000-0052-0409-0000-0000000FF1CE}' />
+
+</package>
+
+<package
+  id="visioviewer2007"
+  name="MS Visio Viewer 2007 SP2"
+  revision="7"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" condition="exists" path="Microsoft Office Visio Viewer 2007" />
+
+  <install cmd='"%SOFTWARE%\VisioViewer\visioviewer2007.exe" %MSI%' />
+  <install cmd='"%SOFTWARE%\VisioViewer\visioviewer2007sp2-kb953335-fullfile-en-us.exe" %MSI%' />
+
+  <upgrade cmd='"%SOFTWARE%\VisioViewer\visioviewer2007.exe" %MSI%' />
+  <upgrade cmd='"%SOFTWARE%\VisioViewer\visioviewer2007sp2-kb953335-fullfile-en-us.exe" %MSI%' />
+
+  <remove  cmd='msiexec %MSI% /x{95120000-0052-0409-0000-0000000FF1CE}' />
+
+</package>
+
+</packages>
