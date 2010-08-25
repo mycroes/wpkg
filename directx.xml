@@ -2,18 +2,27 @@
 
 <!--
   NOTES
-  1) The redist packages errors out with -9 on silent install
+  1) This doesn't work - both packages error out with -9 on silent install
 -->
 
 <packages>
 
 <package
   id="directx"
+  name="DirectX 9.0c"
+  revision="10"
+  priority="50">
+
+  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\x3daudio1_7.dll" value="9.28.1886.0"/>
+
+  <depends package-id="directx_web" />
+</package>
+
+<package
+  id="directx_web"
   name="Directx 9.0c"
   revision="3"
   priority="50">
-
-  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\x3daudio1_2.dll" value="9.21.1148.0"/>
 
   <install cmd='"%SOFTWARE%\DirectX\DXwebSetup.exe" /c:"DXwSetup.exe /windowsupdate" /q /r:n' >
     <exit code="0" />
@@ -31,8 +40,6 @@
   name="DirectX 9.0c"
   revision="2"
   priority="50">
-
-  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\x3daudio1_2.dll" value="9.21.1148.0"/>
 
   <install cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
   <install cmd='"%SOFTWARE%\DirectX\directx_Jun2010_redist.exe" /Q:a /C /T:"%TEMP%\dx"' />
