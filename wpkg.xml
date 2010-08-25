@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="wpkg"
+  name="Update new WPKG settings"
+  revision="1"
+  reboot="false"
+  priority="0"
+  execute="always">
+
+  <install cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"' />
+
+</package>
+
+</packages>
