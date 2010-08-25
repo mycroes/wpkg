@@ -10,7 +10,7 @@
 <package
   id="installer"
   name="Windows Installer 4.5"
-  revision="4"
+  revision="5"
   reboot="true"
   priority="100">
 
