@@ -5,13 +5,13 @@
 <package
   id="pdfcreator"
   name="PDFCreator 1.0.2"
-  revision="1000"
+  revision="1001"
   reboot="false"
   priority="10">
 
   <check type="logical" condition="or">
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\PDFCreator\PDFCreator.exe" value="1.0.2.0" />
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\PDFCreator\PDFCreator.exe" value="1.0.2.0" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\PDFCreator\PDFCreator.exe" value="1.0.0.2" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\PDFCreator\PDFCreator.exe" value="1.0.0.2" />
   </check>
 
   <install cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT"' >
