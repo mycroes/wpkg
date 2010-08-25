@@ -10,7 +10,7 @@
 <package
   id="visioviewer"
   name="MS Visio Viewer 2010"
-  revision="3"
+  revision="2000"
   reboot="false"
   priority="10">
 
@@ -27,7 +27,7 @@
 <package
   id="visioviewer2007"
   name="MS Visio Viewer 2007 SP2"
-  revision="7"
+  revision="2007"
   reboot="false"
   priority="10">
 
