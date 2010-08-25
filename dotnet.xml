@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) We do not provide upgrade stanzas as subsequent upgrades will be handled by WSUS/WU
+-->
+
+<packages>
+
+<package
+  id="dotnet1"
+  name="Microsoft .NET 1.1"
+  revision="4"
+  reboot="false"
+  priority="50">
+
+  <check type="uninstall" condition="exists" path="Microsoft .NET Framework 1.1" />
+
+  <install cmd='"%SOFTWARE%\DotNet\dotnetfx.exe" /Q /C /T:"%TEMP%\net1"' />
+  <install cmd='msiexec %MSI% /i "%TEMP%\net1\netfx.msi"' />
+
+</package>
+
+<package
+  id="dotnet3"
+  name="Microsoft .NET 3.5 SP1"
+  revision="4"
+  reboot="false"
+  priority="50">
+
+  <check type="uninstall" condition="exists" path="Microsoft .NET Framework 3.5 SP1" />
+
+  <install cmd='"%SOFTWARE%\DotNet\dotnetfx35.exe" %MSI%'>
+    <exit code="194" reboot="postponed" />
+    <exit code="1603" />
+    <exit code="3010" reboot="postponed" />
+  </install>
+  <install cmd='"%SOFTWARE%\DotNet\NDP20SP2-KB958481-x86.exe" %MSI%' />
+  <install cmd='"%SOFTWARE%\DotNet\NDP30SP2-KB958483-x86.exe" %MSI%' />
+  <install cmd='"%SOFTWARE%\DotNet\NDP35SP1-KB958484-x86.exe" %MSI%' />
+
+  <remove cmd='"%WINDIR%\Microsoft.NET\Framework\v3.5\Microsoft .NET Framework 3.5 SP1\setup.exe" /uninstall %MSI%' />
+
+</package>
+
+</packages>
