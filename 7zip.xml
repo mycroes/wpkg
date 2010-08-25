@@ -4,7 +4,7 @@
   <package 
     id="7zip" 
     name="7-Zip (32 and 64 bit)" 
-    revision="4.65-0"
+    revision="4650"
     reboot="false"
     priority="0">
 
