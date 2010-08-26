@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+
+<package
+  id="ultradefrag"
+  name="Ultra Defragmenter"
+  revision="400"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Ultra Defragmenter" value="4.3.0" />
+
+  <install cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == x86 "%SOFTWARE%\UltraDefrag\ultradefrag-4.3.0.bin.i386.exe" /S /NCRC' />
+  <install cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-4.3.0.bin.amd64.exe" /S /NCRC' />
+
+  <upgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == x86 "%SOFTWARE%\UltraDefrag\ultradefrag-4.3.0.bin.i386.exe" /S /NCRC' />
+  <upgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-4.3.0.bin.amd64.exe" /S /NCRC' />
+
+  <remove  cmd='%ComSpec% /c "%SystemRoot%\UltraDefrag\uninstall.exe" /S /NCRC' />
+  <remove  cmd='%ComSpec% /c if exist "%SystemRoot%\UltraDefrag" rmdir /s /q "%SystemRoot%\UltraDefrag"' />
+</package>
+
+</packages>
