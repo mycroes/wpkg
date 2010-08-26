@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) This package is not being kept updated
+  2) Silent install WILL fail due to unsigned drivers
+-->
+
+<packages>
+
+<package
+  id="pdf24"
+  name="PDF24Creator 2.8.5"
+  revision="200"
+  reboot="false"
+  priority="10">
+
+  <check type="logical" condition="or">
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\pdf24\PDFCreator.exe" value="2.8.5.0" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\pdf24\PDFCreator.exe" value="2.8.5.0" />
+  </check>
+
+  <install cmd='"%SOFTWARE%\PDFCreator\pdf24-creator.exe" /VERYSILENT' />
+
+  <upgrade cmd='"%SOFTWARE%\PDFCreator\pdf24-creator.exe" /VERYSILENT' />
+
+  <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\pdf24\unins000.exe" %PROGRAMFILES%\pdf24\unins000.exe /VERYSILENT' />
+  <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\pdf24\unins000.exe" %PROGRAMFILES(x86)%\pdf24\unins000.exe /VERYSILENT' />
+
+</package>
+
+</packages>
