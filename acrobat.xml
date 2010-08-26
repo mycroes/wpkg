@@ -5,11 +5,11 @@
 <package
   id="acrobatreader"
   name="Adobe Acrobat Reader 9"
-  revision="9330"
+  revision="9340"
   reboot="postponed"
   priority="10">
 
-  <check type="uninstall" condition="exists" path="Adobe Reader 9.3.3" />
+  <check type="uninstall" condition="exists" path="Adobe Reader 9.3.4" />
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" />
@@ -18,6 +18,9 @@
     <exit code="3010" />
   </install>
   <install cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd933_all_incr.msp" %MSP%'>
+    <exit code="3010" />
+  </install>
+  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd934_all_incr.msp" %MSP%'>
     <exit code="3010" />
   </install>
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f' />
@@ -32,9 +35,13 @@
   <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd933_all_incr.msp" %MSP%'>
     <exit code="3010" />
   </upgrade>
+  <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd934_all_incr.msp" %MSP%'>
+    <exit code="3010" />
+  </upgrade>
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f' />
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f' />
 
+  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd934_all_incr.msp" /package "%SOFTWARE%\Acrobat Reader\AcroRead.msi"' />
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd933_all_incr.msp" /package "%SOFTWARE%\Acrobat Reader\AcroRead.msi"' />
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd932_all_incr.msp" /package "%SOFTWARE%\Acrobat Reader\AcroRead.msi"' />
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\AcroRead.msi"' />
