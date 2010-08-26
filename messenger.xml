@@ -10,7 +10,7 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="8"
+  revision="1400"
   reboot="false"
   priority="10">
 
