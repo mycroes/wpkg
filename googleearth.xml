@@ -16,6 +16,10 @@
   priority="10">
 
   <check type="uninstall" condition="versiongreaterorequal" path="Google Earth" value="5.2.1.1547" />
+  <install cmd='%COMSPEC% /C "md %SystemDrive%\netinst\logs\"' >
+    <exit code="0" />
+    <exit code="1" /> <!-- directory already exists -->
+  </install>
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
