@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  NOTES
+  1) The latest version 1.0.2 is not playing nice when installing - it basically hangs
+  2) The old version 099 has been added for that purpose
+-->
+
 <packages>
 
 <package
@@ -33,6 +39,41 @@
   <upgrade cmd='"%SOFTWARE%\PDFCreator\PDFCreator-1_0_2_setup.exe" /VERYSILENT /nocancel /norestart /dontuseyahoosearch /sp- /components=\"!toolbar\" /tasks=\"!desktopicon,!quicklaunchicon\" /f /norestart' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
   -->
+
+  <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT' />
+  <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" /VERYSILENT' />
+
+</package>
+
+<package
+  id="pdfcreator-099"
+  name="PDFCreator 0.9.9"
+  revision="0992"
+  reboot="false"
+  priority="10">
+
+  <check type="logical" condition="or">
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\PDFCreator\PDFCreator.exe" value="0.9.0.9" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\PDFCreator\PDFCreator.exe" value="0.9.0.9" />
+  </check>
+
+  <install cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT"' >
+    <exit code="any" reboot="false" />
+  </install>
+  <install cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" /VERYSILENT"' >
+    <exit code="any" reboot="false" />
+  </install>
+  <install cmd='"%SOFTWARE%\PDFCreator\PDFCreator-0_9_9_setup.exe" /VERYSILENT /sp- /components="program,ghostscript,languages,languages\english" /tasks="!desktop_icon" /f' />
+  <install cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
+
+  <upgrade cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT"' >
+    <exit code="any" reboot="false" />
+  </upgrade>
+  <upgrade cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" /VERYSILENT"' >
+    <exit code="any" reboot="false" />
+  </upgrade>
+  <upgrade cmd='"%SOFTWARE%\PDFCreator\PDFCreator-0_9_9_setup.exe" /VERYSILENT /sp- /components="program,ghostscript,languages,languages\english" /tasks="!desktop_icon" /f' />
+  <upgrade cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
 
   <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT' />
   <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" /VERYSILENT' />
