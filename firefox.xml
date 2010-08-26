@@ -2,7 +2,7 @@
 
 <!--
   TODO
-  1) Copy firefox_installer.ini from here to where you placed the firefox installer 
+  1) Copy firefox_installer.ini from here to where you placed the firefox installer
 
 -->
 
@@ -11,13 +11,13 @@
 <package
   id="firefox"
   name="Mozilla Firefox"
-  revision="368"
+  revision="3680"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="Mozilla Firefox (3.6.8)" />
-  <install cmd='"%SOFTWARE%\Firefox\Firefox Setup 3.6.8.exe" /S /INI=%SOFTWARE%\Firefox\installer.ini' />
-  <upgrade cmd='"%SOFTWARE%\Firefox\Firefox Setup 3.6.8.exe" /S /INI=%SOFTWARE%\Firefox\installer.ini' />
+  <install cmd='"%SOFTWARE%\Firefox\Firefox Setup 3.6.8.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
+  <upgrade cmd='"%SOFTWARE%\Firefox\Firefox Setup 3.6.8.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
   <!-- Windows 32-bit -->
   <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" "%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" /S' />
   <!-- Windows 64-bit -->
