@@ -3,6 +3,7 @@
 <!--
   NOTES
   1) We install 32 bit libraries on 32 and 64 bit, but 64 only on 64 bit
+  2) This checking isn't really that good - on 64b we should check for both 32b and 64b
 -->
 
 <packages>
@@ -10,16 +11,16 @@
 <package
   id="vcruntime"
   name="Visual C++ Runtime 2005 &amp; 2008"
-  revision="3"
+  revision="4"
   reboot="false"
   priority="10">
 
   <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2005 Redistributable" />
+    <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2005 Redistributable" value="8.0.56336" />
     <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2005 Redistributable - x64" />
   </check>
   <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.17" />
+    <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.17" value="9.0.30729" />
     <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2008 Redistributable - x64 9.0.30729.17" />
   </check>
 
