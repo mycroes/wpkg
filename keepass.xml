@@ -5,15 +5,21 @@
 <package
   id="keepass"
   name="KeePass"
-  revision="2000"
+  revision="2120"
   reboot="false"
   priority="10"> <!-- update to 212 when 2.12 is tested -->
 
   <check type="uninstall" condition="exists" path="KeePass Password Safe 2.12" />
 
   <install cmd='"%SOFTWARE%\KeePass\KeePass-2.12-Setup.exe" /VERYSILENT /sp-' />
+  <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "KeePass 2 PreLoad" /f'>
+    <exit code="2" />
+  </install>
 
   <upgrade cmd='"%SOFTWARE%\KeePass\KeePass-2.12-Setup.exe" /VERYSILENT /sp-' />
+  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "KeePass 2 PreLoad" /f'>
+    <exit code="2" />
+  </upgrade>
 
   <!-- Windows 32-bit -->
   <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\KeePass Password Safe 2\unins000.exe" "%ProgramFiles%\KeePass Password Safe 2\unins000.exe" /VERYSILENT' />
