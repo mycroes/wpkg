@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) Here we grant special permissions to normal users so that it's possible to actually use the machine when running as standard user
+-->
+
+<packages>
+
+<package
+  id="power_permissions"
+  name="Power permissions"
+  revision="1"
+  reboot="false"
+  priority="10"
+  execute="always">
+
+  <depends package-id="tools_permissions" />
+
+  <install cmd='"%WINDIR%\subinacl" /subkeyreg "SOFTWARE\Microsoft\Windows\CurrentVersion\Controls Folder\PowerCfg" /grant=Everyone=f' />
+
+</package>
+
+<package
+  id="network_permissions"
+  name="Network permissions"
+  revision="1"
+  reboot="false"
+  priority="10"
+  execute="always">
+
+  <depends package-id="tools_permissions" />
+
+  <install cmd='net localgroup "Network Configuration Operators" Everyone /ADD'>
+    <exit code="2" /> <!-- Already member -->
+  </install>
+
+</package>
+
+<package
+  id="tools_permissions"
+  name="Various tools needed to set permissions"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <check type="file" condition="exists" path="%WINDIR%\subinacl.exe" />
+  <install cmd='xcopy /y "%WPKG%\Tools\subinacl.exe" "%WINDIR%"' />
+  <upgrade cmd='xcopy /y "%WPKG%\Tools\subinacl.exe" "%WINDIR%"' />
+
+</package>
+
+</packages>
