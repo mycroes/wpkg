@@ -25,4 +25,4 @@ c) Priorities are set as follows
    50 - system applications (IE8 and others)
   100 - critical install first apps (Windows Installer 4.5)
 
-d) Rebooting - all should have their reboot priority set to postponed or look for 3010 return code
+d) Rebooting - all should have their reboot priority set to "false" and only reboot (postponed) in case of 3010 or similar return codes.
