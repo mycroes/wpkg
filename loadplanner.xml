@@ -24,11 +24,11 @@
   <!-- 32 bit host -->
   <install cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
   <install cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" ftype LoadPlanner="%PROGRAMFILES%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <install cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone=f' />
+  <install cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone=f >NUL' />
   <!-- 64 bit host -->
   <install cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
   <install cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <install cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone=f' />
+  <install cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone=f >NUL' />
 
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner 3840.msi"' />
@@ -36,11 +36,11 @@
   <!-- 32 bit host -->
   <upgrade cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
   <upgrade cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" ftype LoadPlanner="%PROGRAMFILES%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <upgrade cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone=f' />
+  <upgrade cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone=f >NUL' />
   <!-- 64 bit host -->
   <upgrade cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
   <upgrade cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <upgrade cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone=f' />
+  <upgrade cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone=f >NUL' />
 
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\LoadPlanner\LoadPlanner 3840.msi"' />
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
