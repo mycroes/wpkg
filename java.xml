@@ -13,7 +13,7 @@
 <package
   id="java"
   name="Java 6"
-  revision="16211"
+  revision="16212"
   reboot="false"
   priority="10">
 
@@ -35,7 +35,7 @@
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <install cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
-    <exit code="2" />
+    <exit code="1" />
   </install>
   <install cmd='sc stop JavaQuickStarterService' />
 
@@ -55,7 +55,7 @@
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <upgrade cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
-    <exit code="2" />
+    <exit code="1" />
   </upgrade>
   <upgrade cmd='sc STOP JavaQuickStarterService' />
 
