@@ -43,10 +43,12 @@
 
   <install cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
   <install cmd='"%SOFTWARE%\DirectX\directx_Jun2010_redist.exe" /Q:a /C /T:"%TEMP%\dx"' />
+  <install cmd='%COMSPEC% /c pushd "%TEMP%\dx"'>
   <install cmd='"%TEMP%\dx\dxsetup.exe" /SILENT'>
     <exit code="0" />
     <exit code="3010" reboot="postponed" />
   </install>
+  <install cmd='%COMSPEC% /c popd'>
   <install cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
 
   <upgrade cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
