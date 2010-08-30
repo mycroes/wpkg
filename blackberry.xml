@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+NOTES
+ 1) This one doesn't actually do anything yet except for removing the autoupdater
+ 2) It might be better to simply fudge the setup.ini instead
+-->
+
+<packages>
+
+<package
+  id="blackberry"
+  name="BlackBerry Desktop Manager"
+  revision="1"
+  reboot="false"
+  priority="10"
+  execute="always">
+
+  <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BlackBerryAutoUpdate /f'>
+    <exit code="1" />
+  </install>
+</package>
