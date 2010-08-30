@@ -1,25 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  TODO
+  1) Install 32-bit on 64-bit hosts for use in 32-bit browsers
+
+  NOTES
+  1) Download from: http://www.oracle.com/technetwork/java/javase/downloads/index.html
+-->
+
 <packages>
 
 <package
   id="java"
   name="Java 6"
-  revision="1621"
+  revision="16210"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="Java(TM) 6 Update 21" />
 
-  <install cmd='net STOP JavaQuickStarterService' >
-    <exit code='2' />
-  </install>
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-6u21-windows-i586-s.exe" %MSI%'>
-    <exit code="3010" />
+  <install cmd='sc stop JavaQuickStarterService' />
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
+    <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </install>
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-x64.exe" %MSI%'>
-    <exit code="3010" />
+    <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </install>
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
@@ -28,19 +34,15 @@
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <install cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
-  <install cmd='net STOP JavaQuickStarterService' >
-   <exit code='2' />
-  </install>
+  <install cmd='sc stop JavaQuickStarterService' />
 
-  <upgrade cmd='net STOP JavaQuickStarterService' >
-   <exit code='2' />
-  </upgrade>
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-6u21-windows-i586-s.exe" %MSI%'>
-    <exit code="3010" />
+  <upgrade cmd='sc STOP JavaQuickStarterService' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
+    <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-x64.exe" %MSI%'>
-    <exit code="3010" />
+    <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
@@ -49,13 +51,10 @@
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <upgrade cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
-  <upgrade cmd='net STOP JavaQuickStarterService' >
-    <exit code='2' />
-  </upgrade>
+  <upgrade cmd='sc STOP JavaQuickStarterService' />
 
-  <remove cmd='net STOP JavaQuickStarterService' >
-    <exit code='2' />
-  </remove>
+  <remove cmd='sc stop JavaQuickStarterService' />
+  <remove cmd='msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F83216021FF}' />
 
 </package>
 
