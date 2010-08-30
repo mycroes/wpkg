@@ -5,8 +5,8 @@
 <package
   id="citrix_web"
   name="Citrix Web ICA Client"
-  revision="2"
-  reboot="postponed"
+  revision="3"
+  reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="Citrix online plug-in - web" />
@@ -19,8 +19,8 @@
 <package
   id="citrix_xen"
   name="Citrix XenApp Client"
-  revision="1"
-  reboot="postponed"
+  revision="2"
+  reboot="false"
   priority="10">
 
   <check type="logical" condition="or">
