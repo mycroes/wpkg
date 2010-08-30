@@ -5,11 +5,11 @@
 <package
   id="spark"
   name="Spark IM"
-  revision="250"
+  revision="258"
   reboot="false"
   priority="10">
 
-  <check type="uninstall" condition="verstiongreaterorequalto" path="Spark" value="2.5.8" />
+  <check type="uninstall" condition="versiongreaterorequal" path="Spark" value="2.5.8" />
 
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
