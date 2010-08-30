@@ -10,8 +10,8 @@
 <package
   id="installer"
   name="Windows Installer 4.5"
-  revision="5"
-  reboot="true"
+  revision="450"
+  reboot="false"
   priority="100">
 
   <!--
@@ -22,14 +22,16 @@
   <check type="registry" condition="exists" path="HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\KB898461" />
   <check type="registry" condition="exists" path="HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\KB942288-v3" />
 
-  <install cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB898461-x86-ENU.exe" /passive /norestart /nobackup' />
-  <install cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB942288-v3-x86.exe" /passive /norestart /nobackup'>
-    <exit code="3010" />
+  <install cmd='sc stop msiserver' />
+  <install cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB898461-x86-ENU.exe" /quiet /norestart /nobackup /overwriteoem' />
+  <install cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB942288-v3-x86.exe" /quiet /norestart /nobackup /overwriteoem'>
+    <exit code="3010" reboot="postponed" />
   </install>
 
-  <upgrade cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB898461-x86-ENU.exe" /passive /norestart /nobackup' />
-  <upgrade cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB942288-v3-x86.exe" /passive /norestart /nobackup'>
-    <exit code="3010" />
+  <upgrade cmd='sc stop msiserver' />
+  <upgrade cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB898461-x86-ENU.exe" /quiet /norestart /nobackup /overwriteoem' />
+  <upgrade cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB942288-v3-x86.exe" /quiet /norestart /nobackup /overwriteoem'>
+    <exit code="3010" reboot="postponed" />
   </upgrade>
 
 </package>
