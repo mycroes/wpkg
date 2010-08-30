@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) We install 32 bit libraries on 32 and 64 bit, but 64 only on 64 bit
+-->
+
+<packages>
+
+<package
+  id="vcruntime"
+  name="Visual C++ Runtime 2005 &amp; 2008"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2005 Redistributable" />
+
+  <install cmd='"%SOFTWARE%\VCRuntime\vcredist_2005sp1_x86.exe" /Q /R:N' />
+  <install cmd='"%SOFTWARE%\VCRuntime\vcredist_2008sp1_x86.exe" /Q /R:N' />
+  <upgrade cmd='"%SOFTWARE%\VCRuntime\vcredist_2005sp1_x86.exe" /Q /R:N' />
+  <upgrade cmd='"%SOFTWARE%\VCRuntime\vcredist_2008sp1_x86.exe" /Q /R:N' />
+
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\VCRuntime\vcredist_2005sp1_x64.exe" /Q /R:N' />
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\VCRuntime\vcredist_2008sp1_x64.exe" /Q /R:N' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\VCRuntime\vcredist_2005sp1_x64.exe" /Q /R:N' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\VCRuntime\vcredist_2008sp1_x64.exe" /Q /R:N' />
+
+</package>
+
+</packages>
