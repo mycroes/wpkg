@@ -10,11 +10,11 @@
 <package
   id="vcruntime"
   name="Visual C++ Runtime 2005 &amp; 2008"
-  revision="1"
+  revision="2"
   reboot="false"
   priority="10">
 
-  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2005 Redistributable" />
+  <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2005 Redistributable" />
 
   <install cmd='"%SOFTWARE%\VCRuntime\vcredist_2005sp1_x86.exe" /Q /R:N' />
   <install cmd='"%SOFTWARE%\VCRuntime\vcredist_2008sp1_x86.exe" /Q /R:N' />
