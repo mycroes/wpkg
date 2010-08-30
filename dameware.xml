@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) Where is the 64 bit binary installed??
+-->
+
+<packages>
+
+<package
+  id="dameware"
+  name="DameWare Remote Control Client (automatic 32/64 selection)"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <check type="logical" condition="or">
+    <check type="file" condition="exists" path="%WINDIR%\system32\DWRCS.exe" />
+    <check type="file" condition="exists" path="%WINDIR%\system\DWRCS.exe" />
+  </check>
+
+  <!-- 32 bit -->
+  <install cmd='"%COMSPEC% /c if not defined ProgramW6432 msiexec %MSI% /i "%SOFTWARE%\DameWare\DWRCS32.msi"' />
+  <upgrade cmd='"%COMSPEC% /c if not defined ProgramW6432 msiexec %MSI% /i "%SOFTWARE%\DameWare\DWRCS32.msi"' />
+  <remove  cmd='"%COMSPEC% /c if not defined ProgramW6432 msiexec %MSI% /x "%SOFTWARE%\DameWare\DWRCS32.msi"' />
+  <!-- 64 bit -->
+  <install cmd='"%COMSPEC% /c if defined ProgramW6432 msiexec %MSI% /i "%SOFTWARE%\DameWare\DWRCS64.msi"' />
+  <upgrade cmd='"%COMSPEC% /c if defined ProgramW6432 msiexec %MSI% /i "%SOFTWARE%\DameWare\DWRCS64.msi"' />
+  <remove  cmd='"%COMSPEC% /c if defined ProgramW6432 msiexec %MSI% /x "%SOFTWARE%\DameWare\DWRCS64.msi"' />
+
+</package>
+
+</packages>
