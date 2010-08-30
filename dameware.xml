@@ -10,7 +10,7 @@
 <package
   id="dameware"
   name="DameWare Remote Control Client (automatic 32/64 selection)"
-  revision="1"
+  revision="2"
   reboot="false"
   priority="10">
 
@@ -19,14 +19,13 @@
     <check type="file" condition="exists" path="%WINDIR%\system\DWRCS.exe" />
   </check>
 
-  <!-- 32 bit -->
-  <install cmd='"%COMSPEC% /c if not defined ProgramW6432 msiexec %MSI% /i "%SOFTWARE%\DameWare\DWRCS32.msi"' />
-  <upgrade cmd='"%COMSPEC% /c if not defined ProgramW6432 msiexec %MSI% /i "%SOFTWARE%\DameWare\DWRCS32.msi"' />
-  <remove  cmd='"%COMSPEC% /c if not defined ProgramW6432 msiexec %MSI% /x "%SOFTWARE%\DameWare\DWRCS32.msi"' />
-  <!-- 64 bit -->
-  <install cmd='"%COMSPEC% /c if defined ProgramW6432 msiexec %MSI% /i "%SOFTWARE%\DameWare\DWRCS64.msi"' />
-  <upgrade cmd='"%COMSPEC% /c if defined ProgramW6432 msiexec %MSI% /i "%SOFTWARE%\DameWare\DWRCS64.msi"' />
-  <remove  cmd='"%COMSPEC% /c if defined ProgramW6432 msiexec %MSI% /x "%SOFTWARE%\DameWare\DWRCS64.msi"' />
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /i "%SOFTWARE%\DameWare\dwrcs32.msi" %MSI%' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /i "%SOFTWARE%\DameWare\dwrcs32.msi" %MSI%' />
+  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /x "%SOFTWARE%\DameWare\dwrcs32.msi" %MSI%' />
+
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\DameWare\dwrcs64.msi" %MSI%' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\DameWare\dwrcs64.msi" %MSI%' />
+  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /x "%SOFTWARE%\DameWare\dwrcs64.msi" %MSI%' />
 
 </package>
 
