@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="spark"
+  name="Spark IM"
+  revision="200"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" condition="exists" path="Spark" />
+
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
+  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /x "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
+
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
+  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /x "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
+
+</package>
+
+</packages>
