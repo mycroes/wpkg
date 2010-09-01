@@ -19,12 +19,12 @@
 <package
   id="citrix_xen"
   name="Citrix XenApp Client"
-  revision="3"
+  revision="4"
   reboot="false"
   priority="10">
 
   <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Citrix XenApp Plugin for hosted Applications" />
+    <check type="uninstall" condition="exists" path="Citrix XenApp Plugin for Hosted Apps" />
     <check type="uninstall" condition="exists" path="Citrix XenApp Plugin für gehostete Anwendungen" />
   </check>
 
