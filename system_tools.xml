@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="system_tools"
+  name="Copy system utilities to %WINDIR%"
+  revision="1"
+  reboot="false"
+  priority="0"
+  execute="once">
+
+  <install cmd='xcopy /y "%SOFTWARE%\SystemTools\*.*" "%WINDIR%"' />
+
+</package>
+
+</packages>
