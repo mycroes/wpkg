@@ -5,7 +5,7 @@
 <package
   id="flash"
   name="Flash Player"
-  revision="1010"
+  revision="1011"
   reboot="false"
   priority="10">
 
@@ -13,13 +13,23 @@
     <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 10 ActiveX" value="10.1.82.76" />
     <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 10 Plugin" value="10.1.82.76" />
   </check>
+
+  <install cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\system32\Macromed\Flash" mkdir "%WINDIR%\system32\Macromed\Flash"' />
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Flash\mms.cfg" "%WINDIR%\system32\Macromed\Flash\"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Flash\install_flash_player_10_active_x.msi"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Flash\install_flash_player_10_plugin.msi"' />
+
+  <upgrade cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\system32\Macromed\Flash" mkdir "%WINDIR%\system32\Macromed\Flash"' />
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Flash\mms.cfg" "%WINDIR%\system32\Macromed\Flash\"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Flash\install_flash_player_10_active_x.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Flash\install_flash_player_10_plugin.msi"' />
+
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Flash\install_flash_player_10_active_x.msi"' />
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Flash\install_flash_player_10_plugin.msi"' />
-
+  <remove cmd='%COMSPEC% /c del /s /q "%WINDIR%\system32\Macromed\Flash\mms.cfg"' >
+    <exit code="0" />
+    <exit code="1" />
+  </remove>
 </package>
 
 </packages>
