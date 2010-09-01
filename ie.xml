@@ -12,7 +12,7 @@
 <package
   id="ie8"
   name="Internet Explorer 8"
-  revision="6"
+  revision="7"
   reboot="false"
   priority="10">
 
@@ -23,14 +23,14 @@
   </install>
   <install cmd='REG ADD "HKLM\SOFTWARE\Clients\StartMenuInternet\IEXPLORE.EXE\DefaultIcon" /ve /d "%PROGRAMFILES%\Internet Explorer\iexplore.exe" /f' />
   <install cmd='REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Main" /v DisableFirstRunCustomize /t REG_DWORD /d 1 /f' />
-  <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Internet Explorer\SearchScopes" /f'>
-    <exit code="1" />
+  <install cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Internet Explorer\SearchScopes" /ve /f'>
+    <exit code="any" />
   </install>
 
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\Clients\StartMenuInternet\IEXPLORE.EXE\DefaultIcon" /ve /d "%PROGRAMFILES%\Internet Explorer\iexplore.exe" /f' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Main" /v DisableFirstRunCustomize /t REG_DWORD /d 1 /f' />
-  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Internet Explorer\SearchScopes" /f'>
-    <exit code="1" />
+  <upgrade cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Internet Explorer\SearchScopes" /ve /f'>
+    <exit code="any" />
   </upgrade>
 
   <remove  cmd='"%WINDIR%\ie8\spuninst\spuninst.exe" %MSI%' />
