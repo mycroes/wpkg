@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) Cannot use uninstall check as it just writes 1.0.0 even on version 2.0.4
+  2) File version 2.0.0.4 = installer version 2.0.4
+-->
+
+<packages>
+
+<package
+  id="hijackthis"
+  name="Hijack This"
+  revision="200"
+  priority="10"
+  reboot="false">
+
+  <check type="logical" condition="or">
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Trend Micro\HiJackThis\hijackthis.exe" value="2.0.0.4" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Trend Micro\HiJackThis\hijackthis.exe" value="2.0.0.4" />
+  </check>
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\HiJackThis\hijackthis.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\HiJackThis\hijackthis.msi"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\HiJackThis\hijackthis.msi"' />
+</package>
+</packages>
