@@ -19,7 +19,7 @@
 <package
   id="citrix_xen"
   name="Citrix XenApp Client"
-  revision="2"
+  revision="3"
   reboot="false"
   priority="10">
 
@@ -28,10 +28,40 @@
     <check type="uninstall" condition="exists" path="Citrix XenApp Plugin für gehostete Anwendungen" />
   </check>
 
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Citrix\XenAppHosted.msi"'>
+  <install cmd='taskkill /f /im iexplore.exe'>
+    <exit code="0" />
+    <exit code="1" />
+    <exit code="128" />
+  </install>
+  <install cmd='taskkill /f /im firefox.exe'>
+    <exit code="0" />
+    <exit code="1" />
+    <exit code="128" />
+  </install>
+  <install cmd='taskkill /f /im pnamain.exe'>
+    <exit code="0" />
+    <exit code="1" />
+    <exit code="128" />
+  </install>
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Citrix\XenAppHosted.msi" ADDLOCAL=PN,SSON ENABLE_SSON=Yes ALLOW_REBOOT=No'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Citrix\XenAppHosted.msi"'>
+  <upgrade cmd='taskkill /f /im iexplore.exe'>
+    <exit code="0" />
+    <exit code="1" />
+    <exit code="128" />
+  </upgrade>
+  <upgrade cmd='taskkill /f /im firefox.exe'>
+    <exit code="0" />
+    <exit code="1" />
+    <exit code="128" />
+  </upgrade>
+  <upgrade cmd='taskkill /f /im pnamain.exe'>
+    <exit code="0" />
+    <exit code="1" />
+    <exit code="128" />
+  </upgrade>
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Citrix\XenAppHosted.msi" ADDLOCAL=PN,SSON ENABLE_SSON=Yes ALLOW_REBOOT=No'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Citrix\XenAppHosted.msi"' />
