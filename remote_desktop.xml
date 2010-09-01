@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="rdp"
+  name="Enable RDP"
+  revision="1"
+  reboot="false"
+  priority="50">
+
+ <install cmd='REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 0 /f' />
+ <install cmd='netsh firewall set service remoteadmin enable' />
+ <install cmd='netsh firewall set service remotedesktop enable' />
+
+ <remove  cmd='REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" /v fDenyTSConnections /t REG_DWORD /d 1 /f' />
+ <remove  cmd='netsh firewall set service remoteadmin disable' />
+ <remove  cmd='netsh firewall set service remotedesktop disable' />
+
+</package>
+
+</packages>
