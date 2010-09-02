@@ -5,12 +5,20 @@
 <package
   id="acrobatreader"
   name="Adobe Acrobat Reader 9"
-  revision="9342"
+  revision="9344"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="Adobe Reader 9.3.4" />
 
+  <!-- First uninstall Adobe Reader 8.1.2 -->
+  <install cmd='msiexec /x{AC76BA86-7AD7-1033-7B44-A80000000002} /qn ' >
+    <exit code="1605" />
+    <exit code="1618" />
+  </install>
+  <install cmd='%COMSPEC% /C del /Q "%PROGRAMFILES%\Adobe" ' >
+    <exit code="0" />
+  </install>
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
   </install>
@@ -30,6 +38,14 @@
     <exit code="1" />
   </install>
 
+  <!-- First uninstall Adobe Reader 8.1.2 -->
+  <upgrade cmd='msiexec /x{AC76BA86-7AD7-1033-7B44-A80000000002} /qn ' >
+    <exit code="1605" />
+    <exit code="1618" />
+  </upgrade>
+  <upgrade cmd='%COMSPEC% /C del /Q "%PROGRAMFILES%\Adobe" ' >
+    <exit code="0" />
+  </upgrade>
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
