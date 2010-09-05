@@ -31,7 +31,9 @@ NOTES
     <exit code="1605" />
     <exit code="0" />
   </install>
-  <install cmd='schtasks /delete AppleSoftwareUpdate /f' />
+  <install cmd='schtasks /delete AppleSoftwareUpdate /f'>
+    <exit code="1" />
+  </install>
 
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"'>
     <exit code="any" />
@@ -43,7 +45,9 @@ NOTES
     <exit code="1605" />
     <exit code="0" />
   </upgrade>
-  <upgrade cmd='schtasks /delete AppleSoftwareUpdate /f' />
+  <upgrade cmd='schtasks /delete AppleSoftwareUpdate /f'>
+    <exit code="1" />
+  </upgrade>
 
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x "%pkg32%"' />
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg64%"' />
@@ -51,7 +55,9 @@ NOTES
     <exit code="1605" />
     <exit code="0" />
   </remove>
-  <remove  cmd='schtasks /delete AppleSoftwareUpdate /f' />
+  <remove  cmd='schtasks /delete AppleSoftwareUpdate /f'>
+    <exit code="1" />
+  </remove>
 </package>
 
 <package
@@ -150,21 +156,27 @@ NOTES
     <exit code="1605" />
     <exit code="0" />
   </install>
-  <install cmd='schtasks /delete AppleSoftwareUpdate /f' />
+  <install cmd='schtasks /delete AppleSoftwareUpdate /f'>
+    <exit code="1" />
+  </install>
 
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\iPhone_3\iPhoneConfigUtility.msi"' />
   <upgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhone_3\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </upgrade>
-  <upgrade cmd='schtasks /delete AppleSoftwareUpdate /f' />
+  <upgrade cmd='schtasks /delete AppleSoftwareUpdate /f'>
+    <exit code="1" />
+  </upgrade>
 
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhone_3\iPhoneConfigUtility.msi"' />
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhone_3\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </remove>
-  <remove  cmd='schtasks /delete AppleSoftwareUpdate /f' />
+  <remove  cmd='schtasks /delete AppleSoftwareUpdate /f'>
+    <exit code="1" />
+  </remove>
 </package>
 
 </packages>
