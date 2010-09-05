@@ -32,6 +32,7 @@
     <exit code="0" />
     <exit code="1" />
   </remove>
+  <remove  cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Flash\uninstall_flash_player.exe" "%SOFTWARE%\Flash\uninstall_flash_player.exe"' />
 </package>
 
 </packages>
