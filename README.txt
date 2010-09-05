@@ -26,3 +26,9 @@ c) Priorities are set as follows
   100 - critical install first apps (Windows Installer 4.5)
 
 d) Rebooting - all should have their reboot priority set to "false" and only reboot (postponed) in case of 3010 or similar return codes.
+
+e) Ensure that the following variables are defined in your WPKG settings.xml file
+  MSI      - set to "/quiet /norestart" (without quotes)
+  MSP      - set to "REINSTALL=ALL REINSTALLMODE=omus" (without quotes)
+  SOFTWARE - set to root of the applications
+  WPKG     - set to root of server WPKG installation without trailing backslash
