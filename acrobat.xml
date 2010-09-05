@@ -5,7 +5,7 @@
 <package
   id="acrobatreader"
   name="Adobe Acrobat Reader 9"
-  revision="9345"
+  revision="9346"
   reboot="false"
   priority="10">
 
@@ -18,6 +18,9 @@
   </install>
   <install cmd='%COMSPEC% /C del /Q "%PROGRAMFILES%\Adobe" ' >
     <exit code="0" />
+  </install>
+  <install cmd='taskkill /f /im explorer.exe'>
+    <exit code="any" />
   </install>
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
@@ -45,6 +48,9 @@
   </upgrade>
   <upgrade cmd='%COMSPEC% /C del /Q "%PROGRAMFILES%\Adobe" ' >
     <exit code="0" />
+  </upgrade>
+  <upgrade cmd='taskkill /f /im explorer.exe'>
+    <exit code="any" />
   </upgrade>
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
