@@ -5,26 +5,32 @@
 <package
   id="rdp"
   name="Enable RDP"
-  revision="2"
+  revision="3"
   reboot="false"
   priority="50">
 
   <variable name="keypath" value="HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" />
   <variable name="key" value="fDenyTSConnections" />
 
-  <check type="registry" condition="equals" path="%keypath%\%key%" value="0" />
+  <check type="conditional" condition="or">
+    <check type="registry" condition="equals" path="%keypath%\%key%" value="0" />
+    <check type="uninstall" condition="exists" path="Hotfix for Windows XP (KB969084)" />
+  </check>
 
   <install cmd='REG ADD "%keypath%" /v "%key%" /t REG_DWORD /d 0 /f' />
   <install cmd='netsh firewall set service remoteadmin enable' />
   <install cmd='netsh firewall set service remotedesktop enable' />
+  <install cmd='"%SOFTWARE%\RDP\WindowsXP-KB969084-x86-enu.exe" %MSI%' />
 
   <upgrade cmd='REG ADD "%keypath%" /v "%key%" /t REG_DWORD /d 0 /f' />
   <upgrade cmd='netsh firewall set service remoteadmin enable' />
   <upgrade cmd='netsh firewall set service remotedesktop enable' />
+  <upgrade cmd='"%SOFTWARE%\RDP\WindowsXP-KB969084-x86-enu.exe" %MSI%' />
 
   <remove  cmd='REG ADD "%keypath%" /v "%key%" /t REG_DWORD /d 1 /f' />
   <remove  cmd='netsh firewall set service remoteadmin disable' />
   <remove  cmd='netsh firewall set service remotedesktop disable' />
+  <remove  cmd='"%WINDIR%\$NtUninstallKB969084$\spuninst\spuninst.exe" /quiet /norestart' />
 
 </package>
 
