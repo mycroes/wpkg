@@ -5,14 +5,14 @@
 <package
   id="rdp"
   name="Enable RDP"
-  revision="4"
+  revision="5"
   reboot="false"
   priority="50">
 
   <variable name="keypath" value="HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" />
   <variable name="key" value="fDenyTSConnections" />
 
-  <check type="logical" condition="or">
+  <check type="logical" condition="and">
     <check type="registry" condition="equals" path="%keypath%\%key%" value="0" />
     <check type="uninstall" condition="exists" path="Hotfix for Windows XP (KB969084)" />
   </check>
