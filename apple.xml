@@ -123,21 +123,26 @@ NOTES
 <package
   id="quicktime"
   name="Apple Quicktime"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="7.67.75.0" />
   <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_10.0.0.68\QuickTime.msi" />
+  <variable name="RUN" value="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="QuickTime" value="%version%"/>
 
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg32%"' />
-  <install cmd='REG DELETE %RUN% /v "QuickTime Task" /f' />
+  <install cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
+    <exit code="1" />
+  </install>
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg32%"' />
-  <upgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f' />
+  <upgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
+    <exit code="1" />
+  </upgrade>
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x "%pkg32%"' />
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg32%"' />
 </package>
