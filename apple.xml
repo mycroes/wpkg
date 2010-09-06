@@ -11,7 +11,7 @@ NOTES
 <package
   id="itunes"
   name="Apple iTunes"
-  revision="9215"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
@@ -20,14 +20,15 @@ NOTES
   <depends package-id="bonjour" />
   <depends package-id="quicktime" />
 
-  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_9.2.1.5\iTunes.msi" />
-  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes_9.2.1.5\iTunes64.msi" />
+  <variable name="version" value="10.0.0.68" />
+  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_10.0.0.68\iTunes.msi" />
+  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes_10.0.0.68\iTunes64.msi" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="iTunes" value="9.2.1.5"/>
+  <check type="uninstall" condition="versiongreaterorequal" path="iTunes" value="%version%"/>
 
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
-  <install cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_9.2.1.5\AppleSoftwareUpdate.msi"'>
+  <install cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_10.0.0.68\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </install>
@@ -41,7 +42,7 @@ NOTES
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"'>
     <exit code="any" />
   </upgrade>
-  <upgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_9.2.1.5\AppleSoftwareUpdate.msi"'>
+  <upgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_10.0.0.68\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </upgrade>
@@ -51,7 +52,7 @@ NOTES
 
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x "%pkg32%"' />
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg64%"' />
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_9.2.1.5\AppleSoftwareUpdate.msi"'>
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_10.0.0.68\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </remove>
@@ -63,14 +64,15 @@ NOTES
 <package
   id="applemobile"
   name="Apple Mobile Device Support"
-  revision="3.1.0.62"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_9.2.1.5\AppleMobileDeviceSupport.msi" />
-  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes_9.2.1.5\AppleMobileDeviceSupport64.msi" />
+  <variable name="version" value="3.2.0.47" />
+  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_10.0.0.68\AppleMobileDeviceSupport.msi" />
+  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes_10.0.0.68\AppleMobileDeviceSupport64.msi" />
 
-  <check type="uninstall"  condition="versiongreaterorequal" path="Apple Mobile Device Support" value="3.1.0.62"/>
+  <check type="uninstall"  condition="versiongreaterorequal" path="Apple Mobile Device Support" value="%version%"/>
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
@@ -82,13 +84,14 @@ NOTES
 <package
   id="applesupport"
   name="Apple Software Application Support"
-  revision="1.3.0"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
+  <variable name="version" value="1.3.2" />
   <variable name="pkg32" value="AppleApplicationSupport.msi" />
 
-  <check type="uninstall"  condition="versiongreaterorequal" path="Apple Application Support" value="1.3.0"/>
+  <check type="uninstall"  condition="versiongreaterorequal" path="Apple Application Support" value="%version%"/>
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg32%"' />
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
@@ -100,14 +103,15 @@ NOTES
 <package
   id="bonjour"
   name="Bonjour"
-  revision="2.0.2.0"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_9.2.1.5\bonjour.msi" />
-  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes_9.2.1.5\bonjour64.msi" />
+  <variable name="version" value="2.0.3.0" />
+  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_10.0.0.68\bonjour.msi" />
+  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes_10.0.0.68\bonjour64.msi" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="Bonjour" value="2.0.2.0"/>
+  <check type="uninstall" condition="versiongreaterorequal" path="Bonjour" value="%version%"/>
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
@@ -119,13 +123,15 @@ NOTES
 <package
   id="quicktime"
   name="Apple Quicktime"
-  revision="7.66.73.0"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_9.2.1.5\QuickTime.msi" />
+  <variable name="version" value="7.67.75.0" />
+  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_10.0.0.68\QuickTime.msi" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="QuickTime" value="7.66.73.0"/>
+  <check type="uninstall" condition="versiongreaterorequal" path="QuickTime" value="%version%"/>
+
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg32%"' />
   <install cmd='REG DELETE %RUN% /v "QuickTime Task" /f' />
