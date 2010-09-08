@@ -10,13 +10,13 @@
 <package
   id="netextender"
   name="SonicWALL SSL-VPN NetExtender"
-  revision="1"
+  revision="2"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="versiongreaterorequal" path="SonicWALL SSL-VPN NetExtender" value="3.5.107" />
 
-  <install cmd='"%SOFTWARE%\SonicWall VPN\NXSetupU.exe" /S' />
+  <install cmd='%COMSPEC% /c START /wait "%SOFTWARE%\SonicWall VPN\NXSetupU.exe" /S' />
   <install cmd='IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg"' />
 
   <upgrade cmd='"%SOFTWARE%\SonicWall VPN\NXSetupU.exe" /S' />
