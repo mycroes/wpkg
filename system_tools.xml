@@ -14,4 +14,14 @@
 
 </package>
 
+<package
+  id="pagedefrag"
+  name="PageDefrag"
+  revision="1"
+  reboot="false"
+  execute="once">
+
+  <depends package-id="system_tools" />
+  <install cmd="%WINDIR%\pagedfrg.exe -e -t 3" />
+
 </packages>
