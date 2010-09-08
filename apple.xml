@@ -32,6 +32,9 @@ NOTES
     <exit code="1605" />
     <exit code="0" />
   </install>
+  <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v iTunesHelper /f'>
+    <exit code="1" />
+  </install>
   <install cmd='schtasks /delete AppleSoftwareUpdate /f'>
     <exit code="1" />
   </install>
@@ -46,6 +49,9 @@ NOTES
     <exit code="1605" />
     <exit code="0" />
   </upgrade>
+  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v iTunesHelper /f'>
+    <exit code="1" />
+  </upgrade>
   <upgrade cmd='schtasks /delete AppleSoftwareUpdate /f'>
     <exit code="1" />
   </upgrade>
@@ -55,9 +61,6 @@ NOTES
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_10.0.0.68\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
-  </remove>
-  <remove  cmd='schtasks /delete AppleSoftwareUpdate /f'>
-    <exit code="1" />
   </remove>
 </package>
 
