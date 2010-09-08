@@ -5,11 +5,13 @@
 <package
   id="acrobatreader"
   name="Adobe Acrobat Reader 9"
-  revision="9347"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <check type="uninstall" condition="exists" path="Adobe Reader 9.3.4" />
+  <variable name="version" value="9.3.4" />
+
+  <check type="uninstall" condition="exists" path="Adobe Reader %version%" />
 
   <!-- First uninstall Adobe Reader 8.1.2 -->
   <install cmd='msiexec /x{AC76BA86-7AD7-1033-7B44-A80000000002} /qn ' >
@@ -75,9 +77,33 @@
     <exit code="1" />
   </upgrade>
 
-  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd934_all_incr.msp" /package "%SOFTWARE%\Acrobat Reader\AcroRead.msi"' />
-  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd933_all_incr.msp" /package "%SOFTWARE%\Acrobat Reader\AcroRead.msi"' />
-  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd932_all_incr.msp" /package "%SOFTWARE%\Acrobat Reader\AcroRead.msi"' />
+  <!-- First uninstall Adobe Reader 8.1.2 -->
+  <downgrade cmd='msiexec /x{AC76BA86-7AD7-1033-7B44-A80000000002} /qn ' >
+   <exit code="1605" />
+   <exit code="1618" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /C del /Q "%PROGRAMFILES%\Adobe" ' >
+    <exit code="0" />
+  </downgrade>
+   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
+    <exit code="3010" reboot="postponed" />
+  </downgrade>
+  <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd932_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
+    <exit code="3010" reboot="postponed" />
+  </downgrade>
+  <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd933_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
+    <exit code="3010" reboot="postponed" />
+  </downgrade>
+  <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd934_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
+    <exit code="3010" reboot="postponed" />
+  </downgrade>
+  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
+    <exit code="1" />
+  </downgrade>
+  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f'>
+    <exit code="1" />
+  </downgrade>
+
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\AcroRead.msi"' />
   <remove cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
     <exit code="1" />
