@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) EasyEject is untested
+-->
+
 <packages>
 
 <package
@@ -8,14 +14,35 @@
   priority="10"
   reboot="false">
 
+  <variable name="file" value="6isa03ww.exe" />
+
   <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage Active Protection System" value="1.71" />
 
-  <install cmd='"%SOFTWARE%\ThinkPad\6isa03ww.exe" /VERYSILENT /norestart"'>
+  <install cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <upgrade cmd='"%SOFTWARE%\ThinkPad\6isa03ww.exe" /VERYSILENT /norestart"'>
+  <upgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
+  <remove  cmd='msiexec %MSI% /X{46A84694-59EC-48F0-964C-7E76E9F8A2ED}"' />
+</package>
+
+<package
+  id="tp_ezeject"
+  name="ThinkPad EasyEject"
+  revision="1"
+  priority="10"
+  reboot="false">
+
+  <variable name="file" value="7z205ww.exe" />
+  <variable name="tempdir" value="%SYSTEMDRIVE%\SWTOOLS\DRIVERS\EZEJECT" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage EasyEject" value="2.39" />
+
+  <install cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
+  <install cmd='copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
+  <install cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.ins' />
+
   <remove  cmd='msiexec %MSI% /X{46A84694-59EC-48F0-964C-7E76E9F8A2ED}"' />
 </package>
 
