@@ -21,7 +21,7 @@
 <package
   id="directx_web"
   name="Directx 9.0c"
-  revision="3"
+  revision="4"
   priority="50">
 
   <install cmd='"%SOFTWARE%\DirectX\DXwebSetup.exe" /c:"DXwSetup.exe /windowsupdate" /q /r:n' >
@@ -33,12 +33,14 @@
     <exit code="0" />
     <exit code="3010" reboot="postponed" />
   </upgrade>
+
+  <remove cmd="echo null" />
 </package>
 
 <package
   id="directx_redist"
   name="DirectX 9.0c"
-  revision="2"
+  revision="4"
   priority="50">
 
   <install cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
@@ -58,6 +60,8 @@
     <exit code="3010" reboot="postponed" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
+
+  <remove cmd="echo null" />
 
 </package>
 
