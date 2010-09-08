@@ -21,8 +21,10 @@
 <package
   id="directx_web"
   name="Directx 9.0c"
-  revision="4"
+  revision="5"
   priority="50">
+
+  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\x3daudio1_7.dll" value="9.28.1886.0"/>
 
   <install cmd='"%SOFTWARE%\DirectX\DXwebSetup.exe" /c:"DXwSetup.exe /windowsupdate" /q /r:n' >
     <exit code="0" />
@@ -40,8 +42,10 @@
 <package
   id="directx_redist"
   name="DirectX 9.0c"
-  revision="4"
+  revision="5"
   priority="50">
+
+  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\x3daudio1_7.dll" value="9.28.1886.0"/>
 
   <install cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
   <install cmd='"%SOFTWARE%\DirectX\directx_Jun2010_redist.exe" /Q:a /C /T:"%TEMP%\dx"' />
