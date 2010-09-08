@@ -44,4 +44,11 @@
 
 </package>
 
+<package
+  id="uninstall-oe"
+  name="Outlook Express Uninstall"
+  execute="once">
+  <install cmd='RunDll32 advpack.dll,LaunchINFSection %windir%\INF\oeaccess.inf,UninstallOE' />
+</package>
+
 </packages>
