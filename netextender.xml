@@ -2,7 +2,9 @@
 
 <!--
   NOTES
-  1) A 64 bit version exists, so the
+  1) A 64 bit version doesn't exist, and this client only works on 32-bit
+  2) For some odd reason the installer errors out with code 2 if run directly. Via START it seems to work
+  3) The /S passed to the installer will choke unless start is called with an empty title
 -->
 
 <packages>
@@ -10,17 +12,17 @@
 <package
   id="netextender"
   name="SonicWALL SSL-VPN NetExtender"
-  revision="2"
+  revision="7"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="versiongreaterorequal" path="SonicWALL SSL-VPN NetExtender" value="3.5.107" />
 
-  <install cmd='%COMSPEC% /c START /wait "%SOFTWARE%\SonicWall VPN\NXSetupU.exe" /S' />
-  <install cmd='IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg"' />
+  <install cmd='%COMSPEC% /c START "" /D"%SOFTWARE%\SonicWall VPN" /wait "%SOFTWARE%\SonicWall VPN\NXSetupU.exe" /S' />
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg"' />
 
-  <upgrade cmd='"%SOFTWARE%\SonicWall VPN\NXSetupU.exe" /S' />
-  <upgrade cmd='IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg"' />
+  <upgrade cmd='%COMSPEC% /c START "" /D"%SOFTWARE%\SonicWall VPN" /wait "%SOFTWARE%\SonicWall VPN\NXSetupU.exe" /S' />
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg"' />
 
   <remove  cmd='"%PROGRAMFILES%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" /S' />
 
