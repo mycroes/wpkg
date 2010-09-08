@@ -24,4 +24,6 @@
   <depends package-id="system_tools" />
   <install cmd="%WINDIR%\pagedfrg.exe -e -t 3" />
 
+</package>
+
 </packages>
