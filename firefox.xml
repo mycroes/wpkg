@@ -11,14 +11,15 @@
 <package
   id="firefox"
   name="Mozilla Firefox"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="3.6.9" />
   <check type="uninstall" condition="exists" path="Mozilla Firefox (%version%)" />
-  <install cmd='"%SOFTWARE%\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
-  <upgrade cmd='"%SOFTWARE%\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
+  <install   cmd='"%SOFTWARE%\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
+  <upgrade   cmd='"%SOFTWARE%\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
+  <downgrade cmd='"%SOFTWARE%\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
   <!-- Windows 32-bit -->
   <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" "%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" /S' />
   <!-- Windows 64-bit -->
