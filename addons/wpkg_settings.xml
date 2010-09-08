@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) you can create a local settings package like this
+-->
+
+<packages>
+
+<package
+  id="wpkg-settings"
+  name="Update new WPKG settings"
+  revision="1"
+  priority="0"
+  reboot="false"
+  execute="once">
+
+  <depends package-id="wpkg"/>
+
+  <install cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE=%WPKG%\settings.xml' />
+  <upgrade cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE=%WPKG%\settings.xml' />
+</package>
+
+</packages>

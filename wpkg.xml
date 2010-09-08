@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  NOTES
+  1) refer to addons\wpkg_settings.xml for a package to copy out new local settings
+-->
+
 <packages>
 
 <package
@@ -23,21 +28,3 @@
 </package>
 
 </packages>
-
-<!-- you can create a local settings package like this
-
-<package
-  id="wpkg-settings"
-  name="Update new WPKG settings"
-  revision="1"
-  priority="0"
-  reboot="false"
-  execute="once">
-
-  <depends package-id="wpkg"/>
-
-  <install cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE=%WPKG%\settings.xml' />
-  <upgrade cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE=%WPKG%\settings.xml' />
-</package>
-
- -->
