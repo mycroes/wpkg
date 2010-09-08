@@ -28,6 +28,7 @@
   <install cmd='"%SOFTWARE%\Windows Installer\WindowsXP-KB942288-v3-x86.exe" /quiet /norestart /nobackup /overwriteoem'>
     <exit code="3010" reboot="postponed" />
   </install>
+  <install cmd='msiexec /regserver' />
   <install cmd='net start msiserver' />
 
   <upgrade cmd='net stop msiserver' />
