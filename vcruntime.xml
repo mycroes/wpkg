@@ -10,8 +10,8 @@
 
 <package
   id="vcruntime"
-  name="Visual C++ Runtime 2005 &amp; 2008"
-  revision="4"
+  name="Visual C++ Runtime 2005, 2008 and 2010"
+  revision="5"
   reboot="false"
   priority="10">
 
@@ -20,19 +20,27 @@
     <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2005 Redistributable - x64" />
   </check>
   <check type="logical" condition="or">
-    <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.17" value="9.0.30729" />
+    <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.17" />
     <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2008 Redistributable - x64 9.0.30729.17" />
+  </check>
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2010  x86 Redistributable - 10.0.30319" />
+    <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2010  x64 Redistributable - 10.0.30319" />
   </check>
 
   <install cmd='"%SOFTWARE%\VCRuntime\vcredist_2005sp1_x86.exe" /Q /R:N' />
   <install cmd='"%SOFTWARE%\VCRuntime\vcredist_2008sp1_x86.exe" /Q /R:N' />
+  <install cmd='"%SOFTWARE%\VCRuntime\vcredist_2010_x86.exe" /Q /R:N' />
   <upgrade cmd='"%SOFTWARE%\VCRuntime\vcredist_2005sp1_x86.exe" /Q /R:N' />
   <upgrade cmd='"%SOFTWARE%\VCRuntime\vcredist_2008sp1_x86.exe" /Q /R:N' />
+  <upgrade cmd='"%SOFTWARE%\VCRuntime\vcredist_2010_x86.exe" /Q /R:N' />
 
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\VCRuntime\vcredist_2005sp1_x64.exe" /Q /R:N' />
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\VCRuntime\vcredist_2008sp1_x64.exe" /Q /R:N' />
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\VCRuntime\vcredist_2010_x64.exe" /Q /R:N' />
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\VCRuntime\vcredist_2005sp1_x64.exe" /Q /R:N' />
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\VCRuntime\vcredist_2008sp1_x64.exe" /Q /R:N' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\VCRuntime\vcredist_2010_x64.exe" /Q /R:N' />
 
 </package>
 
