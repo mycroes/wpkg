@@ -4,7 +4,7 @@
 <package
   id="ultradefrag"
   name="Ultra Defragmenter"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -16,7 +16,7 @@
   <install cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.amd64.exe" /S /NCRC' />
   <install cmd='%ComSpec% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
   <install cmd='"%SystemRoot%\system32\bootexctrl.exe" /r defrag_native' />
-  <install cmd='del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'>
+  <install cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'>
     <exit code="any" />
   </install>
 
@@ -24,7 +24,7 @@
   <upgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.amd64.exe" /S /NCRC' />
   <upgrade cmd='%ComSpec% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
   <upgrade cmd='"%SystemRoot%\system32\bootexctrl.exe" /r defrag_native' />
-  <upgrade cmd='del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'>
+  <upgrade cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'>
     <exit code="any" />
   </upgrade>
 
@@ -32,7 +32,7 @@
   <downgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.amd64.exe" /S /NCRC' />
   <downgrade cmd='%ComSpec% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
   <downgrade cmd='"%SystemRoot%\system32\bootexctrl.exe" /r defrag_native' />
-  <downgrade cmd='del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'>
+  <downgrade cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'>
     <exit code="any" />
   </downgrade>
 
