@@ -1,28 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <packages>
-  <package 
-    id="7zip" 
-    name="7-Zip (32 and 64 bit)" 
-    revision="4650"
+  <package
+    id="7zip"
+    name="7-Zip (32 and 64 bit)"
+    revision="%version%-1"
     reboot="false"
     priority="0">
 
+    <variable name="version" value="4.65" />
+
     <check type="logical" condition="or">
-      <check type="uninstall" condition="exists" path="7-Zip 4.65"/>
-      <check type="uninstall" condition="exists" path="7-Zip 4.65 (x64 edition)" />
+      <check type="uninstall" condition="exists" path="7-Zip %version%"/>
+      <check type="uninstall" condition="exists" path="7-Zip %version% (x64 edition)" />
     </check>
- 
-    <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /i "%SOFTWARE%\7zip\7z465.msi" %MSI%' />
+
+    <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec /i "%SOFTWARE%\7zip\7z465.msi" %MSI%' />
     <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\7zip\7z465-x64.msi" %MSI%' />
     <install cmd='regedit /s "%SOFTWARE\7zip\7zip.reg"'/>
 
-    <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /i "%SOFTWARE%\7zip\7z465.msi" %MSI%' />
+    <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec /i "%SOFTWARE%\7zip\7z465.msi" %MSI%' />
     <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\7zip\7z465-x64.msi" %MSI%' />
     <upgrade cmd='regedit /s "%SOFTWARE\7zip\7zip.reg"'/>
- 
-    <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /x "%SOFTWARE%\7zip\7z465.msi" %MSI%' />
-    <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /x "%SOFTWARE%\7zip\7z465-x64.msi" %MSI%' />
+
+    <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec /i "%SOFTWARE%\7zip\7z465.msi" %MSI%' />
+    <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\7zip\7z465-x64.msi" %MSI%' />
+    <downgrade cmd='regedit /s "%SOFTWARE\7zip\7zip.reg"'/>
+
+    <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec /x "%SOFTWARE%\7zip\7z465.msi" %MSI%' />
+    <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /x "%SOFTWARE%\7zip\7z465-x64.msi" %MSI%' />
   </package>
-   
+
 </packages>
