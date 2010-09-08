@@ -5,8 +5,9 @@
 <package
   id="uninstall-msn"
   name="MSN Uninstall"
+  revision="2"
   execute="once">
-  <install cmd='RunDll32 advpack.dll,LaunchINFSection %windir%\INF\msnmsn.inf,msnexplr.Uninstall' />
+  <install cmd='%COMSPEC% /c IF EXIST "%windir%\INF\msnmsn.inf" RunDll32 advpack.dll,LaunchINFSection %windir%\INF\msnmsn.inf,msnexplr.Uninstall' />
 </package>
 
 </packages>
