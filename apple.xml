@@ -11,7 +11,7 @@ NOTES
 <package
   id="itunes"
   name="Apple iTunes"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -55,6 +55,23 @@ NOTES
   <upgrade cmd='schtasks /delete AppleSoftwareUpdate /f'>
     <exit code="1" />
   </upgrade>
+
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"'>
+    <exit code="any" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"'>
+    <exit code="any" />
+  </downgrade>
+  <downgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_10.0.0.68\AppleSoftwareUpdate.msi"'>
+    <exit code="1605" />
+    <exit code="0" />
+  </downgrade>
+  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v iTunesHelper /f'>
+    <exit code="1" />
+  </downgrade>
+  <downgrade cmd='schtasks /delete AppleSoftwareUpdate /f'>
+    <exit code="1" />
+  </downgrade>
 
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x "%pkg32%"' />
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg64%"' />
