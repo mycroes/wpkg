@@ -5,7 +5,7 @@
 <package
   id="flash"
   name="Flash Player"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -19,6 +19,12 @@
   <!--
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Flash\uninstall_flash_player.exe" "%SOFTWARE%\Flash\uninstall_flash_player.exe"' />
   -->
+  <install cmd='taskkill /f /im iexplore.exe'>
+    <exit code="any" />
+  </install>
+  <install cmd='taskkill /f /im firefox.exe'>
+    <exit code="any" />
+  </install>
   <install cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\system32\Macromed\Flash" mkdir "%WINDIR%\system32\Macromed\Flash"' />
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Flash\mms.cfg" "%WINDIR%\system32\Macromed\Flash\"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Flash\install_flash_player_10_active_x.msi"' />
@@ -27,16 +33,34 @@
   <!--
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Flash\uninstall_flash_player.exe" "%SOFTWARE%\Flash\uninstall_flash_player.exe"' />
   -->
+  <upgrade cmd='taskkill /f /im iexplore.exe'>
+    <exit code="any" />
+  </upgrade>
+  <upgrade cmd='taskkill /f /im firefox.exe'>
+    <exit code="any" />
+  </upgrade>
   <upgrade cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\system32\Macromed\Flash" mkdir "%WINDIR%\system32\Macromed\Flash"' />
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Flash\mms.cfg" "%WINDIR%\system32\Macromed\Flash\"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Flash\install_flash_player_10_active_x.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Flash\install_flash_player_10_plugin.msi"' />
 
+  <downgrade cmd='taskkill /f /im iexplore.exe'>
+    <exit code="any" />
+  </downgrade>
+  <downgrade cmd='taskkill /f /im firefox.exe'>
+    <exit code="any" />
+  </downgrade>
   <downgrade cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\system32\Macromed\Flash" mkdir "%WINDIR%\system32\Macromed\Flash"' />
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Flash\mms.cfg" "%WINDIR%\system32\Macromed\Flash\"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Flash\install_flash_player_10_active_x.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Flash\install_flash_player_10_plugin.msi"' />
 
+  <remove cmd='taskkill /f /im iexplore.exe'>
+    <exit code="any" />
+  </remove>
+  <remove cmd='taskkill /f /im firefox.exe'>
+    <exit code="any" />
+  </remove>
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Flash\install_flash_player_10_active_x.msi"' />
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Flash\install_flash_player_10_plugin.msi"' />
   <remove cmd='%COMSPEC% /c del /s /q "%WINDIR%\system32\Macromed\Flash\mms.cfg"' >
