@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) This containts the utilities required for an HP lappy
+
+ -->
+
+<packages>
+
+<package
+  id="hp_bluetooth"
+  name="HP BlueTooth"
+  revision="1"
+  priority="10"
+  reboot="false">
+
+  <!--
+
+  <variable name="file" value="6isa03ww.exe" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage Active Protection System" value="1.71" />
+
+  <install cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"'>
+    <exit code="3010" reboot="postponed" />
+  </install>
+  <upgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"'>
+    <exit code="3010" reboot="postponed" />
+  </upgrade>
+  <remove  cmd='msiexec %MSI% /X{46A84694-59EC-48F0-964C-7E76E9F8A2ED}"' />
+  -->
+</package>
+
+</packages>
