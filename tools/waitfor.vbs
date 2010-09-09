@@ -14,11 +14,9 @@ End If
 strProcess = WScript.Arguments.Item(0)
 strComputer = "."
 
-Set objWMIService = GetObject("winmgmts:" _
-     & "{impersonationLevel=impersonate}!\\" & strComputer & "\root\cimv2")
+Set objWMIService = GetObject("winmgmts:{impersonationLevel=impersonate}!\\" & strComputer & "\root\cimv2")
 
 Do
     WScript.Sleep 1000
-    Set colProcesses = objWMIService.ExecQuery("Select * from Win32_Process Where
-name = '" & strProcess & "'")
-Loop Until  colProcesses.Count = 0
+    Set colProcesses = objWMIService.ExecQuery("Select * from Win32_Process Where name = '" & strProcess & "'")
+Loop Until colProcesses.Count = 0
