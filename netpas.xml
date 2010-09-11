@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) NetPas seems royally confused about version numbers - the site often refers to a version one higher than the exe version tag (2.7.1.3 vs 2.7.1.4)
+
+-->
+
+
 <packages>
 
-  <!-- this is version 2.6.1.4 despite the exe being tagged with 2.6.1.3 -->
   <package
     id="netpas"
     name="Netpas Distance"
     revision="%version%-0"
     reboot="false"
-    priority="1">
+    priority="10">
 
     <variable name="version" value="2.7.1.3" />
 
