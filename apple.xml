@@ -4,6 +4,7 @@
 NOTES
  1) We always remove the Apple Update package no matter what as it might be left over from previous installations
  2) We are now also removing the scheduled task that runs the updater
+ 3) The Bonjour package is no longer installed by default, but can easily be installed by adding the "bonjour" package to a profile
 -->
 
 <packages>
@@ -11,13 +12,15 @@ NOTES
 <package
   id="itunes"
   name="Apple iTunes"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
   <depends package-id="applesupport" />
   <depends package-id="applemobile" />
+  <!--
   <depends package-id="bonjour" />
+  -->
   <depends package-id="quicktime" />
 
   <variable name="version" value="10.0.0.68" />
