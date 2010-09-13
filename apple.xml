@@ -146,7 +146,7 @@ NOTES
 <package
   id="quicktime"
   name="Apple Quicktime"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -161,11 +161,28 @@ NOTES
   <install cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
     <exit code="1" />
   </install>
+  <install cmd='%COMSPEC% /c del /F /Q "%ALLUSERSPROFILE%\Desktop\QuickTime Player.lnk"'>
+    <exit code="1" />
+  </install>
+
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg32%"' />
   <upgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
     <exit code="1" />
   </upgrade>
+  <upgrade cmd='%COMSPEC% /c del /F /Q "%ALLUSERSPROFILE%\Desktop\QuickTime Player.lnk"'>
+    <exit code="1" />
+  </upgrade>
+
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg32%"' />
+  <downgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
+    <exit code="1" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /c del /F /Q "%ALLUSERSPROFILE%\Desktop\QuickTime Player.lnk"'>
+    <exit code="1" />
+  </downgrade>
+
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x "%pkg32%"' />
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg32%"' />
 </package>
