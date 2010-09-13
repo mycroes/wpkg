@@ -30,20 +30,32 @@
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="1"
+  revision="2"
   priority="10"
   reboot="false">
 
   <variable name="file" value="7z205ww.exe" />
   <variable name="tempdir" value="%SYSTEMDRIVE%\SWTOOLS\DRIVERS\EZEJECT" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage EasyEject" value="2.39" />
+  <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject Utility" value="2.39" />
 
-  <install cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <install cmd='copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
-  <install cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.ins' />
+  <install   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
+  <install   cmd='copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
+  <install   cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.ins' />
 
-  <remove  cmd='msiexec %MSI% /X{46A84694-59EC-48F0-964C-7E76E9F8A2ED}"' />
+  <upgrade   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
+  <upgrade   cmd='copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
+  <upgrade   cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.ins' />
+
+  <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
+  <downgrade cmd='copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
+  <downgrade cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.ins' />
+
+  <remove    cmd='msiexec %MSI% /X{fefefefefefeefefef}"' />
+  <remove    cmd='%COMSPEC% /c RD /Q /S "%tempdir%"'>
+    <exit code="1" />
+  </remove>
+
 </package>
 
 </packages>
