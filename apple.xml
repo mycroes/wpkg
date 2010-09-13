@@ -76,8 +76,12 @@ NOTES
     <exit code="1" />
   </downgrade>
 
-  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x "%pkg32%"' />
-  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg64%"' />
+  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x "%pkg32%"'>
+    <exit code="3010" />
+  </remove>
+  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg64%"'>
+    <exit code="3010" />
+  </remove>
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_10.0.0.68\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
