@@ -4,7 +4,7 @@
 <package
   id="ultradefrag"
   name="Ultra Defragmenter"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -19,6 +19,10 @@
   <install cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'>
     <exit code="any" />
   </install>
+  <install cmd='schtasks /Delete /TN DefragWeekly /F'>
+    <exit code="any" />
+  </install>
+  <install cmd='schtasks /Create /TN DefragWeekly /RU SYSTEM /SC WEEKLY /D SUN /ST 02:00:00 /TR "udefrag --wait c:"' />
 
   <upgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == x86 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.i386.exe" /S /NCRC' />
   <upgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.amd64.exe" /S /NCRC' />
@@ -27,6 +31,10 @@
   <upgrade cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'>
     <exit code="any" />
   </upgrade>
+  <upgrade cmd='schtasks /Delete /TN DefragWeekly /F'>
+    <exit code="any" />
+  </upgrade>
+  <upgrade cmd='schtasks /Create /TN DefragWeekly /RU SYSTEM /SC WEEKLY /D SUN /ST 02:00:00 /TR "udefrag --wait c:"' />
 
   <downgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == x86 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.i386.exe" /S /NCRC' />
   <downgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.amd64.exe" /S /NCRC' />
@@ -35,6 +43,10 @@
   <downgrade cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'>
     <exit code="any" />
   </downgrade>
+  <downgrade cmd='schtasks /Delete /TN DefragWeekly /F'>
+    <exit code="any" />
+  </downgrade>
+  <downgrade cmd='schtasks /Create /TN DefragWeekly /RU SYSTEM /SC WEEKLY /D SUN /ST 02:00:00 /TR "udefrag --wait c:"' />
 
   <remove  cmd='%ComSpec% /c "%SystemRoot%\UltraDefrag\uninstall.exe" /S /NCRC' />
   <remove  cmd='%ComSpec% /c if exist "%SystemRoot%\UltraDefrag" rmdir /s /q "%SystemRoot%\UltraDefrag"' />
