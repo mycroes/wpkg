@@ -34,7 +34,7 @@
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="5"
+  revision="%version%-0"
   priority="10"
   reboot="false">
 
@@ -57,7 +57,7 @@
   <downgrade cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
   <downgrade cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.ins' />
 
-  <remove    cmd='msiexec %MSI% /X{fefefefefefeefefef}"' />
+  <remove    cmd='RunDll32 "%PROGRAMFILES%\COMMON~1\INSTAL~1\engine\6\INTEL3~1\Ctor.dll,LaunchSetup" "%PROGRAMFILES%\InstallShield Installation Information\{1297C681-92D7-40EF-93BF-03F66EC5105C}\setup.exe" -l0x9 -AddRemove -s' />
   <remove    cmd='%COMSPEC% /c RD /Q /S "%tempdir%"'>
     <exit code="1" />
   </remove>
