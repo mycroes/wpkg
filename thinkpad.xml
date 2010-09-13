@@ -2,7 +2,7 @@
 
 <!--
   NOTES
-  1) EasyEject is untested
+  1) Please check the EasyEject uninstall check when upgrading to version > 2.39 as that version has a stupid space at the end
 -->
 
 <packages>
@@ -34,7 +34,7 @@
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="4"
+  revision="5"
   priority="10"
   reboot="false">
 
@@ -42,7 +42,8 @@
   <variable name="version" value="2.39" />
   <variable name="tempdir" value="%SYSTEMDRIVE%\SWTOOLS\DRIVERS\EZEJECT" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject Utility" value="%version%" />
+  <!-- v2.39 writes as space at the end of the name in uninstall -->
+  <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject Utility " value="%version%" />
 
   <install   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
   <install   cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
