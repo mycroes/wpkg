@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-  TODO
-  1) Install 32-bit on 64-bit hosts for use in 32-bit browsers
-
   NOTES
   1) Download from: http://www.oracle.com/technetwork/java/javase/downloads/index.html
+  2) We install both 32-bit and 64-bit JRE on 64-bit hosts
 -->
 
 <packages>
@@ -13,7 +11,7 @@
 <package
   id="java"
   name="Java 6"
-  revision="16212"
+  revision="1.6.21-2"
   reboot="false"
   priority="10">
 
@@ -21,6 +19,10 @@
 
   <install cmd='sc stop JavaQuickStarterService' />
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
+    <exit code="3010" reboot="postponed" />
+    <exit code="0" />
+  </install>
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </install>
@@ -44,6 +46,10 @@
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
+    <exit code="3010" reboot="postponed" />
+    <exit code="0" />
+  </upgrade>
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-x64.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
@@ -58,6 +64,30 @@
     <exit code="1" />
   </upgrade>
   <upgrade cmd='sc STOP JavaQuickStarterService' />
+
+  <downgrade cmd='sc STOP JavaQuickStarterService' />
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
+    <exit code="3010" reboot="postponed" />
+    <exit code="0" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
+    <exit code="3010" reboot="postponed" />
+    <exit code="0" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-x64.exe" %MSI%'>
+    <exit code="3010" reboot="postponed" />
+    <exit code="0" />
+  </downgrade>
+  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
+  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableJavaUpdate /t REG_DWORD /d 0 /f' />
+  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
+  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
+  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
+  <downgrade cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
+  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
+    <exit code="1" />
+  </downgrade>
+  <downgrade cmd='sc STOP JavaQuickStarterService' />
 
   <remove cmd='sc stop JavaQuickStarterService' />
   <remove cmd='msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F83216021FF}' />
