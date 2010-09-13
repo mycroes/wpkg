@@ -3,6 +3,37 @@
 <packages>
 
 <package
+  id="citrix_cag"
+  name="Citrix Client Access Gateway"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" condition="exists" path="Citrix Access Gateway Plugin" />
+
+  <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec /i "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
+  <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
+  <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\Citrix\cagse-x64.msi" %MSI%' />
+  <install   cmd='REG ADD "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags" /v "{5042648C-F439-468D-859B-6CD12BA02D3A}" /t REG_DWORD /d 1 /f' />
+
+  <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec /i "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
+  <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
+  <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\Citrix\cagse-x64.msi" %MSI%' />
+  <upgrade   cmd='REG ADD "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags" /v "{5042648C-F439-468D-859B-6CD12BA02D3A}" /t REG_DWORD /d 1 /f' />
+
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec /i "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\Citrix\cagse-x64.msi" %MSI%' />
+  <downgrade cmd='REG ADD "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags" /v "{5042648C-F439-468D-859B-6CD12BA02D3A}" /t REG_DWORD /d 1 /f' />
+
+  <remove    cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec /x "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
+  <remove    cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /x "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
+  <remove    cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /x "%SOFTWARE%\Citrix\cagse-x64.msi" %MSI%' />
+  <remove    cmd='REG DELETE "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags" /v "{5042648C-F439-468D-859B-6CD12BA02D3A}" /f' />
+
+</package>
+
+<package
   id="citrix_web"
   name="Citrix Web ICA Client"
   revision="3"
