@@ -34,7 +34,7 @@
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="3"
+  revision="4"
   priority="10"
   reboot="false">
 
@@ -45,15 +45,15 @@
   <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject Utility" value="%version%" />
 
   <install   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <install   cmd='copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
+  <install   cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
   <install   cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.ins' />
 
   <upgrade   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <upgrade   cmd='copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
+  <upgrade   cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
   <upgrade   cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.ins' />
 
   <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <downgrade cmd='copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
+  <downgrade cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
   <downgrade cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.ins' />
 
   <remove    cmd='msiexec %MSI% /X{fefefefefefeefefef}"' />
