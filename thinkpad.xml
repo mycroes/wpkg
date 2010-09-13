@@ -10,13 +10,14 @@
 <package
   id="tp_airbag"
   name="ThinkPad HDD AirBag"
-  revision="1"
+  revision="%version%-0"
   priority="10"
   reboot="false">
 
   <variable name="file" value="6isa03ww.exe" />
+  <variable name="version" value="1.71" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage Active Protection System" value="1.71" />
+  <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage Active Protection System" value="%version%" />
 
   <install cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"'>
     <exit code="3010" reboot="postponed" />
@@ -24,20 +25,24 @@
   <upgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
+  <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"'>
+    <exit code="3010" reboot="postponed" />
+  </downgrade>
   <remove  cmd='msiexec %MSI% /X{46A84694-59EC-48F0-964C-7E76E9F8A2ED}"' />
 </package>
 
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="2"
+  revision="3"
   priority="10"
   reboot="false">
 
-  <variable name="file" value="7z205ww.exe" />
+  <variable name="file" value="7zu205ww.exe" />
+  <variable name="version" value="2.39" />
   <variable name="tempdir" value="%SYSTEMDRIVE%\SWTOOLS\DRIVERS\EZEJECT" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject Utility" value="2.39" />
+  <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject Utility" value="%version%" />
 
   <install   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
   <install   cmd='copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.ins" "%tempdir%\setup.ins"' />
