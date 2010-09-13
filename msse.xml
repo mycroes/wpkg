@@ -16,7 +16,7 @@
 <package
   id="msse_xp_32"
   name="MS Security Essentials"
-  revision="12"
+  revision="13"
   reboot="false"
   priority="50">
 
@@ -38,14 +38,14 @@
   </upgrade>
   <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
 
-  <remove cmd='"%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
+  <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
 
 </package>
 
 <package
   id="msse_w7_32"
   name="MS Security Essentials"
-  revision="12"
+  revision="13"
   reboot="false"
   priority="50">
 
@@ -67,14 +67,14 @@
     </upgrade>
     <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
 
-    <remove cmd='"%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
+    <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
 
 </package>
 
 <package
   id="msse_w7_64"
   name="MS Security Essentials"
-  revision="12"
+  revision="13"
   reboot="false"
   priority="50">
 
@@ -96,7 +96,7 @@
   </upgrade>
   <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
 
-  <remove cmd='"%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
+  <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
 
 </package>
 
