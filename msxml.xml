@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) This installs MSXML 4 SP3 and MSXML 6 - you NEED to rename the msi files accordingly
+-->
+
+<packages>
+
+<package
+  id="msxml"
+  name="MSXML 4 &amp; 6"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" path="MSXML 4.0 SP3 Parser" />
+  <check type="uninstall" path="MSXML 6.0 Parser" />
+
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml4_x86.msi"' />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml6_x86.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml4_x86.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml6_x86.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml4_x86.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml6_x86.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\MSXML\msxml4_x86.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\MSXML\msxml6_x86.msi"' />
+
+</package>
+
+</packages>
