@@ -10,11 +10,12 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="1400"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <check type="uninstall" condition="exists" path="Windows Live Messenger" />
+  <variable name="version" value="14.0.8117.0416" />
+  <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Messenger" value="%version%" />
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\SegoeFont.msi"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\crt.msi"' />
@@ -26,11 +27,36 @@
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\Contacts.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\Messenger.msi"' />
 
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\SegoeFont.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\crt.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\Contacts.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Windows Live\Messenger.msi"' />
+
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Windows Live\SegoeFont.msi"' />
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Windows Live\crt.msi"' />
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Windows Live\Contacts.msi"' />
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Windows Live\Messenger.msi"' />
 
+</package>
+
+<package
+  id="yahoomessenger"
+  name="Yahoo Messenger"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="10.0.0.1270" />
+
+  <check type="logical" condition="or">
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Yahoo!\Messenger\YahooMessenger.exe" value="%version%" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Yahoo!\Messenger\YahooMessenger.exe" value="%version%" />
+  </check>
+  <install   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s' />
+  <upgrade   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s' />
+  <downgrade cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s' />
+  <remove    cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Yahoo!\Messenger\UNWISE.exe" "%PROGRAMFILES%\Yahoo!\Messenger\UNWISE.exe" /S /U "%PROGRAMFILES%\Yahoo!\Messenger\INSTALL.log"' />
+  <remove    cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Yahoo!\Messenger\UNWISE.exe" "%PROGRAMFILES(x86)%\Yahoo!\Messenger\UNWISE.exe" /S /U "%PROGRAMFILES(x86)%\Yahoo!\Messenger\INSTALL.log"' />
 </package>
 
 <package
