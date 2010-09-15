@@ -42,7 +42,7 @@
 <package
   id="yahoomessenger"
   name="Yahoo Messenger"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -52,9 +52,9 @@
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Yahoo!\Messenger\YahooMessenger.exe" value="%version%" />
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Yahoo!\Messenger\YahooMessenger.exe" value="%version%" />
   </check>
-  <install   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s' />
-  <upgrade   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s' />
-  <downgrade cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s' />
+  <install   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s /q' />
+  <upgrade   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s /q' />
+  <downgrade cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s /q' />
   <remove    cmd='taskkill /f /im YahooMessenger.exe'><exit code="any" /></remove>
   <remove    cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Yahoo!\Messenger\UNWISE.exe" "%PROGRAMFILES%\Yahoo!\Messenger\UNWISE.exe" /S /U "%PROGRAMFILES%\Yahoo!\Messenger\INSTALL.log"' />
   <remove    cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Yahoo!\Messenger\UNWISE.exe" "%PROGRAMFILES(x86)%\Yahoo!\Messenger\UNWISE.exe" /S /U "%PROGRAMFILES(x86)%\Yahoo!\Messenger\INSTALL.log"' />
