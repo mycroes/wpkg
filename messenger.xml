@@ -55,6 +55,7 @@
   <install   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s' />
   <upgrade   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s' />
   <downgrade cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s' />
+  <remove    cmd='taskkill /f /im YahooMessenger.exe'><exit code="any" /></remove>
   <remove    cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Yahoo!\Messenger\UNWISE.exe" "%PROGRAMFILES%\Yahoo!\Messenger\UNWISE.exe" /S /U "%PROGRAMFILES%\Yahoo!\Messenger\INSTALL.log"' />
   <remove    cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Yahoo!\Messenger\UNWISE.exe" "%PROGRAMFILES(x86)%\Yahoo!\Messenger\UNWISE.exe" /S /U "%PROGRAMFILES(x86)%\Yahoo!\Messenger\INSTALL.log"' />
 </package>
