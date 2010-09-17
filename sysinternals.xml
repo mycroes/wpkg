@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="sysinternals"
+  name="SysInternals"
+  revision="1"
+  reboot="false">
+
+  <variable name="root" value="%WINDIR%\SysInternals" />
+
+  <check type="file" condition="exists" path="%root%\MANAGED_BY_WPKG.txt" />
+  <install   cmd='%COMSPEC% /c IF NOT EXIST "%root%" mkdir "%root%"' />
+  <install   cmd='%COMSPEC% /c echo "The files in here are managed by WPKG" >> "%root%\MANAGED_BY_WPKG.txt' />
+  <upgrade   cmd='%COMSPEC% /c IF NOT EXIST "%root%" mkdir "%root%"' />
+  <upgrade   cmd='%COMSPEC% /c echo "The files in here are managed by WPKG" >> "%root%\MANAGED_BY_WPKG.txt' />
+  <downgrade cmd='%COMSPEC% /c IF NOT EXIST "%root%" mkdir "%root%"' />
+  <downgrade cmd='%COMSPEC% /c echo "The files in here are managed by WPKG" >> "%root%\MANAGED_BY_WPKG.txt' />
+  <remove    cmd='%COMSPEC% /c rd /Q /S "%root%"' />
+
+</package>
+
+<package
+  id="si_pagedefrag"
+  name="SysInternals PageDefrag"
+  revision="%version%-0"
+  reboot="false">
+
+  <depends package-id="sysinternals" />
+
+  <variable name="version" value="2.32" />
+  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\PageDefrag.exe" />
+
+  <install   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\PageDefrag" /v EulaAccepted /t REG_DWORD /d 1 /f' />
+  <install   cmd='%COMSPEC% /c copy %SOFTWARE\Sysinternals\PageDfrg.*" "%WINDIR%\Sysinternals"' />
+  <install   cmd='%WINDIR%\pagedfrg.exe -e -t 3' />
+
+  <upgrade   cmd='%COMSPEC% /c copy %SOFTWARE\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
+  <upgrade   cmd='%WINDIR%\SysInternals\pagedfrg.exe -e -t 3' />
+
+  <downgrade cmd='%COMSPEC% /c copy %SOFTWARE\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
+  <downgrade cmd='%WINDIR%\SysInternals\pagedfrg.exe -e -t 3' />
+
+  <remove    cmd='%WINDIR%\SysInternals\pagedfrg.exe -n' />
+  <remove    cmd='%COMSPEC% /c del /Q "%WINDIR%\SysInternals\PageDfrg.exe"' />
+
+</package>
+
+<package
+  id="si_bginfo"
+  name="SysInternals BgInfo"
+  revision="%version%-0"
+  reboot="false">
+
+  <depends package-id="sysinternals" />
+
+  <variable name="version" value="2.32" />
+  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\PageDefrag.exe" />
+
+  <install   cmd='%COMSPEC% /c copy /Y %SOFTWARE\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
+  <install   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\BgInfo" /v EulaAccepted /t REG_DWORD /d 1 /f' />
+  <install   cmd='%WINDIR%\SysInternals\BgInfo.exe %WINDIR%\SysInternals\BgInfo.bgi /timer 0 /accepteula /silent /all' />
+
+  <upgrade   cmd='%COMSPEC% /c copy /Y %SOFTWARE\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
+  <upgrade   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\BgInfo" /v EulaAccepted /t REG_DWORD /d 1 /f' />
+  <upgrade   cmd='%WINDIR%\SysInternals\BgInfo.exe %WINDIR%\SysInternals\BgInfo.bgi /timer 0 /accepteula /silent /all' />
+
+  <remove    cmd='%COMSPEC% /c del /Q "%WINDIR%\SysInternals\BgInfo.*"' />
+</package>
+
+</packages>
