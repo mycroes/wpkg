@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ VERSIONS
+ - 4.12.474, 2010-09-17
+
+ -->
+
+<packages>
+
+<package
+  id="neopro"
+  name="NEO Pro"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <variable name="version" value="4.12.474" />
+  <check type="uninstall" condition="versiongreaterorequal" path="NEO Pro" value="%version" />
+  <install   cmd='"%SOFTWARE%\NeoPro\NEOProSetup.exe" %MSI%' />
+  <upgrade   cmd='"%SOFTWARE%\NeoPro\NEOProSetup.exe" %MSI%' />
+  <downgrade cmd='"%SOFTWARE%\NeoPro\NEOProSetup.exe" %MSI%' />
+  <remove    cmd='msiexec %MSI% /x{B7FD0134-6531-468E-87CA-F5CC33BB0C5B}' />
+
+</package>
+
+</packages>
