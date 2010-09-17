@@ -11,32 +11,39 @@
 <package
   id="java"
   name="Java 6"
-  revision="1.6.21-3"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <check type="uninstall" condition="exists" path="Java(TM) 6 Update 21" />
+  <variable name="cls" value="16021" />  <!-- needed for uninstall -->
+  <variable name="short" value="6u21" /> <!-- part of the installer file name -->
+  <variable name="version" value="1.6.0_21" />
+
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 21" />
+    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 21 (64-bit)" />
+  </check>
 
   <install cmd='sc stop JavaQuickStarterService'>
     <exit code="1060" />
   </install>
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </install>
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </install>
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-x64.exe" %MSI%'>
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-x64.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </install>
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableJavaUpdate /t REG_DWORD /d 0 /f' />
-  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
+  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
+  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
+  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <install cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
     <exit code="1" />
@@ -48,23 +55,23 @@
   <upgrade cmd='sc STOP JavaQuickStarterService'>
     <exit code="1060" />
   </upgrade>
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-x64.exe" %MSI%'>
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-x64.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableJavaUpdate /t REG_DWORD /d 0 /f' />
-  <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
+  <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
+  <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
+  <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <upgrade cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
     <exit code="1" />
@@ -76,23 +83,23 @@
   <downgrade cmd='sc STOP JavaQuickStarterService'>
     <exit code="1060" />
   </downgrade>
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </downgrade>
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-i586.exe" %MSI%'>
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </downgrade>
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-6u21-windows-x64.exe" %MSI%'>
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-x64.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </downgrade>
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableJavaUpdate /t REG_DWORD /d 0 /f' />
-  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\1.6.0_21" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
+  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
+  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
+  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <downgrade cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
   <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
     <exit code="1" />
@@ -104,7 +111,12 @@
   <remove cmd='sc stop JavaQuickStarterService'>
     <exit code="1060" />
   </remove>
-  <remove cmd='msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F83216021FF}' />
+  <remove cmd='msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F832%cls%FF}'>
+    <exit code="3010" />
+  </remove>
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F864%cls%FF}'>
+    <exit code="3010" />
+  </remove>
 
 </package>
 
