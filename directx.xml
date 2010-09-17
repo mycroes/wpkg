@@ -31,7 +31,7 @@
 <package
   id="directx_redist"
   name="DirectX 9.0c"
-  revision="8"
+  revision="9"
   priority="50">
 
   <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\x3daudio1_7.dll" value="9.28.1886.0"/>
@@ -45,6 +45,7 @@
   </install>
   <install cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
 
+<!--
   <upgrade cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
   <upgrade cmd='"%SOFTWARE%\DirectX\directx_Jun2010_redist.exe" /Q /C /T:"%TEMP%\dx"' />
   <upgrade cmd='cscript "%SOFTWARE%\waitfor.vbs" directx_Jun2010_redist.exe' />
@@ -53,6 +54,7 @@
     <exit code="3010" reboot="postponed" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /c IF EXIST "%TEMP%\dx" RD /Q /S "%TEMP%\dx"' />
+-->
 
   <remove cmd="%comspec% /c exit 0" />
 
