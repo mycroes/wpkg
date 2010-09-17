@@ -2,7 +2,7 @@
 
 <!--
   NOTES
-  1) Killing explorer is not needed in the next release (post Aug-2010)
+  1) Killing explorer is not needed in the next release (post Aug-2010) - needs testing for sept release
 -->
 
 <packages>
@@ -10,20 +10,23 @@
 <package
   id="git"
   name="Git for Windows"
-  revision="2"
+  revision="%version%-0"
   priority="10"
   reboot="false">
 
-  <check type="uninstall" condition="exists" path="Git version 1.7.1preview-20100612" />
-  <install   cmd='"%SOFTWARE%\Git\Git-1.7.1-preview20100612.exe" /sp- /verysilent /norestart' />
-  <upgrade   cmd='"%SOFTWARE%\Git\Git-1.7.1-preview20100612.exe" /sp- /verysilent /norestart' />
-  <downgrade cmd='"%SOFTWARE%\Git\Git-1.7.1-preview20100612.exe" /sp- /verysilent /norestart' />
+  <variable name="version" value="1.7.2.3" />
+  <variable name="reldate" value="20100911" />
+
+  <check type="uninstall" condition="exists" path="Git version %version%preview-%reldate%" />
+  <install   cmd='"%SOFTWARE%\Git\Git-%version%-preview%reldate%.exe" /sp- /verysilent /norestart' />
+  <upgrade   cmd='"%SOFTWARE%\Git\Git-%version%-preview%reldate%.exe" /sp- /verysilent /norestart' />
+  <downgrade cmd='"%SOFTWARE%\Git\Git-%version%-preview%reldate%.exe" /sp- /verysilent /norestart' />
+  <!--
   <remove    cmd='taskkill /f /im explorer.exe'>
     <exit code="any" />
   </remove>
-  <!-- Windows 32-bit -->
-  <remove    cmd='%ComSpec% /c if exist "%ProgramFiles%\Git\unins000.exe" "%ProgramFiles%\Git\unins000.exe" /VERYSILENT' />
-  <!-- Windows 64-bit -->
+  -->
+  <remove    cmd='%ComSpec% /c if exist "%ProgramFiles%\Git\unins000.exe"      "%ProgramFiles%\Git\unins000.exe" /VERYSILENT' />
   <remove    cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Git\unins000.exe" "%ProgramFiles(x86)%\Git\unins000.exe" /VERYSILENT' />
 </package>
 
