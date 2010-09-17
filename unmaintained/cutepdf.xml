@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+
+<package
+  id="cutepdf"
+  name="CutePDF"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" condition="exists" path="CutePDF Writer 2.8" />
+<!--
+  <install cmd='%SOFTWARE%\CutePDF\CuteWriter.exe /verysilent' />
+  <install cmd='msiexec /x {86D4B82A-ABED-442A-BE86-96357B70F4FE} %MSI%' />
+
+  <upgrade cmd='%SOFTWARE%\CutePDF\CuteWriter.exe /verysilent' />
+  <upgrade cmd='msiexec /x {86D4B82A-ABED-442A-BE86-96357B70F4FE} %MSI%' />
+
+  <remove cmd='"%PROGRAMFILES%\Acro Software\CutePDF Writer\uninscpw.exe" -s' />
+  <remove cmd='%COMSPEC% /c RD /Q /S "%ProgramFiles%\gs8.64"' />
+-->
+
+  <install cmd='msiexec /x {86D4B82A-ABED-442A-BE86-96357B70F4FE} %MSI%'>
+    <exit code="any" />
+  </install>
+  <install cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Acro Software\CutePDF Writer\uninscpw.exe" "%PROGRAMFILES%\Acro Software\CutePDF Writer\uninscpw.exe" -s' />
+  <install cmd='%COMSPEC% /c IF EXIST "%ProgramFiles%\gs8.64" RD /Q /S "%ProgramFiles%\gs8.64"' />
+
+  <remove cmd='msiexec /x {86D4B82A-ABED-442A-BE86-96357B70F4FE} %MSI%'>
+    <exit code="any" />
+  </remove>
+  <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Acro Software\CutePDF Writer\uninscpw.exe" "%PROGRAMFILES%\Acro Software\CutePDF Writer\uninscpw.exe" -s' />
+  <remove cmd='%COMSPEC% /c IF EXIST "%ProgramFiles%\gs8.64" RD /Q /S "%ProgramFiles%\gs8.64"' />
+
+</package>
+
+</packages>

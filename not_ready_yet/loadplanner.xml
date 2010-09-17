@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+   id="loadplanner"
+   name="LoadPlanner"
+   revision="1"
+   reboot="false"
+   priority="10">
+
+   <!--
+   <check type="registry" condition="exists" path="HKLM\Software\Microsoft\Windows\CurrentVersion\Uninstall\KB942288-v3" />
+   -->
+   <check type="uninstall" condition="exists" path="LoadPlanner 3.7.14" />
+
+   <install cmd='msiexec /i "%SOFTWARE%\LoadPlanner\loadplanner 3714 update.msi" %MSI%' />
+
+   <upgrade cmd='msiexec /i "%SOFTWARE%\LoadPlanner\loadplanner 3714 update.msi" %MSI%' />
+
+   <remove cmd='msiexec /x "%SOFTWARE%\LoadPlanner\loadplanner 3714 update.msi" %MSI%' />
+
+</package>
+
+</packages>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+
+<package
+  id="defraggler"
+  name="Defraggler"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Defraggler" value="1.17" />
+
+  <install cmd='%software%\Tools\dfsetup117.exe /S' />
+  <install cmd='regedit /s %software%\Tools\defraggler.reg' />
+  <install cmd='%COMSPEC% /c IF NOT EXIST "%AllUsersProfile%\Start Menu\Programs\Defraggler" mkdir "%AllUsersProfile%\Start Menu\Programs\Defraggler"' />
+  <install cmd='%COMSPEC% /c copy "%UserProfile%\Start Menu\Programs\Defraggler\*.*" "%AllUsersProfile%\Start Menu\Programs\Defraggler\"' />
+  <install cmd='%COMSPEC% /c rmdir /q /s "%UserProfile%\Start Menu\Programs\Defraggler"' />
+  <install cmd='%COMSPEC% /c del /q "%UserProfile%\Desktop\Defraggler.lnk"' />
+
+  <upgrade cmd='%software%\Tools\dfsetup117.exe /S' />
+  <upgrade cmd='regedit /s %software%\Tools\defraggler.reg' />
+  <upgrade cmd='%COMSPEC% /c rmdir /q /s "%UsersProfile%\Start Menu\Programs\Defraggler\"' />
+  <upgrade cmd='%COMSPEC% /c del /q "%UserProfile%\Desktop\Defraggler.lnk"' />
+
+  <remove cmd='"%ProgramFiles%\Defraggler\uninst.exe" /S' />
+  <remove cmd='%COMSPEC% /c rmdir /q /s "%AllUsersProfile%\Start Menu\Programs\Defraggler"' />
+</package>
+
+</packages>

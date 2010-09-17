@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="ax"
+  name="Microsoft Dynamics AX 2009"
+  revision="2009-0"
+  reboot="false"
+  priority="10">
+
+  <check type="logical" condition="and">
+    <check type="uninstall" condition="exists" path="Microsoft Dynamics AX 2009 Components (32 bit)" />
+    <check type="uninstall" condition="exists" path="Microsoft Dynamics AX 2009 Client Help Files" />
+  </check>
+
+  <install cmd='%COMSPEC% /c assoc .axc=Dynamics.AXCFile' />
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\AX\ax.reg" regedit /s "%SOFTWARE%\AX\ax.reg"' />
+  <install cmd='"%SOFTWARE%\AX\Microsoft Dynamics AX 2009\setup.exe" RunMode=JustClient ConfigurePrerequisites=1 HideUI=1 AcceptLicenseTerms=1 InstallClientUI=1 ClientAosServer=AX:2713 ClientLanguage=en-US ClientHelpLanguages=en-US ClientConfigFile="%SOFTWARE%\AX\production.axc"' />
+
+  <upgrade cmd='"%SOFTWARE%\AX\Microsoft Dynamics AX 2009\setup.exe" RunMode=JustClient ConfigurePrerequisites=1 HideUI=1 AcceptLicenseTerms=1 InstallClientUI=1 ClientAosServer=AX:2713 ClientLanguage=en-US ClientHelpLanguages=en-US ClientConfigFile="%SOFTWARE%\AX\production.axc"' />
+
+  <remove  cmd='msiexec /x "%SOFTWARE%\AX\Microsoft Dynamics AX 2009\Msi\Components32\Components32.msi" %MSI%' />
+  <remove  cmd='msiexec /x "%SOFTWARE%\AX\Microsoft Dynamics AX 2009\Msi\ClientHelp\ClientHelp.msi" %MSI%' />
+
+</package>
+
+</packages>
