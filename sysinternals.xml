@@ -24,13 +24,13 @@
 <package
   id="si_pagedefrag"
   name="SysInternals PageDefrag"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false">
 
   <depends package-id="sysinternals" />
 
   <variable name="version" value="2.32.0.0" />
-  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\PageDefrag.exe" value="%version%" />
+  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\PageDfrg.exe" value="%version%" />
 
   <install   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\PageDefrag" /v EulaAccepted /t REG_DWORD /d 1 /f' />
   <install   cmd='xcopy /y "%SOFTWARE%\Sysinternals\PageDfrg.*" "%WINDIR%\Sysinternals"' />
