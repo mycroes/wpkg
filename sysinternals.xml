@@ -29,17 +29,17 @@
 
   <depends package-id="sysinternals" />
 
-  <variable name="version" value="2.32" />
-  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\PageDefrag.exe" />
+  <variable name="version" value="2.32.0.0" />
+  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\PageDefrag.exe" value="%version%" />
 
   <install   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\PageDefrag" /v EulaAccepted /t REG_DWORD /d 1 /f' />
-  <install   cmd='%COMSPEC% /c copy %SOFTWARE\Sysinternals\PageDfrg.*" "%WINDIR%\Sysinternals"' />
+  <install   cmd='%COMSPEC% /c copy "%SOFTWARE\Sysinternals\PageDfrg.*" "%WINDIR%\Sysinternals"' />
   <install   cmd='%WINDIR%\pagedfrg.exe -e -t 3' />
 
-  <upgrade   cmd='%COMSPEC% /c copy %SOFTWARE\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
+  <upgrade   cmd='%COMSPEC% /c copy "%SOFTWARE\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
   <upgrade   cmd='%WINDIR%\SysInternals\pagedfrg.exe -e -t 3' />
 
-  <downgrade cmd='%COMSPEC% /c copy %SOFTWARE\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
+  <downgrade cmd='%COMSPEC% /c copy "%SOFTWARE\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
   <downgrade cmd='%WINDIR%\SysInternals\pagedfrg.exe -e -t 3' />
 
   <remove    cmd='%WINDIR%\SysInternals\pagedfrg.exe -n' />
@@ -55,14 +55,14 @@
 
   <depends package-id="sysinternals" />
 
-  <variable name="version" value="2.32" />
-  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\PageDefrag.exe" />
+  <variable name="version" value="4.16.0.0" />
+  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\BgInfo.exe" value="%version%" />
 
-  <install   cmd='%COMSPEC% /c copy /Y %SOFTWARE\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
+  <install   cmd='%COMSPEC% /c copy /Y "%SOFTWARE\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
   <install   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\BgInfo" /v EulaAccepted /t REG_DWORD /d 1 /f' />
   <install   cmd='%WINDIR%\SysInternals\BgInfo.exe %WINDIR%\SysInternals\BgInfo.bgi /timer 0 /accepteula /silent /all' />
 
-  <upgrade   cmd='%COMSPEC% /c copy /Y %SOFTWARE\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
+  <upgrade   cmd='%COMSPEC% /c copy /Y "%SOFTWARE\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
   <upgrade   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\BgInfo" /v EulaAccepted /t REG_DWORD /d 1 /f' />
   <upgrade   cmd='%WINDIR%\SysInternals\BgInfo.exe %WINDIR%\SysInternals\BgInfo.bgi /timer 0 /accepteula /silent /all' />
 
