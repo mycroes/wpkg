@@ -24,7 +24,7 @@
 <package
   id="si_pagedefrag"
   name="SysInternals PageDefrag"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false">
 
   <depends package-id="sysinternals" />
@@ -33,13 +33,13 @@
   <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\PageDefrag.exe" value="%version%" />
 
   <install   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\PageDefrag" /v EulaAccepted /t REG_DWORD /d 1 /f' />
-  <install   cmd='xcopy /y "%SOFTWARE\Sysinternals\PageDfrg.*" "%WINDIR%\Sysinternals"' />
+  <install   cmd='xcopy /y "%SOFTWARE%\Sysinternals\PageDfrg.*" "%WINDIR%\Sysinternals"' />
   <install   cmd='%WINDIR%\SysInternals\pagedfrg.exe -e -t 3' />
 
-  <upgrade   cmd='xcopy /y "%SOFTWARE\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
+  <upgrade   cmd='xcopy /y "%SOFTWARE%\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
   <upgrade   cmd='%WINDIR%\SysInternals\pagedfrg.exe -e -t 3' />
 
-  <downgrade cmd='xcopy /y "%SOFTWARE\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
+  <downgrade cmd='xcopy /y "%SOFTWARE%\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
   <downgrade cmd='%WINDIR%\SysInternals\pagedfrg.exe -e -t 3' />
 
   <remove    cmd='%WINDIR%\SysInternals\pagedfrg.exe -n' />
@@ -50,7 +50,7 @@
 <package
   id="si_bginfo"
   name="SysInternals BgInfo"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false">
 
   <depends package-id="sysinternals" />
@@ -59,10 +59,10 @@
   <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\BgInfo.exe" value="%version%" />
 
   <install   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\BgInfo" /v EulaAccepted /t REG_DWORD /d 1 /f' />
-  <install   cmd='xcopy /Y "%SOFTWARE\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
+  <install   cmd='xcopy /Y "%SOFTWARE%\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
   <install   cmd='%WINDIR%\SysInternals\BgInfo.exe %WINDIR%\SysInternals\BgInfo.bgi /timer 0 /accepteula /silent /all' />
 
-  <upgrade   cmd='xcopy /Y "%SOFTWARE\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
+  <upgrade   cmd='xcopy /Y "%SOFTWARE%\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
   <upgrade   cmd='%WINDIR%\SysInternals\BgInfo.exe %WINDIR%\SysInternals\BgInfo.bgi /timer 0 /accepteula /silent /all' />
 
   <remove    cmd='%COMSPEC% /c del /Q "%WINDIR%\SysInternals\BgInfo.*"' />
