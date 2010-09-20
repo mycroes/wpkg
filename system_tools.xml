@@ -14,16 +14,7 @@
 
 </package>
 
-<package
-  id="pagedefrag"
-  name="PageDefrag"
-  revision="2"
-  reboot="false"
-  execute="once">
-
-  <depends package-id="system_tools" />
-  <install cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\PageDefrag" /v EulaAccepted /t REG_DWORD /d 1 /f' />
-  <install cmd="%WINDIR%\pagedfrg.exe -e -t 3" />
+<package id="pagedefrag" name="pagedefrag -&gt; si_pagedefrag" revision="3" reboot="false" execute="once">
 
 </package>
 
