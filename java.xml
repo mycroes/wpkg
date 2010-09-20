@@ -11,7 +11,7 @@
 <package
   id="java"
   name="Java 6"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -24,18 +24,18 @@
     <check type="uninstall" condition="exists" path="Java(TM) 6 Update 21 (64-bit)" />
   </check>
 
-  <install cmd='sc stop JavaQuickStarterService'>
-    <exit code="1060" />
+  <install cmd='net stop JavaQuickStarterService'>
+    <exit code="2" />
   </install>
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" %MSI%'>
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </install>
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" %MSI%'>
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </install>
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-x64.exe" %MSI%'>
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </install>
@@ -48,22 +48,22 @@
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
     <exit code="1" />
   </install>
-  <install cmd='sc stop JavaQuickStarterService'>
-    <exit code="1060" />
+  <install cmd='net stop JavaQuickStarterService'>
+    <exit code="2" />
   </install>
 
-  <upgrade cmd='sc STOP JavaQuickStarterService'>
-    <exit code="1060" />
+  <upgrade cmd='net stop JavaQuickStarterService'>
+    <exit code="2" />
   </upgrade>
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" %MSI%'>
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" %MSI%'>
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-x64.exe" %MSI%'>
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
@@ -76,22 +76,22 @@
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
     <exit code="1" />
   </upgrade>
-  <upgrade cmd='sc STOP JavaQuickStarterService'>
-    <exit code="1060" />
+  <upgrade cmd='net stop JavaQuickStarterService'>
+    <exit code="2" />
   </upgrade>
 
-  <downgrade cmd='sc STOP JavaQuickStarterService'>
-    <exit code="1060" />
+  <downgrade cmd='net stop JavaQuickStarterService'>
+    <exit code="2" />
   </downgrade>
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" %MSI%'>
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </downgrade>
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" %MSI%'>
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </downgrade>
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-x64.exe" %MSI%'>
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </downgrade>
@@ -104,11 +104,11 @@
   <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
     <exit code="1" />
   </downgrade>
-  <downgrade cmd='sc STOP JavaQuickStarterService'>
-    <exit code="1060" />
+  <downgrade cmd='net stop JavaQuickStarterService'>
+    <exit code="2" />
   </downgrade>
 
-  <remove cmd='sc stop JavaQuickStarterService'>
+  <remove cmd='net stop JavaQuickStarterService'>
     <exit code="1060" />
   </remove>
   <remove cmd='msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F832%cls%FF}'>
