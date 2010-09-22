@@ -5,11 +5,11 @@
 <package
   id="flash"
   name="Flash Player"
-  revision="%version%-1"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="10.1.82.76" />
+  <variable name="version" value="10.1.85.3" />
 
   <check type="logical" condition="and">
     <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 10 ActiveX" value="%version%" />
