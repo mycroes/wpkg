@@ -50,22 +50,31 @@
 <package
   id="si_bginfo"
   name="SysInternals BgInfo"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false">
 
   <depends package-id="sysinternals" />
 
   <variable name="version" value="4.16.0.0" />
+  <variable name="cmd" value="%WINDIR%\SysInternals\BgInfo.exe %WINDIR%\SysInternals\BgInfo.bgi /timer:0 /accepteula /silent /all" />
   <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\BgInfo.exe" value="%version%" />
 
   <install   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\BgInfo" /v EulaAccepted /t REG_DWORD /d 1 /f' />
   <install   cmd='xcopy /Y "%SOFTWARE%\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
-  <install   cmd='%WINDIR%\SysInternals\BgInfo.exe %WINDIR%\SysInternals\BgInfo.bgi /timer 0 /accepteula /silent /all' />
+  <install   cmd='%cmd%' />
+  <install   cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BgInfo /t REG_SZ /d "%cmd%" /f' />
 
   <upgrade   cmd='xcopy /Y "%SOFTWARE%\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
-  <upgrade   cmd='%WINDIR%\SysInternals\BgInfo.exe %WINDIR%\SysInternals\BgInfo.bgi /timer 0 /accepteula /silent /all' />
+  <upgrade   cmd='%cmd%' />
+  <upgrade   cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BgInfo /t REG_SZ /d "%cmd%" /f' />
+
+  <downgrade cmd='xcopy /Y "%SOFTWARE%\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
+  <downgrade cmd='%cmd%' />
+  <downgrade cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BgInfo /t REG_SZ /d "%cmd%" /f' />
 
   <remove    cmd='%COMSPEC% /c del /Q "%WINDIR%\SysInternals\BgInfo.*"' />
+  <remove    cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BgInfo /f' />
+
 </package>
 
 </packages>
