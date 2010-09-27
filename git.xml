@@ -10,7 +10,7 @@
 <package
   id="git"
   name="Git for Windows"
-  revision="%version%-1"
+  revision="%version%-2"
   priority="10"
   reboot="false">
 
@@ -18,11 +18,11 @@
   <variable name="reldate" value="20100911" />
 
   <check type="uninstall" condition="exists" path="Git version %version%-preview%reldate%" />
-  <install   cmd='"%SOFTWARE%\Git\Git-%version%-preview%reldate%.exe" /sp- /verysilent /norestart' />
-  <upgrade   cmd='"%SOFTWARE%\Git\Git-%version%-preview%reldate%.exe" /sp- /verysilent /norestart' />
-  <downgrade cmd='"%SOFTWARE%\Git\Git-%version%-preview%reldate%.exe" /sp- /verysilent /norestart' />
-  <remove    cmd='%ComSpec% /c if exist "%ProgramFiles%\Git\unins000.exe"      "%ProgramFiles%\Git\unins000.exe" /VERYSILENT' />
-  <remove    cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Git\unins000.exe" "%ProgramFiles(x86)%\Git\unins000.exe" /VERYSILENT' />
+  <install   cmd='"%SOFTWARE%\Git\Git-%version%-preview%reldate%.exe" /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES /LOG' />
+  <upgrade   cmd='"%SOFTWARE%\Git\Git-%version%-preview%reldate%.exe" /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES /LOG' />
+  <downgrade cmd='"%SOFTWARE%\Git\Git-%version%-preview%reldate%.exe" /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES /LOG' />
+  <remove    cmd='%ComSpec% /c if exist "%ProgramFiles%\Git\unins000.exe"      "%ProgramFiles%\Git\unins000.exe" /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES' />
+  <remove    cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Git\unins000.exe" "%ProgramFiles(x86)%\Git\unins000.exe" /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES' />
 </package>
 
 </packages>
