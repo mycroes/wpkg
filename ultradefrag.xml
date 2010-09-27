@@ -4,11 +4,11 @@
 <package
   id="ultradefrag"
   name="Ultra Defragmenter"
-  revision="%version%-3"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="4.3.0" />
+  <variable name="version" value="4.4.0" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Ultra Defragmenter" value="%version%" />
 
