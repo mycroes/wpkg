@@ -10,24 +10,24 @@
 <package
   id="power_permissions"
   name="Power permissions"
-  revision="2"
+  revision="3"
   reboot="false"
   priority="10"
   execute="once">
 
-  <install cmd='"%SOFTWARE%\SystemTools\subinacl.exe" /subkeyreg "SOFTWARE\Microsoft\Windows\CurrentVersion\Controls Folder\PowerCfg" /grant=Everyone=f' />
+  <install cmd='"%SOFTWARE%\SystemTools\subinacl.exe" /subkeyreg "SOFTWARE\Microsoft\Windows\CurrentVersion\Controls Folder\PowerCfg" /grant=Everyone=f >NUL' />
 
 </package>
 
 <package
   id="network_permissions"
   name="Network permissions"
-  revision="2"
+  revision="3"
   reboot="false"
   priority="10"
   execute="once">
 
-  <install cmd='net localgroup "Network Configuration Operators" Everyone /ADD'>
+  <install cmd='net localgroup "Network Configuration Operators" Everyone /ADD >NUL'>
     <exit code="2" /> <!-- Already member -->
   </install>
 
