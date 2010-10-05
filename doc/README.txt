@@ -12,23 +12,27 @@ The following criteria must be fulfilled before the recipe is included here:
 NOTES
 =====
 
-a) All revisions should be written out without dots. Examples:
-  4.65 -> 465
-  9.2.0.61 -> 92061
+a) If there are multiple references to the current version (file name, uninstall check, etc), then it should be included as a variable named 'version'
 
-b) All revision should have an additional identifier, this gives us 10 tries to get a new version right and allow overriding the central version. Examples:
-  4.65-0 -> 4650
-  9.2.0.61-0 -> 920610
+b) All revisions should be written out WITH dots. Examples:
+  4.65
+  9.2.0.61
 
-c) Priorities are set as follows
+c) All revision should have an additional identifier, this gives us 10 tries to get a new version right and allow overriding the central version. Examples:
+  4.65-0
+  9.2.0.61-3
+
+d) The additional revision identifier should be incremented when needed and reset to 0 when a new version is added
+
+e) Priorities are set as follows
    10 - most normal applications
    50 - system applications (IE8 and others)
   100 - critical install first apps (Windows Installer 4.5)
 
-d) Rebooting - all should have their reboot priority set to "false" and only reboot (postponed) in case of 3010 or similar return codes.
+f) Rebooting - all should have their reboot priority set to "false" and only reboot (postponed) in case of 3010 or similar return codes and ONLY if absolutely needed
 
-e) Ensure that the following variables are defined in your WPKG settings.xml file
+g) Ensure that the following variables are defined in your WPKG settings.xml file
   MSI      - set to "/quiet /norestart" (without quotes)
   MSP      - set to "REINSTALL=ALL REINSTALLMODE=omus" (without quotes)
-  SOFTWARE - set to root of the applications
+  SOFTWARE - set to root of the application store without trailing backslash
   WPKG     - set to root of server WPKG installation without trailing backslash
