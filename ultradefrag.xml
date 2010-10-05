@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) We should be able to detect SSDs and then not run the boot time and scheduled defrag jobs
+
+-->
+
+
 <packages>
 
 <package
