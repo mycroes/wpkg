@@ -14,18 +14,29 @@
 <package
   id="ie8"
   name="Internet Explorer 8"
-  revision="9"
+  revision="10"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="Windows Internet Explorer 8" />
 
+  <!-- Danish -->
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\IE8-WindowsXP-x86-DAN.exe" "%SOFTWARE%\IE8\IE8-WindowsXP-x86-DAN.exe" /passive /norestart /update-no'>
     <exit code="3010" reboot="postponed" />
   </install>
+  <!-- German -->
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\IE8-WindowsXP-x86-DEU.exe" "%SOFTWARE%\IE8\IE8-WindowsXP-x86-DEU.exe" /passive /norestart /update-no'>
+    <exit code="3010" reboot="postponed" />
+  </install>
+  <!-- English -->
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\IE8-WindowsXP-x86-ENU.exe" "%SOFTWARE%\IE8\IE8-WindowsXP-x86-ENU.exe" /passive /norestart /update-no'>
     <exit code="3010" reboot="postponed" />
   </install>
+  <!-- French -->
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\IE8-WindowsXP-x86-FRA.exe" "%SOFTWARE%\IE8\IE8-WindowsXP-x86-FRA.exe" /passive /norestart /update-no'>
+    <exit code="3010" reboot="postponed" />
+  </install>
+  <!-- Dutch -->
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\IE8-WindowsXP-x86-NLD.exe" "%SOFTWARE%\IE8\IE8-WindowsXP-x86-NLD.exe" /passive /norestart /update-no'>
     <exit code="3010" reboot="postponed" />
   </install>
