@@ -75,6 +75,26 @@
 </package>
 
 <package
+  id="office2000pro"
+  name="MS Office 2000 Professional"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <!-- Version number from setup.exe -->
+  <variable name="version" value="9.0.0.2611" />
+
+  <check type="uninstall" condition="exists" path="Microsoft Office 2000 Professional" />
+
+  <!-- Use Microsoft Office 2000 Resource Kit Tools to generate a transform -->
+  <install cmd='"%SOFTWARE%\Office2000\setup.exe" TRANSFORMS="%SOFTWARE%\Office2000\custom.mst" /wait /qn' />
+
+  <remove cmd="MsiExec.exe /X{00010413-78E1-11D2-B60F-006097C998E7} %MSI%">
+    <exit code="3010" />
+  </remove>
+</package>
+
+<package
   id="uninstall-oe"
   name="Outlook Express Uninstall"
   revision="2"
