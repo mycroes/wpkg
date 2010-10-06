@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+
+<package
+  id="hicadviewer2010"
+  name="HiCAD Viewer 2010 Professional"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <!-- Version number from setup.exe -->
+  <variable name="version" value="6.5.0.0" />
+
+  <!-- Bundled with vc2008 runtime -->
+  <depends package-id="vcruntime" />
+
+  <!-- Probably .NET 2, but that's undefined -->
+  <depends package-id="dotnet3" />
+
+  <check type="uninstall" condition="exists" path="HiCAD Viewer Professional 2010" />
+  
+  <install cmd='MsiExec.exe /i "%SOFTWARE%\HiCAD\HiCADViewerProfessional2010.msi" %MSI%' />
+
+  <remove cmd="MsiExec.exe /X{A9C9D997-14AE-4C8F-B1F8-51FDBA9EC848} %MSI%" />
+</package>
+</packages>
