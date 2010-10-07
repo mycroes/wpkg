@@ -10,12 +10,12 @@
 <package
   id="msxml"
   name="MSXML 4 &amp; 6"
-  revision="1"
+  revision="2"
   reboot="false"
   priority="10">
 
-  <check type="uninstall" path="MSXML 4.0 SP3 Parser" />
-  <check type="uninstall" path="MSXML 6.0 Parser" />
+  <check type="uninstall" condition="exists" path="MSXML 4.0 SP3 Parser" />
+  <check type="uninstall" condition="exists" path="MSXML 6.0 Parser" />
 
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml4_x86.msi"' />
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml6_x86.msi"' />
