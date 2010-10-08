@@ -11,16 +11,16 @@
 <package
   id="notepad"
   name="Notepad++"
-  revision="%version%.0-1"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="5.8.1" /> <!-- it is actually 5.8.1.0, but we can reuse for file names if we leave the last .0 out -->
+  <variable name="version" value="5.8.1" />
 
   <check type="uninstall" condition="exists" path="Notepad++" />
   <check type='logical' condition='or'>
-    <check type="file" condition="versiongreaterorequal" path="%ProgramFiles%\Notepad++\notepad++.exe" value="%version%.0" />
-    <check type="file" condition="versiongreaterorequal" path="%ProgramFiles(x86)%\Notepad++\notepad++.exe" value="%version%.0" />
+    <check type="file" condition="versiongreaterorequal" path="%ProgramFiles%\Notepad++\notepad++.exe" value="%version%" />
+    <check type="file" condition="versiongreaterorequal" path="%ProgramFiles(x86)%\Notepad++\notepad++.exe" value="%version%" />
   </check>
 
   <install cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\plugins" del /f /q "%ProgramFiles%\Notepad++\plugins\*.dll"' />
