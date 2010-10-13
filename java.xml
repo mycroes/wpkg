@@ -4,6 +4,7 @@
   NOTES
   1) Download from: http://www.oracle.com/technetwork/java/javase/downloads/index.html
   2) We install both 32-bit and 64-bit JRE on 64-bit hosts
+  3) 32-bit installation on 64-bit is BROKEN
 -->
 
 <packages>
@@ -11,7 +12,7 @@
 <package
   id="java"
   name="Java 6"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -51,10 +52,12 @@
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </install>
+  <!--
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </install>
+  -->
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
@@ -99,10 +102,12 @@
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
+  <!--
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
+  -->
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
@@ -147,10 +152,12 @@
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </downgrade>
+  <!--
   <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </downgrade>
+  -->
   <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
@@ -171,9 +178,14 @@
   <remove cmd='net stop JavaQuickStarterService'>
     <exit code="1060" />
   </remove>
-  <remove cmd='msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F832%cls%FF}'>
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F832%cls%FF}'>
     <exit code="3010" />
   </remove>
+  <!--
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F832%cls%FF}'>
+    <exit code="3010" />
+  </remove>
+  -->
   <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F864%cls%FF}'>
     <exit code="3010" />
   </remove>
