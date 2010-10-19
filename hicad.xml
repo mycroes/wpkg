@@ -18,9 +18,30 @@
   <depends package-id="dotnet3" />
 
   <check type="uninstall" condition="exists" path="HiCAD Viewer Professional 2010" />
+  <check type='logical' condition='or'>
+    <check type='file' condition='versiongreaterorequal' path='%ProgramFiles%\ISD Software und Systeme\HiCAD Viewer Professional 2010\exe\HiCADViewer2010.exe' value='%version%' />
+    <check type='file' condition='versiongreaterorequal' path='%ProgramFiles(x86)%\ISD Software und Systeme\HiCAD Viewer Professional 2010\exe\HiCADViewer2010.exe' value='%version%' />
+  </check>
   
-  <install cmd='MsiExec.exe /i "%SOFTWARE%\HiCAD\HiCADViewerProfessional2010.msi" %MSI%' />
+  <install cmd='MsiExec.exe /i "%SOFTWARE%\HiCAD\HiCADViewerProfessional2010.msi" %MSI%'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </install>
 
-  <remove cmd="MsiExec.exe /X{A9C9D997-14AE-4C8F-B1F8-51FDBA9EC848} %MSI%" />
+  <upgrade cmd='MsiExec.exe /i "%SOFTWARE%\HiCAD\HiCADViewerProfessional2010.msi" %MSI%'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </upgrade>
+
+  <downgrade cmd='MsiExec.exe /i "%SOFTWARE%\HiCAD\HiCADViewerProfessional2010.msi" %MSI%'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </downgrade>
+
+  <remove cmd="MsiExec.exe /X{A9C9D997-14AE-4C8F-B1F8-51FDBA9EC848} %MSI%">
+    <exit code="1641" />
+    <exit code="3010" />
+  </remove>
+
 </package>
 </packages>
