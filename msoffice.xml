@@ -98,8 +98,8 @@
   </upgrade>
 
   <downgrade cmd='"%SOFTWARE\Office2000\setup.exe" TRANSFORMS="%SOFTWARE\Office2000\custom.mst" /wait /qn'>
-    <exit code="1641" />
-    <exit code="3010" />
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
   </downgrade>
 
   <remove cmd="MsiExec.exe /X{00010413-78E1-11D2-B60F-006097C998E7} %MSI%">
