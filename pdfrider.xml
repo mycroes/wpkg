@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+
+<package
+  id="pdfrider"
+  name="PDF Rider"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <variable name="version" value="0.4" />
+
+  <check type="uninstall" condition="exists" path="PDF Rider %version%" />
+
+  <install   cmd='"%SOFTWARE%\PDFRider\pdfrider%version%-setup.exe" /VERYSILENT /SP- /NORESTART' />
+  <upgrade   cmd='"%SOFTWARE%\PDFRider\pdfrider%version%-setup.exe" /VERYSILENT /SP- /NORESTART' />
+  <downgrade cmd='"%SOFTWARE%\PDFRider\pdfrider%version%-setup.exe" /VERYSILENT /SP- /NORESTART' />
+
+  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\PDFRider\unins000.exe" "%ProgramFiles%\PDFRider\unins000.exe" /VERYSILENT /SP- /NORESTART' />
+  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\PDFRider\unins000.exe" "%ProgramFiles(x86)%\PDFRider\unins000.exe" /VERYSILENT /SP- /NORESTART' />
+</package>
+
+</packages>

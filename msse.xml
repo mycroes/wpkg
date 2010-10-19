@@ -16,13 +16,14 @@
 <package
   id="msse_xp_32"
   name="MS Security Essentials"
-  revision="13"
+  revision="14"
   reboot="false"
   priority="50">
 
   <check type="logical" condition="or">
     <check type="uninstall" condition="exists" path="Microsoft Security Essentials" />
     <check type="uninstall" condition="exists" path="Symantec Endpoint Protection" />
+    <check type="file" condition="exists" path="%PROGRAMFILES%\Symantec Client Security\Symantec AntiVirus\rtvscan.exe" />
     <check type="uninstall" condition="exists" path="Trend Micro OfficeScan Client" />
   </check>
 
@@ -52,6 +53,7 @@
     <check type="logical" condition="or">
       <check type="uninstall" condition="exists" path="Microsoft Security Essentials" />
       <check type="uninstall" condition="exists" path="Symantec Endpoint Protection" />
+      <check type="file" condition="exists" path="%PROGRAMFILES%\Symantec Client Security\Symantec AntiVirus\rtvscan.exe" />
       <check type="uninstall" condition="exists" path="Trend Micro OfficeScan Client" />
     </check>
 
@@ -74,13 +76,14 @@
 <package
   id="msse_w7_64"
   name="MS Security Essentials"
-  revision="13"
+  revision="14"
   reboot="false"
   priority="50">
 
   <check type="logical" condition="or">
     <check type="uninstall" condition="exists" path="Microsoft Security Essentials" />
     <check type="uninstall" condition="exists" path="Symantec Endpoint Protection" />
+    <check type="file" condition="exists" path="%PROGRAMFILES%\Symantec Client Security\Symantec AntiVirus\rtvscan.exe" />
     <check type="uninstall" condition="exists" path="Trend Micro OfficeScan Client" />
   </check>
 
