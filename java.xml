@@ -12,17 +12,17 @@
 <package
   id="java"
   name="Java 6"
-  revision="%version%-3"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="cls" value="16021" />  <!-- needed for uninstall -->
-  <variable name="short" value="6u21" /> <!-- part of the installer file name -->
-  <variable name="version" value="1.6.0_21" />
+  <variable name="cls" value="16022" />  <!-- needed for uninstall -->
+  <variable name="short" value="6u22" /> <!-- part of the installer file name -->
+  <variable name="version" value="1.6.0_22" />
 
   <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 21" />
-    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 21 (64-bit)" />
+    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 22" />
+    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 22 (64-bit)" />
   </check>
 
   <install cmd='net stop JavaQuickStarterService'>
