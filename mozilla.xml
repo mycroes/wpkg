@@ -18,7 +18,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.6.10" />
+  <variable name="version" value="3.6.11" />
   <check type="uninstall" condition="exists" path="Mozilla Firefox (%version%)" />
   <install   cmd='"%SOFTWARE%\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
   <upgrade   cmd='"%SOFTWARE%\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
