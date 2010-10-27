@@ -16,16 +16,13 @@
 <package
   id="msse_xp_32"
   name="MS Security Essentials"
-  revision="14"
+  revision="%version%-0"
   reboot="false"
   priority="50">
 
-  <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Microsoft Security Essentials" />
-    <check type="uninstall" condition="exists" path="Symantec Endpoint Protection" />
-    <check type="file" condition="exists" path="%PROGRAMFILES%\Symantec Client Security\Symantec AntiVirus\rtvscan.exe" />
-    <check type="uninstall" condition="exists" path="Trend Micro OfficeScan Client" />
-  </check>
+  <variable name='version' value='1.0.2498.0' />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Security Essentials" value="%version%" />
 
   <install cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-xp.exe" /s /runwgacheck'>
     <exit code="-2147156221" />
@@ -46,16 +43,12 @@
 <package
   id="msse_w7_32"
   name="MS Security Essentials"
-  revision="13"
+  revision="%version%-0"
   reboot="false"
   priority="50">
 
-    <check type="logical" condition="or">
-      <check type="uninstall" condition="exists" path="Microsoft Security Essentials" />
-      <check type="uninstall" condition="exists" path="Symantec Endpoint Protection" />
-      <check type="file" condition="exists" path="%PROGRAMFILES%\Symantec Client Security\Symantec AntiVirus\rtvscan.exe" />
-      <check type="uninstall" condition="exists" path="Trend Micro OfficeScan Client" />
-    </check>
+  <variable name='version' value='1.0.2498.0' />
+  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Security Essentials" value="%version%" />
 
     <install cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-vista-win7.exe" /s /runwgacheck'>
       <exit code="-2147156221" />
@@ -76,16 +69,12 @@
 <package
   id="msse_w7_64"
   name="MS Security Essentials"
-  revision="14"
+  revision="%version%-0"
   reboot="false"
   priority="50">
 
-  <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Microsoft Security Essentials" />
-    <check type="uninstall" condition="exists" path="Symantec Endpoint Protection" />
-    <check type="file" condition="exists" path="%PROGRAMFILES%\Symantec Client Security\Symantec AntiVirus\rtvscan.exe" />
-    <check type="uninstall" condition="exists" path="Trend Micro OfficeScan Client" />
-  </check>
+  <variable name='version' value='1.0.2498.0' />
+  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Security Essentials" value="%version%" />
 
   <install cmd='"%SOFTWARE%\MSSE\mssefullinstall-amd64fre-en-us-vista-win7.exe" /s /runwgacheck'>
     <exit code="-2147156221" />
