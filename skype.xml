@@ -10,21 +10,23 @@
 
 <package
   id="skype"
-  name="Skype 4.2"
-  revision="420"
+  name="Skype 5.0"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
+  <variable name='version' value='5.0.32.152' />
   <check type="logical" condition="or">
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Skype\Phone\Skype.exe" value="4.2.32.158" />
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" value="4.2.32.158" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Skype\Phone\Skype.exe" value="%version%" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" value="%version%" />
   </check>
 
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\SkypeSetup.msi" INSTALLLEVEL=1 ALLUSERS=1 STARTSKYPE=FALSE' />
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\SkypeSetup.msi" INSTALLLEVEL=1 ALLUSERS=1 STARTSKYPE=FALSE' />
-  <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Skype\Phone\Skype.exe" "%PROGRAMFILES%\Skype\Phone\Skype.exe" /shutdown' />
-  <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" /shutdown' />
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Skype\SkypeSetup.msi"' />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\SkypeSetup.msi" INSTALLLEVEL=1 ALLUSERS=1 STARTSKYPE=FALSE' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\SkypeSetup.msi" INSTALLLEVEL=1 ALLUSERS=1 STARTSKYPE=FALSE' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\SkypeSetup.msi" INSTALLLEVEL=1 ALLUSERS=1 STARTSKYPE=FALSE' />
+  <remove    cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Skype\Phone\Skype.exe" "%PROGRAMFILES%\Skype\Phone\Skype.exe" /shutdown' />
+  <remove    cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" /shutdown' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Skype\SkypeSetup.msi"' />
 
 </package>
 
