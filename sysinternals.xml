@@ -50,14 +50,18 @@
 <package
   id="si_bginfo"
   name="SysInternals BgInfo"
-  revision="%version%-3"
+  revision="%version%-4"
   reboot="false">
 
   <depends package-id="sysinternals" />
 
   <variable name="version" value="4.16.0.0" />
   <variable name="cmd" value="%WINDIR%\SysInternals\BgInfo.exe %WINDIR%\SysInternals\BgInfo.bgi /timer:0 /accepteula /silent /all" />
-  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\BgInfo.exe" value="%version%" />
+
+  <check type="logical" condition="and">
+    <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\BgInfo.exe" value="%version%" />
+    <check type="registry" condition="exists" path="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\BgInfo" />
+  </check>
 
   <install   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\BgInfo" /v EulaAccepted /t REG_DWORD /d 1 /f' />
   <install   cmd='xcopy /Y "%SOFTWARE%\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
