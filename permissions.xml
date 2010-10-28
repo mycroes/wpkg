@@ -15,7 +15,7 @@
   priority="10"
   execute="once">
 
-  <install cmd='"%SOFTWARE%\SystemTools\subinacl.exe" /subkeyreg "SOFTWARE\Microsoft\Windows\CurrentVersion\Controls Folder\PowerCfg" /grant=Everyone=f >NUL' />
+  <install cmd='"%SOFTWARE%\SystemTools\subinacl.exe" /nostatistics /noverbose /subkeyreg "SOFTWARE\Microsoft\Windows\CurrentVersion\Controls Folder\PowerCfg" /grant=Everyone=f >NUL' />
 
 </package>
 
