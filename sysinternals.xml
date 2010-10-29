@@ -50,13 +50,13 @@
 <package
   id="si_bginfo"
   name="SysInternals BgInfo"
-  revision="%version%-4"
+  revision="%version%-5"
   reboot="false">
 
   <depends package-id="sysinternals" />
 
   <variable name="version" value="4.16.0.0" />
-  <variable name="cmd" value="%WINDIR%\SysInternals\BgInfo.exe %WINDIR%\SysInternals\BgInfo.bgi /timer:0 /accepteula /silent /all" />
+  <variable name="cmd" value="%WINDIR%\SysInternals\BgInfo.exe %WINDIR%\SysInternals\BgInfo.bgi /timer:0 /accepteula /silent" /> <!-- /all doesn't work on w7 -->
 
   <check type="logical" condition="and">
     <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\BgInfo.exe" value="%version%" />
