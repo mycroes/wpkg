@@ -35,7 +35,7 @@
   <package
     id="7zipbeta"
     name="7-Zip BETA (32 and 64 bit)"
-    revision="%version%-0"
+    revision="%version%-1"
     reboot="false"
     priority="0">
 
@@ -44,7 +44,7 @@
 
     <check type="logical" condition="or">
       <check type="uninstall" condition="exists" path="7-Zip %version% beta"/>
-      <check type="uninstall" condition="exists" path="7-Zip %version% beta (x64 edition)" />
+      <check type="uninstall" condition="exists" path="7-Zip %version% (x64 edition)" /> <!-- No beta on the 64-bit version. Why? No clue. -->
     </check>
 
     <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\7zip\7z%fileversion%.exe" /S' />
