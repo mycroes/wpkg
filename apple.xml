@@ -194,7 +194,7 @@ NOTES
 <package
   id="iphone_config"
   name="Apple iPhone Configuration Utility"
-  revision="1"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
@@ -204,7 +204,9 @@ NOTES
   <depends package-id="bonjour" />
   -->
 
-  <check type="uninstall" condition="versiongreaterorequal" path="iPhone Configuration Utility" value="3.0.0.235"/>
+  <variable name="version" value="3.1.0.256" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="iPhone Configuration Utility" value="%version%"/>
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\iPhone_3\iPhoneConfigUtility.msi"' />
   <install cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhone_3\AppleSoftwareUpdate.msi"'>
