@@ -16,7 +16,7 @@
 <package
   id="msse_xp_32"
   name="MS Security Essentials"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="50">
 
@@ -36,6 +36,12 @@
   </upgrade>
   <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
 
+  <downgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-xp.exe" /s /runwgacheck'>
+    <exit code="-2147156221" />
+    <exit code="-2147156213" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+
   <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
 
 </package>
@@ -43,7 +49,7 @@
 <package
   id="msse_w7_32"
   name="MS Security Essentials"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="50">
 
@@ -62,6 +68,12 @@
     </upgrade>
     <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
 
+    <downgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-vista-win7.exe" /s /runwgacheck'>
+      <exit code="-2147156221" />
+      <exit code="-2147156213" />
+    </downgrade>
+    <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+
     <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
 
 </package>
@@ -69,7 +81,7 @@
 <package
   id="msse_w7_64"
   name="MS Security Essentials"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="50">
 
@@ -87,6 +99,12 @@
     <exit code="-2147156213" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+
+  <downgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-amd64fre-en-us-vista-win7.exe" /s /runwgacheck'>
+    <exit code="-2147156221" />
+    <exit code="-2147156213" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
 
   <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
 
