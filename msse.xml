@@ -16,7 +16,7 @@
 <package
   id="msse_xp_32"
   name="MS Security Essentials"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="50">
 
@@ -25,6 +25,7 @@
   <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Security Essentials" value="%version%" />
 
   <install cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-xp.exe" /s /runwgacheck'>
+    <exit code="-2147156187" />
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
@@ -32,6 +33,7 @@
   <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
 
   <upgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-xp.exe" /s /runwgacheck'>
+    <exit code="-2147156187" />
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
@@ -39,6 +41,7 @@
   <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
 
   <downgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-xp.exe" /s /runwgacheck'>
+    <exit code="-2147156187" />
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
@@ -52,7 +55,7 @@
 <package
   id="msse_w7_32"
   name="MS Security Essentials"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="50">
 
@@ -60,6 +63,7 @@
   <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Security Essentials" value="%version%" />
 
     <install cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-vista-win7.exe" /s /runwgacheck'>
+      <exit code="-2147156187" />
       <exit code="-2147156221" />
       <exit code="-2147156213" />
       <exit code="327424" />
@@ -67,6 +71,7 @@
     <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
 
     <upgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-vista-win7.exe" /s /runwgacheck'>
+      <exit code="-2147156187" />
       <exit code="-2147156221" />
       <exit code="-2147156213" />
       <exit code="327424" />
@@ -74,6 +79,7 @@
     <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
 
     <downgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-vista-win7.exe" /s /runwgacheck'>
+      <exit code="-2147156187" />
       <exit code="-2147156221" />
       <exit code="-2147156213" />
       <exit code="327424" />
@@ -87,7 +93,7 @@
 <package
   id="msse_w7_64"
   name="MS Security Essentials"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="50">
 
@@ -95,6 +101,7 @@
   <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Security Essentials" value="%version%" />
 
   <install cmd='"%SOFTWARE%\MSSE\mssefullinstall-amd64fre-en-us-vista-win7.exe" /s /runwgacheck'>
+    <exit code="-2147156187" />
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
@@ -102,6 +109,7 @@
   <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
 
   <upgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-amd64fre-en-us-vista-win7.exe" /s /runwgacheck'>
+    <exit code="-2147156187" />
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
@@ -109,6 +117,7 @@
   <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
 
   <downgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-amd64fre-en-us-vista-win7.exe" /s /runwgacheck'>
+    <exit code="-2147156187" />
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
