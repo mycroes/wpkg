@@ -67,7 +67,8 @@
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <install cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
+  <install cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Java\jre6\bin\jqs.exe" "%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister'><exit code='1' /></install>
+  <install cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" "%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" -unregister'><exit code='1' /></install>
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
     <exit code="1" />
   </install>
@@ -117,7 +118,8 @@
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <upgrade cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
+  <upgrade cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Java\jre6\bin\jqs.exe" "%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister'><exit code='1' /></upgrade>
+  <upgrade cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" "%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" -unregister'><exit code='1' /></upgrade>
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
     <exit code="1" />
   </upgrade>
@@ -167,7 +169,8 @@
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <downgrade cmd='REG ADD HKLM\SYSTEM\CurrentControlSet\Services\JavaQuickStarterService /v Start /t REG_DWORD /d 4 /f' />
+  <downgrade cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Java\jre6\bin\jqs.exe" "%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister'><exit code='1' /></downgrade>
+  <downgrade cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" "%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" -unregister'><exit code='1'/></downgrade>
   <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
     <exit code="1" />
   </downgrade>
