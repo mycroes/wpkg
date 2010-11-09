@@ -39,6 +39,12 @@
 
 </package>
 
+<!--
+  NOTES
+  1) Registry needs to be updated for the user running it, so add the following to the logon script instead: regedit /s "%PROGRAMFILES%\Yahoo!\Messenger\default.reg" and "intl.reg"
+
+ -->
+
 <package
   id="yahoomessenger"
   name="Yahoo Messenger"
