@@ -5,6 +5,7 @@
   1) Download from: http://www.oracle.com/technetwork/java/javase/downloads/index.html
   2) We install both 32-bit and 64-bit JRE on 64-bit hosts
   3) 32-bit installations on 64-bit is broken when using the .exe installer - you NEED to get the .cab and .msi from the 32 bit installer for 64 bit platforms
+  4) install/up/downgrade must all remove the current version before installing it as installing on top of the same version leaves the package in an inconsistent state
 -->
 
 <packages>
@@ -12,7 +13,7 @@
 <package
   id="java"
   name="Java 6"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -24,6 +25,7 @@
     <check type="uninstall" condition="exists" path="Java(TM) 6 Update 22" />
     <check type="uninstall" condition="exists" path="Java(TM) 6 Update 22 (64-bit)" />
   </check>
+  <check type="file" condition="exists" path="%PROGRAMFILES%\Java\jre6\bin\javacpl.exe" />
 
   <install cmd='net stop JavaQuickStarterService'>
     <exit code="2" />
@@ -48,6 +50,7 @@
   <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216019FF}'><exit code='1605' /></install>
   <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216020FF}'><exit code='1605' /></install>
   <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216021FF}'><exit code='1605' /></install>
+  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216022FF}'><exit code='1605' /></install>
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
@@ -97,6 +100,7 @@
   <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216019FF}'><exit code='1605' /></upgrade>
   <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216020FF}'><exit code='1605' /></upgrade>
   <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216021FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216022FF}'><exit code='1605' /></upgrade>
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
@@ -146,6 +150,7 @@
   <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216019FF}'><exit code='1605' /></downgrade>
   <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216020FF}'><exit code='1605' /></downgrade>
   <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216021FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216022FF}'><exit code='1605' /></downgrade>
   <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\Java\jre-%short%-windows-i586.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
