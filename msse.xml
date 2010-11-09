@@ -3,11 +3,13 @@
 <!--
   NOTES
   1) This is no elegant way (that I know of) to turn this into one installer for all platforms (xp32, win7_32, win7_64)
+  2) Installer will throw -2147156187 if a reboot is needed before it can installed again - this is NOT success
 
   PACKAGES
   mssefullinstall-x86fre-en-us-xp.exe
   mssefullinstall-x86fre-en-us-vista-win7.exe
   mssefullinstall-amd64fre-en-us-vista-win7.exe
+  
 
 -->
 
@@ -16,7 +18,7 @@
 <package
   id="msse_xp_32"
   name="MS Security Essentials"
-  revision="%version%-4"
+  revision="%version%-5"
   reboot="false"
   priority="50">
 
@@ -26,30 +28,30 @@
 
   <install cmd='net stop MsMpSvc'><exit code="2" /></install>
   <install cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-xp.exe" /s /runwgacheck'>
-    <exit code="-2147156187" />
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
   </install>
   <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+  <install cmd='net start MsMpSvc' />
 
   <upgrade cmd='net stop MsMpSvc'><exit code="2" /></upgrade>
   <upgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-xp.exe" /s /runwgacheck'>
-    <exit code="-2147156187" />
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+  <upgrade cmd='net start MsMpSvc' />
 
   <downgrade cmd='net stop MsMpSvc'><exit code="2" /></downgrade>
   <downgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-xp.exe" /s /runwgacheck'>
-    <exit code="-2147156187" />
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
   </downgrade>
   <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+  <downgrade cmd='net start MsMpSvc' />
 
   <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
 
@@ -58,7 +60,7 @@
 <package
   id="msse_w7_32"
   name="MS Security Essentials"
-  revision="%version%-4"
+  revision="%version%-5"
   reboot="false"
   priority="50">
 
@@ -67,30 +69,30 @@
 
     <install cmd='net stop MsMpSvc'><exit code="2" /></install>
     <install cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-vista-win7.exe" /s /runwgacheck'>
-      <exit code="-2147156187" />
       <exit code="-2147156221" />
       <exit code="-2147156213" />
       <exit code="327424" />
     </install>
     <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+    <install cmd='net start MsMpSvc' />
 
     <upgrade cmd='net stop MsMpSvc'><exit code="2" /></upgrade>
     <upgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-vista-win7.exe" /s /runwgacheck'>
-      <exit code="-2147156187" />
       <exit code="-2147156221" />
       <exit code="-2147156213" />
       <exit code="327424" />
     </upgrade>
     <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+    <upgrade cmd='net start MsMpSvc' />
 
     <downgrade cmd='net stop MsMpSvc'><exit code="2" /></downgrade>
     <downgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-x86fre-en-us-vista-win7.exe" /s /runwgacheck'>
-      <exit code="-2147156187" />
       <exit code="-2147156221" />
       <exit code="-2147156213" />
       <exit code="327424" />
     </downgrade>
     <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+    <downgrade cmd='net start MsMpSvc' />
 
     <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
 
@@ -99,7 +101,7 @@
 <package
   id="msse_w7_64"
   name="MS Security Essentials"
-  revision="%version%-4"
+  revision="%version%-5"
   reboot="false"
   priority="50">
 
@@ -108,30 +110,30 @@
 
   <install cmd='net stop MsMpSvc'><exit code="2" /></install>
   <install cmd='"%SOFTWARE%\MSSE\mssefullinstall-amd64fre-en-us-vista-win7.exe" /s /runwgacheck'>
-    <exit code="-2147156187" />
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
   </install>
   <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+  <install cmd='net start MsMpSvc' />
 
   <upgrade cmd='net stop MsMpSvc'><exit code="2" /></upgrade>
   <upgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-amd64fre-en-us-vista-win7.exe" /s /runwgacheck'>
-    <exit code="-2147156187" />
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+  <upgrade cmd='net start MsMpSvc' />
 
   <downgrade cmd='net stop MsMpSvc'><exit code="2" /></downgrade>
   <downgrade cmd='"%SOFTWARE%\MSSE\mssefullinstall-amd64fre-en-us-vista-win7.exe" /s /runwgacheck'>
-    <exit code="-2147156187" />
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
   </downgrade>
   <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+  <downgrade cmd='net start MsMpSvc' />
 
   <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
 
