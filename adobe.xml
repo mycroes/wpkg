@@ -3,7 +3,7 @@
 <!--
   NOTES
   1) You can also download full installers from ftp://ftp.adobe.com/pub/adobe/reader/win/
-  2) This needs to be tested on 64 bit as the start up registry entries need to be deleted from another path on that platform
+  2) TODO: This needs to be tested on 64 bit as the start up registry entries need to be deleted from another path on that platform
 -->
 
 <packages>
