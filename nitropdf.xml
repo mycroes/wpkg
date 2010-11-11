@@ -3,6 +3,7 @@
 <!--
   NOTES
   1) Extract the MSIs from the .exe you download from nitropdf.com by using /EXTRACTMSI:"path_to_msi_file"
+  2) Priority is set to 15 making it install before PDF viewers that should have priority 10. This way the viewers are default.
 -->
 
 <packages>
@@ -12,8 +13,7 @@
   name="NitroPDF 6 Pro"
   revision="%version%-0"
   reboot="false"
-  priority="10">
-
+  priority="15">
 
   <variable name="version" value="6.1.4.1" />
 
@@ -41,7 +41,7 @@
   name="NitroPDF 6 Pro OCR"
   revision="%version%-0"
   reboot="false"
-  priority="10">
+  priority="15">
 
   <variable name="version" value="6.1.4.1" />
 
