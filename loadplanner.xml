@@ -10,14 +10,14 @@
 <package
   id="loadplanner"
   name="LoadPlanner"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
   <variable name="version" value="3.8.6" />
   <variable name="updatefile" value="LoadPlanner 3860 update.msi" />
 
-  <depends package-id="tools_permissions" />
+  <depends package-id="system_tools" />
 
   <check type="uninstall" condition="exists" path="LoadPlanner %version% Update" />
 
