@@ -4,7 +4,7 @@
 <package
   id="aidepdf"
   name="Aide PDF to DXF"
-  revision="%version%-0"
+  revision="%version%-1"
   priority="10"
   reboot="false">
 
@@ -13,13 +13,13 @@
   <check type="uninstall" condition="exists" path="Aide PDF to DXF Converter %version%" />
   
   <install cmd='"%SOFTWARE%\AidePDF2DXF\pdf-dxf.exe" /verysilent /norestart' />
-  <install cmd='IF EXIST "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg" regedit /s "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg"' />
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg" regedit /s "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg"' />
   
   <upgrade cmd='"%SOFTWARE%\AidePDF2DXF\pdf-dxf.exe" /verysilent /norestart' />
-  <upgrade cmd='IF EXIST "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg" regedit /s "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg"' />
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg" regedit /s "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg"' />
 
   <downgrade cmd='"%SOFTWARE%\AidePDF2DXF\pdf-dxf.exe" /verysilent /norestart' />
-  <downgrade cmd='IF EXIST "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg" regedit /s "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg"' />
+  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg" regedit /s "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg"' />
 
   <remove cmd='%COMSPEC% /c IF EXIST "%ProgramFiles%\Aide PDF to DXF Converter\unins000.exe" "%ProgramFiles%\Aide PDF to DXF Converter\unins000.exe" /verysilent /norestart' />
   <remove cmd='%COMSPEC% /c IF EXIST "%ProgramFiles(x86)%\Aide PDF to DXF Converter\unins000.exe" "%ProgramFiles(x86)%\Aide PDF to DXF Converter\unins000.exe" /verysilent /norestart' />
