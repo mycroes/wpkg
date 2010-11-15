@@ -8,7 +8,7 @@
   priority="10"
   reboot="false">
 
-  <variable name="version" value="9.5" />
+  <variable name="version" value="9.6" />
   
   <check type="uninstall" condition="exists" path="Aide PDF to DXF Converter %version%" />
   
