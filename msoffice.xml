@@ -108,12 +108,18 @@
   </remove>
 </package>
 
+<!--
+  NOTES
+  1) TODO: some startup job runs - how to remove it?
+ -->
+
 <package
   id="uninstall-oe"
   name="Outlook Express Uninstall"
-  revision="2"
+  revision="3"
   execute="once">
   <install cmd='%COMSPEC% /c IF EXIST %windir%\INF\oeaccess.inf RunDll32 advpack.dll,LaunchINFSection %windir%\INF\oeaccess.inf,UninstallOE' />
+  <install cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Outlook Express" RD /Q /S "%PROGRAMFILES%\Outlook Express"' />
 </package>
 
 </packages>
