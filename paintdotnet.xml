@@ -3,6 +3,7 @@
 <!-- 
   NOTES
   1) Must remove old versions (or it won't upgrade), then install the new version
+  2) Create msi      Paint.NET.3.5.6.Install.exe /createMsi CHECKFORUPDATES=0 CHECKFORBETAS=0 JPGPNGBMPEDITOR=1 TGAEDITOR=1 ALLUSERS=1 DESKTOPSHORTCUT=0
 -->
 
 <packages>
@@ -34,7 +35,7 @@
     <downgrade cmd='msiexec %MSI% /x {F0E2B312-D7FD-4349-A9B6-E90B36DB1BD0}'><exit code='any' /></downgrade>
     <downgrade cmd='msiexec %MSI% /i %SOFTWARE%\PaintDotNet\PaintDotNet.x86.msi' />
 
-    <remove cmd='msiexec %MSI% /x {639673E9-D53F-44F4-A046-485C8A6ADA15}' />
+    <remove cmd='msiexec %MSI% /x %SOFTWARE%\PaintDotNet\PaintDotNet.x86.msi' />
     
   </package>
  
