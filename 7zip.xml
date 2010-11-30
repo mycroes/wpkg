@@ -4,12 +4,12 @@
   <package
     id="7zip"
     name="7-Zip (32 and 64 bit)"
-    revision="%version%-1"
+    revision="%version%-0"
     reboot="false"
     priority="0">
 
-    <variable name="version" value="4.65" />
-    <variable name="fileversion" value="465" />
+    <variable name="version" value="9.20" />
+    <variable name="fileversion" value="920" />
 
     <check type="logical" condition="or">
       <check type="uninstall" condition="exists" path="7-Zip %version%"/>
