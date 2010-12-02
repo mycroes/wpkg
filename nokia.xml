@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+
+<package
+  id="nokia_pcsuite"
+  name="Nokia PC Suite"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <variable name="version" value="10.24.0.0" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="PC Connectivity Solution" value="%version%" />
+  
+  <install   cmd='"%SOFTWARE%\Nokia\Nokia_PC_Suite_eng_web.exe" /SILENT="1" /DISABLE="AUTORUN" /DISABLE="WEBUPDATE"' />
+  <upgrade   cmd='"%SOFTWARE%\Nokia\Nokia_PC_Suite_eng_web.exe" /SILENT="1" /DISABLE="AUTORUN" /DISABLE="WEBUPDATE"' />
+  <downgrade cmd='"%SOFTWARE%\Nokia\Nokia_PC_Suite_eng_web.exe" /SILENT="1" /DISABLE="AUTORUN" /DISABLE="WEBUPDATE"' />
+  <remove    cmd='msiexec %MSI% /X{089DD780-DB3F-4CDB-A0C2-111360247298}' /> <!-- PC Connectivity Solution -->
+  <remove    cmd='msiexec %MSI% /X{1B9B5B3B-28E7-4E59-A80D-D670AA984514}' /> <!-- Nokia Connectivity Cable Driver -->
+
+</package>
+
+</packages>
