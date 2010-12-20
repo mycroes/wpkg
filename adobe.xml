@@ -2,20 +2,68 @@
 
 <!--
   NOTES
-  1) You can also download full installers from ftp://ftp.adobe.com/pub/adobe/reader/win/
+  1) You can also download full installers from ftp://ftp.adobe.com/pub/adobe/reader/win/ - check the misc dir for language packs
   2) TODO: This needs to be tested on 64 bit as the start up registry entries need to be deleted from another path on that platform
+  3) Enterprise deployment:
+  http://www.adobe.com/devnet/acrobat/enterprise_deployment.html
+  4) Protect Mode doesn't work when trying to preview pdf in Word
 -->
 
 <packages>
-
+  
 <package
   id="acrobatreader"
+  name="Adobe Acrobat Reader"
+  revision="99"
+  priority="10">
+  
+  <depends package-id="acrobatreader9" />
+  
+</package>
+    
+
+<package
+  id="acrobatreaderX"
+  name="Adobe Acrobat Reader X"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="10.0.0" />
+
+  <check type="uninstall" condition="exists" path="Adobe Reader %version%" />
+
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\pre_install.cmd" "%SOFTWARE%\Acrobat Reader\pre_install.cmd"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AdbeRdr1000_en_US.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\readerX.mst"'>
+    <exit code="3010" reboot="postponed" />
+  </install>
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\post_install.cmd" "%SOFTWARE%\Acrobat Reader\post_install.cmd"' />
+
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\pre_install.cmd" "%SOFTWARE%\Acrobat Reader\pre_install.cmd"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
+    <exit code="3010" reboot="postponed" />
+  </upgrade>
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\post_install.cmd" "%SOFTWARE%\Acrobat Reader\post_install.cmd"' />
+
+  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\pre_install.cmd" "%SOFTWARE%\Acrobat Reader\pre_install.cmd"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
+    <exit code="3010" reboot="postponed" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\post_install.cmd" "%SOFTWARE%\Acrobat Reader\post_install.cmd"' />
+
+  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\AcroRead.msi"' />
+  <remove cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\post_install.cmd" "%SOFTWARE%\Acrobat Reader\post_install.cmd"' />
+
+</package>
+
+<package
+  id="acrobatreader9"
   name="Adobe Acrobat Reader 9"
   revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="9.4.0" />
+  <variable name="version" value="9.4.1" />
 
   <check type="uninstall" condition="exists" path="Adobe Reader %version%" />
 
@@ -33,10 +81,10 @@
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <!--
-  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd932_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
+  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd941_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
     <exit code="3010" reboot="postponed" />
   </install>
+  <!--
   <install cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd933_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
     <exit code="3010" reboot="postponed" />
   </install>
@@ -65,10 +113,10 @@
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
-  <!--
-  <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd932_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
+  <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd941_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
+  <!--
   <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd933_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
@@ -97,10 +145,10 @@
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
-  <!--
-  <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd932_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
+  <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd941_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
+  <!--
   <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Acrobat Reader\AdbeRdrUpd933_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
