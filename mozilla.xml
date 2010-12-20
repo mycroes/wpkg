@@ -18,7 +18,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.6.13" />
+  <variable name="version" value="3.6.14" />
   <check type="uninstall" condition="exists" path="Mozilla Firefox (%version%)" />
   <install   cmd='"%SOFTWARE%\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
   <upgrade   cmd='"%SOFTWARE%\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
@@ -35,12 +35,17 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="1.5" />
+  <variable name="version" value="3.1.7" />
   <check type="uninstall" condition="exists" path="Mozilla Thunderbird (%version%)" />
-  <install cmd='"%SOFTWARE%\Thunderbird\Thunderbird Setup 1.5.0.4.exe" -ms' />
-  <upgrade cmd='"%SOFTWARE%\Thunderbird\Thunderbird Setup 1.5.0.4.exe" -ms' />
-  <remove  cmd='%ComSpec% /c if exist "%ProgramFiles%\Mozilla Thunderbird\uninstall\uninstall.exe" "%PROGRAMFILES%\Mozilla Thunderbird\uninstall\uninstall.exe" -ms' />
-  <remove  cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Mozilla Thunderbird\uninstall\uninstall.exe" "%PROGRAMFILES(x86)%\Mozilla Thunderbird\uninstall\uninstall.exe" -ms' />
+  <install cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></install>
+  <install cmd='"%SOFTWARE%\Mozilla\Thunderbird\Thunderbird Setup %version%.exe" -ms' />
+  <upgrade cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></upgrade>
+  <upgrade cmd='"%SOFTWARE%\Mozilla\Thunderbird\Thunderbird Setup %version%.exe" -ms' />
+  <downgrade cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></downgrade>
+  <downgrade cmd='"%SOFTWARE%\Mozilla\Thunderbird\Thunderbird Setup %version%.exe" -ms' />
+  <remove  cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></remove>
+  <remove  cmd='%COMSPEC% /c if exist "%ProgramFiles%\Mozilla Thunderbird\uninstall\helper.exe" "%PROGRAMFILES%\Mozilla Thunderbird\uninstall\helper.exe" /S' />
+  <remove  cmd='%COMSPEC% /c if exist "%ProgramFiles(x86)%\Mozilla Thunderbird\uninstall\helper.exe" "%PROGRAMFILES(x86)%\Mozilla Thunderbird\uninstall\helper.exe" /S' />
 
 </package>
 
