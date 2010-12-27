@@ -13,17 +13,17 @@
 <package
   id="java"
   name="Java 6"
-  revision="%version%-2"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="cls" value="16022" />  <!-- needed for uninstall -->
-  <variable name="short" value="6u22" /> <!-- part of the installer file name -->
-  <variable name="version" value="1.6.0_22" />
+  <variable name="cls" value="16023" />  <!-- needed for uninstall -->
+  <variable name="short" value="6u23" /> <!-- part of the installer file name -->
+  <variable name="version" value="1.6.0_23" />
 
   <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 22" />
-    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 22 (64-bit)" />
+    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 23" />
+    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 23 (64-bit)" />
   </check>
   <check type="file" condition="exists" path="%PROGRAMFILES%\Java\jre6\bin\javacpl.exe" />
 
