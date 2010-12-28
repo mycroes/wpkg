@@ -10,7 +10,7 @@
 <package
   id="tp_airbag"
   name="ThinkPad HDD AirBag"
-  revision="%version%-0"
+  revision="%version%-1"
   priority="10"
   reboot="false">
 
@@ -22,6 +22,7 @@
   <install cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"'>
     <exit code="3010" reboot="postponed" />
   </install>
+  <install cmd='"%SYSTEMDRIVE%\DRIVERS\WIN\HPROTECT\setup.exe" ' /> <!-- /s /V"/qn /norestart" ?? -->
   <upgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
