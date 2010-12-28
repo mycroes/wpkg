@@ -172,7 +172,7 @@
 <package
   id="office97pro"
   name="MS Office 97 Professional"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="9">
   <!--
@@ -201,15 +201,15 @@
     way). The 'usebackq' prevents the need to escape single quotes that define
     the command for 'FOR /F'.
   -->
-  <install cmd='%COMSPEC% FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Office97\key.txt"`) DO "%SOFTWARE%\Office97\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
+  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Office97\key.txt"`) DO "%SOFTWARE%\Office97\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
   <install cmd='"%SOFTWARE%\Office97\sr1\off97sr1.exe" /Q' />
   <install cmd='"%SOFTWARE%\Office97\sr2\sr2patch.exe" /Q' />
 
-  <upgrade cmd='%COMSPEC% FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Office97\key.txt"`) DO "%SOFTWARE%\Office97\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
+  <upgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Office97\key.txt"`) DO "%SOFTWARE%\Office97\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
   <upgrade cmd='"%SOFTWARE%\Office97\sr1\off97sr1.exe" /Q' />
   <upgrade cmd='"%SOFTWARE%\Office97\sr2\sr2patch.exe" /Q' />
 
-  <downgrade cmd='%COMSPEC% FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Office97\key.txt"`) DO "%SOFTWARE%\Office97\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
+  <downgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Office97\key.txt"`) DO "%SOFTWARE%\Office97\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
   <downgrade cmd='"%SOFTWARE%\Office97\sr1\off97sr1.exe" /Q' />
   <downgrade cmd='"%SOFTWARE%\Office97\sr2\sr2patch.exe" /Q' />
 
