@@ -61,7 +61,7 @@
 <package
   id="acrobatreader9"
   name="Adobe Acrobat Reader 9"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
