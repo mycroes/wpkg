@@ -21,7 +21,6 @@
   
 </package>
     
-
 <package
   id="acrobatreaderX"
   name="Adobe Acrobat Reader X"
@@ -31,7 +30,10 @@
 
   <variable name="version" value="10.0.0" />
 
-  <check type="uninstall" condition="exists" path="Adobe Reader %version%" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Adobe Reader %version%" />
+    <check type="uninstall" condition="exists" path="Adobe Reader %version% - Nederlands" />
+  </check>
 
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\pre_install.cmd" "%SOFTWARE%\Acrobat Reader\pre_install.cmd"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AdbeRdr1000_en_US.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\readerX.mst"'>
@@ -59,13 +61,16 @@
 <package
   id="acrobatreader9"
   name="Adobe Acrobat Reader 9"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="9.4.1" />
 
-  <check type="uninstall" condition="exists" path="Adobe Reader %version%" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Adobe Reader %version%" />
+    <check type="uninstall" condition="exists" path="Adobe Reader %version% - Nederlands" />
+  </check>
 
   <!-- First uninstall Adobe Reader 8.1.2 -->
   <install cmd='msiexec /x{AC76BA86-7AD7-1033-7B44-A80000000002} /qn ' >
@@ -78,6 +83,7 @@
   <!--
   <install cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 9.0" ' ><exit code="any" /></install>
   -->
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\pre_install.cmd" "%SOFTWARE%\Acrobat Reader\pre_install.cmd"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
   </install>
@@ -92,6 +98,7 @@
     <exit code="3010" reboot="postponed" />
   </install>
   -->
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\post_install.cmd" "%SOFTWARE%\Acrobat Reader\post_install.cmd"' />
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
     <exit code="1" />
   </install>
@@ -110,6 +117,7 @@
   <!--
   <upgrade cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 9.0" ' ><exit code="any" /></upgrade>
   -->
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\pre_install.cmd" "%SOFTWARE%\Acrobat Reader\pre_install.cmd"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
@@ -124,6 +132,7 @@
     <exit code="3010" reboot="postponed" />
   </upgrade>
   -->
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\post_install.cmd" "%SOFTWARE%\Acrobat Reader\post_install.cmd"' />
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
     <exit code="1" />
   </upgrade>
@@ -142,6 +151,7 @@
   <!--
   <downgrade cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 9.0" ' ><exit code="any" /></downgrade>
   -->
+  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\pre_install.cmd" "%SOFTWARE%\Acrobat Reader\pre_install.cmd"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
@@ -156,6 +166,7 @@
     <exit code="3010" reboot="postponed" />
   </downgrade>
   -->
+  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\post_install.cmd" "%SOFTWARE%\Acrobat Reader\post_install.cmd"' />
   <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
     <exit code="1" />
   </downgrade>
