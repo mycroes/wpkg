@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+  <package
+    id="xmind"
+    name="XMind"
+    revision="%version%-0"
+    reboot="false"
+    priority="0">
+
+    <variable name="version" value="3.2.1" />
+    <variable name="fileversion" value="201011212218" />
+    
+    <depends package-id="java" />
+
+    <check type="uninstall" condition="versiongreaterorequal" path="7-Zip %version%" value="%version%" />
+    <install   cmd='%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
+    <upgrade   cmd='%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
+    <downgrade cmd='%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
+    <remove    cmd='%COMSPEC% /C IF EXISTS "%PROGRAMFILES%\XMind\uninstall.exe" "%PROGRAMFILES%\XMind\uninstall.exe" /S' />
+  </package>
+</packages>
