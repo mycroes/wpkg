@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<!--
+  NOTES
+  1) There's more than just Anti-Virus and AutoUpdate, I don't use
+     them so they're not here yet.
+-->
+
+<package
+  id="sophos"
+  name="Sophos Endpoint Security 9"
+  revision="%version%-0"
+  reboot="false"
+  priority="20">
+
+  <variable name="version" value="9.0.5" />
+
+  <depends package-id="sophos_antivirus" />
+  <depends package-id="sophos_autoupdate" />
+
+</package>
+
+<!--
+  NOTES
+  1) Copy 'savxp' folder to %SOFTWARE%\Sophos.
+  2) Install in advance of Sophos AutoUpdate or AutoUpdate will
+     install Anti-Virus as part of updating (which might fail or
+     require a reboot).
+-->
+
+<package
+  id="sophos_antivirus"
+  name="Sophos Anti-Virus"
+  revision="%version%-0"
+  reboot="false"
+  priority="21">
+
+  <check type="uninstall" condition="exists" path="Sophos Anti-Virus" />
+
+  <!-- version from savmain.exe, savservice reads 9.0.0.9050 -->
+  <variable name="version" value="9.0.3.9080" />
+
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\savxp\Sophos Anti-Virus.msi" CHECKFORCOMPETITORS=1'>
+    <exit code='1641' reboot="postponed" />
+    <exit code='3010' reboot="postponed" />
+  </install>
+
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\savxp\Sophos Anti-Virus.msi" CHECKFORCOMPETITORS=1'>
+    <exit code='1641' reboot="postponed" />
+    <exit code='3010' reboot="postponed" />
+  </upgrade>
+
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\savxp\Sophos Anti-Virus.msi" CHECKFORCOMPETITORS=1'>
+    <exit code='1641' reboot="postponed" />
+    <exit code='3010' reboot="postponed" />
+  </downgrade>
+
+  <remove cmd='msiexec %MSI% /X{9ACB414D-9347-40B6-A453-5EFB2DB59DFA}'>
+    <exit code='3010' reboot="postponed" />
+  </remove>
+
+</package>
+
+<!--
+  NOTES
+  1) Copy 'sau' folder to %SOFTWARE%\Sophos.
+  2) Generate a custom.mst based on <LID>.mst, adding the properties
+     UPDATELOCATION, UPDATEUSER, UPDATEPASSWORD to point to the location and
+     credentials of your update service.
+  3) Point 2 depends on the 'BOOTSTRAP=NOUPDATE' argument (config file is
+     empty without).
+-->
+
+<package
+  id="sophos_autoupdate"
+  name="Sophos AutoUpdate"
+  revision="%version%-0"
+  reboot="false"
+  priority="20">
+
+  <check type="uninstall" condition="exists" path="Sophos AutoUpdate" />
+
+  <!-- version from almon.exe, ALUpdate reads 5.10.36.223 -->
+  <variable name="version" value="3.31.87.216" />
+
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\sau\Sophos AutoUpdate.msi" TRANSFORMS="%SOFTWARE%\Sophos\sau\custom.mst" RMSACTION=0 BOOTSTRAP=NOUPDATE'>
+    <exit code='1641' reboot="postponed" />
+    <exit code='3010' reboot="postponed" />
+  </install>
+
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\sau\Sophos AutoUpdate.msi" TRANSFORMS="%SOFTWARE%\Sophos\sau\custom.mst" RMSACTION=0 BOOTSTRAP=NOUPDATE'>
+    <exit code='1641' reboot="postponed" />
+    <exit code='3010' reboot="postponed" />
+  </upgrade>
+
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\sau\Sophos AutoUpdate.msi" TRANSFORMS="%SOFTWARE%\Sophos\sau\custom.mst" RMSACTION=0 BOOTSTRAP=NOUPDATE'>
+    <exit code='1641' reboot="postponed" />
+    <exit code='3010' reboot="postponed" />
+  </downgrade>
+
+  <remove cmd='msiexec %MSI% /X{15C418EB-7675-42be-B2B3-281952DA014D}'>
+    <exit code='3010' reboot="postponed" />
+  </remove>
+
+</package>
+
+</packages>
