@@ -4,7 +4,7 @@
   <package
     id="xmind"
     name="XMind"
-    revision="%version%-2"
+    revision="%version%-3"
     reboot="false"
     priority="0">
 
@@ -15,8 +15,11 @@
 
     <check type="uninstall" condition="versiongreaterorequal" path="XMind" value="%version%" />
     <install   cmd='"%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
+    <install   cmd='%COMSPEC% /C IF EXIST "%ALLUSERSPROFILE%\Desktop\XMind.lnk" DEL "%ALLUSERSPROFILE%\Desktop\XMind.lnk"' />
     <upgrade   cmd='"%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
+    <upgrade   cmd='%COMSPEC% /C IF EXIST "%ALLUSERSPROFILE%\Desktop\XMind.lnk" DEL "%ALLUSERSPROFILE%\Desktop\XMind.lnk"' />
     <downgrade cmd='"%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
+    <downgrade cmd='%COMSPEC% /C IF EXIST "%ALLUSERSPROFILE%\Desktop\XMind.lnk" DEL "%ALLUSERSPROFILE%\Desktop\XMind.lnk"' />
     <remove    cmd='%COMSPEC% /C IF EXISTS "%PROGRAMFILES%\XMind\uninstall.exe" "%PROGRAMFILES%\XMind\uninstall.exe" /S' />
   </package>
 </packages>
