@@ -31,7 +31,10 @@
 
   <variable name="version" value="10.0.0" />
 
-  <check type="uninstall" condition="exists" path="Adobe Reader %version%" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Adobe Reader %version%" />
+    <check type="uninstall" condition="exists" path="Adobe Reader %version% - Nederlands" />
+  </check>
 
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\pre_install.cmd" "%SOFTWARE%\Acrobat Reader\pre_install.cmd"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AdbeRdr1000_en_US.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\readerX.mst"'>
@@ -65,7 +68,10 @@
 
   <variable name="version" value="9.4.1" />
 
-  <check type="uninstall" condition="exists" path="Adobe Reader %version%" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Adobe Reader %version%" />
+    <check type="uninstall" condition="exists" path="Adobe Reader %version% - Nederlands" />
+  </check>
 
   <!-- First uninstall Adobe Reader 8.1.2 -->
   <install cmd='msiexec /x{AC76BA86-7AD7-1033-7B44-A80000000002} /qn ' >
