@@ -4,7 +4,7 @@
   <package
     id="xmind"
     name="XMind"
-    revision="%version%-1"
+    revision="%version%-2"
     reboot="false"
     priority="0">
 
@@ -13,7 +13,7 @@
     
     <depends package-id="java" />
 
-    <check type="uninstall" condition="versiongreaterorequal" path="7-Zip %version%" value="%version%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="XMind" value="%version%" />
     <install   cmd='"%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
     <upgrade   cmd='"%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
     <downgrade cmd='"%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
