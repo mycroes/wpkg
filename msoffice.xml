@@ -110,6 +110,72 @@
 
 <!--
   NOTES
+  1) Use 'setup.exe /A' to create and administrative install point.
+  2) Use 'Network Installation Wizard' to create a custom setup.
+  3) Put the product key in a file called 'key.txt'.
+  4) Extract service release files to folders sr1 and sr2.
+  5) Make the sr2 folder read only, else files that are patched will
+     dissappear (mso97.dll, msaccess.exe) and make the folder useless.
+  6) Uninstall leaves a lot of dirt behind, however when using the default
+     install location there will office 2000 stuff here too, so we can't
+     just prune the install dirs.
+  7) Access 97 requires some work on 64 bit systems, because some hardcoded
+     paths are used (%WINDIR%\System32\).
+  8) Access 97 might fail to set the workgroup correctly, I'm not sure if this
+     will throw an error dialog during setup (which it normally does in
+     interactive mode), but this can be fixed by running the workgroup admin
+     manually at a later time. Will get fixed later if it appears to be a
+     returning issue.
+-->
+<package
+  id="office97pro"
+  name="MS Office 97 Professional"
+  revision="%version%-0"
+  reboot="false"
+  priority="9">
+  <!--
+    priority is lower than office2000, because office2000 install will break
+    access 97, which is the only thing I need from office 97. You might be
+    able to fix this by changing the Office 97 install path, which will break
+    uninstall as defined in this package.
+  -->
+
+  <!-- Version number from mso97.dll -->
+  <variable name="version" value="8.0.0.5425" />
+  <!-- mso97.dll version: 8.0.0.3507 (no SR) -->
+  <!-- mso97.dll version: 8.0.0.4202 (SR1) -->
+  <!-- mso97.dll version: 8.0.0.5425 (SR2b) -->
+
+  <check type="logical" condition="and">
+    <check type="uninstall" condition="exists" path="Microsoft Office 97, Professional" />
+    <check type="logical" condition="or">
+      <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Microsoft Office\Office\mso97.dll" value="%version%" />
+      <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Microsoft Office\Office\mso97.dll" value="%version%" />
+    </check>
+  </check>
+
+  <!--
+    Excuse my French, but Windows lacks the 'cat' command and doesn't allow
+    use of subcommands (in an easy way).
+  -->
+  <install cmd='%COMSPEC% /C SETLOCAL ENABLEDELAYEDEXPANSION&amp;SET /P key=&lt;"%SOFTWARE%\Office97\key.txt"&amp;FOR /F "usebackq tokens=2 delims==" %A IN (`SET key`) DO "%SOFTWARE%\Office97\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
+  <install cmd='"%SOFTWARE%\Office97\sr1\off97sr1.exe" /Q' />
+  <install cmd='"%SOFTWARE%\Office97\sr2\sr2patch.exe" /Q' />
+
+  <upgrade cmd='%COMSPEC% /C SETLOCAL ENABLEDELAYEDEXPANSION&amp;SET /P key=&lt;"%SOFTWARE%\Office97\key.txt"&amp;FOR /F "usebackq tokens=2 delims==" %A IN (`SET key`) DO "%SOFTWARE%\Office97\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
+  <upgrade cmd='"%SOFTWARE%\Office97\sr1\off97sr1.exe" /Q' />
+  <upgrade cmd='"%SOFTWARE%\Office97\sr2\sr2patch.exe" /Q' />
+
+  <downgrade cmd='%COMSPEC% /C SETLOCAL ENABLEDELAYEDEXPANSION&amp;SET /P key=&lt;"%SOFTWARE%\Office97\key.txt"&amp;FOR /F "usebackq tokens=2 delims==" %A IN (`SET key`) DO "%SOFTWARE%\Office97\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
+  <downgrade cmd='"%SOFTWARE%\Office97\sr1\off97sr1.exe" /Q' />
+  <downgrade cmd='"%SOFTWARE%\Office97\sr2\sr2patch.exe" /Q' />
+
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%PROGRAMFILES%\Microsoft Office\Office\Setup\Acme.exe" /w Off97Pro.STF /UA /QNT' />
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%PROGRAMFILES(x86)%\Microsoft Office\Office\Setup\Acme.exe" /w Off97Pro.STF /UA /QNT' />
+</package>
+
+<!--
+  NOTES
   1) TODO: some startup job runs - how to remove it?
  -->
 
