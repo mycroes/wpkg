@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<!--
+  NOTES
+  1) Setup and uninstall need to be run from their parent directories, start
+     allows us to specify an UNC path (%COMSPEC% /C pushd <dir>) doesn't.
+-->
+
+<package
+  id="ghostscript"
+  name="GhostScript"
+  revision="%version%-0"
+  reboot="false">
+
+  <variable name="version" value="9.00" />
+
+  <check type="uninstall" condition="exists" path="GPL Ghostscript %version%" />
+
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES%\gs"' />
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES(x86)%\gs"' />
+
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES%\gs"' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES(x86)%\gs"' />
+
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES%\gs"' />
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES(x86)%\gs"' />
+
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" start /wait /D"%PROGRAMFILES%\gs" uninstgs.exe "gs%version%\uninstal.txt" -q' />
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" start /wait /D"%PROGRAMFILES(x86)%\gs" uninstgs.exe "gs%version%\uninstal.txt" -q' />
+</package>
+
+</packages>
