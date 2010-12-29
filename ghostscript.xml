@@ -4,14 +4,13 @@
 
 <!--
   NOTES
-  1) Setup and uninstall need to be run from their parent directories, start
-     allows us to specify an UNC path (%COMSPEC% /C pushd <dir>) doesn't.
+  1) Setup needs to be run from parent directory.
 -->
 
 <package
   id="ghostscript"
   name="GhostScript"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false">
 
   <variable name="version" value="9.00" />
@@ -27,8 +26,8 @@
   <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES%\gs"' />
   <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES(x86)%\gs"' />
 
-  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" start /wait /D"%PROGRAMFILES%\gs" uninstgs.exe "gs%version%\uninstal.txt" -q' />
-  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" start /wait /D"%PROGRAMFILES(x86)%\gs" uninstgs.exe "gs%version%\uninstal.txt" -q' />
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" "%PROGRAMFILES%\gs\uninstgs.exe" "%PROGRAMFILES%\gs\gs%version%\uninstal.txt" -q' />
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" "%PROGRAMFILES(x86)%\gs\uninstgs.exe" "%PROGRAMFILES(x86)%\gs%version%\uninstal.txt" -q' />
 </package>
 
 </packages>
