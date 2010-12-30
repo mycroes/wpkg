@@ -203,21 +203,40 @@
 
 <package
   id="acrobat_jp"
+  name="Acrobat Reader X Japanese"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="10.0.0" />
+  
+  <depends package-id="acrobatreaderX" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Japanese Fonts Support For Adobe Reader X" value="%version%" />
+
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
+</package>  
+
+<package
+  id="acrobat_jp_9"
   name="Acrobat Reader 9 Japanese"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
   <variable name="version" value="9.0.0" />
   
-  <depends package-id="acrobatreader" />
+  <depends package-id="acrobatreader9" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Japanese Fonts Support For Adobe Reader 9" value="%version%" />
-
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack90_ja_JP.msi"' />
   <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack90_ja_JP.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack90_ja_JP.msi"' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\FontPack90_ja_JP.msi"' />
+
 </package>  
 
 </packages>
