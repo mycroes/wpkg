@@ -203,7 +203,7 @@
 
 <package
   id="acrobat_jp"
-  name="Acrobat Reader X Japanese"
+  name="Acrobat Reader X - Japanese Font Pack"
   revision="%version%-0"
   reboot="false"
   priority="10">
@@ -218,6 +218,25 @@
   <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
+</package>  
+
+<package
+  id="acrobat_cn"
+  name="Acrobat Reader X - Chinese Font Pack"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="10.0.0" />
+  
+  <depends package-id="acrobatreaderX" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Chinese Simplified Fonts Support For Adobe Reader X" value="%version%" />
+
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_zh_CN.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_zh_CN.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_zh_CN.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\FontPack1000_zh_CN.msi"' />
 </package>  
 
 <package
