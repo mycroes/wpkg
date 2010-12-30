@@ -187,13 +187,13 @@
 <package
   id="adobewizard"
   name="Adobe Customization Wizard X"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="10.0.0" />
 
-  <check type="uninstall" condition="exists" path="Adobe Customization Wizard 10" />
+  <check type="uninstall" condition="exists" path="Adobe Customization Wizard X" />
 
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\CustWiz.msi"' />
   <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\CustWiz.msi"' />
