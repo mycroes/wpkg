@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<!--
+  NOTES
+  1) Removal is not completely silent, but does not require interaction.
+  2) Printer driver installation is not silent, happens when printer is not
+     there yet.
+  3) Printer port stays behind, if you misconfigured it remove and reinstall
+     won't fix anything. You can delete the port by selecting 'Server
+     properties' in the 'File' menu for 'Add/remove printers' and selecting
+     delete there.
+-->
+
+<package
+  id="freepdf"
+  name="FreePDF"
+  revision="%version%-0"
+  reboot="false">
+
+  <depends package-id="ghostscript" />
+
+  <variable name="version" value="4.04" />
+
+  <check type="uninstall" condition="exists" path="FreePDF (Remove only)" />
+
+  <!-- With /u setup is broken and expects to be run from it's parent folder -->
+  <install cmd='%comspec% /c set fpsetup=1&amp;start /wait /d"%software%\freepdf" fpsetup.exe' />
+
+  <upgrade cmd='%comspec% /c set fpsetup=1&amp;start /wait /d"%software%\freepdf" fpsetup.exe' />
+
+  <downgrade cmd='%comspec% /c set fpsetup=1&amp;start /wait /d"%software%\freepdf" fpsetup.exe' />
+
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" "%PROGRAMFILES%\FreePDF_XP\fpsetup.exe" /q /r /u' />
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" "%PROGRAMFILES(x86)%\FreePDF_XP\fpsetup.exe" /q /r /u' />
+  <!-- Uninstall leaves the printer behind -->
+  <remove cmd='cscript "%WINDIR%\System32\Prnmngr.vbs" -d -p FreePDF' />
+
+</package>
+
+</packages>
