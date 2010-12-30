@@ -10,7 +10,7 @@
 <package
   id="tp_airbag"
   name="ThinkPad HDD AirBag"
-  revision="%version%-1"
+  revision="%version%-2"
   priority="10"
   reboot="false">
 
@@ -19,14 +19,16 @@
 
   <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage Active Protection System" value="%version%" />
 
-  <install cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"'>
+  <install cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
+  <install cmd='"%SYSTEMDRIVE%\DRIVERS\WIN\HPROTECT\setup.exe" /s /V"/qn /norestart"'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <install cmd='"%SYSTEMDRIVE%\DRIVERS\WIN\HPROTECT\setup.exe" ' /> <!-- /s /V"/qn /norestart" ?? -->
-  <upgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"'>
+  <upgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
+  <upgrade cmd='"%SYSTEMDRIVE%\DRIVERS\WIN\HPROTECT\setup.exe" /s /V"/qn /norestart"'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
-  <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"'>
+  <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
+  <downgrade cmd='"%SYSTEMDRIVE%\DRIVERS\WIN\HPROTECT\setup.exe" /s /V"/qn /norestart"'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
   <remove  cmd='msiexec %MSI% /X{46A84694-59EC-48F0-964C-7E76E9F8A2ED}"' />
