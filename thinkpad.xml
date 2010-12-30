@@ -34,10 +34,16 @@
   <remove  cmd='msiexec %MSI% /X{46A84694-59EC-48F0-964C-7E76E9F8A2ED}"' />
 </package>
 
+<!-- NOTES
+  1) v2.39 writes a space at the end of the name in uninstall on the English version hence the duplicate check
+  2) DisplayName will change with default system language
+  3) Removed -l0x9 (English) and -l0x6 (Danish) from uninstaller, as we don't care about language
+-->
+
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="%version%-1"
+  revision="%version%-2"
   priority="10"
   reboot="false">
 
@@ -45,8 +51,11 @@
   <variable name="version" value="2.39" />
   <variable name="tempdir" value="%SYSTEMDRIVE%\SWTOOLS\DRIVERS\EZEJECT" />
 
-  <!-- v2.39 writes as space at the end of the name in uninstall -->
-  <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject Utility " value="%version%" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject Utility " value="%version%" /> <!-- do not remove, see notes -->
+    <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject Utility" value="%version%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject-funktioner" value="%version%" /> <!-- Danish -->
+  </check>
 
   <install   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
   <install   cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
@@ -60,7 +69,7 @@
   <downgrade cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
   <downgrade cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.iss' />
 
-  <remove    cmd='RunDll32 "%PROGRAMFILES%\COMMON~1\INSTAL~1\engine\6\INTEL3~1\Ctor.dll,LaunchSetup" "%PROGRAMFILES%\InstallShield Installation Information\{1297C681-92D7-40EF-93BF-03F66EC5105C}\setup.exe" -l0x9 -AddRemove -s' />
+  <remove    cmd='RunDll32 "%COMMONPROGRAMFILES%\InstallShield\Engine\6\Intel 32\Ctor.dll,LaunchSetup" "%PROGRAMFILES%\InstallShield Installation Information\{1297C681-92D7-40EF-93BF-03F66EC5105C}\setup.exe" -AddRemove -s' />
   <remove    cmd='%COMSPEC% /c RD /Q /S "%tempdir%"'>
     <exit code="1" />
   </remove>
