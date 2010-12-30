@@ -4,6 +4,10 @@
   NOTES
   1) We install 32 bit libraries on 32 and 64 bit, but 64 only on 64 bit
   2) This checking isn't really that good - on 64b we should check for both 32b and 64b instead of either one as now
+  3) 2003 doesn't exist as a redistributable, so in order to get the files you need to do the following:
+    a) Download from here: http://code.msdn.microsoft.com/KB932298
+    b) Unpack using cabextract
+    c) Rename msvcp71.dll and msvcr71.dll
 -->
 
 <packages>
@@ -83,6 +87,24 @@
   <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\VCRuntime\vcredist_2010_x64.exe" /Q /R:N'>
     <exit code="3010" />
   </downgrade>
+</package>
+
+<package
+  id="vcruntime_2003"
+  name="Visual C++ Runtime 2003 SP1"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <check type="logical" condition="and">
+    <check type="file" condition="versiongreaterorequal" path="%WINDIR%\msvcp71.dll" value="7.10.6052.0" />
+    <check type="file" condition="versiongreaterorequal" path="%WINDIR%\msvcr71.dll" value="7.10.7031.4" />
+  </check>
+
+  <install   cmd='xcopy /Y "%SOFTWARE%\VCRuntime\msvc?71.dll" "%WINDIR%"' />
+  <upgrade   cmd='xcopy /Y "%SOFTWARE%\VCRuntime\msvc?71.dll" "%WINDIR%"' />
+  <downgrade cmd='xcopy /Y "%SOFTWARE%\VCRuntime\msvc?71.dll" "%WINDIR%"' />
+  <remove    cmd='%COMSPEC% /c del /Q /F "%WINDIR%\msvc?71.dll"' />
 </package>
 
 </packages>

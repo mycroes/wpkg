@@ -14,25 +14,25 @@
 <package
   id="acrobatreader"
   name="Adobe Acrobat Reader"
-  revision="99"
+  revision="100"
   priority="10">
   
-  <depends package-id="acrobatreader9" />
+  <depends package-id="acrobatreaderX" />
   
 </package>
     
 <package
   id="acrobatreaderX"
   name="Adobe Acrobat Reader X"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="10.0.0" />
 
   <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Adobe Reader %version%" />
-    <check type="uninstall" condition="exists" path="Adobe Reader %version% - Nederlands" />
+    <check type="uninstall" condition="exists" path="Adobe Reader X" />
+    <check type="uninstall" condition="exists" path="Adobe Reader X - Nederlands" />
   </check>
 
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\pre_install.cmd" "%SOFTWARE%\Acrobat Reader\pre_install.cmd"' />
@@ -186,38 +186,76 @@
 
 <package
   id="adobewizard"
-  name="Adobe Customization Wizard 9"
-  revision="%version%-0"
+  name="Adobe Customization Wizard X"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="9.0.0" />
+  <variable name="version" value="10.0.0" />
 
-  <check type="uninstall" condition="exists" path="Adobe Customization Wizard 9" />
+  <check type="uninstall" condition="exists" path="Adobe Customization Wizard X" />
 
-  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\CustWiz.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\CustWiz.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\CustWiz.msi"' />
-  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\CustWiz.msi"' />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\CustWiz.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\CustWiz.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\CustWiz.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\CustWiz.msi"' />
 </package>
 
 <package
   id="acrobat_jp"
+  name="Acrobat Reader X - Japanese Font Pack"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="10.0.0" />
+  
+  <depends package-id="acrobatreaderX" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Japanese Fonts Support For Adobe Reader X" value="%version%" />
+
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
+</package>  
+
+<package
+  id="acrobat_cn"
+  name="Acrobat Reader X - Chinese Font Pack"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="10.0.0" />
+  
+  <depends package-id="acrobatreaderX" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Chinese Simplified Fonts Support For Adobe Reader X" value="%version%" />
+
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_zh_CN.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_zh_CN.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_zh_CN.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\FontPack1000_zh_CN.msi"' />
+</package>  
+
+<package
+  id="acrobat_jp_9"
   name="Acrobat Reader 9 Japanese"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
   <variable name="version" value="9.0.0" />
   
-  <depends package-id="acrobatreader" />
+  <depends package-id="acrobatreader9" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Japanese Fonts Support For Adobe Reader 9" value="%version%" />
-
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack90_ja_JP.msi"' />
   <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack90_ja_JP.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack90_ja_JP.msi"' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\FontPack90_ja_JP.msi"' />
+
 </package>  
 
 </packages>
