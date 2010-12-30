@@ -11,7 +11,7 @@
 <package
   id="notepad"
   name="Notepad++"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -23,14 +23,17 @@
     <check type="file" condition="versiongreaterorequal" path="%ProgramFiles(x86)%\Notepad++\notepad++.exe" value="%version%" />
   </check>
 
+  <install cmd='taskkill /f /im notepad++.exe'><exit code="any" /></install>
   <install cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\plugins" del /f /q "%ProgramFiles%\Notepad++\plugins\*.dll"' />
   <install cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Notepad++\plugins" del /f /q "%ProgramFiles(x86)%\Notepad++\plugins\*.dll"' />
   <install cmd='"%SOFTWARE%\Notepad\npp.%version%.Installer.exe" /S' />
 
+  <upgrade cmd='taskkill /f /im notepad++.exe'><exit code="any" /></upgrade>
   <upgrade cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\plugins" del /f /q "%ProgramFiles%\Notepad++\plugins\*.dll"' />
   <upgrade cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Notepad++\plugins" del /f /q "%ProgramFiles(x86)%\Notepad++\plugins\*.dll"' />
   <upgrade cmd='"%SOFTWARE%\Notepad\npp.%version%.Installer.exe" /S' />
 
+  <downgrade cmd='taskkill /f /im notepad++.exe'><exit code="any" /></downgrade>
   <downgrade cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\plugins" del /f /q "%ProgramFiles%\Notepad++\plugins\*.dll"' />
   <downgrade cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Notepad++\plugins" del /f /q "%ProgramFiles(x86)%\Notepad++\plugins\*.dll"' />
   <downgrade cmd='"%SOFTWARE%\Notepad\npp.%version%.Installer.exe" /S' />
