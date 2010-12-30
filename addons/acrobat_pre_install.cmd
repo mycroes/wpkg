@@ -13,6 +13,8 @@ rd /Q /S "%PROGRAMFILES(x86)%\Adobe\Reader 8.1"
 rd /Q /S "%PROGRAMFILES(x86)%\Adobe\Reader 8.2"
 
 rem 9.4.0
-MsiExec.exe /X{AC76BA86-1033-0000-0000-000000000004}
+MsiExec.exe /X{AC76BA86-1033-0000-0000-000000000004} %MSI%
 rd /Q /S "%PROGRAMFILES%\Adobe\Reader 9.0"
 rd /Q /S "%PROGRAMFILES(x86)%\Adobe\Reader 9.0"
+
+exit 0
