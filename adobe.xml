@@ -14,10 +14,10 @@
 <package
   id="acrobatreader"
   name="Adobe Acrobat Reader"
-  revision="99"
+  revision="100"
   priority="10">
   
-  <depends package-id="acrobatreader9" />
+  <depends package-id="acrobatreaderX" />
   
 </package>
     
@@ -187,7 +187,7 @@
 <package
   id="adobewizard"
   name="Adobe Customization Wizard X"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -195,10 +195,10 @@
 
   <check type="uninstall" condition="exists" path="Adobe Customization Wizard X" />
 
-  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\CustWiz.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\CustWiz.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\CustWiz.msi"' />
-  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\CustWiz.msi"' />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\CustWiz.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\CustWiz.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\CustWiz.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\CustWiz.msi"' />
 </package>
 
 <package
