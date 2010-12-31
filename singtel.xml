@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="singtel"
+  name="SingTel Broadband on Mobile"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+  
+  <variable name="version" value="1" />
+  
+  <check type="uninstall" condition="exists" path="Broadband on Mobile" />
+  
+  <install   cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
+  <upgrade   cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
+  <downgrade cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
+  <remove    cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\Broadband on Mobile\uninst.exe" "%PROGRAMFILES%\Broadband on Mobile\uninst.exe" /S' />
+  <remove    cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\Broadband on Mobile" RD /Q /S "%PROGRAMFILES%\Broadband on Mobile"' />
+  <remove    cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES(x86)%\Broadband on Mobile\uninst.exe" "%PROGRAMFILES(x86)%\Broadband on Mobile\uninst.exe" /S' />
+  <remove    cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES(x86)%\Broadband on Mobile" RD /Q /S "%PROGRAMFILES(x86)%\Broadband on Mobile"' />
+</package>
+
+</packages>
