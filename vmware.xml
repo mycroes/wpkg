@@ -38,4 +38,32 @@
   </remove>
 </package>
 
+<package
+  id="vmware_vcenterconverter"
+  name="VMware vCenter Converter Standalone"
+  revision="%version%-0"
+  reboot="false">
+
+  <variable name="version" value="4.3.0.292238" />
+
+  <check type="uninstall" condition="exists" path="VMware vCenter Converter Standalone" />
+
+  <install cmd='"%SOFTWARE%\VMware\VMware-converter-all-4.3.0-292238.exe" /V"%MSI%" /s /w'>
+    <exit code='1641' reboot="postponed" />
+    <exit code='3010' reboot="postponed" />
+  </install>
+  <upgrade cmd='"%SOFTWARE%\VMware\VMware-converter-all-4.3.0-292238.exe" /V"%MSI%" /s /w'>
+    <exit code='1641' reboot="postponed" />
+    <exit code='3010' reboot="postponed" />
+  </upgrade>
+  <downgrade cmd='"%SOFTWARE%\VMware\VMware-converter-all-4.3.0-292238.exe" /V"%MSI%" /s /w'>
+    <exit code='1641' reboot="postponed" />
+    <exit code='3010' reboot="postponed" />
+  </downgrade>
+
+  <remove cmd='msiexec %MSI% /X{96212FB2-1E4D-4AAB-90CB-9AC31B946324}'>
+    <exit code='3010' reboot="postponed" />
+  </remove>
+</package>
+
 </packages>
