@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<!--
+  NOTES
+  1) Extract VMware-viclient.exe from VMware-viclient-all-%version%.
+-->
+
+<package
+  id="vmware_vsphereclient"
+  name="VMware vSphere Client"
+  revision="%version%-0"
+  reboot="false">
+
+  <depends package-id="vjruntime" />
+
+  <!-- Download says 4.1.0-258902 -->
+  <variable name="version" value="4.1.0.12319" />
+
+  <check type="uninstall" condition="exists" path="VMware vSphere Client 4.1" />
+
+  <install cmd='"%SOFTWARE%\VMware\VMware-viclient.exe" /V"%MSI%" /s /w'>
+    <exit code='1641' reboot="postponed" />
+    <exit code='3010' reboot="postponed" />
+  </install>
+  <upgrade cmd='"%SOFTWARE%\VMware\VMware-viclient.exe" /V"%MSI%" /s /w'>
+    <exit code='1641' reboot="postponed" />
+    <exit code='3010' reboot="postponed" />
+  </upgrade>
+  <downgrade cmd='"%SOFTWARE%\VMware\VMware-viclient.exe" /V"%MSI%" /s /w'>
+    <exit code='1641' reboot="postponed" />
+    <exit code='3010' reboot="postponed" />
+  </downgrade>
+
+  <remove cmd='msiexec %MSI% /X{A0B433B1-941D-46F5-AE59-286263534232}'>
+    <exit code='3010' reboot="postponed" />
+  </remove>
+</package>
+
+</packages>
