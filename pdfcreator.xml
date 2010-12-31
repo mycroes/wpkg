@@ -2,52 +2,35 @@
 
 <!--
   NOTES
-  1) We need to kill a few services before it works
-  2) The old version 099 has been added as 1.0.2 was giving problems
+  1) Version 1.1.0 can actually be installed silently - woo hoo
+  2) Check in addons for the .inf file
+  2) The old version 099 has been added as 1.0.2 was giving problems, but it should be safe to remove with 1.1.0 out
 -->
 
 <packages>
 
 <package
   id="pdfcreator"
-  name="PDFCreator 1.0.2"
+  name="PDFCreator 1.1.0"
   revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version"     value="1.0.0.2" />
-  <variable name="fileversion" value="1_0_2" />
+  <variable name="version"     value="1.1.0.0" />
+  <variable name="fileversion" value="1_1_0" />
 
   <check type="logical" condition="or">
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\PDFCreator\PDFCreator.exe" value="%version%" />
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\PDFCreator\PDFCreator.exe" value="%version%" />
   </check>
 
-  <install cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT /SP- /NORESTART' >
-    <exit code="any" reboot="false" />
-  </install>
-  <install cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" /VERYSILENT"' >
-    <exit code="any" reboot="false" />
-  </install>
-  <install cmd='"%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%_setup.exe" /VERYSILENT /nocancel /norestart /dontuseyahoosearch /sp- /components=\"!toolbar\" /tasks=\"!desktopicon,!quicklaunchicon\" /f /norestart /LOG' />
+  <install cmd='%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%_setup.exe /LOADINF="%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%.inf" /VERYSILENT /NORESTART /SP-' />
   <install cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
-
-  <upgrade cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT /SP- /NORESTART' >
-    <exit code="any" reboot="false" />
-  </upgrade>
-  <upgrade cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" /VERYSILENT"' >
-    <exit code="any" reboot="false" />
-  </upgrade>
-  <upgrade cmd='"%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%_setup.exe" /VERYSILENT /nocancel /norestart /dontuseyahoosearch /sp- /components=\"!toolbar\" /tasks=\"!desktopicon,!quicklaunchicon\" /f /norestart /LOG' />
+  
+  <upgrade cmd='%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%_setup.exe /LOADINF="%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%.inf" /VERYSILENT /NORESTART /SP-' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
 
-  <downgrade cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT /SP- /NORESTART' >
-    <exit code="any" reboot="false" />
-  </downgrade>
-  <downgrade cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" /VERYSILENT"' >
-    <exit code="any" reboot="false" />
-  </downgrade>
-  <downgrade cmd='"%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%_setup.exe" /VERYSILENT /nocancel /norestart /dontuseyahoosearch /sp- /components=\"!toolbar\" /tasks=\"!desktopicon,!quicklaunchicon\" /f /norestart /LOG' />
+  <downgrade cmd='%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%_setup.exe /LOADINF="%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%.inf" /VERYSILENT /NORESTART /SP-' />
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
 
   <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT /NORESTART' />
