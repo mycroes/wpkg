@@ -11,12 +11,12 @@
 <package
   id="intel_sata"
   name="Intel SATA drivers"
-  revision="%version%-0"
+  revision="%version%-1"
   priority="10"
   reboot="postponed">
   
   <variable name="version" value="10.1.0.1008" />
-  <variable name="flags" value="-s -noicc -noIRSTgui -noservice -notray -overwrite" /> <!-- only install drivers - create a new profile for bells and whistles -->
+  <variable name="flags" value="-s -noicc -noservice -notray -overwrite" /> <!-- only install drivers - create a new profile for bells and whistles -->
   
   <check type="uninstall" condition="versiongreaterorequal" path="Intel(R) Rapid Storage Technology" value="%version%" />
   
