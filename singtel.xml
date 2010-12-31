@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) When running as standard user, the program will fail with a message about being unable to add to addressbook. This is because of permissions and why we set them using cacls
+ -->
+
+<packages>
+
+<package
+  id="singtel"
+  name="SingTel Broadband on Mobile"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+  
+  <variable name="version" value="2" />
+  
+  <check type="uninstall" condition="exists" path="Broadband on Mobile" />
+  
+  <install cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
+  <install cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f' />
+  
+  <upgrade cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
+  <upgrade cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f' />
+  
+  <downgrade cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
+  <downgrade cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f' />
+  
+  <remove cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\Broadband on Mobile\uninst.exe" "%PROGRAMFILES%\Broadband on Mobile\uninst.exe" /S' />
+  <remove cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\Broadband on Mobile" RD /Q /S "%PROGRAMFILES%\Broadband on Mobile"' />
+  <remove cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES(x86)%\Broadband on Mobile\uninst.exe" "%PROGRAMFILES(x86)%\Broadband on Mobile\uninst.exe" /S' />
+  <remove cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES(x86)%\Broadband on Mobile" RD /Q /S "%PROGRAMFILES(x86)%\Broadband on Mobile"' />
+</package>
+
+</packages>

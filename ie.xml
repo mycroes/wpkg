@@ -7,6 +7,7 @@
   3) If you want to preload some search providers then export SearchScopes from another machine and name it iesearch.reg
   4) We now support localized versions, but please only leave one version in %software%\ie8 as they will all be installed
   5) If you have more languages, please let us know
+  6) Do NOT install dev toolbar on 8 - it's only for 6 and 7
 -->
 
 <packages>
@@ -53,6 +54,24 @@
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\iesearch.reg" regedit /s "%SOFTWARE%\IE8\iesearch.reg"' />
 
   <remove  cmd='"%WINDIR%\ie8\spuninst\spuninst.exe" %MSI%' />
+
+</package>
+
+<package
+  id="ie67_dev"
+  name="IE6/7 Developer Toolbar"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="1.0.2088" /> <!-- website says  "1.00.2189.0". Oh well... -->
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Internet Explorer Developer Toolbar" value="%version%" />
+
+  <install   cmd='msiexec /i "%SOFTWARE%\IE\IEDevToolBarSetup.msi" %MSI%' />
+  <upgrade   cmd='msiexec /i "%SOFTWARE%\IE\IEDevToolBarSetup.msi" %MSI%' />
+  <downgrade cmd='msiexec /i "%SOFTWARE%\IE\IEDevToolBarSetup.msi" %MSI%' />
+  <remove    cmd='msiexec /x "%SOFTWARE%\IE\IEDevToolBarSetup.msi" %MSI%' />
 
 </package>
 
