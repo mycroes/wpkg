@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<!--
+  NOTES
+  1) Go here for info: http://www.linux-kvm.org/page/WindowsGuestDrivers/Download_Drivers
+  2) We need OS/bit specific install stanzasd due to different drivers
+
+-->
+
+<package
+  id="virtio_net_xp"
+  name="VirtIO Network Drivers for XP"
+  revision="%version%-0"
+  priority="10">
+
+  <variable name="version" value="5.1.209.605" />
+  
+  <depends package-id="system_tools" />
+
+  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\DRIVERS\netkvm.sys" value="%version%" />
+
+  <install   cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"' />
+  <upgrade   cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"' />
+  <downgrade cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"' />
+  
+</package>
+
+</packages>
