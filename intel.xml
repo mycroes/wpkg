@@ -11,7 +11,7 @@
 <package
   id="intel_sata"
   name="Intel SATA drivers"
-  revision="%version%-3"
+  revision="%version%-4"
   priority="10"
   reboot="postponed">
 
@@ -21,11 +21,11 @@
   <check type="uninstall" condition="versiongreaterorequal" path="Intel(R) Rapid Storage Technology" value="%version%" />
 
   <install   cmd='"%SOFTWARE%\Intel\iata_enu.exe" %flags%' />
-  <install   cmd='"%SOFTWARE%\Intel\iata_enu.exe" -a -p "%systemdrive%\DRIVERS\intel_sata"' />
+  <install   cmd='"%SOFTWARE%\Intel\iata_enu.exe" -s -a -p "%systemdrive%\DRIVERS\intel_sata"' />
   <upgrade   cmd='"%SOFTWARE%\Intel\iata_enu.exe" %flags%' />
-  <upgrade   cmd='"%SOFTWARE%\Intel\iata_enu.exe" -a -p "%systemdrive%\DRIVERS\intel_sata"' />
+  <upgrade   cmd='"%SOFTWARE%\Intel\iata_enu.exe" -s -a -p "%systemdrive%\DRIVERS\intel_sata"' />
   <downgrade cmd='"%SOFTWARE%\Intel\iata_enu.exe" %flags%' />
-  <downgrade cmd='"%SOFTWARE%\Intel\iata_enu.exe" -a -p "%systemdrive%\DRIVERS\intel_sata"' />
+  <downgrade cmd='"%SOFTWARE%\Intel\iata_enu.exe" -s -a -p "%systemdrive%\DRIVERS\intel_sata"' />
 </package>
 
 </packages>
