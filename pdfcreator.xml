@@ -4,7 +4,8 @@
   NOTES
   1) Version 1.1.0 can actually be installed silently - woo hoo
   2) Check in addons for the .inf file
-  2) The old version 099 has been added as 1.0.2 was giving problems, but it should be safe to remove with 1.1.0 out
+  3) The old version 099 has been added as 1.0.2 was giving problems, but it should be safe to remove with 1.1.0 out
+  4) GhostScript installer hangs for me, so temporarily disabling the dependency
 -->
 
 <packages>
@@ -12,7 +13,7 @@
 <package
   id="pdfcreator"
   name="PDFCreator 1.1.0"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -25,7 +26,9 @@
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\PDFCreator\PDFCreator.exe" value="%version%" />
   </check>
   
+  <!--
   <depends package-id="ghostscript" />
+  -->
 
   <install cmd='%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%_setup.exe /LOADINF="%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%.inf" %flags%' />
   <install cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
