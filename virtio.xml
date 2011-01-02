@@ -7,13 +7,14 @@
   1) Go here for info: http://www.linux-kvm.org/page/WindowsGuestDrivers/Download_Drivers
   2) We need OS/bit specific install stanzas due to different drivers
   3) We copy the drivers to the harddrive, JIC, for future use
+  4) devcon returns 2 if the device doesn't exist
 
 -->
 
 <package
   id="virtio_net_xp"
   name="VirtIO Network Drivers for XP"
-  revision="%version%-1"
+  revision="%version%-2"
   priority="10">
 
   <variable name="version" value="5.1.209.605" />
@@ -22,11 +23,17 @@
 
   <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\DRIVERS\netkvm.sys" value="%version%" />
 
-  <install   cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"' />
+  <install   cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"'>
+    <exit code="2" />
+  </install>
   <install   cmd='xcopy /i /e /y "%SOFTWARE%\VirtIO" "%SYSTEMDRIVE%\DRIVERS\VirtIO"' />
-  <upgrade   cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"' />
+  <upgrade   cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"'>
+    <exit code="2" />
+  </upgrade>
   <upgrade   cmd='xcopy /i /e /y "%SOFTWARE%\VirtIO" "%SYSTEMDRIVE%\DRIVERS\VirtIO"' />
-  <downgrade cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"' />
+  <downgrade cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"'>
+    <exit code="2" />
+  </downgrade>
   <downgrade cmd='xcopy /i /e /y "%SOFTWARE%\VirtIO" "%SYSTEMDRIVE%\DRIVERS\VirtIO"' />
   
 </package>
