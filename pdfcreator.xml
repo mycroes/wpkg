@@ -12,7 +12,7 @@
 <package
   id="pdfcreator"
   name="PDFCreator 1.1.0"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -24,6 +24,8 @@
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\PDFCreator\PDFCreator.exe" value="%version%" />
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\PDFCreator\PDFCreator.exe" value="%version%" />
   </check>
+  
+  <depends package-id="ghostscript" />
 
   <install cmd='%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%_setup.exe /LOADINF="%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%.inf" %flags%' />
   <install cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
