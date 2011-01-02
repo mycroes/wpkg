@@ -8,20 +8,23 @@
   2) We need OS/bit specific install stanzas due to different drivers
   3) We copy the drivers to the harddrive, JIC, for future use
   4) devcon returns 2 if the device doesn't exist
-
+  5) if the device doesn't exist, the file doesn't get copied to the %WINDIR% subdir, so check in c:\drivers too
 -->
 
 <package
   id="virtio_net_xp"
   name="VirtIO Network Drivers for XP"
-  revision="%version%-3"
+  revision="%version%-4"
   priority="10">
 
   <variable name="version" value="5.1.209.605" />
   
   <depends package-id="system_tools" />
 
-  <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\DRIVERS\netkvm.sys" value="%version%" />
+  <check type="logical" condition="or">
+    <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\DRIVERS\netkvm.sys" value="%version%" />
+    <check type="file" condition="versiongreaterorequal" path="%SYSTEMDRIVE%\DRIVERS\VirtIO\NetKVM\XP\x86\netkvm.sys" value="%version%" />
+  </check>
 
   <install   cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"'>
     <exit code="2" />
