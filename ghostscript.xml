@@ -4,31 +4,33 @@
 
 <!--
   NOTES
-  1) Setup needs to be run from parent directory.
+  1) Extract gs<ver>w32.exe to %SOFTWARE%\Ghostscript\gs%version%\ (needs to be
+     seperated by version because all versions contain setupgs.exe,
+     uninstgs.exe and filelist.txt).
+  2) Setup needs to be run from parent directory.
 -->
 
 <package
   id="ghostscript"
   name="GhostScript"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false">
 
-  <variable name="version"     value="9.00" />
-  <variable name="fileversion" value="900" />
+  <variable name="version" value="9.00" />
 
   <check type="uninstall" condition="exists" path="GPL Ghostscript %version%" />
 
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" start /wait /D"%SOFTWARE%\GhostScript\gs%fileversion%w32.exe" setupgs.exe "%PROGRAMFILES%\gs"' />
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" start /wait /D"%SOFTWARE%\GhostScript\gs%fileversion%" setupgs.exe "%PROGRAMFILES(x86)%\gs"' />
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES%\gs"' />
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES(x86)%\gs"' />
 
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" start /wait /D"%SOFTWARE%\GhostScript\gs%fileversion%w32.exe" setupgs.exe "%PROGRAMFILES%\gs"' />
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" start /wait /D"%SOFTWARE%\GhostScript\gs%fileversion%" setupgs.exe "%PROGRAMFILES(x86)%\gs"' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES%\gs"' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES(x86)%\gs"' />
 
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" start /wait /D"%SOFTWARE%\GhostScript\gs%fileversion%w32.exe" setupgs.exe "%PROGRAMFILES%\gs"' />
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" start /wait /D"%SOFTWARE%\GhostScript\gs%fileversion%" setupgs.exe "%PROGRAMFILES(x86)%\gs"' />
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES%\gs"' />
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" start /wait /D"%SOFTWARE%\GhostScript\gs%version%" setupgs.exe "%PROGRAMFILES(x86)%\gs"' />
 
-  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" "%PROGRAMFILES%\gs\uninstgs.exe" "%PROGRAMFILES%\gs\gs%fileversion%\uninstal.txt" -q' />
-  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" "%PROGRAMFILES(x86)%\gs\uninstgs.exe" "%PROGRAMFILES(x86)%\gs%fileversion%\uninstal.txt" -q' />
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" "%PROGRAMFILES%\gs\uninstgs.exe" "%PROGRAMFILES%\gs\gs%version%\uninstal.txt" -q' />
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" "%PROGRAMFILES(x86)%\gs\uninstgs.exe" "%PROGRAMFILES(x86)%\gs%version%\uninstal.txt" -q' />
 </package>
 
 </packages>
