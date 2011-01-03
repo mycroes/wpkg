@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) These settings are obviously quite user specific so feel free to ignore them, but only stuff generally useful will be added
+-->
+
+<packages>
+
+<package
+  id="user_settings"
+  name="User Settings"
+  revision="1"
+  reboot="false"
+  priority="10"
+  execute="once">
+  
+  <install cmd='REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "DIRCMD" /t REG_SZ /d "/O:gne /A" /f' /> <!-- sort dir output -->
+
+</package>
+
+</packages>

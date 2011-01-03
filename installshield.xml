@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--
+  1) Warning - do NOT delete "%COMMONPROGRAMFILES%\InstallShield" as was the original plan as it is needed for other installers - ONLY deactivate the running processes
+ -->
+
 <packages>
 
 <package
   id="uninstall-isum"
   name="InstallShield Update Manager Uninstall"
-  revision="1"
+  revision="2"
   execute="once">
   <install cmd='taskkill /f /im isdm.exe'><exit code="any" /></install>
   <install cmd='taskkill /f /im issch.exe'><exit code="any" /></install>
   <install cmd='taskkill /f /im isuspm.exe'><exit code="any" /></install>
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "ISUSPM Startup" /f'><exit code="any" /></install>
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "ISUSScheduler" /f'><exit code="any" /></install>
-  <install cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Common Files\InstallShield"      RD /Q /S "%PROGRAMFILES%\Common Files\InstallShield"' />
-  <install cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Common Files\InstallShield" RD /Q /S "%PROGRAMFILES(x86)%\Common Files\InstallShield"' />
+  <!--
+  <install cmd='%COMSPEC% /c IF EXIST "%COMMONPROGRAMFILES%\InstallShield"      RD /Q /S "%PROGRAMFILES%\Common Files\InstallShield"' />
+  <install cmd='%COMSPEC% /c IF EXIST "%COMMONPROGRAMFILES(x86)%\InstallShield" RD /Q /S "%PROGRAMFILES(x86)%\Common Files\InstallShield"' />
+  -->
 </package>
 
 </packages>

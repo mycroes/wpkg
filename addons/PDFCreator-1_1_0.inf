@@ -1,0 +1,15 @@
+[Setup]
+Lang=english
+Dir=C:\Program Files\PDFCreator
+Group=PDFCreator
+NoIcons=1
+SetupType=custom
+Components=program,languages,languages\english
+Tasks=
+Printername=PDFCreator
+ServerInstallation=0
+Win9xPrinterdriver=0
+WinNtPrinterdriver=0
+Win2k32bitPrinterdriver=0
+Win2k64bitPrinterdriver=0
+Toolbar=0
