@@ -11,13 +11,13 @@
 <package
   id="notepad"
   name="Notepad++"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
   <variable name="version" value="5.8.6" />
 
-  <check type="uninstall" condition="exists" path="Notepad++" />
+  <check type="uninstall" condition="versiongreaterorequal" path="Notepad++" value="%version%" />
   <check type='logical' condition='or'>
     <check type="file" condition="versiongreaterorequal" path="%ProgramFiles%\Notepad++\notepad++.exe" value="%version%" />
     <check type="file" condition="versiongreaterorequal" path="%ProgramFiles(x86)%\Notepad++\notepad++.exe" value="%version%" />
