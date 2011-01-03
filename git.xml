@@ -10,12 +10,12 @@
 <package
   id="git"
   name="Git for Windows"
-  revision="%version%-3"
+  revision="%version%-0"
   priority="10"
   reboot="false">
 
-  <variable name="version" value="1.7.2.3" />
-  <variable name="reldate" value="20100911" />
+  <variable name="version" value="1.7.3.1" />
+  <variable name="reldate" value="20101002" />
 
   <check type="uninstall" condition="exists" path="Git version %version%-preview%reldate%" />
   <install   cmd='taskkill /f /im sh.exe'><exit code="any" /></install>
