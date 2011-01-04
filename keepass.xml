@@ -9,7 +9,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="2.13" />
+  <variable name="version" value="2.14" />
   <check type="uninstall" condition="exists" path="KeePass Password Safe %version%" />
 
   <install cmd='"%SOFTWARE%\KeePass\KeePass-%version%-Setup.exe" /VERYSILENT /sp-' />
@@ -27,6 +27,7 @@
     <exit code="2" />
   </downgrade>
 
+  <remove cmd='taskkill.exe /f /im keepass.exe'><exit code="any" /></remove>
   <!-- Windows 32-bit -->
   <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\KeePass Password Safe 2\unins000.exe" "%ProgramFiles%\KeePass Password Safe 2\unins000.exe" /VERYSILENT' />
   <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\KeePass Password Safe 2" REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce" /v keepass /d "%COMSPEC% /c IF NOT EXIST \"%ProgramFiles%\KeePass Password Safe 2\keepass.exe\" RD /Q /S \"%ProgramFiles%\KeePass Password Safe 2\"" /f' />
