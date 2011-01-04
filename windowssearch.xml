@@ -5,13 +5,21 @@
 <package
   id="windowssearch"
   name="Windows Search 4.0"
-  revision="400"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
+  <variable name="version" value="04.00.6001.503" />
+  
   <check type="uninstall" condition="exists" path="Windows Search 4.0" />
-  <install cmd='"%SOFTWARE%\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" %MSI%' />
-  <upgrade cmd='"%SOFTWARE%\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" %MSI%' />
+  
+  <install   cmd='"%SOFTWARE%\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" %MSI%' />
+  <upgrade   cmd='"%SOFTWARE%\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" %MSI%' />
+  <downgrade cmd='"%SOFTWARE%\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" %MSI%' />
+  
+  <remove cmd='sc config CiSvc start= disabled'><exit code="any" /></remove>
+  <remove cmd='sc config WSearch start= disabled'><exit code="any" /></remove>
+  <remove cmd='%COMSPEC% /c IF EXIST "%systemroot%\$NtUninstallKB940157$\spuninst\spuninst.exe" "%systemroot%\$NtUninstallKB940157$\spuninst\spuninst.exe" %MSI%' />
 
 </package>
 
