@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  1) After downloading the 32 and 64 bit installers, please rename them to lastpass_x86.exe and lastpass_amd64.exe
+  2) 64 bit installer automatically installs 32bit plugins too
+ -->
+
+<packages>
+
+<package
+  id="lastpass"
+  name="LastPass browser plugins, IE, Firefox, Chrome"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <variable name="version" value="1.70.1.0" />
+  <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\LastPass\lastpass.exe" value="%version" />
+  <install   cmd='"%SOFTWARE%\LastPass\lastpass_%PROCESSOR_ARCHITECTURE%.exe" -i -f --installdir="%PROGRAMFILES%\LastPass"' />
+  <upgrade   cmd='"%SOFTWARE%\LastPass\lastpass_%PROCESSOR_ARCHITECTURE%.exe" -i -f --installdir="%PROGRAMFILES%\LastPass"' />
+  <downgrade cmd='"%SOFTWARE%\LastPass\lastpass_%PROCESSOR_ARCHITECTURE%.exe" -i -f --installdir="%PROGRAMFILES%\LastPass"' />
+  <remove    cmd='"%SOFTWARE%\LastPass\lastpass_%PROCESSOR_ARCHITECTURE%.exe" -sb' />
+
+</package>
+
+</packages>
