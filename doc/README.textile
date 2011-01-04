@@ -7,7 +7,7 @@ The following criteria must be fulfilled before the recipe is included here:
 * 32-bit and 64-bit safe
 * Uses "msiexec /x package_file.msi" for uninstallations whenever possible to avoid knowing CLSIDs that change
 
-.h2 Notes
+h2. Notes
 
 # If there are multiple references to the current version (file name, uninstall check, etc), then it should be included as a variable named 'version'
 # All revisions should be written out WITH dots. Examples:
