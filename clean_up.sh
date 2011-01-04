@@ -1,4 +1,10 @@
-#!/bin/sh
-find . -type f -name '*~' -print0 | xargs -0 rm
-fromdos *.xml
-xmllint --noout *.xml
+#!/bin/bash
+find . -type f -name '*~' -delete
+test -x fromdos && fromdos *.xml
+xml=$(which xmllint)
+if [ -x ${xml} ] ; then
+  ${xml} --noout *.xml
+else
+  echo xmllint not found - please use some other XML checker to validate...
+  exit 1
+fi
