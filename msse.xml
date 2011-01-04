@@ -34,7 +34,7 @@
     <exit code="327424" />
   </install>
   <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
-  <install cmd='net start MsMpSvc' />
+  <install cmd='net start MsMpSvc'><exit code="2" /></install>
 
   <upgrade cmd='net stop MsMpSvc'><exit code="2" /></upgrade>
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" "%SOFTWARE%\MSSE\mssefullinstall_x32.exe" /s /runwgacheck'>
@@ -48,7 +48,7 @@
     <exit code="327424" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
-  <upgrade cmd='net start MsMpSvc' />
+  <upgrade cmd='net start MsMpSvc'><exit code="2" /></upgrade>
 
   <downgrade cmd='net stop MsMpSvc'><exit code="2" /></downgrade>
   <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" "%SOFTWARE%\MSSE\mssefullinstall_x32.exe" /s /runwgacheck'>
@@ -62,7 +62,7 @@
     <exit code="327424" />
   </downgrade>
   <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
-  <downgrade cmd='net start MsMpSvc' />
+  <downgrade cmd='net start MsMpSvc'><exit code="2" /></downgrade>
 
   <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
 
