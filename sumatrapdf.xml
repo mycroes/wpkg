@@ -13,9 +13,9 @@
   <install cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
   <upgrade cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
   <downgrade cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
-  
+
   <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\SumatraPDF\Uninstall.exe" "%ProgramFiles%\SumatraPDF\Uninstall.exe" /S' />
   <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\SumatraPDF\Uninstall.exe" "%ProgramFiles(x86)%\SumatraPDF\Uninstall.exe" /S' />
-  
+
 </package>
 </packages>

@@ -10,18 +10,18 @@
 -->
 
 <packages>
-  
+
 <package
   id="acrobatreader"
   name="Adobe Acrobat Reader"
   revision="101"
   priority="10"
   execute="once">
-  
+
   <depends package-id="acrobatreaderX" />
-  
+
 </package>
-    
+
 <package
   id="acrobatreaderX"
   name="Adobe Acrobat Reader X"
@@ -210,7 +210,7 @@
   priority="10">
 
   <variable name="version" value="10.0.0" />
-  
+
   <depends package-id="acrobatreaderX" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Japanese Fonts Support For Adobe Reader X" value="%version%" />
@@ -219,7 +219,7 @@
   <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\FontPack1000_ja_JP.msi"' />
-</package>  
+</package>
 
 <package
   id="acrobat_cn"
@@ -229,7 +229,7 @@
   priority="10">
 
   <variable name="version" value="10.0.0" />
-  
+
   <depends package-id="acrobatreaderX" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Chinese Simplified Fonts Support For Adobe Reader X" value="%version%" />
@@ -238,7 +238,7 @@
   <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_zh_CN.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_zh_CN.msi"' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\FontPack1000_zh_CN.msi"' />
-</package>  
+</package>
 
 <package
   id="acrobat_kr"
@@ -267,7 +267,7 @@
   priority="10">
 
   <variable name="version" value="9.0.0" />
-  
+
   <depends package-id="acrobatreader9" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Japanese Fonts Support For Adobe Reader 9" value="%version%" />
@@ -276,6 +276,6 @@
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack90_ja_JP.msi"' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\FontPack90_ja_JP.msi"' />
 
-</package>  
+</package>
 
 </packages>

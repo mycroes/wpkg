@@ -11,7 +11,7 @@
   <variable name="version" value="10.24.0.0" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="PC Connectivity Solution" value="%version%" />
-  
+
   <install   cmd='"%SOFTWARE%\Nokia\Nokia_PC_Suite_eng_web.exe" /SILENT="1" /DISABLE="AUTORUN" /DISABLE="WEBUPDATE"' />
   <upgrade   cmd='"%SOFTWARE%\Nokia\Nokia_PC_Suite_eng_web.exe" /SILENT="1" /DISABLE="AUTORUN" /DISABLE="WEBUPDATE"' />
   <downgrade cmd='"%SOFTWARE%\Nokia\Nokia_PC_Suite_eng_web.exe" /SILENT="1" /DISABLE="AUTORUN" /DISABLE="WEBUPDATE"' />

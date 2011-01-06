@@ -24,7 +24,7 @@
 
   <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_x86.msi"' />
   <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_x64.msi"' />
-  
+
   <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_x86.msi"' />
   <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_x64.msi"' />
 
@@ -52,7 +52,7 @@
 
   <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_ocr_x86.msi"' />
   <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_ocr_x64.msi"' />
-  
+
   <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_ocr_x86.msi"' />
   <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_ocr_x64.msi"' />
 

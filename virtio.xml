@@ -18,7 +18,7 @@
   priority="10">
 
   <variable name="version" value="5.1.209.605" />
-  
+
   <depends package-id="system_tools" />
 
   <check type="logical" condition="or">
@@ -38,7 +38,7 @@
     <exit code="2" />
   </downgrade>
   <downgrade cmd='xcopy /q /r /i /e /y "%SOFTWARE%\VirtIO" "%SYSTEMDRIVE%\DRIVERS\VirtIO"' />
-  
+
 </package>
 
 </packages>

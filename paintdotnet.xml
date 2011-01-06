@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!-- 
+<!--
   NOTES
   1) Must remove old versions (or it won't upgrade), then install the new version
   2) Create msi      Paint.NET.3.5.6.Install.exe /createMsi CHECKFORUPDATES=0 CHECKFORBETAS=0 JPGPNGBMPEDITOR=1 TGAEDITOR=1 ALLUSERS=1 DESKTOPSHORTCUT=0
@@ -13,30 +13,30 @@
     revision="%version%-0"
     reboot="false"
     priority="0">
- 
-    <depends package-id="dotnet3" />	
+
+    <depends package-id="dotnet3" />
 
     <variable name="version" value="3.5.6" />
-    
+
     <check type="uninstall" condition="exists" path="Paint.NET v%version%" />
- 
+
     <install cmd='msiexec %MSI% /x {43602F34-1AA3-44FB-AEB2-D08C2C73743F}'><exit code='any' /></install>
     <install cmd='msiexec %MSI% /x {4F77F6EE-2C99-49F7-940A-2E9C208C3BE1}'><exit code='any' /></install>
     <install cmd='msiexec %MSI% /x {F0E2B312-D7FD-4349-A9B6-E90B36DB1BD0}'><exit code='any' /></install>
     <install cmd='msiexec %MSI% /i %SOFTWARE%\PaintDotNet\PaintDotNet.x86.msi' />
- 
+
     <upgrade cmd='msiexec %MSI% /x {43602F34-1AA3-44FB-AEB2-D08C2C73743F}'><exit code='any' /></upgrade>
     <upgrade cmd='msiexec %MSI% /x {4F77F6EE-2C99-49F7-940A-2E9C208C3BE1}'><exit code='any' /></upgrade>
     <upgrade cmd='msiexec %MSI% /x {F0E2B312-D7FD-4349-A9B6-E90B36DB1BD0}'><exit code='any' /></upgrade>
     <upgrade cmd='msiexec %MSI% /i %SOFTWARE%\PaintDotNet\PaintDotNet.x86.msi' />
- 
+
     <downgrade cmd='msiexec %MSI% /x {43602F34-1AA3-44FB-AEB2-D08C2C73743F}'><exit code='any' /></downgrade>
     <downgrade cmd='msiexec %MSI% /x {4F77F6EE-2C99-49F7-940A-2E9C208C3BE1}'><exit code='any' /></downgrade>
     <downgrade cmd='msiexec %MSI% /x {F0E2B312-D7FD-4349-A9B6-E90B36DB1BD0}'><exit code='any' /></downgrade>
     <downgrade cmd='msiexec %MSI% /i %SOFTWARE%\PaintDotNet\PaintDotNet.x86.msi' />
 
     <remove cmd='msiexec %MSI% /x %SOFTWARE%\PaintDotNet\PaintDotNet.x86.msi' />
-    
+
   </package>
- 
+
 </packages>

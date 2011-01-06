@@ -22,7 +22,7 @@
     <check type='file' condition='versiongreaterorequal' path='%ProgramFiles%\ISD Software und Systeme\HiCAD Viewer Professional 2010\exe\HiCADViewer2010.exe' value='%version%' />
     <check type='file' condition='versiongreaterorequal' path='%ProgramFiles(x86)%\ISD Software und Systeme\HiCAD Viewer Professional 2010\exe\HiCADViewer2010.exe' value='%version%' />
   </check>
-  
+
   <install cmd='MsiExec.exe /i "%SOFTWARE%\HiCAD\HiCADViewerProfessional2010.msi" %MSI%'>
     <exit code="1641" reboot="postponed" />
     <exit code="3010" reboot="postponed" />

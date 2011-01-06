@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <packages>
- 
+
     <package
         id="ccleaner"
         name="CCleaner"
         revision="6"
         reboot="false"
         priority="10">
- 
+
         <check type="uninstall" condition="exists" path="CCleaner" />
- 
+
         <install cmd='%software%\Tools\ccsetup228.exe /S' />
         <install cmd='regedit /s %software%\Tools\ccleaner.reg' />
         <install cmd='%COMSPEC% /c IF NOT EXIST "%AllUsersProfile%\Start Menu\Programs\CCleaner" mkdir "%AllUsersProfile%\Start Menu\Programs\CCleaner"' />
         <install cmd='%COMSPEC% /c copy "%UserProfile%\Start Menu\Programs\CCleaner\*.*" "%AllUsersProfile%\Start Menu\Programs\CCleaner\"' />
         <install cmd='%COMSPEC% /c rmdir /q /s "%UserProfile%\Start Menu\Programs\CCleaner"' />
         <install cmd='%COMSPEC% /c del /q "%UserProfile%\Desktop\CCleaner.lnk"' />
- 
+
         <upgrade cmd='%SOFTWARE%\Tools\ccsetup228.exe /S' />
         <upgrade cmd='%COMSPEC% /c rmdir /q /s "%UsersProfile%\Start Menu\Programs\CCleaner\"' />
         <upgrade cmd='%COMSPEC% /c del /q "%UserProfile%\Desktop\CCleaner.lnk"' />
- 
+
         <remove cmd='"%ProgramFiles%\CCleaner\uninst.exe" /S' />
         <remove cmd='%COMSPEC% /c rmdir /q /s "%AllUsersProfile%\Start Menu\Programs\CCleaner"' />
-    </package> 
- 
+    </package>
+
 </packages>

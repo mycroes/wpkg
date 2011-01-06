@@ -7,11 +7,11 @@
   revision="%version%-0"
   priority="10"
   reboot="false">
-  
+
   <variable name="version" value="9.0.0.88" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="AutoSketch Release 9" value="%version%" />
-  
+
   <install cmd='msiexec /i "%SOFTWARE%\Autodesk\AutoSketch9\Setup.msi" TRANSFORMS="%SOFTWARE%\Autodesk\AutoSketch9\autosketch9.mst" %MSI%' />
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Autodesk\AutoSketch9\autosketch9.reg" regedit /s "%SOFTWARE%\Autodesk\AutoSketch9\autosketch9.reg"' />
   <install cmd='%COMSPEC% /c echo y | cacls "%PROGRAMFILES%\Autodesk\AutoSketch9" /T /C /E /G Everyone:F >NUL' />

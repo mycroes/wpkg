@@ -10,7 +10,7 @@
 
     <variable name="version" value="3.2.1" />
     <variable name="fileversion" value="201011212218" />
-    
+
     <depends package-id="java" />
 
     <check type="uninstall" condition="versiongreaterorequal" path="XMind" value="%version%" />

@@ -18,11 +18,11 @@
   <install cmd='"%SOFTWARE%\Google Talk\googletalk-setup.exe" /S' />
   <install cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></install>
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f' />
- 
+
   <upgrade cmd='"%SOFTWARE%\Google Talk\googletalk-setup.exe" /S' />
   <upgrade cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></upgrade>
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f' />
- 
+
   <downgrade cmd='"%SOFTWARE%\Google Talk\googletalk-setup.exe" /S' />
   <downgrade cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></downgrade>
   <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f' />

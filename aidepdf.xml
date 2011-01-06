@@ -9,12 +9,12 @@
   reboot="false">
 
   <variable name="version" value="9.6" />
-  
+
   <check type="uninstall" condition="exists" path="Aide PDF to DXF Converter %version%" />
-  
+
   <install cmd='"%SOFTWARE%\AidePDF2DXF\pdf-dxf.exe" /verysilent /norestart' />
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg" regedit /s "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg"' />
-  
+
   <upgrade cmd='"%SOFTWARE%\AidePDF2DXF\pdf-dxf.exe" /verysilent /norestart' />
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg" regedit /s "%SOFTWARE%\AidePDF2DXF\pdf-dxf.reg"' />
 

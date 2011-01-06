@@ -3,7 +3,7 @@
 <!--
   NOTES
   1) For version 2, there are now only two installers - one for 32 and another for 64 bit
-  2) All installers are named mssefullinstall.exe - rename them to _x32 and _x64 
+  2) All installers are named mssefullinstall.exe - rename them to _x32 and _x64
   3) The platform/bitness specific packages now only depend on the generic msse package - they are left in for backwards compatibility
   4) Installer will throw -2147156187 if a reboot is needed before it can installed again - this is NOT success
 
@@ -77,7 +77,7 @@
   priority="50">
 
   <depends package-id="msse" />
-  
+
 </package>
 
 <package

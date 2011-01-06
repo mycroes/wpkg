@@ -14,7 +14,7 @@
   reboot="false"
   priority="10"
   execute="once">
-  
+
   <install cmd='REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "DIRCMD" /t REG_SZ /d "/O:gne /A" /f' /> <!-- sort dir output -->
 
 </package>

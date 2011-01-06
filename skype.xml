@@ -21,7 +21,7 @@
   <variable name='version' value='5.0.32.156' />
   <variable name='flags' value='INSTALLLEVEL=1 ALLUSERS=1 STARTSKYPE=FALSE' />
   <variable name='product_code' value='9C538746-C2DC-40FC-B1FB-D4EA7966ABEB' /> <!-- this is for 5.0 -->
-  
+
   <check type="logical" condition="or">
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Skype\Phone\Skype.exe" value="%version%" />
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" value="%version%" />
@@ -32,7 +32,7 @@
   <install cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableVersionCheckPolicy" /d "1" /t REG_DWORD /f' />
   <install cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableSupernodePolicy" /d "1" /t REG_DWORD /f' />
   <install cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' />
-  
+
   <upgrade cmd='msiexec %MSI% /x{%product_code%}'><exit code="1605" /></upgrade>
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\SkypeSetup.msi" %flags%'/>
   <upgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableVersionCheckPolicy" /d "1" /t REG_DWORD /f' />
