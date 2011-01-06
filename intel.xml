@@ -11,7 +11,7 @@
 <package
   id="intel_sata"
   name="Intel SATA drivers"
-  revision="%version%-4"
+  revision="%version%-5"
   priority="10"
   reboot="postponed">
 
@@ -22,10 +22,13 @@
 
   <install   cmd='"%SOFTWARE%\Intel\iata_enu.exe" %flags%' />
   <install   cmd='"%SOFTWARE%\Intel\iata_enu.exe" -s -a -p "%systemdrive%\DRIVERS\intel_sata"' />
+  <install   cmd='reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "IAStorIcon" /f' />
   <upgrade   cmd='"%SOFTWARE%\Intel\iata_enu.exe" %flags%' />
   <upgrade   cmd='"%SOFTWARE%\Intel\iata_enu.exe" -s -a -p "%systemdrive%\DRIVERS\intel_sata"' />
+  <upgrade   cmd='reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "IAStorIcon" /f' />
   <downgrade cmd='"%SOFTWARE%\Intel\iata_enu.exe" %flags%' />
   <downgrade cmd='"%SOFTWARE%\Intel\iata_enu.exe" -s -a -p "%systemdrive%\DRIVERS\intel_sata"' />
+  <downgrade cmd='reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "IAStorIcon" /f' />
 </package>
 
 </packages>
