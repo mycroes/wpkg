@@ -240,6 +240,25 @@
 </package>  
 
 <package
+  id="acrobat_kr"
+  name="Acrobat Reader X - Korean Font Pack"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="10.0.0" />
+
+  <depends package-id="acrobatreaderX" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Korean Fonts Support For Adobe Reader X" value="%version%" />
+
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ko_KR.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ko_KR.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\FontPack1000_ko_KR.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Acrobat Reader\FontPack1000_ko_KR.msi"' />
+</package>
+
+<package
   id="acrobat_jp_9"
   name="Acrobat Reader 9 Japanese"
   revision="%version%-2"
