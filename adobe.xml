@@ -14,8 +14,9 @@
 <package
   id="acrobatreader"
   name="Adobe Acrobat Reader"
-  revision="100"
-  priority="10">
+  revision="101"
+  priority="10"
+  execute="once">
   
   <depends package-id="acrobatreaderX" />
   
