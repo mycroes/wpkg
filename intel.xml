@@ -12,7 +12,7 @@
 <package
   id="intel_sata"
   name="Intel SATA drivers"
-  revision="%version%-6"
+  revision="%version%-7"
   priority="10"
   reboot="false">
 
@@ -23,13 +23,13 @@
 
   <install   cmd='"%SOFTWARE%\Intel\iata_enu.exe" %flags%' />
   <install   cmd='"%SOFTWARE%\Intel\iata_enu.exe" -s -a -p "%systemdrive%\DRIVERS\intel_sata"' />
-  <install   cmd='reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "IAStorIcon" /f' />
+  <install   cmd='reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "IAStorIcon" /f'><exit code="1" /></install>
   <upgrade   cmd='"%SOFTWARE%\Intel\iata_enu.exe" %flags%' />
   <upgrade   cmd='"%SOFTWARE%\Intel\iata_enu.exe" -s -a -p "%systemdrive%\DRIVERS\intel_sata"' />
-  <upgrade   cmd='reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "IAStorIcon" /f' />
+  <upgrade   cmd='reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "IAStorIcon" /f'><exit code="1" /></upgrade>
   <downgrade cmd='"%SOFTWARE%\Intel\iata_enu.exe" %flags%' />
   <downgrade cmd='"%SOFTWARE%\Intel\iata_enu.exe" -s -a -p "%systemdrive%\DRIVERS\intel_sata"' />
-  <downgrade cmd='reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "IAStorIcon" /f' />
+  <downgrade cmd='reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "IAStorIcon" /f'><exit code="1" /></downgrade>
 </package>
 
 </packages>
