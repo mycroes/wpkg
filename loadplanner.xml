@@ -3,6 +3,7 @@
 <!--
   NOTES
   1) We set Everyone=F permissions on the LP install folder
+  2) Copy data5.mdb and ini.mdb to the source folder after setting up LoadPlanner on another PC
 -->
 
 <packages>
