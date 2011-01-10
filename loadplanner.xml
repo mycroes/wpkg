@@ -11,7 +11,7 @@
 <package
   id="loadplanner_32"
   name="LoadPlanner"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -26,21 +26,21 @@
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <install cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
   <install cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <install cmd='IF NOT EXIST "%PROGRAMFILES%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
+  <install cmd='%COMSPEC% /c IF NOT EXIST "%PROGRAMFILES%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
   <install cmd='cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone:f >NUL' />
 
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <upgrade cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
   <upgrade cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <upgrade cmd='IF NOT EXIST "%PROGRAMFILES%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
+  <upgrade cmd='%COMSPEC% /c IF NOT EXIST "%PROGRAMFILES%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
   <upgrade cmd='cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone:f >NUL' />
 
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <downgrade cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
   <downgrade cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <downgrade cmd='IF NOT EXIST "%PROGRAMFILES%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
+  <downgrade cmd='%COMSPEC% /c IF NOT EXIST "%PROGRAMFILES%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
   <downgrade cmd='cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone:f >NUL' />
 
   <!--
@@ -53,7 +53,7 @@
 <package
   id="loadplanner_64"
   name="LoadPlanner"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -68,21 +68,21 @@
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <install cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
   <install cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <install cmd='IF NOT EXIST "%PROGRAMFILES(x86)%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
+  <install cmd='%COMSPEC% /c IF NOT EXIST "%PROGRAMFILES(x86)%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
   <install cmd='cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone:f >NUL' />
 
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <upgrade cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
   <upgrade cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <upgrade cmd='IF NOT EXIST "%PROGRAMFILES(x86)%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
+  <upgrade cmd='%COMSPEC% /c IF NOT EXIST "%PROGRAMFILES(x86)%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
   <upgrade cmd='cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone:f >NUL' />
 
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <downgrade cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
   <downgrade cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <downgrade cmd='IF NOT EXIST "%PROGRAMFILES(x86)%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
+  <downgrade cmd='%COMSPEC% /c IF NOT EXIST "%PROGRAMFILES(x86)%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
   <downgrade cmd='cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone:f >NUL' />
 
   <!--
