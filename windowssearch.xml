@@ -5,7 +5,7 @@
 <package
   id="windowssearch"
   name="Windows Search 4.0"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -19,6 +19,7 @@
 
   <remove cmd='sc config CiSvc start= disabled'><exit code="any" /></remove>
   <remove cmd='sc config WSearch start= disabled'><exit code="any" /></remove>
+  <remove cmd='%COMSPEC% /c DEL /F /Q "%ALLUSERSPROFILE%\Start Menu\Programs\Startup\Windows Search.lnk"'><exit code="any" /></remove>
   <remove cmd='%COMSPEC% /c IF EXIST "%systemroot%\$NtUninstallKB940157$\spuninst\spuninst.exe" "%systemroot%\$NtUninstallKB940157$\spuninst\spuninst.exe" %MSI%' />
 
 </package>
