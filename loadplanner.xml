@@ -8,14 +8,14 @@
 <packages>
 
 <package
-  id="loadplanner"
+  id="loadplanner_32"
   name="LoadPlanner"
-  revision="%version%-2"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.8.6" />
-  <variable name="updatefile" value="LoadPlanner 3860 update.msi" />
+  <variable name="version" value="3.8.7" />
+  <variable name="updatefile" value="LoadPlanner 3870 update.msi" />
 
   <depends package-id="system_tools" />
 
@@ -24,34 +24,65 @@
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <install cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
-  <!-- 32 bit host -->
-  <install cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
-  <install cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" ftype LoadPlanner="%PROGRAMFILES%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <install cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone:f >NUL' />
-  <!-- 64 bit host -->
-  <install cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
-  <install cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <install cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone:f >NUL' />
+  <install cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES%\LoadPlanner\LpMultiP.exe" "%1"' />
+  <install cmd='IF NOT EXIST "%PROGRAMFILES%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
+  <install cmd='cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone:f >NUL' />
 
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <upgrade cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
-  <!-- 32 bit host -->
-  <upgrade cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" ftype LoadPlanner="%PROGRAMFILES%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <upgrade cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone:f >NUL' />
-  <!-- 64 bit host -->
-  <upgrade cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <upgrade cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone:f >NUL' />
+  <upgrade cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
+  <upgrade cmd='IF NOT EXIST "%PROGRAMFILES%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
+  <upgrade cmd='cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone:f >NUL' />
 
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <downgrade cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
-  <!-- 32 bit host -->
-  <downgrade cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" ftype LoadPlanner="%PROGRAMFILES%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <downgrade cmd='IF EXIST "%PROGRAMFILES%\LoadPlanner" cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone:f >NUL' />
-  <!-- 64 bit host -->
-  <downgrade cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
-  <downgrade cmd='IF EXIST "%PROGRAMFILES(x86)%\LoadPlanner" cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone:f >NUL' />
+  <downgrade cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
+  <downgrade cmd='IF NOT EXIST "%PROGRAMFILES%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
+  <downgrade cmd='cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone:f >NUL' />
+
+  <!--
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\LoadPlanner\%updatefile%"' />
+  -->
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
+
+</package>
+
+<package
+  id="loadplanner_64"
+  name="LoadPlanner"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="3.8.7" />
+  <variable name="updatefile" value="LoadPlanner 3870 update.msi" />
+
+  <depends package-id="system_tools" />
+
+  <check type="uninstall" condition="exists" path="LoadPlanner %version% Update" />
+
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
+  <install cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
+  <install cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
+  <install cmd='IF NOT EXIST "%PROGRAMFILES(x86)%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
+  <install cmd='cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone:f >NUL' />
+
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
+  <upgrade cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
+  <upgrade cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
+  <upgrade cmd='IF NOT EXIST "%PROGRAMFILES(x86)%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
+  <upgrade cmd='cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone:f >NUL' />
+
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
+  <downgrade cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
+  <downgrade cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
+  <downgrade cmd='IF NOT EXIST "%PROGRAMFILES(x86)%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
+  <downgrade cmd='cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone:f >NUL' />
 
   <!--
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\LoadPlanner\%updatefile%"' />
