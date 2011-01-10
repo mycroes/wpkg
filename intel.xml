@@ -5,15 +5,16 @@
 <!--
   NOTES
   1) There is no uninstaller on purpose. The drivers actually support being uninstalled, but a minor config error like removing this package from a profile will render all machines depending on this driver unbootable, so for safety's sake I have not added it in.
+  2) I disabled the reboot as it does it EVERY TIME we touch anything in this package
 
 -->
 
 <package
   id="intel_sata"
   name="Intel SATA drivers"
-  revision="%version%-5"
+  revision="%version%-6"
   priority="10"
-  reboot="postponed">
+  reboot="false">
 
   <variable name="version" value="10.1.0.1008" />
   <variable name="flags" value="-s -noservice -notray -overwrite" /> <!-- only install drivers - create a new profile for bells and whistles -->
