@@ -62,7 +62,7 @@
 <package
   id="acrobatreader9"
   name="Adobe Acrobat Reader 9"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -84,6 +84,7 @@
   <!--
   <install cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 9.0" ' ><exit code="any" /></install>
   -->
+  <install cmd='msiexec %MSI% /x{AC76BA86-7AD7-1033-7B44-AA0000000001}'><exit code="1605" /></install> <!-- remove 10.0 -->
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\pre_install.cmd" "%SOFTWARE%\Acrobat Reader\pre_install.cmd"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
@@ -118,6 +119,7 @@
   <!--
   <upgrade cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 9.0" ' ><exit code="any" /></upgrade>
   -->
+  <upgrade cmd='msiexec %MSI% /x{AC76BA86-7AD7-1033-7B44-AA0000000001}'><exit code="1605" /></upgrade> <!-- remove 10.0 -->
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\pre_install.cmd" "%SOFTWARE%\Acrobat Reader\pre_install.cmd"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
@@ -152,6 +154,7 @@
   <!--
   <downgrade cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 9.0" ' ><exit code="any" /></downgrade>
   -->
+  <downgrade cmd='msiexec %MSI% /x{AC76BA86-7AD7-1033-7B44-AA0000000001}'><exit code="1605" /></downgrade> <!-- remove 10.0 -->
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Acrobat Reader\pre_install.cmd" "%SOFTWARE%\Acrobat Reader\pre_install.cmd"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Acrobat Reader\AcroRead.msi" TRANSFORMS="%SOFTWARE%\Acrobat Reader\reader9.mst"'>
     <exit code="3010" reboot="postponed" />
