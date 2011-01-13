@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<packages>
+
 <!--
   SOURCE
   1) Download the full advanced installer from google.com (it doesn't have toolbars!)
   2) Extract: .msi, 1033.mst, "program files" and "localappdata" using 7zip
 -->
-
-<packages>
 
 <package
   id="googleearth"
@@ -23,6 +23,41 @@
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
+
+</package>
+
+<package
+  id='google_picasa'
+  name='Picasa 3.8'
+  revision='%version%-0'
+  priority='10'
+  reboot='false' >
+
+  <variable name="version" value="3.8" />
+  <variable name="fileversion" value="38" />
+
+  <check type='uninstall' condition='versiongreaterorequal' path='Picasa 3' value='%version%' />
+
+  <install cmd='"%SOFTWARE%\Picasa\picasa%fileversion%-setup.exe" /S /L' >
+    <exit code='1' />
+    <exit code='128' />
+  </install>
+  <install cmd='sc config gusvc start= disabled' />
+
+  <upgrade cmd='"%SOFTWARE%\Picasa\picasa%fileversion%-setup.exe" /S /L' >
+    <exit code='1' />
+    <exit code='128' />
+  </upgrade>
+  <upgrade cmd='sc config gusvc start= disabled' />
+
+  <downgrade cmd='"%SOFTWARE%\Picasa\picasa%fileversion%-setup.exe" /S /L' >
+    <exit code='1' />
+    <exit code='128' />
+  </downgrade>
+  <downgrade cmd='sc config gusvc start= disabled' />
+
+  <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Google\Picasa3\Uninstall.exe" "%PROGRAMFILES%\Google\Picasa3\Uninstall.exe" /S' />
+  <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Google\Picasa3\Uninstall.exe" "%PROGRAMFILES(x86)%\Google\Picasa3\Uninstall.exe" /S' />
 
 </package>
 
