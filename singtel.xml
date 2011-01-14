@@ -3,6 +3,7 @@
 <!--
   NOTES
   1) When running as standard user, the program will fail with a message about being unable to add to addressbook. This is because of permissions and why we set them using cacls
+  2) Notice the casing of "BroadBand" in the check
  -->
 
 <packages>
@@ -10,13 +11,13 @@
 <package
   id="singtel"
   name="SingTel Broadband on Mobile"
-  revision="%version%-1"
+  revision="%version%-2"
   priority="10"
   reboot="false">
 
   <variable name="version" value="11.302.09.37.88" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="Broadband on Mobile" value='%version%' />
+  <check type="uninstall" condition="versiongreaterorequal" path="BroadBand on Mobile" value='%version%' />
 
   <install cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
   <install cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f >NUL'><exit code="8023" /></install>
