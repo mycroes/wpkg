@@ -22,12 +22,12 @@
 <package
   id="network_permissions"
   name="Network permissions"
-  revision="3"
+  revision="4"
   reboot="false"
   priority="10"
   execute="once">
 
-  <install cmd='net localgroup "Network Configuration Operators" Everyone /ADD >NUL'>
+  <install cmd='net localgroup "Network Configuration Operators" "%USERDOMAIN%\Domain Users" /ADD >NUL'>
     <exit code="2" /> <!-- Already member -->
   </install>
 
