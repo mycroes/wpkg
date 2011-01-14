@@ -19,17 +19,20 @@
 
 </package>
 
+<!-- net localgroup can return various codes:
+  1 - no clue, but it does this at times
+  2 - already member
+-->
+
 <package
   id="network_permissions"
   name="Network permissions"
-  revision="4"
+  revision="5"
   reboot="false"
   priority="10"
   execute="once">
 
-  <install cmd='net localgroup "Network Configuration Operators" "%USERDOMAIN%\Domain Users" /ADD >NUL'>
-    <exit code="2" /> <!-- Already member -->
-  </install>
+  <install cmd='net localgroup "Network Configuration Operators" "%USERDOMAIN%\Domain Users" /ADD >NUL'><exit code="any" /></install>
 
 </package>
 
