@@ -10,7 +10,7 @@
 <package
   id="singtel"
   name="SingTel Broadband on Mobile"
-  revision="%version%-0"
+  revision="%version%-1"
   priority="10"
   reboot="false">
 
@@ -19,13 +19,13 @@
   <check type="uninstall" condition="versiongreaterorequal" path="Broadband on Mobile" value='%version%' />
 
   <install cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
-  <install cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f >NUL' />
+  <install cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f >NUL'><exit code="8023" /></install>
 
   <upgrade cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
-  <upgrade cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f >NUL' />
+  <upgrade cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f >NUL'><exit code="8023" /></upgrade>
 
   <downgrade cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
-  <downgrade cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f >NUL' />
+  <downgrade cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f >NUL'><exit code="8023" /></downgrade>
 
   <remove cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\Broadband on Mobile\uninst.exe" "%PROGRAMFILES%\Broadband on Mobile\uninst.exe" /S' />
   <remove cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\Broadband on Mobile" RD /Q /S "%PROGRAMFILES%\Broadband on Mobile"' />
