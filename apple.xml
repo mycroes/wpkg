@@ -91,7 +91,7 @@ NOTES
 <package
   id="applemobile"
   name="Apple Mobile Device Support"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -102,13 +102,13 @@ NOTES
   <check type="uninstall"  condition="versiongreaterorequal" path="Apple Mobile Device Support" value="%version%"/>
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
-  <install cmd='sc config "Apple Mobile Device" start= demand' />
+  <install cmd='sc config "Apple Mobile Device" start= automatic' />
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
-  <upgrade cmd='sc config "Apple Mobile Device" start= demand' />
+  <upgrade cmd='sc config "Apple Mobile Device" start= automatic' />
   <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
-  <downgrade cmd='sc config "Apple Mobile Device" start= demand' />
+  <downgrade cmd='sc config "Apple Mobile Device" start= automatic' />
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x "%pkg32%"' />
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg64%"' />
 </package>
