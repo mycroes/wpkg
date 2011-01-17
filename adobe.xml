@@ -173,9 +173,9 @@
 </package>
 
 <package
-  id="acrobat_jp"
+  id="adobereader_jp"
   name="Acrobat Reader X - Japanese Font Pack"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -192,9 +192,9 @@
 </package>
 
 <package
-  id="acrobat_cn"
+  id="adobereader_cn"
   name="Acrobat Reader X - Chinese Font Pack"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -211,9 +211,9 @@
 </package>
 
 <package
-  id="acrobat_kr"
+  id="adobereader_kr"
   name="Acrobat Reader X - Korean Font Pack"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -230,9 +230,9 @@
 </package>
 
 <package
-  id="acrobat_jp_9"
+  id="adobereader_jp_9"
   name="Acrobat Reader 9 Japanese"
-  revision="%version%-4"
+  revision="%version%-5"
   reboot="false"
   priority="10">
 
