@@ -11,7 +11,7 @@
 <package
   id="spark"
   name="Spark IM"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -19,12 +19,15 @@
 
   <install cmd='taskkill /f /im spark.exe'><exit code="any" /></install>
   <install cmd='msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
+  <install cmd='%COMSPEC% /c DEL /Q "%ALLUSERSPROFILE%\Spark*.lnk"' />
 
-  <upgrade cmd='taskkill /f /im spark.exe'><exit code="any" /></install>
+  <upgrade cmd='taskkill /f /im spark.exe'><exit code="any" /></upgrade>
   <upgrade cmd='msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
+  <upgrade cmd='%COMSPEC% /c DEL /Q "%ALLUSERSPROFILE%\Spark*.lnk"' />
 
-  <downgrade cmd='taskkill /f /im spark.exe'><exit code="any" /></install>
+  <downgrade cmd='taskkill /f /im spark.exe'><exit code="any" /></downgrade>
   <downgrade cmd='msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
+  <downgrade cmd='%COMSPEC% /c DEL /Q "%ALLUSERSPROFILE%\Spark*.lnk"' />
 
   <remove  cmd='msiexec /x "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
 
