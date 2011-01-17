@@ -2,23 +2,46 @@
 
 <!--
 NOTES
- 1) This one doesn't actually do anything yet except for removing the autoupdater
- 2) It might be better to simply fudge the setup.ini instead
+ 1) It might be better to fudge setup.ini instead of removing the Run key
 -->
 
 <packages>
 
 <package
-  id="blackberry"
+  id="blackberry_desktop_manager"
   name="BlackBerry Desktop Manager"
-  revision="1"
+  revision="%version%-0"
   reboot="false"
   priority="10"
   execute="always">
 
+  <variable name="version" value="6.0.1.18" />
+
+  <depends package-id="msxml" />
+  <depends package-id="vcruntime" />
+  <depends package-id="dotnet3" />
+
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\BlackBerry\Desktop Manager\%version%\BlackBerry Desktop Software.msi"'>
+    <exit code="3010" />
+  </install>
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BlackBerryAutoUpdate /f'>
     <exit code="1" />
   </install>
+
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\BlackBerry\Desktop Manager\%version%\BlackBerry Desktop Software.msi"'>
+    <exit code="3010" />
+  </upgrade>
+  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BlackBerryAutoUpdate /f'>
+    <exit code="1" />
+  </upgrade>
+
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\BlackBerry\Desktop Manager\%version%\BlackBerry Desktop Software.msi"'>
+    <exit code="3010" />
+  </downgrade>
+  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BlackBerryAutoUpdate /f'>
+    <exit code="1" />
+  </downgrade>
+
 </package>
 
 </packages>
