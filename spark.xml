@@ -11,7 +11,7 @@
 <package
   id="spark"
   name="Spark IM"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
