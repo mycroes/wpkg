@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) Copy addons/opal.iss to %SOFTWARE%\Opal
+
+-->
+
+<packages>
+
+<package
+  id="faxpress8"
+  name="Castelle FaxPress Client"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="2.1.1.1" />
+
+  <check type="logical" condition="or">
+    <check type="file" condition="versionequalto" path="%PROGRAMFILES%\Internet Explorer\Plugins\Opal\OpalATL.dll" value="%version%" />
+    <check type="file" condition="versionequalto" path="%PROGRAMFILES(x86)%\Internet Explorer\Plugins\Opal\OpalATL.dll" value="%version%" />
+  </check>
+
+  <install cmd='%COMSPEC% /C copy /y "%SOFTWARE%\Opal\setup.iss" "c:\opal.iss"' />
+  <install cmd='"%SOFTWARE%\Opal\ieplug.exe" /s /a /s /sms /f1c:\opal.iss' />
+  <install cmd='%COMSPEC% /C del /F /Q c:\opal.iss' />
+
+  <upgrade cmd='%comspec% /c copy /y "%SOFTWARE%\Opal\setup.iss" "c:\opal.iss"' />
+  <upgrade cmd='"%SOFTWARE%\Opal\ieplug.exe" /s /a /s /sms /f1c:\opal.iss' />
+  <upgrade cmd='%COMSPEC% /C del /F /Q c:\opal.iss' />
+
+  <downgrade cmd='%comspec% /c copy /y "%SOFTWARE%\Opal\setup.iss" "c:\opal.iss"' />
+  <downgrade cmd='"%SOFTWARE%\Opal\ieplug.exe" /s /a /s /sms /f1c:\opal.iss' />
+  <downgrade cmd='%COMSPEC% /C del /F /Q c:\opal.iss' />
+
+  <remove  cmd='%comspec% /c RD /Q /S "%PROGRAMFILES%\Internet Explorer\Plugins\Opal"' />
+  <remove  cmd='%COMSPEC% /C IF EXIST c:\opal.iss del /F /Q c:\opal.iss' />
+
+</package>
+
+</packages>
