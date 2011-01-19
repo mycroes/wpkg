@@ -61,9 +61,9 @@ int main(int argc, char *argv[])
 		type = LOCALE_SISO3166CTRYNAME;
 	} else if (0 == StrCmpI(argv[1], "isolang")) {
 		type = LOCALE_SISO639LANGNAME;
-	} else if (0 == StrCmpI(argv[1], "abbrevctry")) {
+	} else if (0 == StrCmpI(argv[1], "abbrctry")) {
 		type = LOCALE_SABBREVCTRYNAME;
-	} else if (0 == StrCmpI(argv[1], "abbrevlang")) {
+	} else if (0 == StrCmpI(argv[1], "abbrlang")) {
 		type = LOCALE_SABBREVLANGNAME;
 	} else if (0 == StrCmpI(argv[1], "nativectry")) {
 		type = LOCALE_SNATIVECTRYNAME;
