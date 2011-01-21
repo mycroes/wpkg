@@ -10,11 +10,11 @@
 <package
   id="lastpass"
   name="LastPass browser plugins, IE, Firefox, Chrome"
-  revision="%version%-1"
+  revision="%version%-0"
   priority="10"
   reboot="false">
 
-  <variable name="version" value="1.70.1.0" />
+  <variable name="version" value="1.72.0.0" />
   <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\LastPass\lastpass.exe" value="%version%" />
   <install   cmd='"%SOFTWARE%\LastPass\lastpass_%PROCESSOR_ARCHITECTURE%.exe" -i -f --installdir="%PROGRAMFILES%\LastPass"' />
   <upgrade   cmd='"%SOFTWARE%\LastPass\lastpass_%PROCESSOR_ARCHITECTURE%.exe" -i -f --installdir="%PROGRAMFILES%\LastPass"' />
