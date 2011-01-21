@@ -13,13 +13,13 @@
 <package
   id="pdfcreator"
   name="PDFCreator 1.1.0"
-  revision="%version%-3"
+  revision="%version%-4"
   reboot="false"
   priority="10">
 
   <variable name="version"     value="1.1.0.0" />
   <variable name="fileversion" value="1_1_0" />
-  <variable name="flags"       value="/VERYSILENT /NORESTART /SP- /FORCEINSTALL" />
+  <variable name="flags"       value="/VERYSILENT /NORESTART /NOCANCEL /SP- /FORCEINSTALL" />
 
   <check type="logical" condition="or">
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\PDFCreator\PDFCreator.exe" value="%version%" />
@@ -39,6 +39,8 @@
 
   <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT /NORESTART' />
   <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" /VERYSILENT /NORESTART' />
+  <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator" RD /Q /S "%PROGRAMFILES%\PDFCreator"' />
+  <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator" RD /Q /S "%PROGRAMFILES(x86)%\PDFCreator"' />
 
 </package>
 
