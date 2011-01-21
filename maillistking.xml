@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="maillistking"
+  name="MailList King"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name='version' value='10.14' />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="MailList King" value="v%version%" />
+
+  <install cmd='"%SOFTWARE%\MailList King\mlking.exe" /SP- /VERYSILENT /NORESTART' />
+  <install cmd='taskkill /f /im mlking.exe'><exit code="any" /></install>
+
+  <upgrade cmd='"%SOFTWARE%\MailList King\mlking.exe" /SP- /VERYSILENT /NORESTART' />
+  <upgrade cmd='taskkill /f /im mlking.exe'><exit code="any" /></upgrade>
+
+  <downgrade cmd='"%SOFTWARE%\MailList King\mlking.exe" /SP- /VERYSILENT /NORESTART' />
+  <downgrade cmd='taskkill /f /im mlking.exe'><exit code="any" /></downgrade>
+
+  <remove cmd='taskkill /f /im mlking.exe'><exit code="any" /></remove>
+  <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\MailList King\unins000.exe" "%PROGRAMFILES%\MailList King\unins000.exe" /VERYSILENT /NORESTART' />
+  <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\MailList King\unins000.exe" "%PROGRAMFILES(x86)%\MailList King\unins000.exe" /VERYSILENT /NORESTART' />
+
+</package>
+
+</packages>
