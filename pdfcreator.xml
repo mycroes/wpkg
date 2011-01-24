@@ -12,13 +12,13 @@
 
 <package
   id="pdfcreator"
-  name="PDFCreator 1.1.0"
-  revision="%version%-4"
+  name="PDFCreator 1.2.0"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version"     value="1.1.0.0" />
-  <variable name="fileversion" value="1_1_0" />
+  <variable name="version"     value="1.2.0.0" />
+  <variable name="fileversion" value="1_2_0" />
   <variable name="flags"       value="/VERYSILENT /NORESTART /NOCANCEL /SP- /FORCEINSTALL" />
 
   <check type="logical" condition="or">
