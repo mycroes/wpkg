@@ -149,28 +149,35 @@
 </package>
 
 <!--
+  INSTRUCTIONS
+  1) Create the folder %SOFTWARE%\Microsoft\Office\Office97
+  2) Use 'setup.exe /A' to create an administrative install point into the 'pro'
+     subfolder.
+  3) Use 'Network Installation Wizard' to create a custom setup in 'pro/CUSTOM'.
+  4) Put the product key in a file called 'key.txt' inside the 'pro' subfolder.
+  5) Add sr1off97.exe to the Office97 folder (not the 'pro' subfolder). Strip
+     any iso language code from the name if present (happens at least on the
+     Dutch sr1, but not on English or German).
+  6) Add sr2bof97.exe to the Office97 folder (not the 'pro' subfolder).
+
   NOTES
-  1) Use 'setup.exe /A' to create and administrative install point.
-  2) Use 'Network Installation Wizard' to create a custom setup.
-  3) Put the product key in a file called 'key.txt'.
-  4) Extract service release files to folders sr1 and sr2.
-  5) Make the sr2 folder read only, else files that are patched will
-     dissappear (mso97.dll, msaccess.exe) and make the folder useless.
-  6) Uninstall leaves a lot of dirt behind, however when using the default
+  1) Uninstall leaves a lot of dirt behind, however when using the default
      install location there will office 2000 stuff here too, so we can't
      just prune the install dirs.
-  7) Access 97 requires some work on 64 bit systems, because some hardcoded
-     paths are used (%WINDIR%\System32\).
-  8) Access 97 might fail to set the workgroup correctly, I'm not sure if this
-     will throw an error dialog during setup (which it normally does in
-     interactive mode), but this can be fixed by running the workgroup admin
-     manually at a later time. Will get fixed later if it appears to be a
-     returning issue.
+  2) Access 97 requires some work on 64 bit systems, because some hardcoded
+     paths are used (%WINDIR%\System32\). Installation will probably hang or
+     fail.
+  3) Access 97 might fail to set the workgroup correctly, but this can be fixed
+     by running the workgroup admin manually at a later time. This will hold
+     the install! Will get fixed later if it appears to be a returning issue.
+  4) The administrative install is moveable. However, if you rely on the msapps
+     folder that was also created during the administrative install, you need to
+     alter it's location in the 'CUSTOM/CUSTOM.STF' file.
 -->
 <package
   id="office97pro"
   name="MS Office 97 Professional"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="9">
   <!--
@@ -199,18 +206,18 @@
     way). The 'usebackq' prevents the need to escape single quotes that define
     the command for 'FOR /F'.
   -->
-  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Office97\key.txt"`) DO "%SOFTWARE%\Office97\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
-  <install cmd='"%SOFTWARE%\Office97\sr1\off97sr1.exe" /Q' />
-  <install cmd='"%SOFTWARE%\Office97\sr2\sr2patch.exe" /Q' />
+  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Microsoft\Office\Office97\pro\key.txt"`) DO "%SOFTWARE%\Microsoft\Office\Office97\pro\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
+  <install cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr1off97.exe" /Q /C:"SR1Off97.exe /Q /C:""off97sr1.exe /Q"" "' />
+  <install cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr2bof97.exe" /Q /C:"sr2patch.exe /Q"' />
 
-  <upgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Office97\key.txt"`) DO "%SOFTWARE%\Office97\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
-  <upgrade cmd='"%SOFTWARE%\Office97\sr1\off97sr1.exe" /Q' />
-  <upgrade cmd='"%SOFTWARE%\Office97\sr2\sr2patch.exe" /Q' />
-
-  <downgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Office97\key.txt"`) DO "%SOFTWARE%\Office97\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
-  <downgrade cmd='"%SOFTWARE%\Office97\sr1\off97sr1.exe" /Q' />
-  <downgrade cmd='"%SOFTWARE%\Office97\sr2\sr2patch.exe" /Q' />
-
+  <upgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Microsoft\Office\Office97\pro\key.txt"`) DO "%SOFTWARE%\Microsoft\Office\Office97\pro\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
+  <upgrade cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr1off97.exe" /Q /C:"SR1Off97.exe /Q /C:""off97sr1.exe /Q"" "' />
+  <upgrade cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr2bof97.exe" /Q /C:"sr2patch.exe /Q"' />
+  
+  <downgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Microsoft\Office\Office97\pro\key.txt"`) DO "%SOFTWARE%\Microsoft\Office\Office97\pro\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
+  <downgrade cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr1off97.exe" /Q /C:"SR1Off97.exe /Q /C:""off97sr1.exe /Q"" "' />
+  <downgrade cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr2bof97.exe" /Q /C:"sr2patch.exe /Q"' />
+  
   <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%PROGRAMFILES%\Microsoft Office\Office\Setup\Acme.exe" /w Off97Pro.STF /UA /QNT' />
   <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%PROGRAMFILES(x86)%\Microsoft Office\Office\Setup\Acme.exe" /w Off97Pro.STF /UA /QNT' />
 </package>
