@@ -14,26 +14,26 @@
 <package
   id="ie8"
   name="Internet Explorer 8"
-  revision="11"
+  revision="12"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="Windows Internet Explorer 8" />
 
-  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\IE8\IE8-WindowsXP-x86-%A.exe" /passive /norestart /update-no'>
+  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\IE8\IE8-WindowsXP-x86-%A.exe" /passive /norestart /update-no'>
     <exit code="3010" reboot="postponed" />
   </install>
   <install cmd='REG ADD "HKLM\SOFTWARE\Clients\StartMenuInternet\IEXPLORE.EXE\DefaultIcon" /ve /d "%PROGRAMFILES%\Internet Explorer\iexplore.exe" /f' />
   <install cmd='REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Main" /v DisableFirstRunCustomize /t REG_DWORD /d 1 /f' />
-  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\iesearch.reg" regedit /s "%SOFTWARE%\IE8\iesearch.reg"' />
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE8\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE8\iesearch.reg"' />
 
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\Clients\StartMenuInternet\IEXPLORE.EXE\DefaultIcon" /ve /d "%PROGRAMFILES%\Internet Explorer\iexplore.exe" /f' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Main" /v DisableFirstRunCustomize /t REG_DWORD /d 1 /f' />
-  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\iesearch.reg" regedit /s "%SOFTWARE%\IE8\iesearch.reg"' />
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE8\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE8\iesearch.reg"' />
 
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\Clients\StartMenuInternet\IEXPLORE.EXE\DefaultIcon" /ve /d "%PROGRAMFILES%\Internet Explorer\iexplore.exe" /f' />
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Main" /v DisableFirstRunCustomize /t REG_DWORD /d 1 /f' />
-  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\iesearch.reg" regedit /s "%SOFTWARE%\IE8\iesearch.reg"' />
+  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE8\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE8\iesearch.reg"' />
 
   <remove  cmd='"%WINDIR%\ie8\spuninst\spuninst.exe" %MSI%' />
 
@@ -42,7 +42,7 @@
 <package
   id="ie67_dev"
   name="IE6/7 Developer Toolbar"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -50,10 +50,10 @@
 
   <check type="uninstall" condition="versiongreaterorequal" path="Internet Explorer Developer Toolbar" value="%version%" />
 
-  <install   cmd='msiexec /i "%SOFTWARE%\IE\IEDevToolBarSetup.msi" %MSI%' />
-  <upgrade   cmd='msiexec /i "%SOFTWARE%\IE\IEDevToolBarSetup.msi" %MSI%' />
-  <downgrade cmd='msiexec /i "%SOFTWARE%\IE\IEDevToolBarSetup.msi" %MSI%' />
-  <remove    cmd='msiexec /x "%SOFTWARE%\IE\IEDevToolBarSetup.msi" %MSI%' />
+  <install   cmd='msiexec /i "%SOFTWARE%\Microsoft\IE7\IEDevToolBarSetup.msi" %MSI%' />
+  <upgrade   cmd='msiexec /i "%SOFTWARE%\Microsoft\IE7\IEDevToolBarSetup.msi" %MSI%' />
+  <downgrade cmd='msiexec /i "%SOFTWARE%\Microsoft\IE7\IEDevToolBarSetup.msi" %MSI%' />
+  <remove    cmd='msiexec /x "%SOFTWARE%\Microsoft\IE7\IEDevToolBarSetup.msi" %MSI%' />
 
 </package>
 
