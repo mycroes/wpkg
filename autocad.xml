@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  1) AutoCAD is a very complex piece of software so we do not have autoinstallers yet. What we DO have is auto updating
+  2) Please rename the files from x64 to amd64 for the 64 bit version after download
+  3) Inventor Suite 2010 service packs are incremental
+  4) Mechanical 2010 update packs are not
+ -->
+
+<packages>
+
+<package
+  id="autocad2010_inventor_updates"
+  name="AutoCAD 2010 Inventor Suite - Updates"
+  revision="%version%-1"
+  priority="10"
+  reboot="false"
+  execute="once">
+
+  <variable name="version" value="14.3.0000.27200" /> <!-- currently not used -->
+
+  <check type="uninstall" condition="exists" path="Autodesk Inventor 2010 SP1" />
+  <check type="uninstall" condition="exists" path="Autodesk Inventor 2010 SP2" />
+  <check type="uninstall" condition="exists" path="Autodesk Inventor 2010 SP3" />
+
+  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Autodesk\AutoCAD2010Inventor\inventor2010_sp1_%PROCESSOR_ARCHITECTURE%.msp" REINSTALL=ALL REINSTALLMODE=omus' />
+  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Autodesk\AutoCAD2010Inventor\inventor2010_sp2_%PROCESSOR_ARCHITECTURE%.msp" REINSTALL=ALL REINSTALLMODE=omus' />
+  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Autodesk\AutoCAD2010Inventor\inventor2010_sp3_%PROCESSOR_ARCHITECTURE%.msp" REINSTALL=ALL REINSTALLMODE=omus' />
+
+</package>
+
+<package
+  id="autocad2010_mechanical_updates"
+  name="AutoCAD 2010 Mechanical - Updates"
+  revision="%version%-0"
+  priority="10"
+  reboot="false"
+  execute="once">
+
+  <variable name="version" value="3" />
+
+  <check type="uninstall" condition="exists" path="AutoCAD Mechanical 2010 Version %version%" />
+
+  <install cmd='"%SOFTWARE%\Autodesk\AutoCAD2010Mechanical\acm2010update2%PROCESSOR_ARCHITECTURE%.exe" /q' />
+
+</package>
+
+</packages>

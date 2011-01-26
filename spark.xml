@@ -5,13 +5,13 @@
   <!--
   NOTES
   1) http://www.igniterealtime.org/projects/spark/index.jsp
-  2) For some super odd reason, Spark needs to be start once as admin before normal users can start it, so we do that and kill it again on install
+  2) For some super odd reason, Spark needs to be started once as admin before normal users can start it
   -->
 
 <package
   id="spark"
   name="Spark IM"
-  revision="%version%-3"
+  revision="%version%-5"
   reboot="false"
   priority="10">
 
@@ -19,15 +19,18 @@
 
   <install cmd='taskkill /f /im spark.exe'><exit code="any" /></install>
   <install cmd='msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
-  <install cmd='%COMSPEC% /c DEL /Q "%ALLUSERSPROFILE%\Spark*.lnk"' />
+  <install cmd='%COMSPEC% /c DEL /Q "%ALLUSERSPROFILE%\Desktop\Spark*.lnk"'><exit code="any" /></install>
+  <install cmd='%COMSPEC% /c DEL /Q "%PUBLIC%\Desktop\Spark*.lnk"'><exit code="any" /></install>
 
   <upgrade cmd='taskkill /f /im spark.exe'><exit code="any" /></upgrade>
   <upgrade cmd='msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
-  <upgrade cmd='%COMSPEC% /c DEL /Q "%ALLUSERSPROFILE%\Spark*.lnk"' />
+  <upgrade cmd='%COMSPEC% /c DEL /Q "%ALLUSERSPROFILE%\Desktop\Spark*.lnk"'><exit code="any" /></upgrade>
+  <upgrade cmd='%COMSPEC% /c DEL /Q "%PUBLIC%\Desktop\Spark*.lnk"'><exit code="any" /></upgrade>
 
   <downgrade cmd='taskkill /f /im spark.exe'><exit code="any" /></downgrade>
   <downgrade cmd='msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
-  <downgrade cmd='%COMSPEC% /c DEL /Q "%ALLUSERSPROFILE%\Spark*.lnk"' />
+  <downgrade cmd='%COMSPEC% /c DEL /Q "%ALLUSERSPROFILE%\Desktop\Spark*.lnk"'><exit code="any" /></downgrade>
+  <downgrade cmd='%COMSPEC% /c DEL /Q "%PUBLIC%\Desktop\Spark*.lnk"'><exit code="any" /></downgrade>
 
   <remove  cmd='msiexec /x "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
 

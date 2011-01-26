@@ -12,7 +12,7 @@
 <package
   id="ultradefrag"
   name="Ultra Defragmenter"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -24,9 +24,8 @@
   <install cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.amd64.exe" /S /NCRC' />
   <install cmd='%ComSpec% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
   <install cmd='"%SystemRoot%\system32\bootexctrl.exe" /r defrag_native' />
-  <install cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'>
-    <exit code="any" />
-  </install>
+  <install cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'><exit code="any" /></install>
+  <install cmd='%ComSpec% /c del /q "%PUBLIC%\Desktop\UltraDefrag.lnk"'><exit code="any" /></install>
   <install cmd='schtasks /Delete /TN DefragWeekly /F'>
     <exit code="any" />
   </install>
@@ -36,9 +35,8 @@
   <upgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.amd64.exe" /S /NCRC' />
   <upgrade cmd='%ComSpec% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
   <upgrade cmd='"%SystemRoot%\system32\bootexctrl.exe" /r defrag_native' />
-  <upgrade cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'>
-    <exit code="any" />
-  </upgrade>
+  <upgrade cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'><exit code="any" /></upgrade>
+  <upgrade cmd='%ComSpec% /c del /q "%PUBLIC%\Desktop\UltraDefrag.lnk"'><exit code="any" /></upgrade>
   <upgrade cmd='schtasks /Delete /TN DefragWeekly /F'>
     <exit code="any" />
   </upgrade>
@@ -48,9 +46,8 @@
   <downgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.amd64.exe" /S /NCRC' />
   <downgrade cmd='%ComSpec% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
   <downgrade cmd='"%SystemRoot%\system32\bootexctrl.exe" /r defrag_native' />
-  <downgrade cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'>
-    <exit code="any" />
-  </downgrade>
+  <downgrade cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'><exit code="any" /></downgrade>
+  <downgrade cmd='%ComSpec% /c del /q "%PUBLIC%\Desktop\UltraDefrag.lnk"'><exit code="any" /></downgrade>
   <downgrade cmd='schtasks /Delete /TN DefragWeekly /F'>
     <exit code="any" />
   </downgrade>

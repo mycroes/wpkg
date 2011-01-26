@@ -24,14 +24,14 @@ NOTES
   <depends package-id="quicktime" />
 
   <variable name="version" value="10.1.1.4" />
-  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_10.1.1.4\iTunes.msi" />
-  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes_10.1.1.4\iTunes64.msi" />
+  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes\%version%\iTunes.msi" />
+  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes\%version%\iTunes64.msi" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="iTunes" value="%version%"/>
 
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
-  <install cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_10.1.1.4\AppleSoftwareUpdate.msi"'>
+  <install cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes\%version%\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </install>
@@ -48,7 +48,7 @@ NOTES
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"'>
     <exit code="any" />
   </upgrade>
-  <upgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_10.1.1.4\AppleSoftwareUpdate.msi"'>
+  <upgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes\%version%\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </upgrade>
@@ -65,7 +65,7 @@ NOTES
   <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"'>
     <exit code="any" />
   </downgrade>
-  <downgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_10.1.1.4\AppleSoftwareUpdate.msi"'>
+  <downgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes\%version%\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </downgrade>
@@ -82,7 +82,7 @@ NOTES
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg64%"'>
     <exit code="3010" />
   </remove>
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes_10.1.1.4\AppleSoftwareUpdate.msi"'>
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes\%version%\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </remove>
@@ -91,13 +91,13 @@ NOTES
 <package
   id="applemobile"
   name="Apple Mobile Device Support"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
   <variable name="version" value="3.3.0.69" />
-  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_10.1.1.4\AppleMobileDeviceSupport.msi" />
-  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes_10.1.1.4\AppleMobileDeviceSupport64.msi" />
+  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\AppleMobileDeviceSupport.msi" />
+  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\AppleMobileDeviceSupport64.msi" />
 
   <check type="uninstall"  condition="versiongreaterorequal" path="Apple Mobile Device Support" value="%version%"/>
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
@@ -121,27 +121,30 @@ NOTES
   priority="10">
 
   <variable name="version" value="1.4.1" />
-  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_10.1.1.4\AppleApplicationSupport.msi" />
+  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\AppleApplicationSupport.msi" />
+  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\AppleApplicationSupport.msi" />
 
   <check type="uninstall"  condition="versiongreaterorequal" path="Apple Application Support" value="%version%"/>
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg32%"' />
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg32%"' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x "%pkg32%"' />
-  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg32%"' />
+  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg64%"' />
 </package>
 
 <package
   id="bonjour"
   name="Bonjour"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="2.0.4.0" />
-  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_10.1.1.4\bonjour.msi" />
-  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes_10.1.1.4\bonjour64.msi" />
+  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\bonjour.msi" />
+  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\bonjour64.msi" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Bonjour" value="%version%"/>
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
@@ -155,18 +158,19 @@ NOTES
 <package
   id="quicktime"
   name="Apple Quicktime"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="7.69.80.9" />
-  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes_10.1.1.4\QuickTime.msi" />
+  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\QuickTime.msi" />
+  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\QuickTime.msi" />
   <variable name="RUN" value="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="QuickTime" value="%version%"/>
 
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg32%"' />
+  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
   <install cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
     <exit code="1" />
   </install>
@@ -175,7 +179,7 @@ NOTES
   </install>
 
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg32%"' />
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
   <upgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
     <exit code="1" />
   </upgrade>
@@ -184,7 +188,7 @@ NOTES
   </upgrade>
 
   <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg32%"' />
+  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
   <downgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
     <exit code="1" />
   </downgrade>
@@ -193,28 +197,25 @@ NOTES
   </downgrade>
 
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x "%pkg32%"' />
-  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg32%"' />
+  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg64%"' />
 </package>
 
 <package
   id="iphone_config"
   name="Apple iPhone Configuration Utility"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <depends package-id="applesupport" />
   <depends package-id="applemobile" />
-  <!-- Must check this
-  <depends package-id="bonjour" />
-  -->
 
   <variable name="version" value="3.2.0.267" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="iPhone Configuration Utility" value="%version%"/>
 
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\iPhone_3\iPhoneConfigUtility.msi"' />
-  <install cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhone_3\AppleSoftwareUpdate.msi"'>
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\iPhoneConfig\3\iPhoneConfigUtility.msi"' />
+  <install cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhoneConfig\3\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </install>
@@ -222,8 +223,8 @@ NOTES
     <exit code="1" />
   </install>
 
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\iPhone_3\iPhoneConfigUtility.msi"' />
-  <upgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhone_3\AppleSoftwareUpdate.msi"'>
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\iPhoneConfig\3\iPhoneConfigUtility.msi"' />
+  <upgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhoneConfig\3\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </upgrade>
@@ -231,8 +232,8 @@ NOTES
     <exit code="1" />
   </upgrade>
 
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhone_3\iPhoneConfigUtility.msi"' />
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhone_3\AppleSoftwareUpdate.msi"'>
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhoneConfig\3\iPhoneConfigUtility.msi"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhoneConfig\3\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </remove>
