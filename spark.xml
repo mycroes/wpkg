@@ -5,7 +5,7 @@
   <!--
   NOTES
   1) http://www.igniterealtime.org/projects/spark/index.jsp
-  2) For some super odd reason, Spark needs to be started once as admin before normal users can start it 
+  2) For some super odd reason, Spark needs to be started once as admin before normal users can start it
   -->
 
 <package
