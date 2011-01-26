@@ -5,9 +5,8 @@
   1) Do not install this on anything > XP SP3 for now
   2) Will add IE9 when it is released
   3) If you want to preload some search providers then export SearchScopes from another machine and name it iesearch.reg
-  4) We now support localized versions, but please only leave one version in %software%\ie8 as they will all be installed
-  5) If you have more languages, please let us know
-  6) Do NOT install dev toolbar on 8 - it's only for 6 and 7
+  4) This script relies on localetool to detect Windows install language and use correct installer
+  5) Do NOT install dev toolbar on 8 - it's only for 6 and 7
 -->
 
 <packages>
@@ -15,30 +14,13 @@
 <package
   id="ie8"
   name="Internet Explorer 8"
-  revision="10"
+  revision="11"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="Windows Internet Explorer 8" />
 
-  <!-- Danish -->
-  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\IE8-WindowsXP-x86-DAN.exe" "%SOFTWARE%\IE8\IE8-WindowsXP-x86-DAN.exe" /passive /norestart /update-no'>
-    <exit code="3010" reboot="postponed" />
-  </install>
-  <!-- German -->
-  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\IE8-WindowsXP-x86-DEU.exe" "%SOFTWARE%\IE8\IE8-WindowsXP-x86-DEU.exe" /passive /norestart /update-no'>
-    <exit code="3010" reboot="postponed" />
-  </install>
-  <!-- English -->
-  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\IE8-WindowsXP-x86-ENU.exe" "%SOFTWARE%\IE8\IE8-WindowsXP-x86-ENU.exe" /passive /norestart /update-no'>
-    <exit code="3010" reboot="postponed" />
-  </install>
-  <!-- French -->
-  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\IE8-WindowsXP-x86-FRA.exe" "%SOFTWARE%\IE8\IE8-WindowsXP-x86-FRA.exe" /passive /norestart /update-no'>
-    <exit code="3010" reboot="postponed" />
-  </install>
-  <!-- Dutch -->
-  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\IE8\IE8-WindowsXP-x86-NLD.exe" "%SOFTWARE%\IE8\IE8-WindowsXP-x86-NLD.exe" /passive /norestart /update-no'>
+  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\IE8\IE8-WindowsXP-x86-%A.exe" /passive /norestart /update-no'>
     <exit code="3010" reboot="postponed" />
   </install>
   <install cmd='REG ADD "HKLM\SOFTWARE\Clients\StartMenuInternet\IEXPLORE.EXE\DefaultIcon" /ve /d "%PROGRAMFILES%\Internet Explorer\iexplore.exe" /f' />
