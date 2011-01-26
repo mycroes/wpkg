@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Use nciman.exe in the admin folder from the setup directory to create
+  an unattended file. Keep in mind that if you install additional features
+  besides the client, you also need to remove them seperately.
+
+  It seems that one should always reboot after installation or upgrade,
+  details on the return code of acu.exe are scarce.
+
+  Also it seems that setupsp.inf might be used when upgrading to a newer
+  service pack, of the same version, which might cause user interaction if
+  not altered.
+-->
+<packages>
+
+<!--
+  NOTES
+  1) 2k/XP only for now
+  2) Not sure what happens with upgrade and downgrade actions, but it happily
+     installs on clean Windows installs (my primary target).
+-->
+
+<package
+  id="netwareclient"
+  name="Novell Netware Client"
+  revision="%version%-0"
+  priority="50">
+
+  <variable name="version" value="4.91.5.20080922" />
+
+  <check type="uninstall" condition="exists" path="Novell Client for Windows" />
+
+  <install cmd='"%SOFTWARE%\Netware\xp_x86\acu.exe" /D:no /U:"%SOFTWARE%\Netware\xp_x86\unattended.txt"' reboot="postponed">
+    <exit code="1" />
+  </install>
+
+  <upgrade cmd='"%SOFTWARE%\Netware\xp_x86\acu.exe" /D:no /U:"%SOFTWARE%\Netware\xp_x86\unattended.txt"' reboot="postponed">
+    <exit code="1" />
+  </upgrade>
+
+  <downgrade cmd='"%SOFTWARE%\Netware\xp_x86\acu.exe" /D:no /U:"%SOFTWARE%\Netware\xp_x86\unattended.txt"' reboot="postponed">
+    <exit code="1" />
+  </downgrade>
+
+  <!-- Copy acu.exe and acu.ini to the 'remove' folder, edit acu.ini and change all items to 'yes' under 'uninstall' -->
+  <remove cmd='"%SOFTWARE%\Netware\xp_x86\remove\acu.exe" /D:no' reboot="postponed" />
+
+</package>
+
+</packages>
