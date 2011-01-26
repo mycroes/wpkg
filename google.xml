@@ -11,18 +11,21 @@
 <package
   id="googleearth"
   name="Google Earth 5.2"
-  revision="5211547"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <check type="uninstall" condition="versiongreaterorequal" path="Google Earth" value="5.2.1.1547" />
+  <variable name="version" value="5.2.1.1547" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Google Earth" value="%version%" />
+
   <install cmd='%COMSPEC% /C "md %SystemDrive%\netinst\logs\"' >
     <exit code="0" />
     <exit code="1" /> <!-- directory already exists -->
   </install>
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Google Earth\5.2\Google Earth.msi"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\5.2\Google Earth.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\5.2\Google Earth.msi"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Google\Google Earth\5.2\Google Earth.msi"' />
 
 </package>
 
@@ -38,19 +41,19 @@
 
   <check type='uninstall' condition='versiongreaterorequal' path='Picasa 3' value='%version%' />
 
-  <install cmd='"%SOFTWARE%\Picasa\picasa%fileversion%-setup.exe" /S /L' >
+  <install cmd='"%SOFTWARE%\Google\Picasa\picasa%fileversion%-setup.exe" /S /L' >
     <exit code='1' />
     <exit code='128' />
   </install>
   <install cmd='sc config gusvc start= disabled' />
 
-  <upgrade cmd='"%SOFTWARE%\Picasa\picasa%fileversion%-setup.exe" /S /L' >
+  <upgrade cmd='"%SOFTWARE%\Google\Picasa\picasa%fileversion%-setup.exe" /S /L' >
     <exit code='1' />
     <exit code='128' />
   </upgrade>
   <upgrade cmd='sc config gusvc start= disabled' />
 
-  <downgrade cmd='"%SOFTWARE%\Picasa\picasa%fileversion%-setup.exe" /S /L' >
+  <downgrade cmd='"%SOFTWARE%\Google\Picasa\picasa%fileversion%-setup.exe" /S /L' >
     <exit code='1' />
     <exit code='128' />
   </downgrade>
@@ -58,6 +61,38 @@
 
   <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Google\Picasa3\Uninstall.exe" "%PROGRAMFILES%\Google\Picasa3\Uninstall.exe" /S' />
   <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Google\Picasa3\Uninstall.exe" "%PROGRAMFILES(x86)%\Google\Picasa3\Uninstall.exe" /S' />
+
+</package>
+
+<package
+  id="googletalk"
+  name="Google Talk"
+  revision="%version%-1"
+  priority="10"
+  reboot="false">
+
+  <variable name="version" value="1.0.0.104" />
+
+  <check type="logical" condition="or">
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Google\Google Talk\googletalk.exe" value="%version%" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Google\Google Talk\googletalk.exe" value="%version%" />
+  </check>
+
+  <install cmd='"%SOFTWARE%\Google\Google Talk\googletalk-setup.exe" /S' />
+  <install cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></install>
+  <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f' />
+
+  <upgrade cmd='"%SOFTWARE%\Google\Google Talk\googletalk-setup.exe" /S' />
+  <upgrade cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></upgrade>
+  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f' />
+
+  <downgrade cmd='"%SOFTWARE%\Google\Google Talk\googletalk-setup.exe" /S' />
+  <downgrade cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></downgrade>
+  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f' />
+
+  <remove cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></remove>
+  <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Google\Google Talk\uninstall.exe" "%PROGRAMFILES%\Google\Google Talk\uninstall.exe" /S' />
+  <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Google\Google Talk\uninstall.exe" "%PROGRAMFILES%\Google\Google Talk\uninstall.exe" /S' />
 
 </package>
 
