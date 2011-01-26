@@ -10,16 +10,16 @@
 <package
   id="autocad2010_inventor_updates"
   name="AutoCAD 2010 Inventor Suite - Updates"
-  revision="%version%-0"
+  revision="%version%-1"
   priority="10"
   reboot="false"
   execute="once">
 
   <variable name="version" value="9.0.0.88" />
 
-  <check type="uninstall" condition="exists" path="AutoCAD Inventor 2010 SP1" />
-  <check type="uninstall" condition="exists" path="AutoCAD Inventor 2010 SP2" />
-  <check type="uninstall" condition="exists" path="AutoCAD Inventor 2010 SP3" />
+  <check type="uninstall" condition="exists" path="Autodesk Inventor 2010 SP1" />
+  <check type="uninstall" condition="exists" path="Autodesk Inventor 2010 SP2" />
+  <check type="uninstall" condition="exists" path="Autodesk Inventor 2010 SP3" />
 
   <install cmd='msiexec %MSI% /p "%SOFTWARE%\Autodesk\AutoCAD2010Inventor\inventor2010_sp1_%PROCESSOR_ARCHITECTURE%.msp" REINSTALL=ALL REINSTALLMODE=omus' />
   <install cmd='msiexec %MSI% /p "%SOFTWARE%\Autodesk\AutoCAD2010Inventor\inventor2010_sp2_%PROCESSOR_ARCHITECTURE%.msp" REINSTALL=ALL REINSTALLMODE=omus' />
