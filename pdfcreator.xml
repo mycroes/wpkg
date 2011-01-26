@@ -13,7 +13,7 @@
 <package
   id="pdfcreator"
   name="PDFCreator 1.2.0"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -30,12 +30,15 @@
 
   <install cmd='%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%_setup.exe /LOADINF="%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%.inf" %flags%' />
   <install cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
+  <install cmd='REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Print\Monitors\PDFCreator\Ports\PDFCreator:" /v Runuser /t REG_DWORD /d 1 /f' />
 
   <upgrade cmd='%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%_setup.exe /LOADINF="%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%.inf" %flags%' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
+  <upgrade cmd='REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Print\Monitors\PDFCreator\Ports\PDFCreator:" /v Runuser /t REG_DWORD /d 1 /f' />
 
   <downgrade cmd='%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%_setup.exe /LOADINF="%SOFTWARE%\PDFCreator\PDFCreator-%fileversion%.inf" %flags%' />
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\PDFCreator\Program" /v "UpdateInterval" /t REG_SZ /d "0" /f' />
+  <downgrade cmd='REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Print\Monitors\PDFCreator\Ports\PDFCreator:" /v Runuser /t REG_DWORD /d 1 /f' />
 
   <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\PDFCreator\unins000.exe" "%PROGRAMFILES%\PDFCreator\unins000.exe" /VERYSILENT /NORESTART' />
   <remove  cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" "%PROGRAMFILES(x86)%\PDFCreator\unins000.exe" /VERYSILENT /NORESTART' />
