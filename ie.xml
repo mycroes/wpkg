@@ -14,7 +14,7 @@
 <package
   id="ie8"
   name="Internet Explorer 8"
-  revision="12"
+  revision="13"
   reboot="false"
   priority="10">
 
@@ -35,7 +35,9 @@
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Main" /v DisableFirstRunCustomize /t REG_DWORD /d 1 /f' />
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE8\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE8\iesearch.reg"' />
 
-  <remove  cmd='"%WINDIR%\ie8\spuninst\spuninst.exe" %MSI%' />
+  <remove cmd='"%WINDIR%\ie8\spuninst\spuninst.exe" %MSI%'>
+    <exit code="3010" reboot="postponed" />
+  </remove>
 
 </package>
 
