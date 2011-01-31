@@ -45,4 +45,51 @@
 
 </package>
 
+<!--
+  INSTRUCTIONS
+  1) Create an administrative install at '%SOFTWARE%\AutoDesk\AutoCAD\
+     AutoCAD2007'. (This will create the AdminImage folder and shortcut to the
+     customized profile.) Name the profile 'custom' so the transform's name
+     will be 'custom.mst'.
+
+  NOTES
+  1) Assumes English version of AutoCAD, might also work for other versions
+     if you change the install check.
+-->
+
+<package
+  id="autodesk_autocad2007"
+  name="AutoDesk AutoCAD 2007"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <depends package-id="dotnet3" />
+
+  <variable name="version" value="17.0.54.110" />
+  <variable name="base" value="%SOFTWARE%\AutoDesk\AutoCAD\AutoCAD2007" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="AutoCAD 2007 - English" value="%version%" />
+
+  <install cmd='msiexec /i "%base%\AdminImage\acad.msi" TRANSFORMS="%base%\AdminImage\custom.mst" %MSI%'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </install>
+
+  <upgrade cmd='msiexec /i "%base%\AdminImage\acad.msi" TRANSFORMS="%base%\AdminImage\custom.mst" %MSI%'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </upgrade>
+
+  <downgrade cmd='msiexec /i "%base%\AdminImage\acad.msi" TRANSFORMS="%base%\AdminImage\custom.mst" %MSI%'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </downgrade>
+
+  <remove cmd='msiexec /X{5783F2D7-5001-0409-0002-0060B0CE6BBA} %MSI%'>
+    <exit code="3010" />
+  </remove>
+
+</package>
+
 </packages>
