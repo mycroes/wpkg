@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<!--
+  INSTRUCTIONS
+  1) Generate 'custom.mst' according to the following steps:
+     - Start with 1033.mst
+     - Add 'LICENSENUMBER', 'USERNAME' AND 'COMPANYNAME' properties.
+     - Add 'ALLUSERS' to properties, give it value '1' (without quotes).
+     ? Set 'VTFOUND' to 'Yes' in properties (for VT emulation).
+     - Set 'Level' to '0' for all features you don't want.
+
+  NOTES
+  1) Installer is quite broken, so silent mode won't work, thus we use passive.
+
+-->
+<package
+  id="persoft_smarterm"
+  name="SmarTerm"
+  revision="%version%-0"
+  reboot="false"
+  priority="0">
+
+  <variable name="version" value="10.0" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="SmarTerm" value="%version%" />
+
+  <install cmd='msiexec /i "%SOFTWARE%\Persoft\SmarTerm\SmarTerm.msi" TRANSFORMS="%SOFTWARE%\Persoft\SmarTerm\custom.mst" /passive /norestart'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </install>
+
+  <upgrade cmd='msiexec /i "%SOFTWARE%\Persoft\SmarTerm\SmarTerm.msi" TRANSFORMS="%SOFTWARE%\Persoft\SmarTerm\custom.mst" /passive /norestart'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </upgrade>
+
+  <downgrade cmd='msiexec /i "%SOFTWARE%\Persoft\SmarTerm\SmarTerm.msi" TRANSFORMS="%SOFTWARE%\Persoft\SmarTerm\custom.mst" /passive /norestart'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </downgrade>
+
+  <remove cmd='msiexec /X{5019BD75-224C-11D2-B5FA-0800099AEA44} /passive /norestart'>
+    <exit code="3010" />
+  </remove>
+
+</package>
+
+</packages>
