@@ -30,7 +30,7 @@
 
   <check type="uninstall" condition="exists" path="Microsoft .NET Framework 3.5 SP1" />
 
-  <install cmd='"%SOFTWARE%\DotNet\dotnetfx35.exe" %MSI%'>
+  <install cmd='"%SOFTWARE%\DotNet\dotnetfx35.exe" /lang:ENU %MSI%'>
     <exit code="194" reboot="postponed" />
     <exit code="1603" />
     <exit code="3010" reboot="postponed" />
