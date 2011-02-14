@@ -13,7 +13,8 @@
   name="Sophos Endpoint Security 9"
   revision="%version%-0"
   reboot="false"
-  priority="20">
+  priority="20"
+  execute="once">
 
   <variable name="version" value="9.0.5" />
 
@@ -37,10 +38,9 @@
   reboot="false"
   priority="21">
 
-  <check type="uninstall" condition="exists" path="Sophos Anti-Virus" />
+  <check type="uninstall" condition="versiongreaterorequal" path="Sophos Anti-Virus" value="%version%" />
 
-  <!-- version from savmain.exe, savservice reads 9.0.0.9050 -->
-  <variable name="version" value="9.0.3.9080" />
+  <variable name="version" value="9.0.5" />
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\savxp\Sophos Anti-Virus.msi" CHECKFORCOMPETITORS=1'>
     <exit code='1641' reboot="postponed" />
@@ -80,10 +80,9 @@
   reboot="false"
   priority="20">
 
-  <check type="uninstall" condition="exists" path="Sophos AutoUpdate" />
+  <check type="uninstall" condition="versiongreaterorequal" path="Sophos AutoUpdate" value="%version%" />
 
-  <!-- version from almon.exe, ALUpdate reads 5.10.36.223 -->
-  <variable name="version" value="3.31.87.216" />
+  <variable name="version" value="2.5.4" />
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\sau\Sophos AutoUpdate.msi" TRANSFORMS="%SOFTWARE%\Sophos\sau\custom.mst" RMSACTION=0 BOOTSTRAP=NOUPDATE'>
     <exit code='1641' reboot="postponed" />
