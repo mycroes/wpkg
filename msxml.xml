@@ -17,14 +17,14 @@
   <check type="uninstall" condition="exists" path="MSXML 4.0 SP3 Parser" />
   <check type="uninstall" condition="exists" path="MSXML 6.0 Parser" />
 
-  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml4_x86.msi"' />
-  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml6_x86.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml4_x86.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml6_x86.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml4_x86.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\MSXML\msxml6_x86.msi"' />
-  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\MSXML\msxml4_x86.msi"' />
-  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\MSXML\msxml6_x86.msi"' />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\MSXML\MSXML4.msi"' />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\MSXML\MSXML6.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\MSXML\MSXML4.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\MSXML\MSXML6.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\MSXML\MSXML4.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\MSXML\MSXML6.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Microsoft\MSXML\MSXML4.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Microsoft\MSXML\MSXML6.msi"' />
 
 </package>
 
