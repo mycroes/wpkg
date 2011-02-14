@@ -3,7 +3,7 @@
 <!--
   NOTES
   1) For version 2, there are now only two installers - one for 32 and another for 64 bit
-  2) All installers are named mssefullinstall.exe - rename them to _x32 and _x64
+  2) All installers are named mseinstall.exe - move them to the proper directory
   3) The platform/bitness specific packages now only depend on the generic msse package - they are left in for backwards compatibility
   4) Installer will throw -2147156187 if a reboot is needed before it can installed again - this is NOT success
 
@@ -23,12 +23,7 @@
   <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Security Essentials" value="%version%" />
 
   <install cmd='net stop MsMpSvc'><exit code="2" /></install>
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" "%SOFTWARE%\MSSE\mssefullinstall_x32.exe" /s /runwgacheck'>
-    <exit code="-2147156221" />
-    <exit code="-2147156213" />
-    <exit code="327424" />
-  </install>
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\MSSE\mssefullinstall_x64.exe" /s /runwgacheck'>
+  <install cmd='"%SOFTWARE%\Microsoft\MSSE\%PROCESSOR_ARCHITECTURE%\mseinstall.exe" /s /runwgacheck'>
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
@@ -37,12 +32,7 @@
   <install cmd='net start MsMpSvc'><exit code="2" /></install>
 
   <upgrade cmd='net stop MsMpSvc'><exit code="2" /></upgrade>
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" "%SOFTWARE%\MSSE\mssefullinstall_x32.exe" /s /runwgacheck'>
-    <exit code="-2147156221" />
-    <exit code="-2147156213" />
-    <exit code="327424" />
-  </upgrade>
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\MSSE\mssefullinstall_x64.exe" /s /runwgacheck'>
+  <upgrade cmd='"%SOFTWARE%\Microsoft\MSSE\%PROCESSOR_ARCHITECTURE%\mseinstall.exe" /s /runwgacheck'>
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
@@ -51,12 +41,7 @@
   <upgrade cmd='net start MsMpSvc'><exit code="2" /></upgrade>
 
   <downgrade cmd='net stop MsMpSvc'><exit code="2" /></downgrade>
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" "%SOFTWARE%\MSSE\mssefullinstall_x32.exe" /s /runwgacheck'>
-    <exit code="-2147156221" />
-    <exit code="-2147156213" />
-    <exit code="327424" />
-  </downgrade>
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\MSSE\mssefullinstall_x64.exe" /s /runwgacheck'>
+  <downgrade cmd='"%SOFTWARE%\Microsoft\MSSE\%PROCESSOR_ARCHITECTURE%\mseinstall.exe" /s /runwgacheck'>
     <exit code="-2147156221" />
     <exit code="-2147156213" />
     <exit code="327424" />
@@ -64,7 +49,7 @@
   <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
   <downgrade cmd='net start MsMpSvc'><exit code="2" /></downgrade>
 
-  <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" "%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
+  <remove cmd='"%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
 
 </package>
 
