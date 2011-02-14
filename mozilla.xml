@@ -20,9 +20,9 @@
 
   <variable name="version" value="3.6.13" />
   <check type="uninstall" condition="exists" path="Mozilla Firefox (%version%)" />
-  <install   cmd='"%SOFTWARE%\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
-  <upgrade   cmd='"%SOFTWARE%\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
-  <downgrade cmd='"%SOFTWARE%\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Firefox\installer.ini"' />
+  <install   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
+  <upgrade   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
+  <downgrade cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
   <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" "%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" /S' />
   <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Mozilla Firefox\uninstall\helper.exe" "%ProgramFiles(x86)%\Mozilla Firefox\uninstall\helper.exe" /S' />
 
