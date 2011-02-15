@@ -1,0 +1,42 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  INSTRUCTIONS
+  1) Copy CD contents to '%SOFTWARE%\Microsoft\Visual Studio\VisualStudio6\Enterprise'.
+  2) Edit 'setupwiz.ini', add a semicolon in front of the 'VmPath=' line.
+  3) Edit 'vs98ent.stf' using 'Setup\acost.exe' to select components.
+-->
+
+<!--
+  NOTES
+  1) Does a reboot on finish, uses runonce components to complete setup.
+-->
+
+<packages>
+
+<package
+  id="ms_visualstudio6_enterprise"
+  name="Microsoft Visual Studio 6 Enterprise"
+  revision="0"
+  reboot="false"
+  priority="10">
+
+  <check type="uninstall" condition="exists" path="Microsoft Visual Studio 6.0 Enterprise Edition" />
+
+  <variable name="base" value="%SOFTWARE%\Microsoft\Visual Studio\VisualStudio6\Enterprise" />
+
+  <install cmd='regedit.exe /s "%base%\key.dat"' />
+  <install cmd='"%base%\smsinst.exe"' reboot="postponed" />
+
+  <upgrade cmd='regedit.exe /s "%base%\key.dat"' />
+  <upgrade cmd='"%base%\smsinst.exe"' reboot="postponed" />
+
+  <downgrade cmd='regedit.exe /s "%base%\key.dat"' />
+  <downgrade cmd='"%base%\smsinst.exe"' reboot="postponed" />
+
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" "%PROGRAMFILES%\Microsoft Visual Studio\Common\Setup\1033\Setup.exe" /UA' />
+  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%PROGRAMFILES(x86)%\Microsoft Visual Studio\Common\Setup\1033\Setup.exe" /UA' />
+</package>
+
+</packages>
