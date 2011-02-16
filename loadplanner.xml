@@ -11,13 +11,13 @@
 <package
   id="loadplanner_32"
   name="LoadPlanner"
-  revision="%version%-3"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.8.7" />
-  <variable name="fileversion" value="3.8.0.7" /> <!-- don't ask why - I don't know... -->
-  <variable name="updatefile" value="LoadPlanner 3870 update.msi" />
+  <variable name="version" value="3.8.8" />
+  <variable name="fileversion" value="3.8.0.8" /> <!-- don't ask why - I don't know... -->
+  <variable name="updatefile" value="LoadPlanner 3880 update.msi" />
 
   <depends package-id="system_tools" />
 
@@ -57,13 +57,13 @@
 <package
   id="loadplanner_64"
   name="LoadPlanner"
-  revision="%version%-3"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.8.7" />
-  <variable name="fileversion" value="3.8.0.7" /> <!-- don't ask why - I don't know... -->
-  <variable name="updatefile" value="LoadPlanner 3870 update.msi" />
+  <variable name="version" value="3.8.8" />
+  <variable name="fileversion" value="3.8.0.8" /> <!-- don't ask why - I don't know... -->
+  <variable name="updatefile" value="LoadPlanner 3880 update.msi" />
 
   <depends package-id="system_tools" />
 
