@@ -272,19 +272,20 @@
 <!--
   NOTES
   1) TODO: some startup job runs - how to remove it?
+  2) The file protection service kicks in and puts the files back if we delete them, so this really should make sure they go from the dllcache too
  -->
 
 <package
   id="uninstall-oe"
   name="Outlook Express Uninstall"
-  revision="5"
+  revision="6"
   execute="once">
   <install cmd='%COMSPEC% /c IF EXIST %windir%\INF\oeaccess.inf RunDll32 advpack.dll,LaunchINFSection %windir%\INF\oeaccess.inf,UninstallOE' />
   <!--
   <install cmd='reg add "HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{89820200-ECBD-11cf-8B85-00AA005B4383}" /t REG_DWORD /v IsInstalled /d 0 /f' />
   <install cmd='reg add "HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\{44BBA840-CC51-11CF-AAFA-00AA00B6015C}" /t REG_DWORD /v IsInstalled /d 0 /f' />
-  -->
   <install cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Outlook Express" RD /Q /S "%PROGRAMFILES%\Outlook Express"' />
+  -->
 </package>
 
 </packages>
