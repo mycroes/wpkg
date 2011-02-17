@@ -13,9 +13,9 @@
 
   <check type="uninstall" condition="exists" path="Windows Search 4.0" />
 
-  <install   cmd='"%SOFTWARE%\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" %MSI%' />
-  <upgrade   cmd='"%SOFTWARE%\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" %MSI%' />
-  <downgrade cmd='"%SOFTWARE%\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" %MSI%' />
+  <install   cmd='"%SOFTWARE%\Microsoft\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" %MSI%' />
+  <upgrade   cmd='"%SOFTWARE%\Microsoft\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" %MSI%' />
+  <downgrade cmd='"%SOFTWARE%\Microsoft\Windows Search 4.0\WindowsSearch-KB940157-XP-x86-enu.exe" %MSI%' />
 
   <remove cmd='sc config CiSvc start= disabled'><exit code="any" /></remove>
   <remove cmd='sc config WSearch start= disabled'><exit code="any" /></remove>
