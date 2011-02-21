@@ -116,13 +116,13 @@ NOTES
 <package
   id="applesupport"
   name="Apple Software Application Support"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
   <variable name="version" value="1.4.1" />
   <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\AppleApplicationSupport.msi" />
-  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\AppleApplicationSupport.msi" />
+  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\AppleApplicationSupport.msi" />
 
   <check type="uninstall"  condition="versiongreaterorequal" path="Apple Application Support" value="%version%"/>
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
