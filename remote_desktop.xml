@@ -5,33 +5,47 @@
 <package
   id="rdp"
   name="Enable RDP"
-  revision="6"
+  revision="7"
   reboot="false"
   priority="50">
 
   <variable name="keypath" value="HKLM\SYSTEM\CurrentControlSet\Control\Terminal Server" />
   <variable name="key" value="fDenyTSConnections" />
 
-  <check type="logical" condition="and">
-    <check type="registry" condition="equals" path="%keypath%\%key%" value="0" />
-    <check type="registry" condition="exists" path="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\KB969084" />
-  </check>
+  <check type="registry" condition="equals" path="%keypath%\%key%" value="0" />
 
   <install cmd='REG ADD "%keypath%" /v "%key%" /t REG_DWORD /d 0 /f' />
   <install cmd='netsh firewall set service remoteadmin enable' />
   <install cmd='netsh firewall set service remotedesktop enable' />
-  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\RDP\WindowsXP-KB969084-x86-%A.exe" %MSI%' />
 
   <upgrade cmd='REG ADD "%keypath%" /v "%key%" /t REG_DWORD /d 0 /f' />
   <upgrade cmd='netsh firewall set service remoteadmin enable' />
   <upgrade cmd='netsh firewall set service remotedesktop enable' />
-  <upgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\RDP\WindowsXP-KB969084-x86-%A.exe" %MSI%' />
 
   <remove  cmd='REG ADD "%keypath%" /v "%key%" /t REG_DWORD /d 1 /f' />
   <remove  cmd='netsh firewall set service remoteadmin disable' />
   <remove  cmd='netsh firewall set service remotedesktop disable' />
+
+</package>
+
+<package
+  id="rdp_client_xp"
+  name="Install latest RDP Client"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <depends package-id="rdp" />
+
+  <check type="registry" condition="exists" path="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\KB969084" />
+
+  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\RDP\WindowsXP-KB969084-x86-%A.exe" %MSI%' />
+
+  <upgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\RDP\WindowsXP-KB969084-x86-%A.exe" %MSI%' />
+
   <remove  cmd='"%WINDIR%\$NtUninstallKB969084$\spuninst\spuninst.exe" /quiet /norestart' />
 
 </package>
+
 
 </packages>
