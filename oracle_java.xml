@@ -13,7 +13,7 @@
 <package
   id="java"
   name="Java 6"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -105,7 +105,7 @@
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\amd64jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
+  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Java\amd64\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
   </upgrade>
