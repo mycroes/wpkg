@@ -3,29 +3,29 @@
 <!--
   NOTES
   1) Where is the 64 bit binary installed??
+  2) You have to rename the files you download
 -->
 
 <packages>
 
 <package
   id="dameware"
-  name="DameWare Remote Control Client (automatic 32/64 selection)"
-  revision="2"
+  name="DameWare Remote Control Client"
+  revision="%version%-0"
   reboot="false"
   priority="10">
+
+  <variable name="version" value="7.2.0.0" />
 
   <check type="logical" condition="or">
     <check type="file" condition="exists" path="%WINDIR%\system32\DWRCS.exe" />
     <check type="file" condition="exists" path="%WINDIR%\system\DWRCS.exe" />
   </check>
 
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /i "%SOFTWARE%\DameWare\dwrcs32.msi" %MSI%' />
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /i "%SOFTWARE%\DameWare\dwrcs32.msi" %MSI%' />
-  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" msiexec /x "%SOFTWARE%\DameWare\dwrcs32.msi" %MSI%' />
-
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\DameWare\dwrcs64.msi" %MSI%' />
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\DameWare\dwrcs64.msi" %MSI%' />
-  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /x "%SOFTWARE%\DameWare\dwrcs64.msi" %MSI%' />
+  <install   cmd='msiexec /i "%SOFTWARE%\DameWare\%PROCESSOR_ARCHITECTURE%\DWMRC7.msi" %MSI%' />
+  <upgrade   cmd='msiexec /i "%SOFTWARE%\DameWare\%PROCESSOR_ARCHITECTURE%\DWMRC7.msi" %MSI%' />
+  <downgrade cmd='msiexec /i "%SOFTWARE%\DameWare\%PROCESSOR_ARCHITECTURE%\DWMRC7.msi" %MSI%' />
+  <remove    cmd='msiexec /x "%SOFTWARE%\DameWare\%PROCESSOR_ARCHITECTURE%\DWMRC7.msi" %MSI%' />
 
 </package>
 
