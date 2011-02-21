@@ -260,11 +260,11 @@
   <upgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Microsoft\Office\Office97\pro\key.txt"`) DO "%SOFTWARE%\Microsoft\Office\Office97\pro\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
   <upgrade cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr1off97.exe" /Q /C:"SR1Off97.exe /Q /C:""off97sr1.exe /Q"" "' />
   <upgrade cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr2bof97.exe" /Q /C:"sr2patch.exe /Q"' />
-  
+
   <downgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Microsoft\Office\Office97\pro\key.txt"`) DO "%SOFTWARE%\Microsoft\Office\Office97\pro\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
   <downgrade cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr1off97.exe" /Q /C:"SR1Off97.exe /Q /C:""off97sr1.exe /Q"" "' />
   <downgrade cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr2bof97.exe" /Q /C:"sr2patch.exe /Q"' />
-  
+
   <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%PROGRAMFILES%\Microsoft Office\Office\Setup\Acme.exe" /w Off97Pro.STF /UA /QNT' />
   <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%PROGRAMFILES(x86)%\Microsoft Office\Office\Setup\Acme.exe" /w Off97Pro.STF /UA /QNT' />
 </package>
