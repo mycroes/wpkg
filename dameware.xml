@@ -11,16 +11,13 @@
 <package
   id="dameware"
   name="DameWare Remote Control Client"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="7.2.0.0" />
 
-  <check type="logical" condition="or">
-    <check type="file" condition="exists" path="%WINDIR%\system32\DWRCS.exe" />
-    <check type="file" condition="exists" path="%WINDIR%\system\DWRCS.exe" />
-  </check>
+  <check type="uninstall" condition="versiongreaterorequal" path="DameWare Mini Remote Control 7.2" value="%version%" />
 
   <install   cmd='msiexec /i "%SOFTWARE%\DameWare\%PROCESSOR_ARCHITECTURE%\DWMRC7.msi" %MSI%' />
   <upgrade   cmd='msiexec /i "%SOFTWARE%\DameWare\%PROCESSOR_ARCHITECTURE%\DWMRC7.msi" %MSI%' />
