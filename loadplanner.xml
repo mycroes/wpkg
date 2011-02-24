@@ -15,9 +15,9 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.8.9" />
-  <variable name="fileversion" value="3.8.0.9" /> <!-- don't ask why - I don't know... -->
-  <variable name="updatefile" value="LoadPlanner 3890 update.msi" />
+  <variable name="version" value="3.8.0" />
+  <variable name="fileversion" value="3.8.0.8" /> <!-- don't ask why - I don't know... -->
+  <variable name="updatefile" value="LoadPlanner 3880 update.msi" />
 
   <depends package-id="system_tools" />
 
@@ -61,9 +61,9 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.8.9" />
-  <variable name="fileversion" value="3.8.0.9" /> <!-- don't ask why - I don't know... -->
-  <variable name="updatefile" value="LoadPlanner 3890 update.msi" />
+  <variable name="version" value="3.8.8" />
+  <variable name="fileversion" value="3.8.0.8" /> <!-- don't ask why - I don't know... -->
+  <variable name="updatefile" value="LoadPlanner 3880 update.msi" />
 
   <depends package-id="system_tools" />
 
