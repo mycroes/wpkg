@@ -148,7 +148,7 @@
 <!--
   INSTRUCTIONS
   1) Generate an administrative install point at '%SOFTWARE%\Microsoft\Office\
-     Office2000' (use setup.exe /a).
+     Office2000\%ABBRLANG%' (use setup.exe /a).
   2) Create a transform named 'custom.mst' in the administrative install. You
      can use the Microsoft Office 2000 Resource Kit Tools to do this the easy
      way.
@@ -156,26 +156,28 @@
 <package
   id="office2000pro"
   name="MS Office 2000 Professional"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="9.0.0.2720" />
   <variable name="base" value="%SOFTWARE%\Microsoft\Office\Office2000" />
+  <variable name="subst" value='%COMSPEC% /C FOR /F "usebackq tokens=1-10"' />
+  <variable name="lt" value='"%WPKG%\tools\localetool.exe"' />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Office 2000 Professional" value="%version%" />
 
-  <install cmd='"%base%\setup.exe" TRANSFORMS="%base%\custom.mst" /wait /qn'>
+  <install cmd='%subst% %A IN (`%lt% abbrlang`) DO "%base%\%A\setup.exe" TRANSFORMS="%base%\%A\custom.mst" /wait /qn'>
     <exit code="1641" reboot="postponed" />
     <exit code="3010" reboot="postponed" />
   </install>
 
-  <upgrade cmd='"%base%\setup.exe" TRANSFORMS="%base%\custom.mst" /wait /qn'>
+  <upgrade cmd='%subst% %A IN (`%lt% abbrlang`) DO "%base%\%A\setup.exe" TRANSFORMS="%base%\%A\custom.mst" /wait /qn'>
     <exit code="1641" reboot="postponed" />
     <exit code="3010" reboot="postponed" />
   </upgrade>
 
-  <downgrade cmd='"%base%\setup.exe" TRANSFORMS="%base%\custom.mst" /wait /qn'>
+  <downgrade cmd='%subst% %A IN (`%lt% abbrlang`) DO "%base%\%A\setup.exe" TRANSFORMS="%base%\%A\custom.mst" /wait /qn'>
     <exit code="1641" reboot="postponed" />
     <exit code="3010" reboot="postponed" />
   </downgrade>
