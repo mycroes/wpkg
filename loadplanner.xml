@@ -11,19 +11,19 @@
 <package
   id="loadplanner_32"
   name="LoadPlanner"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.8.9" />
-  <variable name="fileversion" value="3.8.0.9" /> <!-- don't ask why - I don't know... -->
-  <variable name="updatefile" value="LoadPlanner 3890 update.msi" />
+  <variable name="version" value="3.8.0" />
+  <variable name="fileversion" value="3.8.0.8" /> <!-- don't ask why - I don't know... -->
+  <variable name="updatefile" value="LoadPlanner 3880 update.msi" />
 
   <depends package-id="system_tools" />
 
   <check type="logical" condition="or">
     <check type="uninstall" condition="exists" path="LoadPlanner %version% Update" />
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\LoadPlanner\LpMultiP.exe" value="%fileversion%" />
+    <check type="file" condition="versionequalto" path="%PROGRAMFILES%\LoadPlanner\LpMultiP.exe" value="%fileversion%" />
   </check>
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
@@ -40,8 +40,8 @@
   <upgrade cmd='%COMSPEC% /c IF NOT EXIST "%PROGRAMFILES%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
   <upgrade cmd='%COMSPEC% /c echo Y | cacls "%PROGRAMFILES%\LoadPlanner" /E /T /G Everyone:f >NUL'><exit code="8023" /></upgrade>
 
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
+  <downgrade cmd='msiexec %MSI% /fa "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
+  <downgrade cmd='msiexec %MSI% /fa "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <downgrade cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
   <downgrade cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
   <downgrade cmd='%COMSPEC% /c IF NOT EXIST "%PROGRAMFILES%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES%\LoadPlanner" /Y' />
@@ -57,19 +57,19 @@
 <package
   id="loadplanner_64"
   name="LoadPlanner"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.8.9" />
-  <variable name="fileversion" value="3.8.0.9" /> <!-- don't ask why - I don't know... -->
-  <variable name="updatefile" value="LoadPlanner 3890 update.msi" />
+  <variable name="version" value="3.8.8" />
+  <variable name="fileversion" value="3.8.0.8" /> <!-- don't ask why - I don't know... -->
+  <variable name="updatefile" value="LoadPlanner 3880 update.msi" />
 
   <depends package-id="system_tools" />
 
   <check type="logical" condition="or">
     <check type="uninstall" condition="exists" path="LoadPlanner %version% Update" />
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" value="%fileversion%" />
+    <check type="file" condition="versionequalto" path="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" value="%fileversion%" />
   </check>
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
@@ -86,8 +86,8 @@
   <upgrade cmd='%COMSPEC% /c IF NOT EXIST "%PROGRAMFILES(x86)%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
   <upgrade cmd='%COMSPEC% /c echo Y | cacls "%PROGRAMFILES(x86)%\LoadPlanner" /E /T /G Everyone:f >NUL'><exit code="8023" /></upgrade>
 
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
+  <downgrade cmd='msiexec %MSI% /fa "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
+  <downgrade cmd='msiexec %MSI% /fa "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <downgrade cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
   <downgrade cmd='%COMSPEC% /c ftype LoadPlanner="%PROGRAMFILES(x86)%\LoadPlanner\LpMultiP.exe" "%1"' />
   <downgrade cmd='%COMSPEC% /c IF NOT EXIST "%PROGRAMFILES(x86)%\LoadPlanner\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PROGRAMFILES(x86)%\LoadPlanner" /Y' />
