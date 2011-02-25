@@ -15,7 +15,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.8.0" />
+  <variable name="version" value="3.8.8" />
   <variable name="fileversion" value="3.8.0.8" /> <!-- don't ask why - I don't know... -->
   <variable name="updatefile" value="LoadPlanner 3880 update.msi" />
 
