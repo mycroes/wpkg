@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+
+<package
+  id="ms_ime"
+  name="Microsoft IME 2010"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <variable name="version" value="14.0.4999.3010" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Office IMESS (Chinese (Simplified)) 2010" value="%version%" />
+
+  <install   cmd='"%SOFTWARE%\Microsoft\IME\2010\MSPY2010.exe" /extract:"%TEMP%\ime" /quiet /norestart' />
+  <install   cmd='msiexec /i "%TEMP%\ime\IMESS.msi" %MSI%'><exit code="3010" /></install>
+  <upgrade   cmd='"%SOFTWARE%\Microsoft\IME\2010\MSPY2010.exe" /extract:"%TEMP%\ime" /quiet /norestart' />
+  <upgrade   cmd='msiexec /i "%TEMP%\ime\IMESS.msi" %MSI%'><exit code="3010" /></upgrade>
+  <downgrade cmd='"%SOFTWARE%\Microsoft\IME\2010\MSPY2010.exe" /extract:"%TEMP%\ime" /quiet /norestart' />
+  <downgrade cmd='msiexec /fa "%TEMP%\ime\IMESS.msi" %MSI%'><exit code="3010" /></downgrade>
+  <remove    cmd='"%SOFTWARE%\Microsoft\IME\2010\MSPY2010.exe" /extract:"%TEMP%\ime" /quiet /norestart' />
+  <remove    cmd='msiexec /x "%TEMP%\ime\IMESS.msi" %MSI%'><exit code="3010" /></remove>
+
+</package>
+
+</packages>
