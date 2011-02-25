@@ -43,7 +43,7 @@
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="%version%-2"
+  revision="%version%-3"
   priority="10"
   reboot="false">
 
@@ -71,7 +71,7 @@
 
   <remove    cmd='RunDll32 "%COMMONPROGRAMFILES%\InstallShield\Engine\6\Intel 32\Ctor.dll,LaunchSetup" "%PROGRAMFILES%\InstallShield Installation Information\{1297C681-92D7-40EF-93BF-03F66EC5105C}\setup.exe" -AddRemove -s' />
   <remove    cmd='%COMSPEC% /c RD /Q /S "%tempdir%"'>
-    <exit code="1" />
+    <exit code="any" />
   </remove>
 
 </package>
