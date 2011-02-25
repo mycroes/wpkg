@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) Download from http://download.cdburnerxp.se/msi/
+
+-->
+
+<packages>
+
+<package
+  id="cdburnerxp"
+  name="CDBurnerXP"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="4.3.8.2513" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="CDBurnerXP" value="%version%" />
+
+  <install   cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
+  <upgrade   cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
+  <downgrade cmd='msiexec /fa "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
+  <remove    cmd='msiexec /x "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
+
+</package>
+
+</packages>
