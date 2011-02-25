@@ -20,15 +20,15 @@
   <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage Active Protection System" value="%version%" />
 
   <install cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <install cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"/qn /norestart"'>
+  <install cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"%MSI%"'>
     <exit code="3010" reboot="postponed" />
   </install>
   <upgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <upgrade cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"/qn /norestart"'>
+  <upgrade cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"%MSI%"'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
   <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <downgrade cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"/qn /norestart"'>
+  <downgrade cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"%MSI%"'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
   <remove  cmd='msiexec %MSI% /X{46A84694-59EC-48F0-964C-7E76E9F8A2ED}"' />
