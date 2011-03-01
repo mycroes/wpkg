@@ -23,9 +23,9 @@ NOTES
   -->
   <depends package-id="quicktime" />
 
-  <variable name="version" value="10.1.1.4" />
-  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes\%version%\iTunes.msi" />
-  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes\%version%\iTunes64.msi" />
+  <variable name="version" value="10.1.2.17" />
+  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes\10.1.2.17\iTunes.msi" />
+  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes\10.1.2.17\iTunes64.msi" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="iTunes" value="%version%"/>
 
@@ -91,13 +91,13 @@ NOTES
 <package
   id="applemobile"
   name="Apple Mobile Device Support"
-  revision="%version%-4"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.3.0.69" />
-  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\AppleMobileDeviceSupport.msi" />
-  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes\10.1.1.4\AppleMobileDeviceSupport64.msi" />
+  <variable name="version" value="3.3.1.3" />
+  <variable name="pkg32" value="%SOFTWARE%\Apple\iTunes\10.1.2.17\AppleMobileDeviceSupport.msi" />
+  <variable name="pkg64" value="%SOFTWARE%\Apple\iTunes\10.1.2.17\AppleMobileDeviceSupport64.msi" />
 
   <check type="uninstall"  condition="versiongreaterorequal" path="Apple Mobile Device Support" value="%version%"/>
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
