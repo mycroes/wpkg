@@ -30,29 +30,29 @@
   <install cmd='net stop JavaQuickStarterService'>
     <exit code="2" />
   </install>
-  <install cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160000}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160010}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160020}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160030}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160040}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160050}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160060}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160070}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216010FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216011FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216012FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216013FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216014FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216015FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216016FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216017FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216018FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216019FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216020FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216021FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216022FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216023FF}'><exit code='1605' /></install>
-  <install cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216024FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160000}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160010}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160020}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160030}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160040}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160050}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160060}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160070}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216010FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216011FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216012FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216013FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216014FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216015FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216016FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216017FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216018FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216019FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216020FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216021FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216022FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216023FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216024FF}'><exit code='1605' /></install>
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
@@ -78,29 +78,29 @@
   <upgrade cmd='net stop JavaQuickStarterService'>
     <exit code="2" />
   </upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160000}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160010}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160020}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160030}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160040}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160050}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160060}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160070}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216010FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216011FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216012FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216013FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216014FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216015FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216016FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216017FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216018FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216019FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216020FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216021FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216022FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216023FF}'><exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216024FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160000}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160010}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160020}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160030}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160040}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160050}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160060}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160070}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216010FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216011FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216012FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216013FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216014FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216015FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216016FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216017FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216018FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216019FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216020FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216021FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216022FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216023FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216024FF}'><exit code='1605' /></upgrade>
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
@@ -126,29 +126,29 @@
   <downgrade cmd='net stop JavaQuickStarterService'>
     <exit code="2" />
   </downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160000}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160010}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160020}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160030}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160040}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160050}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160060}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {3248F0A8-6813-11D6-A77B-00B0D0160070}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216010FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216011FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216012FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216013FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216014FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216015FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216016FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216017FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216018FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216019FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216020FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216021FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216022FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216023FF}'><exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec /qn /norestart /x {26A24AE4-039D-4CA4-87B4-2F83216024FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160000}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160010}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160020}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160030}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160040}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160050}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160060}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D0160070}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216010FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216011FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216012FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216013FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216014FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216015FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216016FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216017FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216018FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216019FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216020FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216021FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216022FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216023FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216024FF}'><exit code='1605' /></downgrade>
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />

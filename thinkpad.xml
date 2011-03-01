@@ -20,15 +20,15 @@
   <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage Active Protection System" value="%version%" />
 
   <install cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <install cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"/qn /norestart"'>
+  <install cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"%MSI%"'>
     <exit code="3010" reboot="postponed" />
   </install>
   <upgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <upgrade cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"/qn /norestart"'>
+  <upgrade cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"%MSI%"'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
   <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <downgrade cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"/qn /norestart"'>
+  <downgrade cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"%MSI%"'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
   <remove  cmd='msiexec %MSI% /X{46A84694-59EC-48F0-964C-7E76E9F8A2ED}"' />
@@ -43,7 +43,7 @@
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="%version%-2"
+  revision="%version%-3"
   priority="10"
   reboot="false">
 
@@ -71,7 +71,7 @@
 
   <remove    cmd='RunDll32 "%COMMONPROGRAMFILES%\InstallShield\Engine\6\Intel 32\Ctor.dll,LaunchSetup" "%PROGRAMFILES%\InstallShield Installation Information\{1297C681-92D7-40EF-93BF-03F66EC5105C}\setup.exe" -AddRemove -s' />
   <remove    cmd='%COMSPEC% /c RD /Q /S "%tempdir%"'>
-    <exit code="1" />
+    <exit code="any" />
   </remove>
 
 </package>
