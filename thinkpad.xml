@@ -43,7 +43,7 @@
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="%version%-4"
+  revision="%version%-5"
   priority="10"
   reboot="false">
 
