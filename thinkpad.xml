@@ -38,12 +38,13 @@
   1) v2.39 writes a space at the end of the name in uninstall on the English version hence the duplicate check
   2) DisplayName will change with default system language
   3) Removed -l0x9 (English) and -l0x6 (Danish) from uninstaller, as we don't care about language
+  4) Item 3 is moot as silent uninstaller doesn't work for two reasons: a) -s is not supported  and b) rundll32 only accepts shortnames
 -->
 
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="%version%-5"
+  revision="%version%-6"
   priority="10"
   reboot="false">
 
@@ -68,11 +69,6 @@
   <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
   <downgrade cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
   <downgrade cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.iss' />
-
-  <remove    cmd='RunDll32 "%COMMONPROGRAMFILES%\InstallShield\Engine\6\Intel 32\Ctor.dll",LaunchSetup  "%PROGRAMFILES%\InstallShield Installation Information\{1297C681-92D7-40EF-93BF-03F66EC5105C}\setup.exe" -AddRemove -s' />
-  <remove    cmd='%COMSPEC% /c RD /Q /S "%tempdir%"'>
-    <exit code="any" />
-  </remove>
 
 </package>
 
