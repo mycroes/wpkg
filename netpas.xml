@@ -12,7 +12,7 @@
   <package
     id="netpas"
     name="Netpas Distance"
-    revision="%version%-0"
+    revision="%version%-1"
     reboot="false"
     priority="10">
 
@@ -24,13 +24,13 @@
       <check type="file" condition="versiongreaterorequal" path="%ProgramFiles(x86)%\Netpas\Distance\distance.exe" value="%version%" />
     </check>
 
-    <install cmd='%SOFTWARE%\Netpas\NetpasDistance.exe /VERYSILENT /sp- /norestart' />
+    <install cmd='%SOFTWARE%\Netpas\Distance\%version%\NetpasDistance.exe /VERYSILENT /sp- /norestart' />
     <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Netpas*.lnk"' />
 
-    <upgrade cmd='%SOFTWARE%\Netpas\NetpasDistance.exe /VERYSILENT /sp- /norestart' />
+    <upgrade cmd='%SOFTWARE%\Netpas\Distance\%version%\NetpasDistance.exe /VERYSILENT /sp- /norestart' />
     <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Netpas*.lnk"' />
 
-    <downgrade cmd='%SOFTWARE%\Netpas\NetpasDistance.exe /VERYSILENT /sp- /norestart' />
+    <downgrade cmd='%SOFTWARE%\Netpas\Distance\%version%\NetpasDistance.exe /VERYSILENT /sp- /norestart' />
     <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Netpas*.lnk"' />
     <!-- Windows 32-bit -->
     <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\Netpas\Distance" "%ProgramFiles%\Netpas\Distance\unins000.exe" /VERYSILENT' />
