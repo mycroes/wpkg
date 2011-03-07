@@ -31,7 +31,7 @@ NOTES
 
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%pkg32%"' />
   <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"' />
-  <install cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes\%version%\AppleSoftwareUpdate.msi"'>
+  <install cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </install>
@@ -48,7 +48,7 @@ NOTES
   <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"'>
     <exit code="any" />
   </upgrade>
-  <upgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes\%version%\AppleSoftwareUpdate.msi"'>
+  <upgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </upgrade>
@@ -65,7 +65,7 @@ NOTES
   <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%pkg64%"'>
     <exit code="any" />
   </downgrade>
-  <downgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes\%version%\AppleSoftwareUpdate.msi"'>
+  <downgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </downgrade>
@@ -82,7 +82,7 @@ NOTES
   <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%pkg64%"'>
     <exit code="3010" />
   </remove>
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes\%version%\AppleSoftwareUpdate.msi"'>
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </remove>
@@ -180,7 +180,7 @@ NOTES
 <package
   id="iphone_config"
   name="Apple iPhone Configuration Utility"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -192,7 +192,7 @@ NOTES
   <check type="uninstall" condition="versiongreaterorequal" path="iPhone Configuration Utility" value="%version%"/>
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\iPhoneConfig\%version%\iPhoneConfigUtility.msi"' />
-  <install cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\%version%\AppleSoftwareUpdate.msi"'>
+  <install cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </install>
@@ -201,7 +201,7 @@ NOTES
   </install>
 
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\iPhoneConfig\%version%\iPhoneConfigUtility.msi"' />
-  <upgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\%version%\AppleSoftwareUpdate.msi"'>
+  <upgrade cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </upgrade>
@@ -210,7 +210,7 @@ NOTES
   </upgrade>
 
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iPhoneConfig\%version%\iPhoneConfigUtility.msi"' />
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\%version%\AppleSoftwareUpdate.msi"'>
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\AppleSoftwareUpdate.msi"'>
     <exit code="1605" />
     <exit code="0" />
   </remove>
