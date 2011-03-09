@@ -3,6 +3,7 @@
 <!--
   NOTES
   1) We should be able to detect SSDs and then not run the boot time and scheduled defrag jobs
+  2) Please rename the 32 bit file from i386 to x86.
 
 -->
 
