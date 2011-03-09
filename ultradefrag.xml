@@ -12,7 +12,7 @@
 <package
   id="ultradefrag"
   name="Ultra Defragmenter"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -20,8 +20,7 @@
 
   <check type="uninstall" condition="versiongreaterorequal" path="Ultra Defragmenter" value="%version%" />
 
-  <install cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == x86 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.i386.exe" /S /NCRC' />
-  <install cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.amd64.exe" /S /NCRC' />
+  <install cmd='"%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.%PROCESSOR_ARCHITECTURE%.exe" /S /NCRC' />
   <install cmd='%ComSpec% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
   <install cmd='"%SystemRoot%\system32\bootexctrl.exe" /r defrag_native' />
   <install cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'><exit code="any" /></install>
@@ -31,8 +30,7 @@
   </install>
   <install cmd='schtasks /Create /TN DefragWeekly /RU SYSTEM /SC WEEKLY /D SUN /ST 02:00:00 /TR "udefrag --wait c:"' />
 
-  <upgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == x86 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.i386.exe" /S /NCRC' />
-  <upgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.amd64.exe" /S /NCRC' />
+  <upgrade cmd='"%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.%PROCESSOR_ARCHITECTURE%.exe" /S /NCRC' />
   <upgrade cmd='%ComSpec% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
   <upgrade cmd='"%SystemRoot%\system32\bootexctrl.exe" /r defrag_native' />
   <upgrade cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'><exit code="any" /></upgrade>
@@ -42,8 +40,7 @@
   </upgrade>
   <upgrade cmd='schtasks /Create /TN DefragWeekly /RU SYSTEM /SC WEEKLY /D SUN /ST 02:00:00 /TR "udefrag --wait c:"' />
 
-  <downgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == x86 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.i386.exe" /S /NCRC' />
-  <downgrade cmd='%ComSpec% /c if %PROCESSOR_ARCHITECTURE% == AMD64 "%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.amd64.exe" /S /NCRC' />
+  <downgrade cmd='"%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.%PROCESSOR_ARCHITECTURE%.exe" /S /NCRC' />
   <downgrade cmd='%ComSpec% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
   <downgrade cmd='"%SystemRoot%\system32\bootexctrl.exe" /r defrag_native' />
   <downgrade cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'><exit code="any" /></downgrade>
