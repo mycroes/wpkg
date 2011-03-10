@@ -35,6 +35,12 @@ NOTES
   <install cmd='schtasks /delete AppleSoftwareUpdate /f'>
     <exit code="1" />
   </install>
+  <install cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\iTunes.lnk"'>
+    <exit code="any" />
+  </install>
+  <install cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\iTunes.lnk"'>
+    <exit code="any" />
+  </install>
 
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\iTunes\%version%\%PROCESSOR_ARCHITECTURE%\iTunes.msi"'>
     <exit code="any" />
@@ -49,6 +55,12 @@ NOTES
   <upgrade cmd='schtasks /delete AppleSoftwareUpdate /f'>
     <exit code="1" />
   </upgrade>
+  <upgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\iTunes.lnk"'>
+    <exit code="any" />
+  </upgrade>
+  <upgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\iTunes.lnk"'>
+    <exit code="any" />
+  </upgrade>
 
   <downgrade cmd='msiexec %MSI% /fa "%SOFTWARE%\Apple\iTunes\%version%\%PROCESSOR_ARCHITECTURE%\iTunes.msi"'>
     <exit code="any" />
@@ -62,6 +74,12 @@ NOTES
   </downgrade>
   <downgrade cmd='schtasks /delete AppleSoftwareUpdate /f'>
     <exit code="1" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\iTunes.lnk"'>
+    <exit code="any" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\iTunes.lnk"'>
+    <exit code="any" />
   </downgrade>
 
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\iTunes\%version%\%PROCESSOR_ARCHITECTURE%\iTunes.msi"'>
@@ -126,7 +144,7 @@ NOTES
 <package
   id="quicktime"
   name="Apple Quicktime"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -142,6 +160,9 @@ NOTES
   <install cmd='%COMSPEC% /c del /F /Q "%ALLUSERSPROFILE%\Desktop\QuickTime Player.lnk"'>
     <exit code="1" />
   </install>
+  <install cmd='%COMSPEC% /c del /F /Q "%PUBLIC%\Desktop\QuickTime Player.lnk"'>
+    <exit code="1" />
+  </install>
 
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\QuickTime\%version%\QuickTime.msi"' />
   <upgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
@@ -150,12 +171,18 @@ NOTES
   <upgrade cmd='%COMSPEC% /c del /F /Q "%ALLUSERSPROFILE%\Desktop\QuickTime Player.lnk"'>
     <exit code="1" />
   </upgrade>
+  <upgrade cmd='%COMSPEC% /c del /F /Q "%PUBLIC%\Desktop\QuickTime Player.lnk"'>
+    <exit code="1" />
+  </upgrade>
 
   <downgrade cmd='msiexec %MSI% /fa "%SOFTWARE%\Apple\QuickTime\%version%\QuickTime.msi"' />
   <downgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
     <exit code="1" />
   </downgrade>
   <downgrade cmd='%COMSPEC% /c del /F /Q "%ALLUSERSPROFILE%\Desktop\QuickTime Player.lnk"'>
+    <exit code="1" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /c del /F /Q "%PUBLIC%\Desktop\QuickTime Player.lnk"'>
     <exit code="1" />
   </downgrade>
 
