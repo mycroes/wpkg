@@ -11,7 +11,7 @@
 <package
   id="cdburnerxp"
   name="CDBurnerXP"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -19,9 +19,27 @@
 
   <check type="uninstall" condition="versiongreaterorequal" path="CDBurnerXP" value="%version%" />
 
-  <install   cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
-  <upgrade   cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
+  <install cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
+  <install cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\CDBurnerXP.lnk"'>
+    <exit code="any" />
+  </install>
+  <install cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\CDBurnerXP.lnk"'>
+    <exit code="any" />
+  </install>
+  <upgrade cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
+  <upgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\CDBurnerXP.lnk"'>
+    <exit code="any" />
+  </upgrade>
+  <upgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\CDBurnerXP.lnk"'>
+    <exit code="any" />
+  </upgrade>
   <downgrade cmd='msiexec /fa "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
+  <downgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\CDBurnerXP.lnk"'>
+    <exit code="any" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\CDBurnerXP.lnk"'>
+    <exit code="any" />
+  </downgrade>
   <remove    cmd='msiexec /x "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
 
 </package>
