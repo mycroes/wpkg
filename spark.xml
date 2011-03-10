@@ -11,7 +11,7 @@
 <package
   id="spark"
   name="Spark IM"
-  revision="%version%-5"
+  revision="%version%-6"
   reboot="false"
   priority="10">
 
@@ -21,6 +21,10 @@
   <install cmd='msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
   <install cmd='%COMSPEC% /c DEL /Q "%ALLUSERSPROFILE%\Desktop\Spark*.lnk"'><exit code="any" /></install>
   <install cmd='%COMSPEC% /c DEL /Q "%PUBLIC%\Desktop\Spark*.lnk"'><exit code="any" /></install>
+  <!-- Spark must run once as admin before it works -->
+  <install cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Spark\Spark.exe" "%PROGRAMFILES%\Spark\Spark.exe"' />
+  <install cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Spark\Spark.exe" "%PROGRAMFILES(x86)%\Spark\Spark.exe"' />
+  <install cmd='taskkill /f /im spark.exe'><exit code="any" /></install>
 
   <upgrade cmd='taskkill /f /im spark.exe'><exit code="any" /></upgrade>
   <upgrade cmd='msiexec /i "%SOFTWARE%\SparkIM\spark_2_5_8_online.msi" %MSI%' />
