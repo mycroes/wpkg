@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+  <!--
+  1) This package depends on DirectX which we currently cannot install automatically
+  2) After downloading the .exe packages use 7zip (or just run the exe) to extract the files into x86 and amd64 folders
+
+  Direct download links:
+  http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_32bit.exe
+  http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_64bit.exe
+  -->
+
+<package
+  id="autodesk_dwgtrueview"
+  name="Autodesk DWG TrueView 2011"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="2011" />
+
+  <check type="uninstall" condition="exists" path="DWG TrueView %version%" />
+
+  <install   cmd='msiexec /i  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
+  <upgrade   cmd='msiexec /i  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
+  <downgrade cmd='msiexec /fa "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
+  <remove    cmd='msiexec /x  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
+
+</package>
+
+</packages>
