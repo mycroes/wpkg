@@ -14,7 +14,7 @@
 <package
   id="autodesk_dwgtrueview"
   name="Autodesk DWG TrueView 2011"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -22,10 +22,31 @@
 
   <check type="uninstall" condition="exists" path="DWG TrueView %version%" />
 
-  <install   cmd='msiexec /i  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
+  <install cmd='msiexec /i  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
+  <install cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\DWG TrueView*.lnk"'>
+    <exit code="any" />
+  </install>
+  <install cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\DWG TrueView*.lnk"'>
+    <exit code="any" />
+  </install>
+
   <upgrade   cmd='msiexec /i  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
+  <upgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\DWG TrueView*.lnk"'>
+    <exit code="any" />
+  </upgrade>
+  <upgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\DWG TrueView*.lnk"'>
+    <exit code="any" />
+  </upgrade>
+
   <downgrade cmd='msiexec /fa "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
-  <remove    cmd='msiexec /x  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
+  <downgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\DWG TrueView*.lnk"'>
+    <exit code="any" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\DWG TrueView*.lnk"'>
+    <exit code="any" />
+  </downgrade>
+
+  <remove cmd='msiexec /x  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
 
 </package>
 
