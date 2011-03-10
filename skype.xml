@@ -14,12 +14,12 @@
 <package
   id="skype"
   name="Skype 5.0"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
   <variable name='version' value='5.0.32.156' />
-  <variable name='flags' value='INSTALLLEVEL=1 ALLUSERS=1 STARTSKYPE=FALSE' />
+  <variable name='flags' value='INSTALLLEVEL=1 ALLUSERS=1 STARTSKYPE=FALSE TRANSFORMS=:removeStartup.mst TRANSFORMS=:removeDesktopShortcut.mst' />
   <variable name='product_code' value='9C538746-C2DC-40FC-B1FB-D4EA7966ABEB' /> <!-- this is for 5.0 -->
 
   <check type="logical" condition="or">
@@ -45,9 +45,9 @@
   <downgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableSupernodePolicy" /d "1" /t REG_DWORD /f' />
   <downgrade cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' />
 
-  <remove    cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Skype\Phone\Skype.exe" "%PROGRAMFILES%\Skype\Phone\Skype.exe" /shutdown' />
-  <remove    cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" /shutdown' />
-  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Skype\SkypeSetup.msi"' />
+  <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Skype\Phone\Skype.exe" "%PROGRAMFILES%\Skype\Phone\Skype.exe" /shutdown' />
+  <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" /shutdown' />
+  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Skype\SkypeSetup.msi"' />
 
 </package>
 
