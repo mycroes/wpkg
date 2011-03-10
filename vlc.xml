@@ -10,7 +10,7 @@
 <package
   id="vlc"
   name="VideoLAN Client"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -30,6 +30,9 @@
   <install cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\VLC*.lnk"'>
     <exit code="any" />
   </install>
+  <install cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\VLC*.lnk"'>
+    <exit code="any" />
+  </install>
 
   <upgrade cmd='%ComSpec% /c if exist "%A%\VLC\uninstall.exe" "%A%\VLC\uninstall.exe" /S _?=%A%\VLC' />
   <upgrade cmd='%ComSpec% /c if exist "%A%" RD /S /Q "%A%"' />
@@ -41,6 +44,9 @@
   <upgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\VLC*.lnk"'>
     <exit code="any" />
   </upgrade>
+  <upgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\VLC*.lnk"'>
+    <exit code="any" />
+  </upgrade>
 
   <downgrade cmd='%ComSpec% /c if exist "%A%\VLC\uninstall.exe" "%A%\VLC\uninstall.exe" /S _?=%A%\VLC' />
   <downgrade cmd='%ComSpec% /c if exist "%A%" RD /S /Q "%A%"' />
@@ -50,6 +56,9 @@
 
   <downgrade cmd='"%SOFTWARE%\VLC\vlc-%version%-win32.exe" /S' />
   <downgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\VLC*.lnk"'>
+    <exit code="any" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\VLC*.lnk"'>
     <exit code="any" />
   </downgrade>
 
