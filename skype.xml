@@ -14,7 +14,7 @@
 <package
   id="skype"
   name="Skype 5.1"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -28,26 +28,26 @@
   </check>
 
   <install cmd='msiexec %MSI% /x{%product_code%}'><exit code="1605" /></install>
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\SkypeSetup.msi" %flags%'/>
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\%version%\SkypeSetup.msi" %flags%'/>
   <install cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableVersionCheckPolicy" /d "1" /t REG_DWORD /f' />
   <install cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableSupernodePolicy" /d "1" /t REG_DWORD /f' />
   <install cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' />
 
   <upgrade cmd='msiexec %MSI% /x{%product_code%}'><exit code="1605" /></upgrade>
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\SkypeSetup.msi" %flags%'/>
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\%version%\SkypeSetup.msi" %flags%'/>
   <upgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableVersionCheckPolicy" /d "1" /t REG_DWORD /f' />
   <upgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableSupernodePolicy" /d "1" /t REG_DWORD /f' />
   <upgrade cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' />
 
   <downgrade cmd='msiexec %MSI% /x{%product_code%}'><exit code="1605" /></downgrade>
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\SkypeSetup.msi" %flags%'/>
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\%version%\SkypeSetup.msi" %flags%'/>
   <downgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableVersionCheckPolicy" /d "1" /t REG_DWORD /f' />
   <downgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableSupernodePolicy" /d "1" /t REG_DWORD /f' />
   <downgrade cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' />
 
   <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Skype\Phone\Skype.exe" "%PROGRAMFILES%\Skype\Phone\Skype.exe" /shutdown' />
   <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" /shutdown' />
-  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Skype\SkypeSetup.msi"' />
+  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Skype\%version%\SkypeSetup.msi"' />
 
 </package>
 
