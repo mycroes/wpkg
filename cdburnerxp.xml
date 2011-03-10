@@ -3,6 +3,7 @@
 <!--
   NOTES
   1) Download from http://download.cdburnerxp.se/msi/
+  2) We need to remove older versions before installing as we otherwise get error 1638
 
 -->
 
@@ -11,14 +12,16 @@
 <package
   id="cdburnerxp"
   name="CDBurnerXP"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="4.3.8.2523" />
+  <variable name='product_code' value='5932A5C4-BB44-4CFB-AD66-1B826F4D788B' /> <!-- version 4 -->
 
   <check type="uninstall" condition="versiongreaterorequal" path="CDBurnerXP" value="%version%" />
 
+  <install cmd='msiexec /x{%product_code%} %MSI%'><exit code="1605" /></install>
   <install cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
   <install cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\CDBurnerXP.lnk"'>
     <exit code="any" />
@@ -26,6 +29,8 @@
   <install cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\CDBurnerXP.lnk"'>
     <exit code="any" />
   </install>
+
+  <upgrade cmd='msiexec /x{%product_code%} %MSI%'><exit code="1605" /></upgrade>
   <upgrade cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
   <upgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\CDBurnerXP.lnk"'>
     <exit code="any" />
@@ -33,6 +38,8 @@
   <upgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\CDBurnerXP.lnk"'>
     <exit code="any" />
   </upgrade>
+
+  <downgrade cmd='msiexec /x{%product_code%} %MSI%'><exit code="1605" /></downgrade>
   <downgrade cmd='msiexec /fa "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
   <downgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\CDBurnerXP.lnk"'>
     <exit code="any" />
@@ -40,6 +47,7 @@
   <downgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\CDBurnerXP.lnk"'>
     <exit code="any" />
   </downgrade>
+
   <remove    cmd='msiexec /x "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
 
 </package>
