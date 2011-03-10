@@ -4,7 +4,7 @@
   NOTES
   1) Skype uses a TM symbol in the name in the Uninstall string so to play it safe, we instead check the version of the file name directly
   2) Furthermore, the versions are different. Uninstall version would be 5.0.156 but fileversion is 5.0.32.156
-  3) INSTALLLEVEL=1 means no toolbars
+  3) INSTALLLEVEL=1 means no toolbars, no plugins or anything apart from the base program
   4) Skype will choke on the install if we are trying to upgrade minor versions - hence the uninstall before installing which works on the product_code which shouldn't change between minor versions
   5) REMEMBER to check the product_code when upgrading
 -->
@@ -13,14 +13,14 @@
 
 <package
   id="skype"
-  name="Skype 5.0"
-  revision="%version%-3"
+  name="Skype 5.1"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name='version' value='5.0.32.156' />
+  <variable name='version' value='5.1.32.112' />
   <variable name='flags' value='INSTALLLEVEL=1 ALLUSERS=1 STARTSKYPE=FALSE TRANSFORMS=:removeStartup.mst TRANSFORMS=:removeDesktopShortcut.mst' />
-  <variable name='product_code' value='9C538746-C2DC-40FC-B1FB-D4EA7966ABEB' /> <!-- this is for 5.0 -->
+  <variable name='product_code' value='9C538746-C2DC-40FC-B1FB-D4EA7966ABEB' /> <!-- this is for 5.[01] -->
 
   <check type="logical" condition="or">
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Skype\Phone\Skype.exe" value="%version%" />
