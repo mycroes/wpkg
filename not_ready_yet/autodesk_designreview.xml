@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+  <!--
+  1) This package depends on DirectX which we currently cannot install automatically
+
+  Direct download links:
+  http://download.autodesk.com/esd/designreview/2011/ADR/en-us/SetupDesignReview2011_086.msi
+  -->
+
+<package
+  id="autodesk_designreview"
+  name="Autodesk DesignReview 2011"
+  revision="%version%-1"
+  reboot="false"
+  priority="10">
+
+  <!--
+  <download
+    url='http://download.autodesk.com/esd/designreview/2011/ADR/en-us/SetupDesignReview2011_086.msi'
+    target='%SOFTWARE%\Autodesk\DesignReview\%version%\SetupDesignReview2011_086.msi' />
+  -->
+
+  <variable name="version" value="2011" />
+
+  <check type="uninstall" condition="exists" path="Autodesk Design Review %version%" />
+
+  <install cmd='msiexec /i "%SOFTWARE%\Autodesk\DesignReview\%version%\SetupDesignReview2011_086.msi" %MSI%' />
+ 
+  <upgrade cmd='msiexec /i "%SOFTWARE%\Autodesk\DesignReview\%version%\SetupDesignReview2011_086.msi" %MSI%' />
+
+  <downgrade cmd='msiexec /fa msiexec /i "%SOFTWARE%\Autodesk\DesignReview\%version%\SetupDesignReview2011_086.msi" %MSI%' />
+
+  <remove cmd='msiexec /x "%SOFTWARE%\Autodesk\DesignReview\%version%\SetupDesignReview2011_086.msi" %MSI%' />
+
+</package>
+
+</packages>
