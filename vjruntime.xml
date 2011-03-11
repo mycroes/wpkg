@@ -3,7 +3,7 @@
 <!--
   NOTES
   1) Extract the redistributables to
-     %SOFTWARE%\VJRuntime\%PROCESSOR_ARCHITECTURE%.
+     %SOFTWARE%\Microsoft\VJRuntime\%PROCESSOR_ARCHITECTURE%.
 -->
 
 <packages>
@@ -11,7 +11,7 @@
 <package
   id="vjruntime"
   name="Visual J# Runtime"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -21,20 +21,20 @@
   <check type="uninstall" condition="exists" path="Microsoft Visual J# 2.0 Redistributable Package - SE" />
   <variable name="version" value="2.0.50728" />
 
-  <install cmd='"%SOFTWARE%\VJRuntime\%PROCESSOR_ARCHITECTURE%\install.exe" /q'>
+  <install cmd='"%SOFTWARE%\Microsoft\VJRuntime\%PROCESSOR_ARCHITECTURE%\install.exe" /q'>
     <exit code='1641' reboot="postponed" />
     <exit code='3010' reboot="postponed" />
   </install>
-  <upgrade cmd='"%SOFTWARE%\VJRuntime\%PROCESSOR_ARCHITECTURE%\install.exe" /q'>
+  <upgrade cmd='"%SOFTWARE%\Microsoft\VJRuntime\%PROCESSOR_ARCHITECTURE%\install.exe" /q'>
     <exit code='1641' reboot="postponed" />
     <exit code='3010' reboot="postponed" />
   </upgrade>
-  <downgrade cmd='"%SOFTWARE%\VJRuntime\%PROCESSOR_ARCHITECTURE%\install.exe" /q'>
+  <downgrade cmd='"%SOFTWARE%\Microsoft\VJRuntime\%PROCESSOR_ARCHITECTURE%\install.exe" /q'>
     <exit code='1641' reboot="postponed" />
     <exit code='3010' reboot="postponed" />
   </downgrade>
 
-  <remove cmd='"%SOFTWARE%\VJRuntime\%PROCESSOR_ARCHITECTURE%\install.exe" /qu'>
+  <remove cmd='"%SOFTWARE%\Microsoft\VJRuntime\%PROCESSOR_ARCHITECTURE%\install.exe" /qu'>
     <exit code='3010' reboot="postponed" />
   </remove>
 </package>
