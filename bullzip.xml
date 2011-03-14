@@ -15,10 +15,12 @@
 <package
   id="bullzip_pdfprinter"
   name="Bullzip PDF Printer"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false">
 
   <depends package-id="ghostscript" />
+  <!-- requires .NET 2.0 -->
+  <depends package-id="dotnet3" />
 
   <variable name="version" value="7.1.0.1218" />
   <variable name="fileversion" value="7_1_0_1218" />
