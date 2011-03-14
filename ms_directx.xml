@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<packages>
+
+<!--
+  INSTRUCTIONS
+  1) Download DirectX redistributable from Microsoft.
+  2) Extract redistributable to %SOFTWARE%\Microsoft\DirectX\directx9\.
+
+  NOTES
+  1) Officially DirectX can't be removed, so I'm not attempting any unofficial
+     methods.
+  2) Install check verified on Windows XP Professional 32 bit and Windows 7
+     Professional 32 bit.
+-->
+<package
+  id="ms_directx9"
+  name="DirectX 9.0C"
+  revision="%version%-0"
+  reboot="false"
+  priority="100">
+
+  <check type="registry" condition="equals" path="HKLM\Software\Microsoft\DirectX\Version" value="4.09.00.0904" />
+
+  <variable name="version" value="4.09.00.0904" />
+
+  <install cmd='"%SOFTWARE%\Microsoft\DirectX\directx9\setup.exe" /silent' />
+
+  <upgrade cmd='"%SOFTWARE%\Microsoft\DirectX\directx9\setup.exe" /silent' />
+
+</package>
+
+</packages>
