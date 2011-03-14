@@ -30,6 +30,16 @@
 
 <package
   id="visioviewer"
+  name="MS Visio Viewer - Latest Version"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <depends package-id="visioviewer2010" />
+</package>
+
+<package
+  id="visioviewer2010"
   name="MS Visio Viewer 2010"
   revision="2010-1"
   reboot="false"
