@@ -2,9 +2,10 @@
 
 <!--
   NOTES
-  1) A 64 bit version doesn't exist, and this client only works on 32-bit
-  2) For some odd reason the installer errors out with code 2 if run directly. Via START it seems to work
-  3) The /S passed to the installer will choke unless start is called with an empty title
+  1) Not tested on 64 bit
+  2) Previous version 3.5 would fail when installed as SYSTEM
+  3) We must uninstall v3 before installing v4
+  4) I've added copying the msi to c:\ - it's technically not necessary, but if for some reason the client isn't installed correctly, people have real problems, so it's just to be safe
 -->
 
 <packages>
@@ -12,19 +13,33 @@
 <package
   id="netextender"
   name="SonicWALL SSL-VPN NetExtender"
-  revision="7"
+  revision="%version%-4"
   reboot="false"
   priority="10">
 
-  <check type="uninstall" condition="versiongreaterorequal" path="SonicWALL SSL-VPN NetExtender" value="3.5.107" />
+  <variable name="version" value="4.0.138" />
 
-  <install cmd='%COMSPEC% /c START "" /D"%SOFTWARE%\SonicWall VPN" /wait "%SOFTWARE%\SonicWall VPN\NXSetupU.exe" /S' />
-  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg"' />
+  <check type="uninstall" condition="versiongreaterorequal" path="SonicWALL SSL-VPN NetExtender" value="%version%" />
 
-  <upgrade cmd='%COMSPEC% /c START "" /D"%SOFTWARE%\SonicWall VPN" /wait "%SOFTWARE%\SonicWall VPN\NXSetupU.exe" /S' />
-  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg"' />
+  <install cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" "%PROGRAMFILES%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" /S' />'
+  <install cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES(x86)%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" "%PROGRAMFILES(x86)%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" /S' />'
+  <install cmd='msiexec /i  "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" %MSI%' />
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg" '/>
+  <install cmd='xcopy /Y "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" c:\' />
 
-  <remove  cmd='"%PROGRAMFILES%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" /S' />
+  <upgrade cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" "%PROGRAMFILES%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" /S' />'
+  <upgrade cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES(x86)%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" "%PROGRAMFILES(x86)%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" /S' />'
+  <upgrade cmd='msiexec /i  "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" %MSI%' />
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg" '/>
+  <upgrade cmd='xcopy /Y "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" c:\' />
+
+  <downgrade cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" "%PROGRAMFILES%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" /S' />'
+  <downgrade cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES(x86)%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" "%PROGRAMFILES(x86)%\SonicWALL\SSL-VPN\NetExtender\uninst.exe" /S' />'
+  <downgrade cmd='msiexec /i "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" %MSI%' />
+  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg" '/>
+  <downgrade cmd='xcopy /Y "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" c:\' />
+
+  <remove    cmd='msiexec /x  "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" %MSI%' />
 
 </package>
 

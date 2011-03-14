@@ -11,17 +11,13 @@
 <package
   id="visio2010premium"
   name="MS Visio Premium 2010"
-  revision="2010"
+  revision="2010-0"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="Microsoft Visio Premium 2010" />
 
-  <install cmd='%COMSPEC% /c IF "%PROCESSOR_ARCHITECTURE%" == "X86"   "%SOFTWARE%\Visio Premium 2010\setup.exe" %MSI%'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
-  </install>
-  <install cmd='%COMSPEC% /c IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%SOFTWARE%\Visio Premium 2010-x64\setup.exe" %MSI%'>
+  <install cmd='"%SOFTWARE%\Microsoft\Visio Premium 2010\%PROCESSOR_ARCHITECTURE%\setup.exe" %MSI%'>
     <exit code="1641" reboot="postponed" />
     <exit code="3010" reboot="postponed" />
   </install>
@@ -34,8 +30,20 @@
 
 <package
   id="visioviewer"
+  name="MS Visio Viewer - Latest Version"
+  revision="2"
+  reboot="false"
+  priority="10"
+  execute="once">
+
+  <depends package-id="visioviewer2010" />
+
+</package>
+
+<package
+  id="visioviewer2010"
   name="MS Visio Viewer 2010"
-  revision="2010-0"
+  revision="2010-1"
   reboot="false"
   priority="10">
 
@@ -45,18 +53,17 @@
     <check type="uninstall" condition="exists" path="Microsoft Visio Premium 2010" />
   </check>
 
-  <install cmd='"%SOFTWARE%\Visio Viewer\visioviewer2010.exe" %MSI%' />
-
-  <upgrade cmd='"%SOFTWARE%\Visio Viewer\visioviewer2010.exe" %MSI%' />
-
-  <remove  cmd='msiexec %MSI% /x{95140000-0052-0409-0000-0000000FF1CE}' />
+  <install   cmd='"%SOFTWARE%\Microsoft\Visio Viewer\visioviewer2010.exe" %MSI%' />
+  <upgrade   cmd='"%SOFTWARE%\Microsoft\Visio Viewer\visioviewer2010.exe" %MSI%' />
+  <downgrade cmd='"%SOFTWARE%\Microsoft\Visio Viewer\visioviewer2010.exe" %MSI%' />
+  <remove    cmd='msiexec %MSI% /x{95140000-0052-0409-0000-0000000FF1CE}' />
 
 </package>
 
 <package
   id="visioviewer2007"
   name="MS Visio Viewer 2007 SP2"
-  revision="2007"
+  revision="2007-0"
   reboot="false"
   priority="10">
 
@@ -65,11 +72,14 @@
     <check type="uninstall" condition="exists" path="Microsoft Office Visio 2007" />
   </check>
 
-  <install cmd='"%SOFTWARE%\Visio Viewer\visioviewer2007.exe" %MSI%' />
-  <install cmd='"%SOFTWARE%\Visio Viewer\visioviewer2007sp2-kb953335-fullfile-en-us.exe" %MSI%' />
+  <install cmd='"%SOFTWARE%\Microsoft\Visio Viewer\visioviewer2007.exe" %MSI%' />
+  <install cmd='"%SOFTWARE%\Microsoft\Visio Viewer\visioviewer2007sp2-kb953335-fullfile-en-us.exe" %MSI%' />
 
-  <upgrade cmd='"%SOFTWARE%\Visio Viewer\visioviewer2007.exe" %MSI%' />
-  <upgrade cmd='"%SOFTWARE%\Visio Viewer\visioviewer2007sp2-kb953335-fullfile-en-us.exe" %MSI%' />
+  <upgrade cmd='"%SOFTWARE%\Microsoft\Visio Viewer\visioviewer2007.exe" %MSI%' />
+  <upgrade cmd='"%SOFTWARE%\Microsoft\Visio Viewer\visioviewer2007sp2-kb953335-fullfile-en-us.exe" %MSI%' />
+
+  <downgrade cmd='"%SOFTWARE%\Microsoft\Visio Viewer\visioviewer2007.exe" %MSI%' />
+  <downgrade cmd='"%SOFTWARE%\Microsoft\Visio Viewer\visioviewer2007sp2-kb953335-fullfile-en-us.exe" %MSI%' />
 
   <remove  cmd='msiexec %MSI% /x{95120000-0052-0409-0000-0000000FF1CE}' />
 
