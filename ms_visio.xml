@@ -31,11 +31,13 @@
 <package
   id="visioviewer"
   name="MS Visio Viewer - Latest Version"
-  revision="1"
+  revision="2"
   reboot="false"
-  priority="10">
+  priority="10"
+  execute="once">
 
   <depends package-id="visioviewer2010" />
+
 </package>
 
 <package
