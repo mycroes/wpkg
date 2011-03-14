@@ -11,6 +11,13 @@
 
   <variable name="version" value="10.2.152.26" />
 
+  <!--
+  <download url='http://www.adobe.com/go/full_flashplayer_win_msi'
+    target='%SOFTWARE%'\Adobe\Flash\10.2\install_flash_player_10_active_x.msi' />
+  <download url='http://www.adobe.com/go/full_flashplayer_win_pl_msi'
+    target='%SOFTWARE%\Adobe\Flash\10.2\install_flash_player_10_plugin.msi' />
+  -->
+
   <check type="logical" condition="and">
     <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 10 ActiveX" value="%version%" />
     <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 10 Plugin" value="%version%" />
