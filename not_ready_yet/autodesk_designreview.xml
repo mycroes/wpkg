@@ -27,7 +27,7 @@
   <check type="uninstall" condition="exists" path="Autodesk Design Review %version%" />
 
   <install cmd='msiexec /i "%SOFTWARE%\Autodesk\DesignReview\%version%\SetupDesignReview2011_086.msi" %MSI%' />
- 
+
   <upgrade cmd='msiexec /i "%SOFTWARE%\Autodesk\DesignReview\%version%\SetupDesignReview2011_086.msi" %MSI%' />
 
   <downgrade cmd='msiexec /fa msiexec /i "%SOFTWARE%\Autodesk\DesignReview\%version%\SetupDesignReview2011_086.msi" %MSI%' />
