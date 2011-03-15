@@ -8,5 +8,5 @@ else
   echo xmllint not found - please use some other XML checker to validate...
   exit 1
 fi
-find . -type f -print0 | chmod 644
+find . -type f -print0 | xargs -0 chmod 644
 find . -name '*.xml' -print0 | xargs -0 sed -i 's/[ \t]\+$//g'
