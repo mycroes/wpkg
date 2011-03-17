@@ -22,7 +22,9 @@
 
   <check type="uninstall" condition="exists" path="DWG TrueView %version%" />
 
-  <install cmd='msiexec /i  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
+  <install cmd='msiexec /i  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%'>
+    <exit code='3010' reboot="postponed" />
+  </install>
   <install cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\DWG TrueView*.lnk"'>
     <exit code="any" />
   </install>
@@ -30,7 +32,9 @@
     <exit code="any" />
   </install>
 
-  <upgrade   cmd='msiexec /i  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
+  <upgrade cmd='msiexec /i  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%'>
+    <exit code='3010' reboot="postponed" />
+  </upgrade>
   <upgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\DWG TrueView*.lnk"'>
     <exit code="any" />
   </upgrade>
@@ -38,7 +42,9 @@
     <exit code="any" />
   </upgrade>
 
-  <downgrade cmd='msiexec /fa "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
+  <downgrade cmd='msiexec /fa "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%'>
+    <exit code='3010' reboot="postponed" />
+  </downgrade>
   <downgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\DWG TrueView*.lnk"'>
     <exit code="any" />
   </downgrade>
@@ -46,7 +52,9 @@
     <exit code="any" />
   </downgrade>
 
-  <remove cmd='msiexec /x  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%' />
+  <remove cmd='msiexec /x  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%'>
+    <exit code='3010' />
+  </remove>
 
 </package>
 
