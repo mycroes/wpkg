@@ -18,6 +18,12 @@
   reboot="false"
   priority="10">
 
+  <!-- VCruntime 2008 is bundled -->
+  <depends package-id="vcruntime" />
+
+  <!-- MSXML 6 is bundled -->
+  <depends package-id="msxml" />
+
   <variable name="version" value="2011" />
 
   <check type="uninstall" condition="exists" path="DWG TrueView %version%" />
