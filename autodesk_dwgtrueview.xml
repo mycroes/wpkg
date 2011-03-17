@@ -24,6 +24,9 @@
   <!-- MSXML 6 is bundled -->
   <depends package-id="msxml" />
 
+  <!-- Requires .NET 3 -->
+  <depends package-id="dotnet3" />
+
   <variable name="version" value="2011" />
 
   <check type="uninstall" condition="exists" path="DWG TrueView %version%" />
