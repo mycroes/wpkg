@@ -2,7 +2,7 @@
 
 <!--
   NOTES
-  1) This installs MSXML 4 SP3 and MSXML 6 - you NEED to rename the msi files accordingly
+  1) This installs MSXML 4 SP3 and MSXML 6 SP1
 -->
 
 <packages>
@@ -10,21 +10,23 @@
 <package
   id="msxml"
   name="MSXML 4 &amp; 6"
-  revision="2"
+  revision="3"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="MSXML 4.0 SP3 Parser" />
   <check type="uninstall" condition="exists" path="MSXML 6.0 Parser" />
 
-  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\MSXML\MSXML4.msi"' />
-  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\MSXML\MSXML6.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\MSXML\MSXML4.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\MSXML\MSXML6.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\MSXML\MSXML4.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\MSXML\MSXML6.msi"' />
-  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Microsoft\MSXML\MSXML4.msi"' />
-  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Microsoft\MSXML\MSXML6.msi"' />
+  <variable name="base" value="%SOFTWARE%\Microsoft\MSXML" />
+
+  <install   cmd='msiexec %MSI% /i "%base%\msxml4\msxml.msi"' />
+  <install   cmd='%COMSPEC% /C msiexec %MSI% /i "%base%\msxml6\msxml6_%PROCESSOR_ARCHITECTURE:amd=x%.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%base%\msxml4\msxml.msi"' />
+  <upgrade   cmd='%COMSPEC% /C msiexec %MSI% /i "%base%\msxml6\msxml6_%PROCESSOR_ARCHITECTURE:amd=x%.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%base%\msxml4\msxml.msi"' />
+  <downgrade cmd='%COMSPEC% /C msiexec %MSI% /i "%base%\msxml6\msxml6_%PROCESSOR_ARCHITECTURE:amd=x%.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%base%\msxml4\msxml.msi"' />
+  <remove    cmd='%COMSPEC% /C msiexec %MSI% /x "%base%\msxml6\msxml6_%PROCESSOR_ARCHITECTURE:amd=x%.msi"' />
 
 </package>
 

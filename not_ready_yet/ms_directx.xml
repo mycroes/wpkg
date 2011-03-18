@@ -21,11 +21,17 @@
 
   <check type="registry" condition="equals" path="HKLM\Software\Microsoft\DirectX\Version" value="4.09.00.0904" />
 
+  <!-- DirectX install check as performed by AutoDesk DWG Trueview -->
+  <check type="logical" condition="or">
+    <check type="file" condition="exists" path="%SystemRoot%\system32\D3DX9_41.dll" />
+    <check type="file" condition="exists" path="%SystemRoot%\system32\d3dx10_41.dll" />
+  </check>
+
   <variable name="version" value="4.09.00.0904" />
 
-  <install cmd='"%SOFTWARE%\Microsoft\DirectX\directx9\setup.exe" /silent' />
+  <install cmd='"%SOFTWARE%\Microsoft\DirectX\directx9\DXsetup.exe" /silent' />
 
-  <upgrade cmd='"%SOFTWARE%\Microsoft\DirectX\directx9\setup.exe" /silent' />
+  <upgrade cmd='"%SOFTWARE%\Microsoft\DirectX\directx9\DXsetup.exe" /silent' />
 
 </package>
 
