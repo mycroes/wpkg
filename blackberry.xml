@@ -21,6 +21,8 @@ NOTES
   <depends package-id="vcruntime" />
   <depends package-id="dotnet3" />
 
+  <check type="uninstall" condition="versiongreaterorequal" path="BlackBerrt" value="%version%" />
+
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\BlackBerry\Desktop Manager\%version%\BlackBerry Desktop Software.msi"'>
     <exit code="3010" />
   </install>
@@ -41,6 +43,37 @@ NOTES
   <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BlackBerryAutoUpdate /f'>
     <exit code="1" />
   </downgrade>
+
+</package>
+
+<package
+  id="blackberry_drivers"
+  name="BlackBerry USB and Modem Manager"
+  revision="%version%.%minor%-0"
+  reboot="false"
+  priority="10"
+  execute="always">
+
+  <variable name="version" value="6.0.1" />
+  <variable name="minor" value="9" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="BlackBerry USB and Modem Drivers %version%" value="%version%.%minor%" />
+
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\BlackBerry\Drivers\%version%\BlackBerry USB and Modem Drivers_ENG.msi"'>
+    <exit code="3010" reboot="postponed" />
+  </install>
+
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\BlackBerry\Drivers\%version%\BlackBerry USB and Modem Drivers_ENG.msi"'>
+    <exit code="3010" reboot="postponed" />
+  </upgrade>
+
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\BlackBerry\Drivers\%version%\BlackBerry USB and Modem Drivers_ENG.msi"'>
+    <exit code="3010" reboot="postponed" />
+  </downgrade>
+
+  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\BlackBerry\Drivers\%version%\BlackBerry USB and Modem Drivers_ENG.msi"'>
+    <exit code="3010" />
+  </remove>
 
 </package>
 
