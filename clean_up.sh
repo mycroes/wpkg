@@ -9,4 +9,4 @@ else
   exit 1
 fi
 find . -type f ! -name clean_up.sh -print0 | xargs -0 chmod 644
-find . -name '*.xml' -o -name '*.rb' -print0 | xargs -0 sed -i 's/[ \t]\+$//g'
+find . \( -name '*.xml' -o -name '*.rb' \) -print0 | xargs -0 sed -i 's/[ \t]\+$//g'
