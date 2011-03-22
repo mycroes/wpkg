@@ -14,6 +14,10 @@
 <packages>
 
 <!--
+  INSTRUCTIONS
+  1) Extract ACU to '%SOFTWARE%\Novell\Netware Client\NT%OS_MAJOR%\'.
+  2) Create '%SOFTWARE%\Novell\Netware Client\NT%OS_MAJOR%\unattend.txt'.
+
   NOTES
   1) 2k/XP only for now
   2) Not sure what happens with upgrade and downgrade actions, but it happily
@@ -30,15 +34,15 @@
 
   <check type="uninstall" condition="exists" path="Novell Client for Windows" />
 
-  <install cmd='"%SOFTWARE%\Novell\Netware Client\nt5\acu.exe" /D:no /U:"%SOFTWARE%\Netware Client\nt5\unattended.txt"' reboot="postponed">
+  <install cmd='"%SOFTWARE%\Novell\Netware Client\nt5\acu.exe" /D:no /U' reboot="postponed">
     <exit code="1" />
   </install>
 
-  <upgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt5\acu.exe" /D:no /U:"%SOFTWARE%\Netware Client\nt5\unattended.txt"' reboot="postponed">
+  <upgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt5\acu.exe" /D:no /U' reboot="postponed">
     <exit code="1" />
   </upgrade>
 
-  <downgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt5\acu.exe" /D:no /U:"%SOFTWARE%\Netware Client\nt5\unattended.txt"' reboot="postponed">
+  <downgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt5\acu.exe" /D:no /U' reboot="postponed">
     <exit code="1" />
   </downgrade>
 
