@@ -21,7 +21,7 @@
 -->
 
 <package
-  id="netwareclient"
+  id="novell_netwareclient"
   name="Novell Netware Client"
   revision="%version%-0"
   priority="50">
@@ -30,20 +30,20 @@
 
   <check type="uninstall" condition="exists" path="Novell Client for Windows" />
 
-  <install cmd='"%SOFTWARE%\Netware\xp_x86\acu.exe" /D:no /U:"%SOFTWARE%\Netware\xp_x86\unattended.txt"' reboot="postponed">
+  <install cmd='"%SOFTWARE%\Novell\Netware Client\nt5\acu.exe" /D:no /U:"%SOFTWARE%\Netware Client\nt5\unattended.txt"' reboot="postponed">
     <exit code="1" />
   </install>
 
-  <upgrade cmd='"%SOFTWARE%\Netware\xp_x86\acu.exe" /D:no /U:"%SOFTWARE%\Netware\xp_x86\unattended.txt"' reboot="postponed">
+  <upgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt5\acu.exe" /D:no /U:"%SOFTWARE%\Netware Client\nt5\unattended.txt"' reboot="postponed">
     <exit code="1" />
   </upgrade>
 
-  <downgrade cmd='"%SOFTWARE%\Netware\xp_x86\acu.exe" /D:no /U:"%SOFTWARE%\Netware\xp_x86\unattended.txt"' reboot="postponed">
+  <downgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt5\acu.exe" /D:no /U:"%SOFTWARE%\Netware Client\nt5\unattended.txt"' reboot="postponed">
     <exit code="1" />
   </downgrade>
 
   <!-- Copy acu.exe and acu.ini to the 'remove' folder, edit acu.ini and change all items to 'yes' under 'uninstall' -->
-  <remove cmd='"%SOFTWARE%\Netware\xp_x86\remove\acu.exe" /D:no' reboot="postponed" />
+  <remove cmd='"%SOFTWARE%\Novell\Netware Client\nt5\remove\acu.exe" /D:no' reboot="postponed" />
 
 </package>
 
