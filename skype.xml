@@ -31,19 +31,19 @@
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\%version%\SkypeSetup.msi" %flags%'/>
   <install cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableVersionCheckPolicy" /d "1" /t REG_DWORD /f' />
   <install cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableSupernodePolicy" /d "1" /t REG_DWORD /f' />
-  <install cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' />
+  <install cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' ><exit code="1" /></install>
 
   <upgrade cmd='msiexec %MSI% /x{%product_code%}'><exit code="1605" /></upgrade>
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\%version%\SkypeSetup.msi" %flags%'/>
   <upgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableVersionCheckPolicy" /d "1" /t REG_DWORD /f' />
   <upgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableSupernodePolicy" /d "1" /t REG_DWORD /f' />
-  <upgrade cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' />
+  <upgrade cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' ><exit code="1" /></upgrade>
 
   <downgrade cmd='msiexec %MSI% /x{%product_code%}'><exit code="1605" /></downgrade>
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\%version%\SkypeSetup.msi" %flags%'/>
   <downgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableVersionCheckPolicy" /d "1" /t REG_DWORD /f' />
   <downgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableSupernodePolicy" /d "1" /t REG_DWORD /f' />
-  <downgrade cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' />
+  <downgrade cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' ><exit code="1" /></downgrade>
 
   <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Skype\Phone\Skype.exe" "%PROGRAMFILES%\Skype\Phone\Skype.exe" /shutdown' />
   <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" /shutdown' />
