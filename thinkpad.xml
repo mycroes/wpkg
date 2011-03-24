@@ -45,7 +45,7 @@
   id="tp_ezeject"
   name="ThinkPad EasyEject"
   revision="%version%-6"
-  priority="11"
+  priority="12"
   reboot="false">
 
   <variable name="file" value="7zu205ww.exe" />
@@ -58,15 +58,15 @@
     <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject-funktioner" value="%version%" /> <!-- Danish -->
   </check>
 
-  <install   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
+  <install   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart' />
   <install   cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
   <install   cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.iss' />
 
-  <upgrade   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
+  <upgrade   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart' />
   <upgrade   cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
   <upgrade   cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.iss' />
 
-  <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
+  <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart' />
   <downgrade cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
   <downgrade cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.iss' />
 
