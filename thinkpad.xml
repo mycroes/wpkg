@@ -45,7 +45,7 @@
   id="tp_ezeject"
   name="ThinkPad EasyEject"
   revision="%version%-6"
-  priority="10"
+  priority="11"
   reboot="false">
 
   <variable name="file" value="7zu205ww.exe" />
