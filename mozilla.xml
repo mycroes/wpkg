@@ -6,7 +6,7 @@
 
   NOTES
   1) Thunderbird is not updated - patches are welcome!
-  2) From v4 the firefox installer now writes the language to the uninstall string so we have to check for all
+  2) From v4 the firefox installer now writes the language to the uninstall string so we have to check for all languages - however wpkg does not support a logical or with only one entry so it's commented out until we add more
 
 -->
 
@@ -15,15 +15,19 @@
 <package
   id="firefox"
   name="Mozilla Firefox"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="4.0" />
 
+  <!--
   <check type="logical" condtion="or">
+  -->
     <check type="uninstall" condition="exists" path="Mozilla Firefox %version% (x86 en-US)" />
+  <!--
   </check>
+  -->
 
   <install   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
   <upgrade   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
