@@ -21,14 +21,19 @@
 
 </package>
 
+ <!-- .NET 3.5.1 is preinstalled on Win7 -->
+
 <package
   id="dotnet3"
   name="Microsoft .NET 3.5 SP1"
-  revision="4"
+  revision="5"
   reboot="false"
   priority="50">
 
-  <check type="uninstall" condition="exists" path="Microsoft .NET Framework 3.5 SP1" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Microsoft .NET Framework 3.5 SP1" />
+    <check type="registry" condition="equals" path="HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\CurrentVersion" value="6.1" />
+  </check>
 
   <install cmd='"%SOFTWARE%\Microsoft\DotNet\dotnetfx35.exe" /lang:ENU %MSI%'>
     <exit code="194" reboot="postponed" />
