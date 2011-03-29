@@ -25,15 +25,15 @@
 <package
   id="adobereaderX"
   name="Adobe Reader X"
-  revision="%version%-3"
+  revision="%version%-4"
   reboot="false"
   priority="10">
 
   <variable name="version" value="10.0.1" />
 
   <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Adobe Reader X" />
-    <check type="uninstall" condition="exists" path="Adobe Reader X - Nederlands" />
+    <check type="uninstall" condition="exists" path="Adobe Reader X (%version%)" />
+    <check type="uninstall" condition="exists" path="Adobe Reader X (%version%) - Nederlands" />
   </check>
 
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd" "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd"' />
