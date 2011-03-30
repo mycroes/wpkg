@@ -10,13 +10,13 @@
 <package
   id="vlc"
   name="VideoLAN Client"
-  revision="%version%-1"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="VLC media player %version%" />
 
-  <variable name="version" value="1.1.7" />
+  <variable name="version" value="1.1.8" />
   <variable name="A" value="%ProgramFiles%\VideoLAN" />
   <variable name="B" value="%ProgramFiles(x86)%\VideoLAN" />
 
