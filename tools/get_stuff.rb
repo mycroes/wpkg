@@ -52,6 +52,6 @@ LASTPASS = [
   ]
 
 
-LASTPASS.each do |p|
-  system "wget -c #{p[:url]} -O #{p[:file]}"
+FLASH.each do |p|
+  system "axel #{p[:url]} -a -o #{p[:file]}"
 end
