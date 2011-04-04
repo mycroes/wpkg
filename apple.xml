@@ -192,14 +192,14 @@ NOTES
 <package
   id="iphone_config"
   name="Apple iPhone Configuration Utility"
-  revision="%version%-3"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
   <depends package-id="applesupport" />
   <depends package-id="applemobile" />
 
-  <variable name="version" value="3.2.0.267" />
+  <variable name="version" value="3.3.0.274" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="iPhone Configuration Utility" value="%version%"/>
 
