@@ -57,7 +57,7 @@ opts.each do |opt, arg|
   case opt
     when '--help'
       puts <<-EOF
-get_stuff.rb [OPTIONS] --package PACKAGES DIR
+get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
 
   -h, --help:
     show help
@@ -103,13 +103,8 @@ EOF
   end
 end
 
-if package.nil?
-  puts 'Unknown or unsupported package selected. Please use --help to see available packages'
-  exit 1
-end
-
-if ARGV.length != 1
-  puts 'Missing dir argument (try --help)'
+if package.nil? || ARGV.length != 1
+  puts 'Missing dir argument or unknown package selected (try --help)'
   exit 1
 else
   dir = ARGV.shift
