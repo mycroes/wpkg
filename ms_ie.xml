@@ -18,23 +18,23 @@
 <package
   id="ie9"
   name="Internet Explorer 9 - for Windows 7"
-  revision="1"
+  revision="2"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="Windows Internet Explorer 9" />
 
-  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\IE8\9-Windows7-%A.exe" /passive /norestart /update-no'>
+  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\IE9-Windows7-%A.exe" /passive /norestart /update-no'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <install cmd='%COMSPEC% /C IF %PROCESSOR_ARCHITECTURE% == "amd64" FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\IE9\x86\IE8\9-Windows7-%A.exe" /passive /norestart /update-no'>
+  <install cmd='%COMSPEC% /C IF %PROCESSOR_ARCHITECTURE% == "amd64" FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\IE9\x86\IE9-Windows7-%A.exe" /passive /norestart /update-no'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE8\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE9\iesearch.reg"' />
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE9\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE9\iesearch.reg"' />
 
-  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE8\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE9\iesearch.reg"' />
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE9\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE9\iesearch.reg"' />
 
-  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE8\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE9\iesearch.reg"' />
+  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE9\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE9\iesearch.reg"' />
 
   <remove cmd='"%WINDIR%\ie9\spuninst\spuninst.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
