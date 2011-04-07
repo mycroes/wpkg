@@ -14,13 +14,6 @@ FLASH = [
             :file => File.join('Adobe', 'Flash', 'install_flash_player_10_plugin.msi')},
   ]
 
-VJ = [
-  {:url => 'http://download.microsoft.com/download/9/2/3/92338cd0-759f-4815-8981-24b437be74ef/vjredist.exe',
-            :file => File.join('Microsoft', 'VisualJ', BIT_32_DIR, 'vjredist.exe')},
-  {:url => 'http://download.microsoft.com/download/f/1/7/f175de5b-e7af-4231-9a65-417611bbedfe/vjredist64.exe',
-            :file => File.join('Microsoft', 'VisualJ', BIT_64_DIR, 'vjredist.exe')},
-  ]
-
 IE9 = [
   {:url => 'http://download.microsoft.com/download/C/3/B/C3BF2EF4-E764-430C-BDCE-479F2142FC81/IE9-Windows7-x86-enu.exe',
             :file => File.join('Microsoft', 'IE9', BIT_32_DIR, 'IE9-Windows7-enu.exe')},
@@ -52,6 +45,35 @@ TRUEVIEW = [
             :file => File.join('Autodesk', 'DWGTureview', '2011', BIT_32_DIR, 'SetupDWGTrueView2011_32bit.exe')},
   {:url => 'http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_64bit.exe',
             :file => File.join('Autodesk', 'DWGTureview', '2011', BIT_64_DIR, 'SetupDWGTrueView2011_64bit.exe')},
+  ]
+
+VC = [
+  #VC6
+  {:url => 'http://download.microsoft.com/download/vc60pro/update/1/w9xnt4/en-us/vc6redistsetup_enu.exe',
+            :file => File.join('Microsoft', 'VCRuntime', BIT_32_DIR, 'vcredist_6.exe')},
+  #2005
+  {:url => 'http://download.microsoft.com/download/e/1/c/e1c773de-73ba-494a-a5ba-f24906ecf088/vcredist_x86.exe',
+            :file => File.join('Microsoft', 'VCRuntime', BIT_32_DIR, 'vcredist_2005sp1.exe')},
+  {:url => 'http://download.microsoft.com/download/d/4/1/d41aca8a-faa5-49a7-a5f2-ea0aa4587da0/vcredist_x64.exe',
+            :file => File.join('Microsoft', 'VCRuntime', BIT_64_DIR, 'vcredist_2005sp1.exe')},
+  #2008
+  {:url => 'http://download.microsoft.com/download/d/d/9/dd9a82d0-52ef-40db-8dab-795376989c03/vcredist_x86.exe',
+            :file => File.join('Microsoft', 'VCRuntime', BIT_32_DIR, 'vcredist_2008sp1.exe')},
+  {:url => 'http://download.microsoft.com/download/2/d/6/2d61c766-107b-409d-8fba-c39e61ca08e8/vcredist_x64.exe',
+            :file => File.join('Microsoft', 'VCRuntime', BIT_64_DIR, 'vcredist_2008sp1.exe')},
+  #2010
+  {:url => 'http://download.microsoft.com/download/5/B/C/5BC5DBB3-652D-4DCE-B14A-475AB85EEF6E/vcredist_x86.exe',
+            :file => File.join('Microsoft', 'VCRuntime', BIT_32_DIR, 'vcredist_2010.exe')},
+  {:url => 'http://download.microsoft.com/download/3/2/2/3224B87F-CFA0-4E70-BDA3-3DE650EFEBA5/vcredist_x64.exe',
+            :file => File.join('Microsoft', 'VCRuntime', BIT_64_DIR, 'vcredist_2010.exe')},
+
+  ]
+
+VJ = [
+  {:url => 'http://download.microsoft.com/download/9/2/3/92338cd0-759f-4815-8981-24b437be74ef/vjredist.exe',
+            :file => File.join('Microsoft', 'VisualJ', BIT_32_DIR, 'vjredist.exe')},
+  {:url => 'http://download.microsoft.com/download/f/1/7/f175de5b-e7af-4231-9a65-417611bbedfe/vjredist64.exe',
+            :file => File.join('Microsoft', 'VisualJ', BIT_64_DIR, 'vjredist.exe')},
   ]
 
 VLC = [
@@ -93,6 +115,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       lastpass	LastPass
       skype	Skype Business Edition (.msi)
       trueview	DWG TrueView 2011
+      vc	Visual C++ Runtime 2005, 2008, 2010
       vj	Visual J Runtime
       vlc	VLC Player
 
@@ -108,7 +131,7 @@ EOF
     when '--package','-p'
       package = case arg
 	when 'all'
-	  [ FLASH, IE9, LASTPASS, SKYPE, VJ ]
+	  [ FLASH, IE9, INSTALLER, LASTPASS, SKYPE, TRUEVIEW, VC, VJ, VLC ]
 	when 'flash'
 	  FLASH
 	when 'ie9'
@@ -121,6 +144,8 @@ EOF
 	  SKYPE
 	when 'trueview'
 	  TRUEVIEW
+	when 'vc'
+	  VC
 	when 'vj'
 	  VJ
 	when 'vlc'
