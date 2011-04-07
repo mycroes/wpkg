@@ -8,7 +8,7 @@ BIT_32_DIR="x86"
 BIT_64_DIR="amd64"
 
 FLASH = [
-  { :url => 'http://www.adobe.com/go/full_flashplayer_win_msi',
+  {:url => 'http://www.adobe.com/go/full_flashplayer_win_msi',
             :file => File.join('Adobe', 'Flash', 'install_flash_player_10_active_x.msi')},
   {:url => 'http://www.adobe.com/go/full_flashplayer_win_pl_msi',
             :file => File.join('Adobe', 'Flash', 'install_flash_player_10_plugin.msi')},
@@ -28,6 +28,13 @@ IE9 = [
             :file => File.join('Microsoft', 'IE9', BIT_64_DIR, 'IE9-Windows7-enu.exe')},
   ]
 
+INSTALLER = [
+  {:url => 'http://download.microsoft.com/download/5/f/d/5fdc6240-2127-42b6-8e16-bab6171db233/WindowsXP-KB898461-x86-ENU.exe',
+            :file => File.join('Microsoft', 'Windows Installer', 'WindowsXP-KB898461-x86-ENU.exe')},
+  {:url => 'http://download.microsoft.com/download/2/6/1/261fca42-22c0-4f91-9451-0e0f2e08356d/WindowsXP-KB942288-v3-x86.exe',
+            :file => File.join('Microsoft', 'Windows Installer', 'WindowsXP-KB942288-v3-x86.exe')},
+  ]
+
 LASTPASS = [
   {:url => 'https://lastpass.com/lastpass.exe',
             :file => File.join('LastPass', BIT_32_DIR, 'lastpass.exe')},
@@ -38,6 +45,18 @@ LASTPASS = [
 SKYPE = [
   {:url => 'http://download.skype.com/SkypeSetup.msi',
             :file => File.join('Skype', 'SkypeSetup.msi')},
+  ]
+
+TRUEVIEW = [
+  {:url => 'http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_32bit.exe',
+            :file => File.join('Autodesk', 'DWGTureview', '2011', BIT_32_DIR, 'SetupDWGTrueView2011_32bit.exe')},
+  {:url => 'http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_64bit.exe',
+            :file => File.join('Autodesk', 'DWGTureview', '2011', BIT_64_DIR, 'SetupDWGTrueView2011_64bit.exe')},
+  ]
+
+VLC = [
+  {:url => 'http://sourceforge.net/projects/vlc/files/1.1.8/win32/vlc-1.1.8-win32.exe/download',
+            :file => File.join('VLC', 'vlc-1.1.8-win32.exe')},
   ]
 
 opts = GetoptLong.new(
@@ -70,9 +89,12 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       all	All packages
       flash	Flash Player
       ie9	Internet Explorer 9
+      installer	Windows Installer 4.5
       lastpass	LastPass
       skype	Skype Business Edition (.msi)
+      trueview	DWG TrueView 2011
       vj	Visual J Runtime
+      vlc	VLC Player
 
   DIR: The directory in which to store downloaded packages
 EOF
@@ -91,12 +113,18 @@ EOF
 	  FLASH
 	when 'ie9'
 	  IE9
+	when 'installer'
+	  INSTALLER
 	when 'lastpass'
 	  LASTPASS
 	when 'skype'
 	  SKYPE
+	when 'trueview'
+	  TRUEVIEW
 	when 'vj'
 	  VJ
+	when 'vlc'
+	  VLC
         else
 	  nil
       end
