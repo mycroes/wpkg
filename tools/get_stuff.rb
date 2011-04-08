@@ -3,6 +3,7 @@
 require 'fileutils'
 require 'getoptlong'
 require 'pathname'
+require 'xmlsimple'
 
 BIT_32_DIR="x86"
 BIT_64_DIR="amd64"
