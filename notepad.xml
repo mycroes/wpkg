@@ -15,7 +15,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="5.8.7" />
+  <variable name="version" value="5.9" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Notepad++" value="%version%" />
   <check type='logical' condition='or'>
