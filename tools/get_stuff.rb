@@ -179,7 +179,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
 
   --force, -f:
     Force overwriting existing files
-    
+
   --bits, -b 32|64:
     Only download 32 or 64 bit packages
 
@@ -207,7 +207,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       vc        Visual C++ Runtime 2005, 2008, 2010
       vj        Visual J Runtime
       vlc       VLC Player **
-      
+
       Packages marked with ** support version specific downloads
 
   DIR: The directory in which to store downloaded packages
@@ -270,7 +270,7 @@ def download(package_def)
     if File.exists?(fullpath)
       if @overwrite
         FileUtils.safe_unlink(fullpath)
-        puts 'Removing existing file'
+        puts 'INFO: Removing existing file'
       end
     end
     system "axel '#{url}' -a -o '#{fullpath}'"
@@ -290,13 +290,13 @@ begin
     download(@package)
   end
 rescue ArgumentError => e
-  puts "Invalid argument - try running the program with --help"
-  puts e.message
+  puts "ERROR: Invalid argument - try running the program with --help"
+  puts "ERROR: #{e.message}"
   exit 1
 rescue AppError => e
-  puts "Error: #{e.message}"
+  puts "ERROR: #{e.message}"
   exit 2
 rescue IOError => e
-  puts "Something wicked happened: #{e.message}"
+  puts "ERROR: Something wicked happened: #{e.message}"
   exit 3
 end
