@@ -245,9 +245,10 @@ def download(package_def)
     @language = p[:language] if p[:language] && @language.nil?
     if p[:package_id]
       [ @xmlpath ].flatten.each do |xp|
-        Dir.glob(File.join(xp, '**', '*.xml')).sort.each do |xf|
+        Dir.glob(File.join(xp, '*.xml')).sort.each do |xf|
+	  # puts "Processing: #{xf}"
           xml = XmlSimple.xml_in(xf, {'KeyAttr' => {'package' => 'id', 'variable' => 'name'}})
-          if xml['package'][p[:package_id]] && xml['package'][p[:package_id]]['variable'] && @version.nil?
+          if xml['package'] && xml['package'][p[:package_id]] && xml['package'][p[:package_id]]['variable'] && @version.nil?
             @version = xml['package'][p[:package_id]]['variable']['version']['value'] if xml['package'][p[:package_id]]['variable']['version']
             @fileversion = xml['package'][p[:package_id]]['variable']['fileversion']['value'] if xml['package'][p[:package_id]]['variable']['fileversion']
             puts "INFO: Found version #{@version}(#{@fileversion}) in file #{xf}" if @version
