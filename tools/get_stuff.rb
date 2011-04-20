@@ -74,6 +74,15 @@ PACKAGES = {
   :destination => ['Adobe', 'Flash', 'install_flash_player_10_plugin.msi']},
 ],
 
+:gs => [
+  {:url => 'http://downloads.sourceforge.net/project/ghostscript/GPL%20Ghostscript/%version%/gs%fileversion%w32.exe',
+  :destination => ['GhostScript', BIT_32_DIR, 'gs%fileversion%.exe'],
+  :package_id => 'ghostscript' },
+  {:url => 'http://downloads.sourceforge.net/project/ghostscript/GPL%20Ghostscript/%version%/gs%fileversion%w64.exe',
+  :destination => ['GhostScript', BIT_64_DIR, 'gs%fileversion%.exe'],
+  :package_id => 'ghostscript' },
+],
+
 :ie9 => [
   {:url => 'http://download.microsoft.com/download/C/3/B/C3BF2EF4-E764-430C-BDCE-479F2142FC81/IE9-Windows7-x86-enu.exe',
   :destination => ['Microsoft', 'IE9', BIT_32_DIR, 'IE9-Windows7-enu.exe']},
@@ -225,19 +234,20 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
   --package, -p PACKAGE_NAME:
     Get one of the following packages:
       all       All packages
-      sevenzip  7Zip
+      sevenzip  7Zip **
       dotnet3   .NET 3.5
-      flash     Flash Player **
+      flash     Flash Player
+      gs       	GhostScript **
       ie9       Internet Explorer 9
       installer	Windows Installer 4.5
-      npp       Notepad++
+      npp       Notepad++ **
       lastpass	LastPass
       skype     Skype Business Edition (.msi)
       trueview  DWG TrueView 2011
       vc        Visual C++ Runtime 2005, 2008, 2010
       vj        Visual J Runtime
       vlc       VLC Player **
-      wpkg	WPKG
+      wpkg	WPKG **
 
       Packages marked with ** support version specific downloads
 
