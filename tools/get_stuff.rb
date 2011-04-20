@@ -74,6 +74,12 @@ PACKAGES = {
   :destination => ['Adobe', 'Flash', 'install_flash_player_10_plugin.msi']},
 ],
 
+:git => [
+  {:url => 'http://msysgit.googlecode.com/files/Git-%version%-preview%reldate%.exe',
+  :destination => ['Git', 'Git-%version%-preview%reldate%.exe'],
+  :package_id => 'git' },
+],
+
 :gs => [
   {:url => 'http://downloads.sourceforge.net/project/ghostscript/GPL%20Ghostscript/%version%/gs%fileversion%w32.exe',
   :destination => ['GhostScript', BIT_32_DIR, 'gs%fileversion%.exe'],
@@ -204,6 +210,7 @@ opts = GetoptLong.new(
 @language = nil
 @version = nil
 @fileversion = nil
+@reldate = nil
 @xmlpath = XMLPATH
 @bits = :all
 
@@ -278,7 +285,12 @@ def replace_variables(str)
   s = str.gsub('%version%', @version.to_s)
   s.gsub!('%fileversion%', @fileversion.to_s)
   s.gsub!('%language%', @language.to_s)
+  s.gsub!('%reldate%', @reldate.to_s)
   return s
+end
+
+def get_variable(xml, package, variable)
+  return xml['package'][package]['variable'][variable]['value'] if xml['package'][package]['variable'][variable]
 end
 
 def download(package_def)
@@ -290,8 +302,10 @@ def download(package_def)
 	  # puts "Processing: #{xf}"
           xml = XmlSimple.xml_in(xf, {'KeyAttr' => {'package' => 'id', 'variable' => 'name'}})
           if xml['package'] && xml['package'][p[:package_id]] && xml['package'][p[:package_id]]['variable'] && @version.nil?
-            @version = xml['package'][p[:package_id]]['variable']['version']['value'] if xml['package'][p[:package_id]]['variable']['version']
-            @fileversion = xml['package'][p[:package_id]]['variable']['fileversion']['value'] if xml['package'][p[:package_id]]['variable']['fileversion']
+	    # we should create a hash of found variables and automatically substitute them all
+            @version = get_variable(xml, p[:package_id], 'version')
+            @fileversion = get_variable(xml, p[:package_id], 'fileversion')
+            @reldate = get_variable(xml, p[:package_id], 'reldate')
             puts "INFO: Found version #{@version}(#{@fileversion}) in file #{xf}" if @version
           end
         end
