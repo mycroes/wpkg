@@ -9,7 +9,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="10.2.153.1" />
+  <variable name="version" value="10.2.159.1" />
 
   <!--
   <download url='http://www.adobe.com/go/full_flashplayer_win_msi'
