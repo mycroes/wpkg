@@ -37,7 +37,7 @@
 
   <install cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE=%WPKG%\settings.xml' />
   <upgrade cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE=%WPKG%\settings.xml' />
-  
+
 </package>
 
 </packages>

@@ -155,7 +155,6 @@ PACKAGES = {
   :destination => ['Microsoft', 'VCRuntime', BIT_64_DIR, 'vcredist_2010.exe']},
 ],
 
-
 :vj => [
   {:url => 'http://download.microsoft.com/download/9/2/3/92338cd0-759f-4815-8981-24b437be74ef/vjredist.exe',
   :destination => ['Microsoft', 'VisualJ', BIT_32_DIR, 'vjredist.exe']},
@@ -167,6 +166,15 @@ PACKAGES = {
   {:url => 'http://sourceforge.net/projects/vlc/files/%version%/win32/vlc-%version%-win32.exe/download',
   :destination => ['VLC', 'vlc-%version%-win32.exe'],
   :package_id => 'vlc'},
+],
+
+:wpkg => [
+  {:url => 'http://wpkg.org/files/client/stable/WPKG%20Client%20%version%-x32.msi',
+  :destination => ['WPKG', BIT_32_DIR, 'WPKG Client 1.3.14.msi'],
+  :package_id => 'wpkg' },
+  {:url => 'http://wpkg.org/files/client/stable/WPKG%20Client%20%version%-x64.msi',
+  :destination => ['WPKG', BIT_64_DIR, 'WPKG Client 1.3.14.msi'],
+  :package_id => 'wpkg' },
 ],
 
 }
@@ -229,6 +237,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       vc        Visual C++ Runtime 2005, 2008, 2010
       vj        Visual J Runtime
       vlc       VLC Player **
+      wpkg	WPKG
 
       Packages marked with ** support version specific downloads
 
