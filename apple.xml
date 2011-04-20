@@ -20,7 +20,7 @@ NOTES
   <depends package-id="applemobile" />
   <depends package-id="quicktime" />
 
-  <variable name="version" value="10.2.1.1" />
+  <variable name="version" value="10.2.2.12" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="iTunes" value="%version%"/>
 
@@ -114,7 +114,7 @@ NOTES
   reboot="false"
   priority="10">
 
-  <variable name="version" value="1.5.0" />
+  <variable name="version" value="1.5.1" />
 
   <check type="uninstall"  condition="versiongreaterorequal" path="Apple Application Support" value="%version%"/>
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\AppleApplicationSupport.msi"' />
@@ -126,11 +126,11 @@ NOTES
 <package
   id="bonjour"
   name="Bonjour"
-  revision="%version%-2"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="2.0.4.0" />
+  <variable name="version" value="2.0.5.0" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Bonjour" value="%version%"/>
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\Bonjour\%version%\%PROCESSOR_ARCHITECTURE%\bonjour.msi"' />
