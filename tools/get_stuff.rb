@@ -113,7 +113,7 @@ PACKAGES = {
   :destination => ['Autodesk', 'DWGTrueview', '2011', BIT_64_DIR, 'SetupDWGTrueView2011_64bit.exe']},
 ],
 
-:vc => [
+:vc_orig => [
   #VC6
   {:url => 'http://download.microsoft.com/download/vc60pro/update/1/w9xnt4/en-us/vc6redistsetup_enu.exe',
   :destination => ['Microsoft', 'VCRuntime', BIT_32_DIR, 'vcredist_6.exe']},
@@ -133,6 +133,28 @@ PACKAGES = {
   {:url => 'http://download.microsoft.com/download/3/2/2/3224B87F-CFA0-4E70-BDA3-3DE650EFEBA5/vcredist_x64.exe',
   :destination => ['Microsoft', 'VCRuntime', BIT_64_DIR, 'vcredist_2010.exe']},
 ],
+
+:vc => [
+  #VC6
+  {:url => 'http://download.microsoft.com/download/vc60pro/update/1/w9xnt4/en-us/vc6redistsetup_enu.exe',
+  :destination => ['Microsoft', 'VCRuntime', BIT_32_DIR, 'vcredist_6.exe']},
+  #2005
+  {:url => 'http://download.microsoft.com/download/3/0/5/305BF178-5F7C-489E-8F39-C3257429E832/vcredist_x86.exe',
+  :destination => ['Microsoft', 'VCRuntime', BIT_32_DIR, 'vcredist_2005sp1.exe']},
+  {:url => 'http://download.microsoft.com/download/3/0/5/305BF178-5F7C-489E-8F39-C3257429E832/vcredist_x64.exe',
+  :destination => ['Microsoft', 'VCRuntime', BIT_64_DIR, 'vcredist_2005sp1.exe']},
+  #2008
+  {:url => 'http://download.microsoft.com/download/7/E/D/7ED72B8A-D457-4DF0-B455-42A85FA157FF/vcredist_x86.exe',
+  :destination => ['Microsoft', 'VCRuntime', BIT_32_DIR, 'vcredist_2008sp1.exe']},
+  {:url => 'http://download.microsoft.com/download/7/E/D/7ED72B8A-D457-4DF0-B455-42A85FA157FF/vcredist_x64.exe',
+  :destination => ['Microsoft', 'VCRuntime', BIT_64_DIR, 'vcredist_2008sp1.exe']},
+  #2010
+  {:url => 'http://download.microsoft.com/download/4/D/0/4D00D6C0-09FC-446C-AE9C-C923AF2DF29A/vcredist_x86.exe',
+  :destination => ['Microsoft', 'VCRuntime', BIT_32_DIR, 'vcredist_2010.exe']},
+  {:url => 'http://download.microsoft.com/download/4/D/0/4D00D6C0-09FC-446C-AE9C-C923AF2DF29A/vcredist_x64.exe',
+  :destination => ['Microsoft', 'VCRuntime', BIT_64_DIR, 'vcredist_2010.exe']},
+],
+
 
 :vj => [
   {:url => 'http://download.microsoft.com/download/9/2/3/92338cd0-759f-4815-8981-24b437be74ef/vjredist.exe',
