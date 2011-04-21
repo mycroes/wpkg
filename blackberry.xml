@@ -15,13 +15,13 @@ NOTES
   priority="10"
   execute="always">
 
-  <variable name="version" value="6.0.1.18" />
+  <variable name="version" value="6.0.2" />
 
   <depends package-id="msxml" />
   <depends package-id="vcruntime" />
   <depends package-id="dotnet3" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="BlackBerrt" value="%version%" />
+  <check type="uninstall" condition="exists" path="BlackBerry Desktop Software %version%" />
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\BlackBerry\Desktop Manager\%version%\BlackBerry Desktop Software.msi"'>
     <exit code="3010" />
@@ -54,7 +54,7 @@ NOTES
   priority="10"
   execute="always">
 
-  <variable name="version" value="6.0.1" />
+  <variable name="version" value="6.0.2" />
   <variable name="minor" value="9" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="BlackBerry USB and Modem Drivers %version%" value="%version%.%minor%" />
