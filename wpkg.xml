@@ -28,7 +28,7 @@
 <package
   id="wpkg-settings"
   name="Update WPKG settings"
-  revision="2-0"
+  revision="3-0"
   priority="0"
   reboot="false"
   execute="once">
@@ -37,8 +37,8 @@
   <depends package-id="wpkg"/>
   -->
 
-  <install cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE=%WPKG%\settings.xml' />
-  <upgrade cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE=%WPKG%\settings.xml' />
+  <install cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"' />
+  <upgrade cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"' />
 
 </package>
 
