@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) This installs MSXML 4 SP3 and MSXML 6 SP1
+-->
+
+<packages>
+
+<package
+  id="ms_windows_testmode"
+  name="Windows 7 Test Mode - allows loading unsigned drivers"
+  revision="1"
+  reboot="postponed"
+  priority="10"
+  execute="once">
+
+  <install cmd='bcdedit.exe -set loadoptions DDISABLE_INTEGRITY_CHECKS' />
+  <install cmd='bcdedit.exe -set TESTSIGNING ON' />
+  <remove  cmd='bcdedit.exe -set TESTSIGNING OFF' />
+
+</package>
+
+</packages>

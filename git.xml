@@ -14,8 +14,8 @@
   priority="10"
   reboot="false">
 
-  <variable name="version" value="1.7.3.1" />
-  <variable name="reldate" value="20101002" />
+  <variable name="version" value="1.7.4" />
+  <variable name="reldate" value="20110204" />
 
   <check type="uninstall" condition="exists" path="Git version %version%-preview%reldate%" />
   <install   cmd='taskkill /f /im sh.exe'><exit code="any" /></install>

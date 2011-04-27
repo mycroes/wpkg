@@ -71,11 +71,11 @@
 <package
   id="adobereader9"
   name="Adobe Reader 9"
-  revision="%version%-5"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="9.4.3" />
+  <variable name="version" value="9.4.4" />
   <variable name="lt" value='"%WPKG%\tools\localetool.exe"' />
   <variable name="subst" value='%COMSPEC% /C FOR /F "usebackq tokens=1-10"' />
 
@@ -104,6 +104,9 @@
     <exit code="3010" reboot="postponed" />
   </install>
   <install cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd943_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
+    <exit code="3010" reboot="postponed" />
+  </install>
+  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd944_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
     <exit code="3010" reboot="postponed" />
   </install>
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\post_install.cmd" "%SOFTWARE%\Adobe\Reader\9\post_install.cmd"' />
@@ -136,6 +139,9 @@
   <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd943_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
+  <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd944_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
+    <exit code="3010" reboot="postponed" />
+  </upgrade>
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\post_install.cmd" "%SOFTWARE%\Adobe\Reader\9\post_install.cmd"' />
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
     <exit code="1" />
@@ -164,6 +170,9 @@
     <exit code="3010" reboot="postponed" />
   </downgrade>
   <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd943_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
+    <exit code="3010" reboot="postponed" />
+  </downgrade>
+  <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd944_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\post_install.cmd" "%SOFTWARE%\Adobe\Reader\9\post_install.cmd"' />

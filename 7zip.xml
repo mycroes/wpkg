@@ -4,7 +4,7 @@
   <package
     id="7zip"
     name="7-Zip (32 and 64 bit)"
-    revision="%version%-2"
+    revision="%version%-5"
     reboot="false"
     priority="0">
 
@@ -19,17 +19,20 @@
     <install cmd='msiexec /i "%SOFTWARE%\7zip\%PROCESSOR_ARCHITECTURE%\7z%fileversion%.msi" %MSI%'>
       <exit code="3010" />
     </install>
-    <install cmd='regedit /s "%SOFTWARE\7zip\7zip.reg"'/>
+    <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.reg" regedit /s "%SOFTWARE%\7zip\7zip.reg"'/>
+    <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.cmd" "%SOFTWARE%\7zip\7zip.cmd"'/>
 
     <upgrade cmd='msiexec /i "%SOFTWARE%\7zip\%PROCESSOR_ARCHITECTURE%\7z%fileversion%.msi" %MSI%'>
       <exit code="3010" />
     </upgrade>
-    <upgrade cmd='regedit /s "%SOFTWARE\7zip\7zip.reg"'/>
+    <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.reg" regedit /s "%SOFTWARE%\7zip\7zip.reg"'/>
+    <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.cmd" "%SOFTWARE%\7zip\7zip.cmd"'/>
 
     <downgrade cmd='msiexec /i "%SOFTWARE%\7zip\%PROCESSOR_ARCHITECTURE%\7z%fileversion%.msi" %MSI%'>
       <exit code="3010" />
     </downgrade>
-    <downgrade cmd='regedit /s "%SOFTWARE\7zip\7zip.reg"'/>
+    <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.reg" regedit /s "%SOFTWARE%\7zip\7zip.reg"'/>
+    <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.cmd" "%SOFTWARE%\7zip\7zip.cmd"'/>
 
     <remove  cmd='msiexec /x "%SOFTWARE%\7zip\%PROCESSOR_ARCHITECTURE%\7z%fileversion%.msi" %MSI%'>
       <exit code="3010" />
@@ -39,32 +42,39 @@
   <package
     id="7zipbeta"
     name="7-Zip BETA (32 and 64 bit)"
-    revision="%version%-1"
+    revision="%version%-0"
     reboot="false"
     priority="0">
 
-    <variable name="version" value="9.17" />
-    <variable name="fileversion" value="917" />
+    <variable name="version" value="9.21" />
+    <variable name="fileversion" value="921" />
 
     <check type="logical" condition="or">
       <check type="uninstall" condition="exists" path="7-Zip %version% beta"/>
       <check type="uninstall" condition="exists" path="7-Zip %version% (x64 edition)" /> <!-- No beta on the 64-bit version. Why? No clue. -->
     </check>
 
-    <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\7zip\7z%fileversion%.exe" /S' />
-    <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\7zip\7z%fileversion%-x64.msi" %MSI%' />
-    <install cmd='regedit /s "%SOFTWARE\7zip\7zip.reg"'/>
+    <install cmd='msiexec /i "%SOFTWARE%\7zip\%PROCESSOR_ARCHITECTURE%\7z%fileversion%.msi" %MSI%'>
+      <exit code="3010" />
+    </install>
+    <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.reg" regedit /s "%SOFTWARE%\7zip\7zip.reg"'/>
+    <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.cmd" "%SOFTWARE%\7zip\7zip.cmd"'/>
 
-    <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\7zip\7z%fileversion%.exe" /S' />
-    <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\7zip\7z%fileversion%-x64.msi" %MSI%' />
-    <upgrade cmd='regedit /s "%SOFTWARE\7zip\7zip.reg"'/>
+    <upgrade cmd='msiexec /i "%SOFTWARE%\7zip\%PROCESSOR_ARCHITECTURE%\7z%fileversion%.msi" %MSI%'>
+      <exit code="3010" />
+    </upgrade>
+    <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.reg" regedit /s "%SOFTWARE%\7zip\7zip.reg"'/>
+    <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.cmd" "%SOFTWARE%\7zip\7zip.cmd"'/>
 
-    <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%SOFTWARE%\7zip\7z%fileversion%.msi" /S' />
-    <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\7zip\7z%fileversion%-x64.msi" %MSI%' />
-    <downgrade cmd='regedit /s "%SOFTWARE\7zip\7zip.reg"'/>
+    <downgrade cmd='msiexec /i "%SOFTWARE%\7zip\%PROCESSOR_ARCHITECTURE%\7z%fileversion%.msi" %MSI%'>
+      <exit code="3010" />
+    </downgrade>
+    <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.reg" regedit /s "%SOFTWARE%\7zip\7zip.reg"'/>
+    <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.cmd" "%SOFTWARE%\7zip\7zip.cmd"'/>
 
-    <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%PROGRAMFILES%\7-Zip\uninstall.exe" /S' />
-    <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /x "%SOFTWARE%\7zip\7z%fileversion%-x64.msi" %MSI%' />
+    <remove  cmd='msiexec /x "%SOFTWARE%\7zip\%PROCESSOR_ARCHITECTURE%\7z%fileversion%.msi" %MSI%'>
+      <exit code="3010" />
+    </remove>
   </package>
 
 </packages>
