@@ -9,13 +9,19 @@
 
 <package
   id="msxml"
-  name="MSXML 4 &amp; 6"
-  revision="3"
+  name="MSXML 4 and 6"
+  revision="4"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="MSXML 4.0 SP3 Parser" />
-  <check type="uninstall" condition="exists" path="MSXML 6.0 Parser" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="MSXML 6.0 Parser" />
+    <check type="logical" condition="and">
+      <check type="file" condition="exists" path="%SYSTEMROOT%\system32\msxml6.dll" />
+      <check type="file" condition="exists" path="%SYSTEMROOT%\system32\msxml6r.dll" />
+    </check>
+  </check>
 
   <variable name="base" value="%SOFTWARE%\Microsoft\MSXML" />
 
