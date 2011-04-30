@@ -13,7 +13,7 @@
   priority="10"
   reboot="false">
 
-  <variable name="version" value="1.4" />
+  <variable name="version" value="1.5.1" />
   <check type="uninstall" condition="versiongreaterorequal" path="SumatraPDF" value="%version%" />
   <install cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
   <upgrade cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
