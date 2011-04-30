@@ -121,6 +121,13 @@ PACKAGES = {
   :destination => ['Skype', 'SkypeSetup.msi']},
 ],
 
+:sumatrapdf => [
+  {:url => 'http://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-%version%-install.exe',
+  :destination => ['SumatraPDF', 'SumatraPDF-%version%-install.exe'],
+  :package_id => 'sumatrapdf'},
+],
+
+
 :trueview => [
   {:url => 'http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_32bit.exe',
   :destination => ['Autodesk', 'DWGTrueview', '2011', BIT_32_DIR, 'SetupDWGTrueView2011_32bit.exe']},
@@ -240,21 +247,22 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
 
   --package, -p PACKAGE_NAME:
     Get one of the following packages:
-      all       All packages
-      sevenzip  7Zip **
-      dotnet3   .NET 3.5
-      flash     Flash Player
-      gs       	GhostScript **
-      ie9       Internet Explorer 9
-      installer	Windows Installer 4.5
-      npp       Notepad++ **
-      lastpass	LastPass
-      skype     Skype Business Edition (.msi)
-      trueview  DWG TrueView 2011
-      vc        Visual C++ Runtime 2005, 2008, 2010
-      vj        Visual J Runtime
-      vlc       VLC Player **
-      wpkg	WPKG **
+      all        All packages
+      sevenzip   7Zip **
+      dotnet3    .NET 3.5
+      flash      Flash Player
+      gs       	 GhostScript **
+      ie9        Internet Explorer 9
+      installer	 Windows Installer 4.5
+      npp        Notepad++ **
+      lastpass	 LastPass
+      skype      Skype Business Edition (.msi)
+      sumatrapdf SumatraPDF **
+      trueview   DWG TrueView 2011
+      vc         Visual C++ Runtime 2005, 2008, 2010
+      vj         Visual J Runtime
+      vlc        VLC Player **
+      wpkg	 WPKG **
 
       Packages marked with ** support version specific downloads
 
