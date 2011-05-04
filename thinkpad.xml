@@ -75,14 +75,14 @@
 <package
   id="tp_systemupdate"
   name="ThinkPad System Update"
-  revision="%version%-1"
+  revision="%version_xp%-1"
   priority="10"
   reboot="false">
 
-  <variable name="dir_xp" value="%SOFTWARE%\ThinkPad\systemupdate314-2010-6-3" />
-  <variable name="dir_w7" value="%SOFTWARE%\ThinkPad\systemupdate40-2009-10-19" />
-  <variable name="version_xp" value="3.14.0024" />
-  <variable name="version_w7" value="4.0" />
+  <variable name="dir_xp" value="%SOFTWARE%\ThinkPad\systemupdate314-2010-10-29" />
+  <variable name="dir_w7" value="%SOFTWARE%\ThinkPad\systemupdate40-2011-02-18" />
+  <variable name="version_xp" value="3.14.0031" />
+  <variable name="version_w7" value="4.0.0046" />
 
   <check type="logical" condition="or">
     <check type="uninstall" condition="versiongreaterorequal" path="System Update" value="%version_xp%" />
