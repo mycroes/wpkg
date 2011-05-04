@@ -80,7 +80,7 @@
 <package
   id="tp_systemupdate"
   name="ThinkPad System Update"
-  revision="%version_xp%-2"
+  revision="%version_xp%-3"
   priority="10"
   reboot="false">
 
@@ -94,16 +94,16 @@
     <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage System Update" value="%version_w7%" />
   </check>
 
-  <install   cmd='msiexec %MSI% /i "%dir_xp%\setup.exe" /S /v/qn'>
+  <install   cmd='"%dir_xp%\setup.exe" /S /V"%MSI% /l* %temp%\systemupdate.log"'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <upgrade   cmd='msiexec %MSI% /i "%dir_xp%\setup.exe" /S /v/qn'>
+  <upgrade   cmd='"%dir_xp%\setup.exe" /S /V"%MSI% /l* %temp%\systemupdate.log"'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
-  <downgrade cmd='msiexec %MSI% /i "%dir_xp%\setup.exe" /S /v/qn'>
+  <downgrade cmd='"%dir_xp%\setup.exe" /S /V"%MSI% /l* %temp%\systemupdate.log"'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
-  <remove    cmd='msiexec %MSI% /x "%dir_xp%\setup.exe" /S /v/qn'>
+  <remove    cmd='"%dir_xp%\setup.exe" /S /V"%MSI% /l* %temp%\systemupdate.log"'>
     <exit code="3010" reboot="postponed" />
   </remove>
 
