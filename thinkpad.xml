@@ -74,13 +74,13 @@
 
 <!--
   NOTES
-  1) Note that there is no space in /v/qn
+  1) Turns out the uninstall name is different between computers on XP (haven't verified w7). Great...
 -->
 
 <package
   id="tp_systemupdate"
   name="ThinkPad System Update"
-  revision="%version_xp%-3"
+  revision="%version_xp%-4"
   priority="10"
   reboot="false">
 
@@ -90,6 +90,7 @@
   <variable name="version_w7" value="4.0.0046" />
 
   <check type="logical" condition="or">
+    <check type="uninstall" condition="versiongreaterorequal" path="System Update" value="%version_xp%" />
     <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage System Update" value="%version_xp%" />
     <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage System Update" value="%version_w7%" />
   </check>
