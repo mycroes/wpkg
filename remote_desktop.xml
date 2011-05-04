@@ -31,7 +31,7 @@
 <package
   id="rdp_client_xp"
   name="Install latest RDP Client"
-  revision="1"
+  revision="2"
   reboot="false"
   priority="10">
 
@@ -39,9 +39,13 @@
 
   <check type="registry" condition="exists" path="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\KB969084" />
 
-  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\RDP\WindowsXP-KB969084-x86-%A.exe" %MSI%' />
+  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\RDP\WindowsXP-KB969084-x86-%A.exe" %MSI%'>
+    <exit code="3010" />
+  </install>
 
-  <upgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\RDP\WindowsXP-KB969084-x86-%A.exe" %MSI%' />
+  <upgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\RDP\WindowsXP-KB969084-x86-%A.exe" %MSI%'>
+    <exit code="3010" />
+  </upgrade>
 
   <remove  cmd='"%WINDIR%\$NtUninstallKB969084$\spuninst\spuninst.exe" /quiet /norestart' />
 
