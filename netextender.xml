@@ -13,7 +13,7 @@
 <package
   id="netextender"
   name="SonicWALL SSL-VPN NetExtender"
-  revision="%version%-7"
+  revision="%version%-8"
   reboot="false"
   priority="10">
 
