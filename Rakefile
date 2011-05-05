@@ -1,4 +1,4 @@
-FILES_TO_CLEAN = %q[*.xml *.rb Rakefile]
+FILES_TO_CLEAN = [ '*.xml', '*.rb', 'Rakefile' ]
 
 desc "Remove backup files"
 task :remove_backup do
