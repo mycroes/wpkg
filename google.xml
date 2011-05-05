@@ -10,12 +10,12 @@
 
 <package
   id="googleearth"
-  name="Google Earth 5.2"
+  name="Google Earth"
   revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="5.2.1.1547" />
+  <variable name="version" value="6.0.2.2074" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Google Earth" value="%version%" />
 
