@@ -13,7 +13,7 @@
 <package
   id="netextender"
   name="SonicWALL SSL-VPN NetExtender"
-  revision="%version%-8"
+  revision="%version%-9"
   reboot="false"
   priority="10">
 
@@ -26,18 +26,21 @@
   </install>
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg" '/>
   <install cmd='xcopy /Y "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" c:\' />
+  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.lnk" xcopy /y "%SOFTWARE%\SonicWall VPN\NetExtender.lnk" "%ALLUSERSPROFILE%\Start Menu" '/>
 
   <upgrade cmd='msiexec /i  "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" %MSI%'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg" '/>
   <upgrade cmd='xcopy /Y "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" c:\' />
+  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.lnk" xcopy /y "%SOFTWARE%\SonicWall VPN\NetExtender.lnk" "%ALLUSERSPROFILE%\Start Menu" '/>
 
   <downgrade cmd='msiexec /i "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" %MSI%'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg" '/>
   <downgrade cmd='xcopy /Y "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" c:\' />
+  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.lnk" xcopy /y "%SOFTWARE%\SonicWall VPN\NetExtender.lnk" "%ALLUSERSPROFILE%\Start Menu" '/>
 
   <remove    cmd='msiexec /x  "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" %MSI%' />
 
