@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+  <!--
+  NOTES
+  1) Copy in our INI file which forces Irfanview to use per-user configurations in %APPDATA%
+  2) We run uninstall first as it doesn't like upgrades - we also do that on install as the user may have installed it previously
+  -->
+
+<package
+  id="irfanview"
+  name="IrfanView"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="4.2.8.0" />
+  <variable name="fileversion" value="428" />
+
+  <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\IrfanView\i_view32.exe" value="%version%" />
+
+  <install cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\IrfanView\iv_uninstall.exe" "%PROGRAMFILES%\IrfanView\iv_uninstall.exe" /silent' />
+  <install cmd='"%SOFTWARE%\irfanview\iview%fileversion%_setup.exe" /silent /folder="%PROGRAMFILES%\Irfanview" /desktop=0 /group=1 /allusers=1 /assoc=1' />
+  <install cmd='%COMSPEC% /c xcopy /y "%SOFTWARE%\irfanview\i_view32.ini" "%PROGRAMFILES%\Irfanview\" >NUL' />
+
+  <upgrade cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\IrfanView\iv_uninstall.exe" "%PROGRAMFILES%\IrfanView\iv_uninstall.exe" /silent' />
+  <upgrade cmd='"%SOFTWARE%\irfanview\iview%fileversion%_setup.exe" /silent /folder="%PROGRAMFILES%\Irfanview" /desktop=0 /group=1 /allusers=1 /assoc=1' />
+  <upgrade cmd='%COMSPEC% /c xcopy /y "%SOFTWARE%\irfanview\i_view32.ini" "%PROGRAMFILES%\Irfanview\" >NUL' />
+
+  <downgrade cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\IrfanView\iv_uninstall.exe" "%PROGRAMFILES%\IrfanView\iv_uninstall.exe" /silent' />
+  <downgrade cmd='"%SOFTWARE%\irfanview\iview%fileversion%_setup.exe" /silent /folder="%PROGRAMFILES%\Irfanview" /desktop=0 /group=1 /allusers=1 /assoc=1' />
+  <downgrade cmd='%COMSPEC% /c xcopy /y "%SOFTWARE%\irfanview\i_view32.ini" "%PROGRAMFILES%\Irfanview\" >NUL' />
+
+  <remove cmd='"%PROGRAMFILES%\IrfanView\iv_uninstall.exe" /silent' />
+</package>
+
+<package
+  id="irfanview_plugins"
+  name="Irfanview Plugins"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="428" />
+
+  <depends package-id="irfanview" />
+
+  <check type="file" condition="exists" path="%PROGRAMFILES%\IrfanView\plugins\IV_player.exe" />
+
+  <install   cmd='"%SOFTWARE%\irfanview\irfanview_plugins_%version%_setup.exe" /silent' />
+  <upgrade   cmd='"%SOFTWARE%\irfanview\irfanview_plugins_%version%_setup.exe" /silent' />
+  <downgrade cmd='"%SOFTWARE%\irfanview\irfanview_plugins_%version%_setup.exe" /silent' />
+  <!-- we just need WPKG to see this as removed -->
+  <remove    cmd='%COMSPEC% /c del "%ProgramFiles%\Irfanview\Plugins\IV_player.exe"' />
+</package>
+
+</packages>
