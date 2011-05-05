@@ -76,12 +76,17 @@
   NOTES
   1) Turns out the uninstall name is different between computers on XP (haven't verified w7). Great...
   2) It looks like WPKG doesn't do variable expension in sub-processes hence /passive /norestart instead of %MSI%
+
+  INSTALLER
+  1) Download .exe from lenovo.com
+  2) Use 7z to extract into folder
+  3) Run psaddzip.exe - this creates a setup directory at the install source
 -->
 
 <package
   id="tp_systemupdate"
   name="ThinkPad System Update"
-  revision="%version_xp%-5"
+  revision="%version_xp%-%version_w7%-0"
   priority="10"
   reboot="false">
 
@@ -96,16 +101,16 @@
     <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage System Update" value="%version_w7%" />
   </check>
 
-  <install   cmd='"%dir_xp%\setup.exe" /S /V"/passive /norestart"'>
+  <install   cmd='"%dir_xp%\setup.exe" /S /V"/quiet /norestart"'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <upgrade   cmd='"%dir_xp%\setup.exe" /S /V"/passive /norestart"'>
+  <upgrade   cmd='"%dir_xp%\setup.exe" /S /V"/quiet /norestart"'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
-  <downgrade cmd='"%dir_xp%\setup.exe" /S /V"/passive /norestart"'>
+  <downgrade cmd='"%dir_xp%\setup.exe" /S /V"/quiet /norestart"'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
-  <remove    cmd='"%dir_xp%\setup.exe" /S /V"/passive /norestart"'>
+  <remove    cmd='msiexec %MSI% /x "%dir_xp%\System Update.msi"'>
     <exit code="3010" reboot="postponed" />
   </remove>
 
