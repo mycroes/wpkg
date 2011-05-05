@@ -11,11 +11,12 @@
 <package
   id="googleearth"
   name="Google Earth"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="6.0.2.2074" />
+  <variable name="shortversion" value="6.0" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Google Earth" value="%version%" />
 
@@ -23,9 +24,10 @@
     <exit code="0" />
     <exit code="1" /> <!-- directory already exists -->
   </install>
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\5.2\Google Earth.msi"' />
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\5.2\Google Earth.msi"' />
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Google\Google Earth\5.2\Google Earth.msi"' />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\%shortversion%\Google Earth.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\%shortversion%\Google Earth.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\%shortversion%\Google Earth.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Google\Google Earth\%shortversion%\Google Earth.msi"' />
 
 </package>
 
