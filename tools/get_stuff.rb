@@ -177,6 +177,12 @@ PACKAGES = {
   :destination => ['Microsoft', 'VCRuntime', BIT_64_DIR, 'vcredist_2010.exe']},
 ],
 
+:visio => [
+  {:url => 'http://download.microsoft.com/download/A/B/3/AB3C56B5-B1B3-41CB-A445-D4FB03F8A1BA/visioviewer.exe',
+  :destination => [ 'Microsoft', 'Visio Viewer', '%version%', 'visioviewer.exe' ],
+  :package_id => 'visioviewer'},
+],
+
 :vj => [
   {:url => 'http://download.microsoft.com/download/9/2/3/92338cd0-759f-4815-8981-24b437be74ef/vjredist.exe',
   :destination => ['Microsoft', 'VisualJ', BIT_32_DIR, 'vjredist.exe']},
@@ -260,6 +266,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       sumatrapdf SumatraPDF **
       trueview   DWG TrueView 2011
       vc         Visual C++ Runtime 2005, 2008, 2010
+      visio      Visio Viewer 2010
       vj         Visual J Runtime
       vlc        VLC Player **
       wpkg	 WPKG **
@@ -324,7 +331,7 @@ def download(package_def)
       puts "WARNING: Ignoring version parameter for package that doesn't support it" if @version || @fileversion
     end
     dest = Pathname.new(File.join(p[:destination]))
-    path = File.join(@dir, dest.dirname)
+    path = replace_variables(File.join(@dir, dest.dirname))
     file = dest.basename
     fullpath = replace_variables(File.join(path, file))
     url = replace_variables(p[:url])
