@@ -36,11 +36,11 @@
 </package>
 
 <package
-  id='google_picasa'
-  name='Picasa 3.8'
-  revision='%version%-0'
-  priority='10'
-  reboot='false' >
+  id="google_picasa"
+  name="Picasa 3.8"
+  revision="%version%-0"
+  priority="10"
+  reboot="false" >
 
   <variable name="version" value="3.8" />
   <variable name="fileversion" value="38" />
