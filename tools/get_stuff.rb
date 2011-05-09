@@ -89,6 +89,11 @@ PACKAGES = {
   :package_id => 'ghostscript' },
 ],
 
+:ie8 => [
+  {:url => 'http://download.microsoft.com/download/C/C/0/CC0BD555-33DD-411E-936B-73AC6F95AE11/IE8-WindowsXP-x86-ENU.exe',
+  :destination => ['Microsoft', 'IE8', 'IE8-WindowsXP-x86-ENU.exe']},
+],
+
 :ie9 => [
   {:url => 'http://download.microsoft.com/download/C/3/B/C3BF2EF4-E764-430C-BDCE-479F2142FC81/IE9-Windows7-x86-enu.exe',
   :destination => ['Microsoft', 'IE9', BIT_32_DIR, 'IE9-Windows7-enu.exe']},
@@ -108,6 +113,11 @@ PACKAGES = {
   :destination => ['LastPass', BIT_32_DIR, 'lastpass.exe']},
   {:url => 'https://lastpass.com/lastpass_x64.exe',
   :destination => ['LastPass', BIT_64_DIR, 'lastpass.exe']},
+],
+
+:netpas => [
+  {:url => 'http://file.netpas.net/ftp/NetpasDistance.exe',
+  :destination => ['NetPas', 'Distance', 'NetpasDistance.exe']},
 ],
 
 :npp => [
@@ -258,8 +268,10 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       dotnet3    .NET 3.5
       flash      Flash Player
       gs       	 GhostScript **
+      ie8        Internet Explorer 8 for Windows XP
       ie9        Internet Explorer 9
       installer	 Windows Installer 4.5
+      netpas     Netpas Distance
       npp        Notepad++ **
       lastpass	 LastPass
       skype      Skype Business Edition (.msi)
