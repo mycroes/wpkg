@@ -208,10 +208,10 @@ PACKAGES = {
 
 :wpkg => [
   {:url => 'http://wpkg.org/files/client/stable/WPKG%20Client%20%version%-x32.msi',
-  :destination => ['WPKG', BIT_32_DIR, 'WPKG Client 1.3.14.msi'],
+  :destination => ['WPKG', BIT_32_DIR, 'WPKG Client %version%.msi'],
   :package_id => 'wpkg' },
   {:url => 'http://wpkg.org/files/client/stable/WPKG%20Client%20%version%-x64.msi',
-  :destination => ['WPKG', BIT_64_DIR, 'WPKG Client 1.3.14.msi'],
+  :destination => ['WPKG', BIT_64_DIR, 'WPKG Client %version%.msi'],
   :package_id => 'wpkg' },
 ],
 
