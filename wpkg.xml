@@ -42,4 +42,21 @@
 
 </package>
 
+<package
+  id="wpkg-restart"
+  name="Restart WPKG after 60 minutes idle"
+  revision="0-0"
+  priority="0"
+  reboot="false"
+  execute="once">
+
+  <!--
+  <depends package-id="wpkg"/>
+  -->
+
+  <install cmd='schtasks /Delete /TN WPKGRestart /F'><exit code="any" /></install>
+  <install cmd='schtasks /Create /TN WPKGRestart /RU SYSTEM /SC ONIDLE /I 60 /TR "net stop WPKGService &amp; net start WPKGService"' />
+
+</package>
+
 </packages>
