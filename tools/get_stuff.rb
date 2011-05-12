@@ -115,6 +115,12 @@ PACKAGES = {
   :destination => ['LastPass', BIT_64_DIR, 'lastpass.exe']},
 ],
 
+:keepass => [
+  {:url => 'http://downloads.sourceforge.net/keepass/KeePass-%version%-Setup.exe',
+  :destination => ['KeePass', 'KeePass-%version%-Setup.exe'],
+  :package_id => 'keepass'},
+],
+
 :netpas => [
   {:url => 'http://file.netpas.net/ftp/NetpasDistance.exe',
   :destination => ['NetPas', 'Distance', 'NetpasDistance.exe']},
@@ -271,6 +277,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       ie8        Internet Explorer 8 for Windows XP
       ie9        Internet Explorer 9
       installer	 Windows Installer 4.5
+      keepass	 KeePass
       netpas     Netpas Distance
       npp        Notepad++ **
       lastpass	 LastPass
