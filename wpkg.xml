@@ -50,7 +50,7 @@
   reboot="false">
 
   <!-- <depends package-id="wpkg"/> -->
-  
+
   <check type="file" condition="exists" path="%WINDIR%\Tasks\WPKGRestart.job" />
 
   <install cmd='schtasks /Delete /TN WPKGRestart /F'><exit code="any" /></install>
@@ -61,7 +61,7 @@
 
   <downgrade cmd='schtasks /Delete /TN WPKGRestart /F'><exit code="any" /></downgrade>
   <downgrade cmd='schtasks /Create /TN WPKGRestart /RU SYSTEM /SC ONIDLE /I 60 /TR "%COMSPEC% /c net stop WPKGService &amp; net start WPKGService"' />
-  
+
 </package>
 
 </packages>

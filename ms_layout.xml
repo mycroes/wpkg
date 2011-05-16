@@ -25,7 +25,7 @@
   <upgrade   cmd='reg add "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}\InProcServer32" /v "ThreadingModel" /t REG_SZ /d "Apartment" /f' />
   <upgrade   cmd='reg add "HKCR\Folder\shellex\ContextMenuHandlers\IconLayout" /ve /t REG_SZ /d "{19F500E0-9964-11cf-B63D-08002B317C03}" /f' />
   <upgrade   cmd='reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved" /v "{19F500E0-9964-11cf-B63D-08002B317C03}" /t REG_SZ /d "Desktop Icon Layout" /f' />
-  
+
   <downgrade cmd='xcopy /Y "%SOFTWARE%\Microsoft\WindowsXP\DesktopLayout\layout.dll" "%WINDIR%\system32"' />
   <downgrade cmd='reg add "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}" /ve /t REG_SZ /d "Desktop Icon Layout" /f' />
   <downgrade cmd='reg add "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}\InProcServer32" /ve /t REG_SZ /d "Layout.dll" /f' />
