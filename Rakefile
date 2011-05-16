@@ -20,8 +20,13 @@ desc "Clean lineednings and empty spaces"
 task :clean do
   system "find . -name '*.xml' -print0 | xargs -0 fromdos"
   FILES_TO_CLEAN.each do |f|
-    system "find . -name '#{f}' -print0 | xargs -0 sed -i 's/[ \t]\+$//g'"
+    system "find . -name '#{f}' -print0 | xargs -0 sed -i 's/[ \t]*$//g'"
   end
+end
+
+desc "Create package list"
+task :package_list do
+  system %q[ grep name= *.xml | grep -v variable | cut -f2 -d '"' | sort | uniq | todos > package_list.txt ]
 end
 
 task :default => [:remove_backup, :permissions, :check, :clean ]
