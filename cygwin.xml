@@ -5,7 +5,7 @@
 <package
   id="%base%"
   name="Cygwin"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -22,6 +22,7 @@
   <install cmd='%base%\setup\setup.exe -q -R "%base%"' />
   <install cmd='%base%\bin\bash -c "PATH=/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin /usr/bin/cyg-apt.py update"' />
   <install cmd='%base%\bin\bash -c "PATH=/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin /usr/bin/cyg-apt.py upgrade"' />
+  <install cmd='%COMSPEC% /C IF EXIST "%SOFTWARE%\Cygwin\cygwin.bat" XCOPY /Q /Y "%SOFTWARE%\Cygwin\cygwin.bat" "%base%"' />
 
   <remove cmd='c:\cygwin\bin\cygrunsrv -R sshd' />
   <remove cmd='c:\cygwin\bin\cygrunsrv -R cron' />
