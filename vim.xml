@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) The standard vim installer doesn't properly support silent installs, so get the custom one from:
+-->
+
+<packages>
+
+<package
+  id="vim"
+  name="VIM"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name='version' value='7.3' />
+  <variable name='shortversion' value='73' />
+  <variable name='patch' value='46' />
+  <variable name='nsis' value='0.9' /> <!-- this will go away when new installer is part of standard vim -->
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Vim %version% (self-installing)" value="%version%" />
+
+  <install   cmd='"%SOFTWARE%\Vim\gvim%shortversion%_%patch%-en-v%nsis%.exe" /S /DD /RMOLD /RMEXE' />
+  <upgrade   cmd='"%SOFTWARE%\Vim\gvim%shortversion%_%patch%-en-v%nsis%.exe" /S /DD /RMOLD /RMEXE' />
+  <downgrade cmd='"%SOFTWARE%\Vim\gvim%shortversion%_%patch%-en-v%nsis%.exe" /S /DD /RMOLD /RMEXE' />
+  <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Vim\vim%shortversion%\uninstall-gui.exe" "%PROGRAMFILES%\Vim\vim%shortversion%\uninstall-gui.exe" /S' />
+  <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\Vim\vim%shortversion%\uninstall-gui.exe" "%PROGRAMFILES(x86)%\Vim\vim%shortversion%\uninstall-gui.exe" /S' />
+
+</package>
+
+</packages>
