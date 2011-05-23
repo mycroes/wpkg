@@ -10,24 +10,24 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="14.0.8117.0416" />
   <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Messenger" value="%version%" />
 
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\SegoeFont.msi"' />
+  <install cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\Fonts\segoeui.ttf" msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\SegoeFont.msi"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\crt.msi"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\Contacts.msi"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\Messenger.msi"'><exit code="3010" /></install>
 
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\SegoeFont.msi"' />
+  <upgrade cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\Fonts\segoeui.ttf" msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\SegoeFont.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\crt.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\Contacts.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\Messenger.msi"'><exit code="3010" /></upgrade>
 
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\SegoeFont.msi"' />
+  <downgrade cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\Fonts\segoeui.ttf" msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\SegoeFont.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\crt.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\Contacts.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\Messenger.msi"'><exit code="3010" /></downgrade>
