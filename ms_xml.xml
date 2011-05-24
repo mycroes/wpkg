@@ -3,6 +3,7 @@
 <!--
   NOTES
   1) This installs MSXML 4 SP3 and MSXML 6 SP1
+  2) Yes, the package names are inconsistent with the other packages defined here - when fixing it please also fix get_stuff.rb
 -->
 
 <packages>

@@ -193,6 +193,17 @@ PACKAGES = {
   :destination => ['Microsoft', 'VCRuntime', BIT_64_DIR, 'vcredist_2010.exe']},
 ],
 
+:xml => [
+  #MSXML4
+  {:url => 'http://download.microsoft.com/download/A/2/D/A2D8587D-0027-4217-9DAD-38AFDB0A177E/msxml.msi',
+  :destination => ['Microsoft', 'MSXML', 'msxml4', 'msxml.msi']},
+  #MSXML6 sp1
+  {:url => 'http://download.microsoft.com/download/e/a/f/eafb8ee7-667d-4e30-bb39-4694b5b3006f/msxml6_x86.msi',
+  :destination => ['Microsoft', 'MSXML', 'msxml6', 'msxml6_x86.msi']},
+  {:url => 'http://download.microsoft.com/download/e/a/f/eafb8ee7-667d-4e30-bb39-4694b5b3006f/msxml6_x64.msi',
+  :destination => ['Microsoft', 'MSXML', 'msxml6', 'msxml6_x64.msi']},
+],
+
 :visio => [
   {:url => 'http://download.microsoft.com/download/A/B/3/AB3C56B5-B1B3-41CB-A445-D4FB03F8A1BA/visioviewer.exe',
   :destination => [ 'Microsoft', 'Visio Viewer', '%version%', 'visioviewer.exe' ],
@@ -288,6 +299,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       visio      Visio Viewer 2010
       vj         Visual J Runtime
       vlc        VLC Player **
+      xml        MSXML
       wpkg	 WPKG **
 
       Packages marked with ** support version specific downloads
