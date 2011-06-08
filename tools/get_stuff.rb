@@ -69,9 +69,11 @@ PACKAGES = {
 
 :flash => [
   {:url => 'http://www.adobe.com/go/full_flashplayer_win_msi',
-  :destination => ['Adobe', 'Flash', 'install_flash_player_10_active_x.msi']},
+  :destination => ['Adobe', 'Flash', '%shortversion%', 'install_flash_player_10_active_x.msi'],
+  :package_id => 'flash' },
   {:url => 'http://www.adobe.com/go/full_flashplayer_win_pl_msi',
-  :destination => ['Adobe', 'Flash', 'install_flash_player_10_plugin.msi']},
+  :destination => ['Adobe', 'Flash', '%shortversion%', 'install_flash_player_10_plugin.msi'],
+  :package_id => 'flash' },
 ],
 
 :git => [
@@ -132,6 +134,13 @@ PACKAGES = {
   :package_id => 'notepad'},
 ],
 
+:pdn => [
+  {:url => 'http://www.dotpdn.com/files/Paint.NET.%version%.Install.zip',
+  :destination => ['PaintDotNet', 'Paint.NET.%version%.Install.zip'],
+  :package_id => 'pdn',
+  :unzip => true},
+],
+
 :skype => [
   {:url => 'http://download.skype.com/SkypeSetup.msi',
   :destination => ['Skype', 'SkypeSetup.msi']},
@@ -149,6 +158,16 @@ PACKAGES = {
   :destination => ['Autodesk', 'DWGTrueview', '2011', BIT_32_DIR, 'SetupDWGTrueView2011_32bit.exe']},
   {:url => 'http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_64bit.exe',
   :destination => ['Autodesk', 'DWGTrueview', '2011', BIT_64_DIR, 'SetupDWGTrueView2011_64bit.exe']},
+],
+
+# notice the 32-bit renaming
+:ud => [
+  {:url => 'http://sourceforge.net/projects/ultradefrag/files/ultradefrag/ultradefrag-%version%/ultradefrag-%version%.bin.i386.exe/download',
+  :destination => ['UltraDefrag', 'ultradefrag-%version%.bin.x86.exe'],
+  :package_id => 'ultradefrag'},
+  {:url => 'http://sourceforge.net/projects/ultradefrag/files/ultradefrag/ultradefrag-%version%/ultradefrag-%version%.bin.amd64.exe/download',
+  :destination => ['UltraDefrag', 'ultradefrag-%version%.bin.amd64.exe'],
+  :package_id => 'ultradefrag'},
 ],
 
 :vc_orig => [
@@ -280,9 +299,10 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
 
   --package, -p PACKAGE_NAME:
     Get one of the following packages:
-      all        All packages
-      sevenzip   7Zip **
-      dotnet3    .NET 3.5
+
+      all       All packages
+      sevenzip  7Zip **
+      dotnet3   .NET 3.5
       flash      Flash Player
       gs       	 GhostScript **
       ie8        Internet Explorer 8 for Windows XP
@@ -292,9 +312,11 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       netpas     Netpas Distance
       npp        Notepad++ **
       lastpass	 LastPass
+      pdn     PaintDotNet
       skype      Skype Business Edition (.msi)
       sumatrapdf SumatraPDF **
       trueview   DWG TrueView 2011
+      ud         UltraDefrag
       vc         Visual C++ Runtime 2005, 2008, 2010
       visio      Visio Viewer 2010
       vj         Visual J Runtime
@@ -329,6 +351,7 @@ end
 
 def replace_variables(str)
   s = str.gsub('%version%', @version.to_s)
+  s.gsub!('%shortversion%', @shortversion.to_s)
   s.gsub!('%fileversion%', @fileversion.to_s)
   s.gsub!('%language%', @language.to_s)
   s.gsub!('%reldate%', @reldate.to_s)
@@ -350,6 +373,7 @@ def download(package_def)
           if xml['package'] && xml['package'][p[:package_id]] && xml['package'][p[:package_id]]['variable'] && @version.nil?
 	    # we should create a hash of found variables and automatically substitute them all
             @version = get_variable(xml, p[:package_id], 'version')
+            @shortversion = get_variable(xml, p[:package_id], 'shortversion')
             @fileversion = get_variable(xml, p[:package_id], 'fileversion')
             @reldate = get_variable(xml, p[:package_id], 'reldate')
             puts "INFO: Found version #{@version}(#{@fileversion}) in file #{xf}" if @version
