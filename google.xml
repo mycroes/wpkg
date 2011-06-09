@@ -102,4 +102,25 @@
 
 </package>
 
+<package
+  id="googleappssync"
+  name="Google Apps Sync"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <variable name="version" value="2.3.22.703" />
+
+  <check type="logical" condition="or">
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Google\Google Apps Sync\gsync32.dll" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Google\Google Apps Sync\gsync64.dll" />
+  </check>
+
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Google\GoogleAppsSync\enterprise_gsync_%PROCESSOR_ARCHITECTURE%.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Google\GoogleAppsSync\enterprise_gsync_%PROCESSOR_ARCHITECTURE%.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google\GoogleAppsSync\enterprise_gsync_%PROCESSOR_ARCHITECTURE%.msi"' />
+  <remove    cmd='msiexec %MSI% /i "%SOFTWARE%\Google\GoogleAppsSync\enterprise_gsync_%PROCESSOR_ARCHITECTURE%.msi"' />
+
+</package>
+
 </packages>
