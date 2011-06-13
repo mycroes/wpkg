@@ -11,12 +11,12 @@ NOTES
 <package
   id="blackberry_desktop_manager"
   name="BlackBerry Desktop Manager"
-  revision="%version%-1"
+  revision="%version%-0"
   reboot="false"
   priority="10"
   execute="always">
 
-  <variable name="version" value="6.0.2" />
+  <variable name="version" value="6.1.0" />
   <variable name="vc_id" value="{8D6472BE-E246-4e63-A578-53EDAE1F40AB}" />
 
   <depends package-id="msxml" />
