@@ -13,17 +13,17 @@
 <package
   id="java"
   name="Java 6"
-  revision="%version%-3"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="cls" value="16024" />  <!-- needed for uninstall -->
-  <variable name="short" value="6u24" /> <!-- part of the installer file name -->
-  <variable name="version" value="1.6.0_24" />
+  <variable name="cls" value="16026" />  <!-- needed for uninstall -->
+  <variable name="short" value="6u26" /> <!-- part of the installer file name -->
+  <variable name="version" value="1.6.0_26" />
 
   <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 24" />
-    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 24 (64-bit)" />
+    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 26" />
+    <check type="uninstall" condition="exists" path="Java(TM) 6 Update 26 (64-bit)" />
   </check>
   <check type="file" condition="exists" path="%PROGRAMFILES%\Java\jre6\bin\javacpl.exe" />
 
@@ -53,6 +53,8 @@
   <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216022FF}'><exit code='1605' /></install>
   <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216023FF}'><exit code='1605' /></install>
   <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216024FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216025FF}'><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216026FF}'><exit code='1605' /></install>
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
@@ -101,6 +103,8 @@
   <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216022FF}'><exit code='1605' /></upgrade>
   <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216023FF}'><exit code='1605' /></upgrade>
   <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216024FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216025FF}'><exit code='1605' /></upgrade>
+  <upgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216026FF}'><exit code='1605' /></upgrade>
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
@@ -149,6 +153,8 @@
   <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216022FF}'><exit code='1605' /></downgrade>
   <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216023FF}'><exit code='1605' /></downgrade>
   <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216024FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216025FF}'><exit code='1605' /></downgrade>
+  <downgrade cmd='msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F83216026FF}'><exit code='1605' /></downgrade>
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="postponed" />
     <exit code="0" />
