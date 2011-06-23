@@ -19,7 +19,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="4.0.1" />
+  <variable name="version" value="5.0" />
 
   <!--
   <check type="logical" condtion="or">
