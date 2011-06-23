@@ -22,8 +22,8 @@
   <!-- requires .NET 2.0 -->
   <depends package-id="dotnet3" />
 
-  <variable name="version" value="7.1.0.1218" />
-  <variable name="fileversion" value="7_1_0_1218" />
+  <variable name="version" value="7.2.0.1304" />
+  <variable name="fileversion" value="7_2_0_1304" />
   <variable name="setupopts" value='/VERYSILENT /SP- /SUPPRESSMSGBOXES /NORESTART /NOCANCEL /NOICONS /PRESERVEDEFAULTPRINTER /PRESERVEADVANCEDSETTINGS /GSLITEDOWNLOADMODE=never /RESTARTEXITCODE=3010 /LOG="%TEMP%\bullzip.log"' />
 
   <check type="uninstall" condition="exists" path="Bullzip PDF Printer %version%" />
