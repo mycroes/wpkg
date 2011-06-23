@@ -1,0 +1,12 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    rdoc (3.5.3)
+    xml-simple (1.0.15)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  rdoc
+  xml-simple
