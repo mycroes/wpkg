@@ -17,6 +17,7 @@ NOTES
   execute="always">
 
   <variable name="version" value="6.1.0" />
+  <variable name="majorversion" value="6.1" />
   <variable name="minorversion" value="35" />
   <variable name="vc_id" value="{8D6472BE-E246-4e63-A578-53EDAE1F40AB}" />
 
@@ -24,7 +25,10 @@ NOTES
   <depends package-id="vcruntime" />
   <depends package-id="dotnet3" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="BlackBerry Desktop Software" value="%version%.%minorversion%" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="BlackBerry Desktop Software %majorversion%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="BlackBerry Desktop Software" value="%version%.%minorversion%" />
+  </check>
 
   <install cmd='"%SOFTWARE%\BlackBerry\Desktop Manager\%version%\ISSetupPrerequisites\%vc_id%\vcredist_x86.exe" /q' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\BlackBerry\Desktop Manager\%version%\BlackBerry Desktop Software.msi"'>
