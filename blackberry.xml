@@ -11,7 +11,7 @@ NOTES
 <package
   id="blackberry_desktop_manager"
   name="BlackBerry Desktop Manager"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10"
   execute="always">
