@@ -5,10 +5,12 @@
   1) we must uninstall on first install if a previous autopcc installation exists
 -->
 
+<packages>
+
 <package
   id='trendmicro'
   name="Trend Micro OfficeScan"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false">
 
   <variable name="version" value="10.5" />
@@ -19,11 +21,13 @@
 
   <install cmd='%COMSPEC% /c IF EXIST "%directory_32%\ntrmv.exe" "%directory_32%\ntrmv.exe"' />
   <install cmd='%COMSPEC% /c IF EXIST "%directory_64%\ntrvm.exe" "%directory_64%\ntrmv.exe"' />
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\client_105.msi"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi"' />
 
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\client_105.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi"' />
 
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\client_105.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi"' />
 
-  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\TrendMicro\client_105.msi"' />
+  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi"' />
 </package>
+
+</packages>
