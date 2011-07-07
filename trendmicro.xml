@@ -10,14 +10,14 @@
 <package
   id='trendmicro'
   name="Trend Micro OfficeScan"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false">
 
   <variable name="version" value="10.5" />
   <variable name="directory_32" value="%PROGRAMFILES%\Trend Micro\OfficeScan Client" />
   <variable name="directory_64" value="%PROGRAMFILES(x86)%\Trend Micro\OfficeScan Client" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="Trend Micro Office Scan Client" value="%version%" />
+  <check type="uninstall" condition="versiongreaterorequal" path="Trend Micro OfficeScan Client" value="%version%" />
 
   <install cmd='%COMSPEC% /c IF EXIST "%directory_32%\ntrmv.exe" "%directory_32%\ntrmv.exe"' />
   <install cmd='%COMSPEC% /c IF EXIST "%directory_64%\ntrvm.exe" "%directory_64%\ntrmv.exe"' />
