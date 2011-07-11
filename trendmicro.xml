@@ -10,7 +10,7 @@
 <package
   id='trendmicro'
   name="Trend Micro OfficeScan"
-  revision="%version%-3"
+  revision="%version%-4"
   reboot="false">
 
   <variable name="version" value="10.5" />
@@ -28,11 +28,11 @@
 
   <install cmd='%COMSPEC% /c IF EXIST "%directory_32%\ntrmv.exe" "%directory_32%\ntrmv.exe"' />
   <install cmd='%COMSPEC% /c IF EXIST "%directory_64%\ntrvm.exe" "%directory_64%\ntrmv.exe"' />
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi" /lv* "%TEMP%\tmicro.log"' />
 
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi" /lv* "%TEMP%\tmicro.log"' />
 
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi" /lv* "%TEMP%\tmicro.log"' />
 
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi"' />
 </package>
