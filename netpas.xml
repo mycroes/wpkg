@@ -17,7 +17,7 @@
     reboot="false"
     priority="10">
 
-    <variable name="version" value="2.9.0.0" />
+    <variable name="version" value="2.9.0.1" />
 
     <check type="uninstall" condition="exists" path="Netpas Distance" />
     <check type='logical' condition='or'>
