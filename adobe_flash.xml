@@ -9,7 +9,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="10.3.181.26" />
+  <variable name="version" value="10.3.181.34" />
   <variable name="shortversion" value="10.3" />
 
   <!--
