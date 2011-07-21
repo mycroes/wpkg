@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="%base%"
+  name="Cygwin"
+  revision="%version%-1"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="1.7.9-1" />
+  <variable name="base" value="c:\%base%" />
+
+  <check type="file" condition="versiongreaterorequal" path="%base%\lib\cygwin1.dll" value="1" />
+
+  <download url="http://%base%.com/setup.exe" target="%TEMP%\cygwin\setup.exe" />
+
+  <install cmd='%COMSPEC% /c MKDIR "%base%\setup"'><exit code="any" /></install>
+  <install cmd='%COMSPEC% /c XCOPY /Q /Y "%SOFTWARE%\Cygwin\setup.exe" "%base%\setup"' />
+  <install cmd='%COMSPEC% /c XCOPY /Q /Y "%TEMP%\cygwin\setup.exe" "%base%\setup"' />
+  <install cmd='%base%\setup\setup.exe -q -R "%base%"' />
+  <install cmd='%base%\bin\bash -c "PATH=/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin /usr/bin/cyg-apt.py update"' />
+  <install cmd='%base%\bin\bash -c "PATH=/usr/local/bin:/usr/bin:/bin:/usr/X11R6/bin /usr/bin/cyg-apt.py upgrade"' />
+  <install cmd='%COMSPEC% /C IF EXIST "%SOFTWARE%\Cygwin\cygwin.bat" XCOPY /Q /Y "%SOFTWARE%\Cygwin\cygwin.bat" "%base%"' />
+
+  <remove cmd='c:\cygwin\bin\cygrunsrv -R sshd' />
+  <remove cmd='c:\cygwin\bin\cygrunsrv -R cron' />
+  <remove cmd='%COMSPEC% /c RMDIR /Q /S "%base%" '/>
+
+</package>
+
+</packages>

@@ -9,7 +9,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="2.14" />
+  <variable name="version" value="2.15" />
   <check type="uninstall" condition="exists" path="KeePass Password Safe %version%" />
 
   <install cmd='"%SOFTWARE%\KeePass\KeePass-%version%-Setup.exe" /VERYSILENT /sp-' />

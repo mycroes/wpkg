@@ -5,13 +5,13 @@
   <!--
   NOTES
   1) http://www.igniterealtime.org/projects/spark/index.jsp
-  2) For some super odd reason, Spark needs to be started once as admin before normal users can start it - we use ping to let it run for 20 seconds before killing it again
+  2) For some super odd reason, Spark needs to be started once as admin before normal users can start it - we use ping to let it run for 30 seconds before killing it again
   -->
 
 <package
   id="spark"
   name="Spark IM"
-  revision="%version%-7"
+  revision="%version%-9"
   reboot="false"
   priority="10">
 
@@ -22,9 +22,9 @@
   <install cmd='%COMSPEC% /c DEL /Q "%ALLUSERSPROFILE%\Desktop\Spark*.lnk"'><exit code="any" /></install>
   <install cmd='%COMSPEC% /c DEL /Q "%PUBLIC%\Desktop\Spark*.lnk"'><exit code="any" /></install>
   <!-- Spark must run once as admin before it works -->
-  <install cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Spark\Spark.exe" "%PROGRAMFILES%\Spark\Spark.exe"' />
-  <install cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Spark\Spark.exe" "%PROGRAMFILES(x86)%\Spark\Spark.exe"' />
-  <install cmd="ping -n21 localhost >NUL"><exit code="any" /></install> <!-- this is just to create a pause before we kill it again so it has time to do what it needs to -->
+  <install cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Spark\Spark.exe" start "%PROGRAMFILES%\Spark\Spark.exe"' />
+  <install cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Spark\Spark.exe" start "%PROGRAMFILES(x86)%\Spark\Spark.exe"' />
+  <install cmd="ping -n31 localhost >NUL"><exit code="any" /></install>
   <install cmd='taskkill /f /im spark.exe'><exit code="any" /></install>
 
   <upgrade cmd='taskkill /f /im spark.exe'><exit code="any" /></upgrade>

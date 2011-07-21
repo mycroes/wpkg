@@ -38,6 +38,8 @@
 
   <depends package-id="visioviewer2010" />
 
+  <variable name="version" value="2010" />
+
 </package>
 
 <package

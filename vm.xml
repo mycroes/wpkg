@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<!--
+  NOTES
+  1) The idea is to change settings for machines running in a VM
+-->
+
+<package
+  id="vm"
+  name="Virtual Machine Settings"
+  revision="1"
+  reboot="false">
+
+  <check type="uninstall" condition="exists" path="VMware vSphere Client 4.1" />
+
+  <!-- disable hibernation -->
+  <install cmd='powercfg -h off' />
+  <!-- disable SuperFetch -->
+  <install cmd='sc config SysMain start= disabled' />
+</package>
+
+</packages>

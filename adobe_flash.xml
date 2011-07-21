@@ -9,13 +9,14 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="10.2.159.1" />
+  <variable name="version" value="10.3.181.34" />
+  <variable name="shortversion" value="10.3" />
 
   <!--
   <download url='http://www.adobe.com/go/full_flashplayer_win_msi'
-    target='%SOFTWARE%'\Adobe\Flash\10.2\install_flash_player_10_active_x.msi' />
+    target='%SOFTWARE%'\Adobe\Flash\%shortversion%\install_flash_player_10_active_x.msi' />
   <download url='http://www.adobe.com/go/full_flashplayer_win_pl_msi'
-    target='%SOFTWARE%\Adobe\Flash\10.2\install_flash_player_10_plugin.msi' />
+    target='%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_10_plugin.msi' />
   -->
 
   <check type="logical" condition="and">
@@ -34,8 +35,8 @@
   </install>
   <install cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\system32\Macromed\Flash" mkdir "%WINDIR%\system32\Macromed\Flash"' />
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Adobe\Flash\mms.cfg" "%WINDIR%\system32\Macromed\Flash\"' />
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\10.2\install_flash_player_10_active_x.msi"' />
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\10.2\install_flash_player_10_plugin.msi"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_10_active_x.msi"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_10_plugin.msi"' />
 
   <!--
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Flash\10.1\uninstall_flash_player.exe" "%SOFTWARE%\Adobe\Flash\10.1\uninstall_flash_player.exe"' />
@@ -48,8 +49,8 @@
   </upgrade>
   <upgrade cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\system32\Macromed\Flash" mkdir "%WINDIR%\system32\Macromed\Flash"' />
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Adobe\Flash\mms.cfg" "%WINDIR%\system32\Macromed\Flash\"' />
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\10.2\install_flash_player_10_active_x.msi"' />
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\10.2\install_flash_player_10_plugin.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_10_active_x.msi"' />
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_10_plugin.msi"' />
 
   <downgrade cmd='taskkill /f /im iexplore.exe'>
     <exit code="any" />
@@ -59,8 +60,8 @@
   </downgrade>
   <downgrade cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\system32\Macromed\Flash" mkdir "%WINDIR%\system32\Macromed\Flash"' />
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Adobe\Flash\mms.cfg" "%WINDIR%\system32\Macromed\Flash\"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\10.2\install_flash_player_10_active_x.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\10.2\install_flash_player_10_plugin.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_10_active_x.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_10_plugin.msi"' />
 
   <remove cmd='taskkill /f /im iexplore.exe'>
     <exit code="any" />
@@ -68,14 +69,14 @@
   <remove cmd='taskkill /f /im firefox.exe'>
     <exit code="any" />
   </remove>
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\10.2\install_flash_player_10_active_x.msi"' />
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\10.2\install_flash_player_10_plugin.msi"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_10_active_x.msi"' />
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_10_plugin.msi"' />
   <remove cmd='%COMSPEC% /c del /s /q "%WINDIR%\system32\Macromed\Flash\mms.cfg"' >
     <exit code="0" />
     <exit code="1" />
   </remove>
   <!--
-  <remove  cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Flash\10.2\uninstall_flash_player.exe" "%SOFTWARE%\Adobe\Flash\10.2\uninstall_flash_player.exe"' />
+  <remove  cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Flash\%shortversion%\uninstall_flash_player.exe" "%SOFTWARE%\Adobe\Flash\%shortversion%\uninstall_flash_player.exe"' />
   -->
 </package>
 

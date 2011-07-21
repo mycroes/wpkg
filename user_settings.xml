@@ -10,13 +10,18 @@
 <package
   id="user_settings"
   name="User Settings"
-  revision="2"
+  revision="3"
   reboot="false"
   priority="10"
   execute="once">
 
-  <install cmd='REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "DIRCMD" /t REG_SZ /d "/O:gne /A" /f' /> <!-- sort dir output -->
-  <install cmd='REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "DEVMGR_SHOW_NONPRESENT_DEVICES" /t REG_SZ /d "1" /f' /> <!-- show all devices in device manager -->
+  <!-- sort dir output -->
+  <install cmd='REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "DIRCMD" /t REG_SZ /d "/O:gne /A" /f' />
+  <!-- show all devices in device manager -->
+  <install cmd='REG ADD "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v "DEVMGR_SHOW_NONPRESENT_DEVICES" /t REG_SZ /d "1" /f' />
+  <!-- add Command Prompt here -->
+  <install cmd='REG ADD "HKLM\SOFTWARE\Classes\Folder\Shell\Command Prompt" /ve /t REG_SZ /d "Command Prompt Here" /f' />
+  <install cmd='REG ADD "HKLM\SOFTWARE\Classes\Folder\Shell\Command Prompt\command" /ve /t REG_SZ /d "%COMSPEC% /k pushd %1" /f' />
 
 </package>
 

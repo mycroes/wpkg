@@ -4,18 +4,23 @@
 
 <!--
   SOURCE
-  1) Download the full advanced installer from google.com (it doesn't have toolbars!)
-  2) Extract: .msi, 1033.mst, "program files" and "localappdata" using 7zip
+  1) Go to google.com/earth for download
+  2) Deselect Chrome options
+  3) Click "advanced setup"
+  4) DESELECTED "Allow Google Earth to automatically install recommended updates."
+  5) Select "Make Google Earth available to all users' profiles. Administrative rights are required."
+  6) Extract using 7zip
 -->
 
 <package
   id="googleearth"
-  name="Google Earth 5.2"
-  revision="%version%-0"
+  name="Google Earth"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="5.2.1.1547" />
+  <variable name="version" value="6.0.2.2074" />
+  <variable name="shortversion" value="6.0" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Google Earth" value="%version%" />
 
@@ -23,18 +28,19 @@
     <exit code="0" />
     <exit code="1" /> <!-- directory already exists -->
   </install>
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\5.2\Google Earth.msi"' />
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\5.2\Google Earth.msi"' />
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Google\Google Earth\5.2\Google Earth.msi"' />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\%shortversion%\Google Earth.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\%shortversion%\Google Earth.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\%shortversion%\Google Earth.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Google\Google Earth\%shortversion%\Google Earth.msi"' />
 
 </package>
 
 <package
-  id='google_picasa'
-  name='Picasa 3.8'
-  revision='%version%-0'
-  priority='10'
-  reboot='false' >
+  id="google_picasa"
+  name="Picasa 3.8"
+  revision="%version%-0"
+  priority="10"
+  reboot="false" >
 
   <variable name="version" value="3.8" />
   <variable name="fileversion" value="38" />
@@ -93,6 +99,27 @@
   <remove cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></remove>
   <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Google\Google Talk\uninstall.exe" "%PROGRAMFILES%\Google\Google Talk\uninstall.exe" /S' />
   <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Google\Google Talk\uninstall.exe" "%PROGRAMFILES%\Google\Google Talk\uninstall.exe" /S' />
+
+</package>
+
+<package
+  id="googleappssync"
+  name="Google Apps Sync"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <variable name="version" value="2.3.22.703" />
+
+  <check type="logical" condition="or">
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Google\Google Apps Sync\gsync32.dll" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Google\Google Apps Sync\gsync64.dll" />
+  </check>
+
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Google\GoogleAppsSync\enterprise_gsync_%PROCESSOR_ARCHITECTURE%.msi"' />
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Google\GoogleAppsSync\enterprise_gsync_%PROCESSOR_ARCHITECTURE%.msi"' />
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google\GoogleAppsSync\enterprise_gsync_%PROCESSOR_ARCHITECTURE%.msi"' />
+  <remove    cmd='msiexec %MSI% /i "%SOFTWARE%\Google\GoogleAppsSync\enterprise_gsync_%PROCESSOR_ARCHITECTURE%.msi"' />
 
 </package>
 

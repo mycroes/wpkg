@@ -69,9 +69,11 @@ PACKAGES = {
 
 :flash => [
   {:url => 'http://www.adobe.com/go/full_flashplayer_win_msi',
-  :destination => ['Adobe', 'Flash', 'install_flash_player_10_active_x.msi']},
+  :destination => ['Adobe', 'Flash', '%shortversion%', 'install_flash_player_10_active_x.msi'],
+  :package_id => 'flash' },
   {:url => 'http://www.adobe.com/go/full_flashplayer_win_pl_msi',
-  :destination => ['Adobe', 'Flash', 'install_flash_player_10_plugin.msi']},
+  :destination => ['Adobe', 'Flash', '%shortversion%', 'install_flash_player_10_plugin.msi'],
+  :package_id => 'flash' },
 ],
 
 :git => [
@@ -87,6 +89,11 @@ PACKAGES = {
   {:url => 'http://downloads.sourceforge.net/project/ghostscript/GPL%20Ghostscript/%version%/gs%fileversion%w64.exe',
   :destination => ['GhostScript', BIT_64_DIR, 'gs%fileversion%.exe'],
   :package_id => 'ghostscript' },
+],
+
+:ie8 => [
+  {:url => 'http://download.microsoft.com/download/C/C/0/CC0BD555-33DD-411E-936B-73AC6F95AE11/IE8-WindowsXP-x86-ENU.exe',
+  :destination => ['Microsoft', 'IE8', 'IE8-WindowsXP-x86-ENU.exe']},
 ],
 
 :ie9 => [
@@ -110,10 +117,28 @@ PACKAGES = {
   :destination => ['LastPass', BIT_64_DIR, 'lastpass.exe']},
 ],
 
+:keepass => [
+  {:url => 'http://downloads.sourceforge.net/keepass/KeePass-%version%-Setup.exe',
+  :destination => ['KeePass', 'KeePass-%version%-Setup.exe'],
+  :package_id => 'keepass'},
+],
+
+:netpas => [
+  {:url => 'http://file.netpas.net/ftp/NetpasDistance.exe',
+  :destination => ['NetPas', 'Distance', 'NetpasDistance.exe']},
+],
+
 :npp => [
   {:url => 'http://download.tuxfamily.org/notepadplus/%version%/npp.%version%.Installer.exe',
   :destination => ['Notepad', 'npp.%version%.Installer.exe'],
   :package_id => 'notepad'},
+],
+
+:pdn => [
+  {:url => 'http://www.dotpdn.com/files/Paint.NET.%version%.Install.zip',
+  :destination => ['PaintDotNet', 'Paint.NET.%version%.Install.zip'],
+  :package_id => 'pdn',
+  :unzip => true},
 ],
 
 :skype => [
@@ -121,11 +146,28 @@ PACKAGES = {
   :destination => ['Skype', 'SkypeSetup.msi']},
 ],
 
+:sumatrapdf => [
+  {:url => 'http://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-%version%-install.exe',
+  :destination => ['SumatraPDF', 'SumatraPDF-%version%-install.exe'],
+  :package_id => 'sumatrapdf'},
+],
+
+
 :trueview => [
   {:url => 'http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_32bit.exe',
   :destination => ['Autodesk', 'DWGTrueview', '2011', BIT_32_DIR, 'SetupDWGTrueView2011_32bit.exe']},
   {:url => 'http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_64bit.exe',
   :destination => ['Autodesk', 'DWGTrueview', '2011', BIT_64_DIR, 'SetupDWGTrueView2011_64bit.exe']},
+],
+
+# notice the 32-bit renaming
+:ud => [
+  {:url => 'http://sourceforge.net/projects/ultradefrag/files/ultradefrag/ultradefrag-%version%/ultradefrag-%version%.bin.i386.exe/download',
+  :destination => ['UltraDefrag', 'ultradefrag-%version%.bin.x86.exe'],
+  :package_id => 'ultradefrag'},
+  {:url => 'http://sourceforge.net/projects/ultradefrag/files/ultradefrag/ultradefrag-%version%/ultradefrag-%version%.bin.amd64.exe/download',
+  :destination => ['UltraDefrag', 'ultradefrag-%version%.bin.amd64.exe'],
+  :package_id => 'ultradefrag'},
 ],
 
 :vc_orig => [
@@ -170,6 +212,23 @@ PACKAGES = {
   :destination => ['Microsoft', 'VCRuntime', BIT_64_DIR, 'vcredist_2010.exe']},
 ],
 
+:xml => [
+  #MSXML4
+  {:url => 'http://download.microsoft.com/download/A/2/D/A2D8587D-0027-4217-9DAD-38AFDB0A177E/msxml.msi',
+  :destination => ['Microsoft', 'MSXML', 'msxml4', 'msxml.msi']},
+  #MSXML6 sp1
+  {:url => 'http://download.microsoft.com/download/e/a/f/eafb8ee7-667d-4e30-bb39-4694b5b3006f/msxml6_x86.msi',
+  :destination => ['Microsoft', 'MSXML', 'msxml6', 'msxml6_x86.msi']},
+  {:url => 'http://download.microsoft.com/download/e/a/f/eafb8ee7-667d-4e30-bb39-4694b5b3006f/msxml6_x64.msi',
+  :destination => ['Microsoft', 'MSXML', 'msxml6', 'msxml6_x64.msi']},
+],
+
+:visio => [
+  {:url => 'http://download.microsoft.com/download/A/B/3/AB3C56B5-B1B3-41CB-A445-D4FB03F8A1BA/visioviewer.exe',
+  :destination => [ 'Microsoft', 'Visio Viewer', '%version%', 'visioviewer.exe' ],
+  :package_id => 'visioviewer'},
+],
+
 :vj => [
   {:url => 'http://download.microsoft.com/download/9/2/3/92338cd0-759f-4815-8981-24b437be74ef/vjredist.exe',
   :destination => ['Microsoft', 'VisualJ', BIT_32_DIR, 'vjredist.exe']},
@@ -185,10 +244,10 @@ PACKAGES = {
 
 :wpkg => [
   {:url => 'http://wpkg.org/files/client/stable/WPKG%20Client%20%version%-x32.msi',
-  :destination => ['WPKG', BIT_32_DIR, 'WPKG Client 1.3.14.msi'],
+  :destination => ['WPKG', BIT_32_DIR, 'WPKG Client %version%.msi'],
   :package_id => 'wpkg' },
   {:url => 'http://wpkg.org/files/client/stable/WPKG%20Client%20%version%-x64.msi',
-  :destination => ['WPKG', BIT_64_DIR, 'WPKG Client 1.3.14.msi'],
+  :destination => ['WPKG', BIT_64_DIR, 'WPKG Client %version%.msi'],
   :package_id => 'wpkg' },
 ],
 
@@ -240,21 +299,30 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
 
   --package, -p PACKAGE_NAME:
     Get one of the following packages:
+
       all       All packages
       sevenzip  7Zip **
       dotnet3   .NET 3.5
-      flash     Flash Player
-      gs       	GhostScript **
-      ie9       Internet Explorer 9
-      installer	Windows Installer 4.5
-      npp       Notepad++ **
-      lastpass	LastPass
-      skype     Skype Business Edition (.msi)
-      trueview  DWG TrueView 2011
-      vc        Visual C++ Runtime 2005, 2008, 2010
-      vj        Visual J Runtime
-      vlc       VLC Player **
-      wpkg	WPKG **
+      flash      Flash Player
+      gs       	 GhostScript **
+      ie8        Internet Explorer 8 for Windows XP
+      ie9        Internet Explorer 9
+      installer	 Windows Installer 4.5
+      keepass	 KeePass
+      netpas     Netpas Distance
+      npp        Notepad++ **
+      lastpass	 LastPass
+      pdn     PaintDotNet
+      skype      Skype Business Edition (.msi)
+      sumatrapdf SumatraPDF **
+      trueview   DWG TrueView 2011
+      ud         UltraDefrag
+      vc         Visual C++ Runtime 2005, 2008, 2010
+      visio      Visio Viewer 2010
+      vj         Visual J Runtime
+      vlc        VLC Player **
+      xml        MSXML
+      wpkg	 WPKG **
 
       Packages marked with ** support version specific downloads
 
@@ -283,6 +351,7 @@ end
 
 def replace_variables(str)
   s = str.gsub('%version%', @version.to_s)
+  s.gsub!('%shortversion%', @shortversion.to_s)
   s.gsub!('%fileversion%', @fileversion.to_s)
   s.gsub!('%language%', @language.to_s)
   s.gsub!('%reldate%', @reldate.to_s)
@@ -304,6 +373,7 @@ def download(package_def)
           if xml['package'] && xml['package'][p[:package_id]] && xml['package'][p[:package_id]]['variable'] && @version.nil?
 	    # we should create a hash of found variables and automatically substitute them all
             @version = get_variable(xml, p[:package_id], 'version')
+            @shortversion = get_variable(xml, p[:package_id], 'shortversion')
             @fileversion = get_variable(xml, p[:package_id], 'fileversion')
             @reldate = get_variable(xml, p[:package_id], 'reldate')
             puts "INFO: Found version #{@version}(#{@fileversion}) in file #{xf}" if @version
@@ -316,7 +386,7 @@ def download(package_def)
       puts "WARNING: Ignoring version parameter for package that doesn't support it" if @version || @fileversion
     end
     dest = Pathname.new(File.join(p[:destination]))
-    path = File.join(@dir, dest.dirname)
+    path = replace_variables(File.join(@dir, dest.dirname))
     file = dest.basename
     fullpath = replace_variables(File.join(path, file))
     url = replace_variables(p[:url])

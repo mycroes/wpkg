@@ -1,0 +1,5 @@
+*.c   eol=crlf
+*.cfg eol=crlf
+*.cmd eol=crlf
+*.ini eol=crlf
+*.iss eol=crlf

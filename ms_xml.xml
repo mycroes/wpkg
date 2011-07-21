@@ -3,19 +3,26 @@
 <!--
   NOTES
   1) This installs MSXML 4 SP3 and MSXML 6 SP1
+  2) Yes, the package names are inconsistent with the other packages defined here - when fixing it please also fix get_stuff.rb
 -->
 
 <packages>
 
 <package
   id="msxml"
-  name="MSXML 4 &amp; 6"
-  revision="3"
+  name="MSXML 4 and 6"
+  revision="4"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="MSXML 4.0 SP3 Parser" />
-  <check type="uninstall" condition="exists" path="MSXML 6.0 Parser" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="MSXML 6.0 Parser" />
+    <check type="logical" condition="and">
+      <check type="file" condition="exists" path="%SYSTEMROOT%\system32\msxml6.dll" />
+      <check type="file" condition="exists" path="%SYSTEMROOT%\system32\msxml6r.dll" />
+    </check>
+  </check>
 
   <variable name="base" value="%SOFTWARE%\Microsoft\MSXML" />
 
