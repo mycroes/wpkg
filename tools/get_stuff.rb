@@ -125,7 +125,7 @@ PACKAGES = {
 
 :netpas => [
   {:url => 'http://file.netpas.net/ftp/NetpasDistance.exe',
-  :destination => ['NetPas', 'Distance', 'NetpasDistance.exe']},
+  :destination => ['Netpas', 'Distance', 'NetpasDistance.exe']},
 ],
 
 :npp => [
