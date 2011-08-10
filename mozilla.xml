@@ -15,19 +15,16 @@
 <package
   id="firefox"
   name="Mozilla Firefox"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
   <variable name="version" value="5.0.1" />
 
-  <!--
   <check type="logical" condtion="or">
-  -->
     <check type="uninstall" condition="exists" path="Mozilla Firefox %version% (x86 en-US)" />
-  <!--
+    <check type="uninstall" condition="exists" path="Mozilla Firefox %version% (x86 nl-NL)" />
   </check>
-  -->
 
   <install   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
   <upgrade   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
