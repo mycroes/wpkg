@@ -236,6 +236,12 @@ PACKAGES = {
   :destination => ['Microsoft', 'VisualJ', BIT_64_DIR, 'vjredist.exe']},
 ],
 
+:vim => [
+  {:url => 'http://sourceforge.net/projects/cream/files/Vim/%version%/gvim-%fileversion%.exe/download',
+  :destination => ['VIM', 'gvim-%fileversion%.exe'],
+  :package_id => 'vim'},
+],
+
 :vlc => [
   {:url => 'http://sourceforge.net/projects/vlc/files/%version%/win32/vlc-%version%-win32.exe/download',
   :destination => ['VLC', 'vlc-%version%-win32.exe'],
