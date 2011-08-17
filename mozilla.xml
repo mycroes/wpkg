@@ -15,13 +15,13 @@
 <package
   id="firefox"
   name="Mozilla Firefox"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="6.0" />
 
-  <check type="logical" condtion="or">
+  <check type="logical" condition="or">
     <check type="uninstall" condition="exists" path="Mozilla Firefox %version% (x86 en-US)" />
     <check type="uninstall" condition="exists" path="Mozilla Firefox %version% (x86 nl-NL)" />
   </check>
