@@ -9,7 +9,7 @@
   priority="10"
   reboot="false">
 
-  <variable name="version" value="0.5.1" />
+  <variable name="version" value="0.6" />
 
   <check type="uninstall" condition="exists" path="PDF Rider %version%" />
 
