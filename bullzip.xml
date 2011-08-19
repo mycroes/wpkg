@@ -15,15 +15,15 @@
 <package
   id="bullzip_pdfprinter"
   name="Bullzip PDF Printer"
-  revision="%version%-2"
+  revision="%version%-0"
   reboot="false">
 
   <depends package-id="ghostscript" />
   <!-- requires .NET 2.0 -->
   <depends package-id="dotnet3" />
 
-  <variable name="version" value="7.2.0.1304" />
-  <variable name="fileversion" value="7_2_0_1304" />
+  <variable name="version" value="7.2.0.1313" />
+  <variable name="fileversion" value="7_2_0_1313" />
   <variable name="setupopts" value='/VERYSILENT /SP- /SUPPRESSMSGBOXES /NORESTART /NOCANCEL /NOICONS /PRESERVEDEFAULTPRINTER /PRESERVEADVANCEDSETTINGS /GSLITEDOWNLOADMODE=never /RESTARTEXITCODE=3010 /LOG="%TEMP%\bullzip.log"' />
 
   <check type="uninstall" condition="exists" path="Bullzip PDF Printer %version%" />

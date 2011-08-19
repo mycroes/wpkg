@@ -49,6 +49,13 @@ PACKAGES = {
   :package_id => '7zip'},
 ],
 
+:bullzip => [
+  {:url => 'http://mirror.pdfatlas.com/mirror/BullzipPDFPrinter_%fileversion%.zip',
+  :destination => ['BullZip', 'BullzipPDFPrinter_%fileversion%.zip'],
+  :package_id => 'bullzip_pdfprinter',
+  :notice => 'Please unzip the downloaded file'},
+],
+
 :dotnet3 => [
   {:url => 'http://download.microsoft.com/download/2/0/e/20e90413-712f-438c-988e-fdaa79a8ac3d/dotnetfx35.exe',
   :destination => ['Microsoft', 'DotNet', 'dotnetfx35.exe']},
@@ -308,6 +315,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
 
       all       All packages
       sevenzip  7Zip **
+      bullzip    BullZIP PDFPrinter
       dotnet3   .NET 3.5
       flash      Flash Player
       gs       	 GhostScript **
@@ -406,6 +414,7 @@ def download(package_def)
       end
     end
     system "axel '#{url}' -a -o '#{fullpath}'"
+    puts "NOTICE: #{p[:notice] unless p[:notice].nil?}"
   end
 end
 
