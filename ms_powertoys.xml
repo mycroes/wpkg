@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+  <!--
+     1) Download from here: http://imageresizer.codeplex.com/
+     2) Remember to rename the 64 bit version
+  -->
+
+<package
+  id="image_resizer"
+  name="Image Resizer Powertoy Clone for Windows"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="2.1" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Image Resizer Powertoy Clone for Windows" value="%version%" />
+
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'/>
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'/>
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'/>
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'/>
+
+</package>
+
+<!--
+  NOTES
+  1) This is the original from Microsoft that only works on XP
+-->
+<package
+  id="image_resizer_old"
+  name="PowerToy - Image Resizer for Windows XP"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="1.00.0001" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Image Resizer Powertoy for Windows XP" value="%version%" />
+
+  <install   cmd='"%SOFTWARE%\Microsoft\Powertoys\ImageResizerPowertoySetup.exe" /S /v/qn'/>
+  <upgrade   cmd='"%SOFTWARE%\Microsoft\Powertoys\ImageResizerPowertoySetup.exe" /S /v/qn'/>
+  <downgrade cmd='"%SOFTWARE%\Microsoft\Powertoys\ImageResizerPowertoySetup.exe" /S /v/qn'/>
+  <remove    cmd='msiexec %MSI% /x{1CB92574-96F2-467B-B793-5CEB35C40C29}' />
+
+</package>
+
+</packages>
