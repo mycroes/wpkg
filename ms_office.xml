@@ -114,6 +114,27 @@
   </remove>
 </package>
 
+<!--
+  1) From Office14 there are now 32 and 64 bit editions. We do not support 32bit office on 64bit Windows
+-->
+<package
+  id="office2010eml"
+  name="Open EML files in Outlook 2010"
+  revision="0"
+  reboot="false"
+  priority="10"
+  execute="once">
+
+  <install cmd='REG DELETE "HKLM\SOFTWARE\Classes\Outlook.File.eml" /f'>
+    <exit code="1" />
+  </install>
+  <install cmd='REG DELETE "HKCR\Outlook.File.eml" /f'>
+    <exit code="1" />
+  </install>
+  <install cmd='regedit /s "%SOFTWARE%\Microsoft\Office\eml-outlook2010.reg"' />
+
+</package>
+
 <package
   id="office2007eml"
   name="Open EML files in Outlook 2007"
