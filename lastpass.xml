@@ -14,7 +14,7 @@
   priority="10"
   reboot="false">
 
-  <variable name="version" value="1.73.0.0" />
+  <variable name="version" value="1.75.0.0" />
   <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\LastPass\lastpass.exe" value="%version%" />
   <install   cmd='"%SOFTWARE%\LastPass\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -i -f -ia --installdir="%PROGRAMFILES%\LastPass"' />
   <upgrade   cmd='"%SOFTWARE%\LastPass\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -i -f -ia --installdir="%PROGRAMFILES%\LastPass"' />
