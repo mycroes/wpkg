@@ -14,7 +14,7 @@
 <package
   id="msse"
   name="MS Security Essentials"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="50">
 
@@ -53,7 +53,7 @@
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Microsoft Antimalware\Signature Updates" /v SignatureUpdateInterval /t REG_DWORD /d %update_interval% /f' />
   <downgrade cmd='net start MsMpSvc'><exit code="2" /></downgrade>
 
-  <remove cmd='"%PROGRAMFILES%\Microsoft Security Essentials\setup.exe" /x /s' />
+  <remove cmd='"%PROGRAMFILES%\Microsoft Security Client\setup.exe" /x /s' />
 
 </package>
 
