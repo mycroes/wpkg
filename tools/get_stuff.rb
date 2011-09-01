@@ -56,6 +56,15 @@ PACKAGES = {
   :notice => 'Please unzip the downloaded file'},
 ],
 
+:console => [
+  {:url => 'http://sourceforge.net/projects/console/files/console-devel/2.00/Console-%fileversion%_32bit.zip/download',
+  :destination => ['Console2', 'Console-%fileversion%_32bit.zip'],
+  :package_id => 'console2' },
+  {:url => 'http://sourceforge.net/projects/console/files/console-devel/2.00/Console-%fileversion%_64bit.zip/download',
+  :destination => ['Console2', 'Console-%fileversion%_64bit.zip'],
+  :package_id => 'console2' },
+],
+
 :dotnet3 => [
   {:url => 'http://download.microsoft.com/download/2/0/e/20e90413-712f-438c-988e-fdaa79a8ac3d/dotnetfx35.exe',
   :destination => ['Microsoft', 'DotNet', 'dotnetfx35.exe']},
@@ -324,6 +333,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       all       All packages
       sevenzip  7Zip **
       bullzip    BullZIP PDFPrinter
+      console    Console2
       dotnet3   .NET 3.5
       flash      Flash Player
       gs       	 GhostScript **
