@@ -58,6 +58,42 @@
 -->
 
 <package
+  id="autodesk_autocad2012"
+  name="AutoDesk AutoCAD 2012"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <depends package-id="dotnet3" />
+  <depends package-id="vcruntime" />
+
+  <variable name="version" value="22.0.00.000" />
+  <variable name="base" value="%SOFTWARE%\AutoDesk\AutoCAD\AutoCAD2012\%PROCESSOR_ARCHITECTURE%" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="AutoCAD 2012 - English" value="%version%" />
+
+  <install cmd='msiexec /i "%base%\AdminImage\acad.msi" TRANSFORMS="%base%\AdminImage\custom.mst" %MSI%'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </install>
+
+  <upgrade cmd='msiexec /i "%base%\AdminImage\acad.msi" TRANSFORMS="%base%\AdminImage\custom.mst" %MSI%'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </upgrade>
+
+  <downgrade cmd='msiexec /i "%base%\AdminImage\acad.msi" TRANSFORMS="%base%\AdminImage\custom.mst" %MSI%'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </downgrade>
+
+  <remove cmd='msiexec /X{5783F2D7-5001-0409-0002-0060B0CE6BBA} %MSI%'>
+    <exit code="3010" />
+  </remove>
+
+</package>
+
+<package
   id="autodesk_autocad2007"
   name="AutoDesk AutoCAD 2007"
   revision="%version%-0"
