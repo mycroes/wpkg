@@ -10,11 +10,12 @@
 <package
   id="tp_airbag"
   name="ThinkPad HDD AirBag"
-  revision="%version%-0"
+  revision="%version%-1"
   priority="10"
   reboot="false">
 
-  <variable name="file" value="6isa10ww.exe" />
+  <variable name="file" value="8isa01ww.exe" architecture="x86" />
+  <variable name="file" value="8isk01ww.exe" architecture="x64" />
   <variable name="version" value="1.74" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage Active Protection System" value="%version%" />
