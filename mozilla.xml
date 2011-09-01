@@ -15,19 +15,20 @@
 <package
   id="firefox"
   name="Mozilla Firefox"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="6.0.1" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
 
-  <check type="uninstall" condition="exists" path="Mozilla Firefox %version% (x86 .+)" />
+  <check type="uninstall" condition="exists" path="Mozilla Firefox %version% (.*)" />
 
   <install   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
   <upgrade   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
   <downgrade cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" "%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" /S' />
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Mozilla Firefox\uninstall\helper.exe" "%ProgramFiles(x86)%\Mozilla Firefox\uninstall\helper.exe" /S' />
+  <remove cmd='%ComSpec% /c if exist "%PKG_DESTINATION%\uninstall\helper.exe" "%PKG_DESTINATION%\uninstall\helper.exe" /S' />
 
 </package>
 
@@ -38,13 +39,16 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.6.18" />
+  <variable name="version" value="3.6.21" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
+
   <check type="uninstall" condition="exists" path="Mozilla Firefox (%version%)" />
+
   <install   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
   <upgrade   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
   <downgrade cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" "%ProgramFiles%\Mozilla Firefox\uninstall\helper.exe" /S' />
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Mozilla Firefox\uninstall\helper.exe" "%ProgramFiles(x86)%\Mozilla Firefox\uninstall\helper.exe" /S' />
+  <remove cmd='%ComSpec% /c if exist "%PKG_DESTINATION%\uninstall\helper.exe" "%PKG_DESTINATION%\uninstall\helper.exe" /S' />
 
 </package>
 
