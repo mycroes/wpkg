@@ -139,6 +139,15 @@ PACKAGES = {
   :package_id => 'keepass'},
 ],
 
+:msse => [
+  {:url => 'http://mse.dlservice.microsoft.com/download/A/3/8/A38FFBF2-1122-48B4-AF60-E44F6DC28BD8/%language%/x86/mseinstall.exe',
+  :destination => ['Microsoft', 'MSSE', 32_BIT_DIR, 'mseinstall.exe'],
+  :language => 'enus'},
+  {:url => 'http://mse.dlservice.microsoft.com/download/A/3/8/A38FFBF2-1122-48B4-AF60-E44F6DC28BD8/%language%/amd64/mseinstall.exe',
+  :destination => ['Microsoft', 'MSSE', 64_BIT_DIR, 'mseinstall.exe'],
+  :language => 'enus'},
+],
+
 :netpas => [
   {:url => 'http://file.netpas.net/ftp/NetpasDistance.exe',
   :destination => ['Netpas', 'Distance', 'NetpasDistance.exe']},
@@ -344,6 +353,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       netpas     Netpas Distance
       npp        Notepad++ **
       lastpass	 LastPass
+      msse       Microsoft Security Essentials
       pdn     PaintDotNet
       skype      Skype Business Edition (.msi)
       sumatrapdf SumatraPDF **
