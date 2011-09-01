@@ -5,7 +5,7 @@
   1) Please check the EasyEject uninstall check when upgrading to version > 2.39 as that version has a stupid space at the end
 -->
 
-<packages>
+<packages xmlns:xsi="http://www.wpkg.org/packages" xsi:noNamespaceSchemaLocation="xsd/packages.xsd">
 
 <package
   id="tp_airbag"
@@ -52,11 +52,7 @@
   <variable name="version" value="2.39" />
   <variable name="tempdir" value="%SYSTEMDRIVE%\SWTOOLS\DRIVERS\EZEJECT" />
 
-  <check type="logical" condition="or">
-    <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject Utility " value="%version%" /> <!-- do not remove, see notes -->
-    <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject Utility" value="%version%" />
-    <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject-funktioner" value="%version%" /> <!-- Danish -->
-  </check>
+  <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject.+" value="%version%" />
 
   <install   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart' />
   <install   cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
@@ -86,37 +82,32 @@
 <package
   id="tp_systemupdate"
   name="ThinkPad System Update"
-  revision="%version_xp%-%version_w7%-1"
+  revision="%version%-0"
   priority="10"
   reboot="false">
 
-  <variable name="dir_xp" value="%SOFTWARE%\ThinkPad\systemupdate314-2010-10-29" />
-  <variable name="dir_w7" value="%SOFTWARE%\ThinkPad\systemupdate40-2011-02-18" />
-  <variable name="version_xp" value="3.14.0031" />
-  <variable name="version_w7" value="4.0.0046" />
+  <variable name="source" value="%SOFTWARE%\ThinkPad\systemupdate315-2011-07-25" os="windows xp" />
+  <variable name="source" value="%SOFTWARE%\ThinkPad\systemupdate401-2011-07-25" os="windows 7" />
+  <variable name="version" value="3.15.0000" os="windows xp" />
+  <variable name="version" value="4.01.0000" os="windows 7" />
 
   <check type="logical" condition="or">
-    <check type="uninstall" condition="versiongreaterorequal" path="System Update" value="%version_xp%" />
-    <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage System Update" value="%version_xp%" />
-    <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage System Update" value="%version_w7%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="System Update" value="%version%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage System Update" value="%version%" />
   </check>
 
-  <!--
-
-  <install   cmd='"%dir_xp%\setup.exe" /S /V"/quiet /norestart"'>
+  <install cmd='"%dir%\setup.exe" /S /V"/quiet /norestart"'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <upgrade   cmd='"%dir_xp%\setup.exe" /S /V"/quiet /norestart"'>
+  <upgrade cmd='"%dir%\setup.exe" /S /V"/quiet /norestart"'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
-  <downgrade cmd='"%dir_xp%\setup.exe" /S /V"/quiet /norestart"'>
+  <downgrade cmd='"%dir%\setup.exe" /S /V"/quiet /norestart"'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
-  <remove    cmd='msiexec %MSI% /x "%dir_xp%\System Update.msi"'>
+  <remove cmd='msiexec %MSI% /x "%dir%\System Update.msi"'>
     <exit code="3010" reboot="postponed" />
   </remove>
-
-  -->
 
 </package>
 
