@@ -11,6 +11,10 @@ h2. Branches
 
 All development takes place in 'master' - for production use please use the 'prod' branch.
 
+h2. To do
+# Convert all recipes to WPKG 1.2 (use 'os' and 'architecture' specifically)
+# Use regexps for 'uninstall' matching
+
 h2. Notes
 
 h3. Regular expressions
@@ -40,3 +44,4 @@ h3. Versions
 ## MSP      - set to "REINSTALL=ALL REINSTALLMODE=omus" (without quotes)
 ## SOFTWARE - set to root of the application store without trailing backslash
 ## WPKG     - set to root of server WPKG installation without trailing backslash
+
