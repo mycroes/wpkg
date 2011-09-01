@@ -13,6 +13,14 @@ All development takes place in 'master' - for production use please use the 'pro
 
 h2. Notes
 
+h3. Regular expressions
+
+WPKG supports regular expressions however various parts do it differently. 
+
+## <host> use + for matching multiple characters
+## <check> use * for matching multiple characters
+
+h3. Versions
 # If there are multiple references to the current version (file name, uninstall check, etc), then it should be included as a variable named 'version'
 # All revisions should be written out WITH dots. Examples:
 ## 4.65
