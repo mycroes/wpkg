@@ -13,14 +13,16 @@
   priority="10"
   reboot="false">
 
-  <variable name="version" value="1.6" />
+  <variable name="version" value="1.7" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\SumatraPDF"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\SumatraPDF" architecture="x64" />
+
   <check type="uninstall" condition="versiongreaterorequal" path="SumatraPDF" value="%version%" />
+
   <install cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
   <upgrade cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
   <downgrade cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
-
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\SumatraPDF\Uninstall.exe" "%ProgramFiles%\SumatraPDF\Uninstall.exe" /S' />
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\SumatraPDF\Uninstall.exe" "%ProgramFiles(x86)%\SumatraPDF\Uninstall.exe" /S' />
+  <remove cmd='"%PKG_DESTINATION%\Uninstall.exe" /S' />
 
 </package>
 </packages>
