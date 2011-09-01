@@ -6,7 +6,7 @@
 -->
 
 
-<packages>
+<packages xmlns:xsi="http://www.wpkg.org/packages" xsi:noNamespaceSchemaLocation="xsd/packages.xsd">
 
 <package
   id="notepad"
@@ -16,33 +16,29 @@
   priority="10">
 
   <variable name="version" value="5.9" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Notepad++"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Notepad++" architecture="x64" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="Notepad++" value="%version%" />
-  <check type='logical' condition='or'>
-    <check type="file" condition="versiongreaterorequal" path="%ProgramFiles%\Notepad++\notepad++.exe" value="%version%" />
-    <check type="file" condition="versiongreaterorequal" path="%ProgramFiles(x86)%\Notepad++\notepad++.exe" value="%version%" />
+  <check type='logical' condition='and'>
+    <check type="uninstall" condition="versiongreaterorequal" path="Notepad++" value="%version%" />
+    <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\notepad++.exe" value="%version%" />
   </check>
 
   <install cmd='taskkill /f /im notepad++.exe'><exit code="any" /></install>
-  <install cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\plugins" del /f /q "%ProgramFiles%\Notepad++\plugins\*.dll"' />
-  <install cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Notepad++\plugins" del /f /q "%ProgramFiles(x86)%\Notepad++\plugins\*.dll"' />
+  <install cmd='%COMSPEC% /c RD /Q /S "%PKG_DESTINATION%\plugins"'><exit code="any" /></install>
   <install cmd='"%SOFTWARE%\Notepad\npp.%version%.Installer.exe" /S' />
 
   <upgrade cmd='taskkill /f /im notepad++.exe'><exit code="any" /></upgrade>
-  <upgrade cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\plugins" del /f /q "%ProgramFiles%\Notepad++\plugins\*.dll"' />
-  <upgrade cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Notepad++\plugins" del /f /q "%ProgramFiles(x86)%\Notepad++\plugins\*.dll"' />
+  <upgrade cmd='%COMSPEC% /c RD /Q /S "%PKG_DESTINATION%\plugins"'><exit code="any" /></upgrade>
   <upgrade cmd='"%SOFTWARE%\Notepad\npp.%version%.Installer.exe" /S' />
 
   <downgrade cmd='taskkill /f /im notepad++.exe'><exit code="any" /></downgrade>
-  <downgrade cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\plugins" del /f /q "%ProgramFiles%\Notepad++\plugins\*.dll"' />
-  <downgrade cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Notepad++\plugins" del /f /q "%ProgramFiles(x86)%\Notepad++\plugins\*.dll"' />
+  <downgrade cmd='%COMSPEC% /c RD /Q /S "%PKG_DESTINATION%\plugins"'><exit code="any" /></downgrade>
   <downgrade cmd='"%SOFTWARE%\Notepad\npp.%version%.Installer.exe" /S' />
 
   <remove cmd='taskkill /f /im notepad++.exe'><exit code="any" /></remove>
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\plugins" del /f /q "%ProgramFiles%\Notepad++\plugins\*.dll"' />
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\Notepad++\uninstall.exe" "%ProgramFiles%\Notepad++\uninstall.exe" /S' />
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Notepad++\plugins" del /f /q "%ProgramFiles(x86)%\Notepad++\plugins\*.dll"' />
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Notepad++\uninstall.exe" "%ProgramFiles(x86)%\Notepad++\uninstall.exe" /S' />
+  <remove cmd='%COMSPEC% /c RD /Q /S "%PKG_DESTINATION%\plugins"'><exit code="any" /></remove>
+  <remove cmd='"%PKG_DESTINATION%\uninstall.exe" /S' />
 
 </package>
 
