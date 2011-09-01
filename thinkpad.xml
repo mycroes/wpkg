@@ -83,7 +83,7 @@
 <package
   id="tp_systemupdate"
   name="ThinkPad System Update"
-  revision="%version%-1"
+  revision="%version%-2"
   priority="10"
   reboot="false">
 
@@ -91,19 +91,20 @@
   <variable name="source" value="%SOFTWARE%\ThinkPad\systemupdate401-2011-07-25" os="windows 7" />
   <variable name="version" value="3.15.0000" os="windows xp" />
   <variable name="version" value="4.01.0000" os="windows 7" />
+  <variable name="params" value='-s -a /s /v"/qn /norestart"' /> <!-- from: http://download.lenovo.com/ibmdl/pub/pc/pccbbs/thinkvantage_en/systemupdate401-2011-07-25.txt -->
 
   <check type="logical" condition="or">
     <check type="uninstall" condition="versiongreaterorequal" path="System Update" value="%version%" />
     <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage System Update" value="%version%" />
   </check>
 
-  <install cmd='"%source%\setup.exe" /S /V"/quiet /norestart"'>
+  <install cmd='"%source%\setup.exe" %params%'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <upgrade cmd='"%source%\setup.exe" /S /V"/quiet /norestart"'>
+  <upgrade cmd='"%source%\setup.exe" %params%'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
-  <downgrade cmd='"%source%\setup.exe" /S /V"/quiet /norestart"'>
+  <downgrade cmd='"%source%\setup.exe" %params%'>
     <exit code="3010" reboot="postponed" />
   </downgrade>
   <remove cmd='msiexec %MSI% /x "%source%\System Update.msi"'>
