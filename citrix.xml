@@ -2,33 +2,37 @@
 
 <packages>
 
+  <!--
+   NOTES
+   1) I haven't figured out how to properly call the installer using the .exe from citrix.com so instead unzip the .exe first to get the .msi files
+   2) Place the files in amd64/x86 directories
+   -->
+
 <package
   id="citrix_cag"
-  name="Citrix Client Access Gateway"
-  revision="1"
+  name="Citrix CAG Plug-in"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <check type="uninstall" condition="exists" path="Citrix Access Gateway Plugin" />
+  <variable name="version" value="5.0.2" />
 
-  <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec /i "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
-  <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
-  <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\Citrix\cagse-x64.msi" %MSI%' />
+  <check type="uninstall" condition="versiongreaterorequal" path="Citrix Access Gateway Plug-in" value="%version%" />
+
+  <install   cmd='msiexec /i "%SOFTWARE%\Citrix\%PROCESSOR_ARCHITECTURE%\cagse.msi" %MSI%' />
+  <install   cmd='msiexec /i "%SOFTWARE%\Citrix\x86\cagse.msi" %MSI%' architecture="x64" />
   <install   cmd='REG ADD "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags" /v "{5042648C-F439-468D-859B-6CD12BA02D3A}" /t REG_DWORD /d 1 /f' />
 
-  <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec /i "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
-  <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
-  <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\Citrix\cagse-x64.msi" %MSI%' />
+  <upgrade   cmd='msiexec /i "%SOFTWARE%\Citrix\%PROCESSOR_ARCHITECTURE%\cagse.msi" %MSI%' />
+  <upgrade   cmd='msiexec /i "%SOFTWARE%\Citrix\x86\cagse.msi" %MSI%' architecture="x64" />
   <upgrade   cmd='REG ADD "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags" /v "{5042648C-F439-468D-859B-6CD12BA02D3A}" /t REG_DWORD /d 1 /f' />
 
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec /i "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /i "%SOFTWARE%\Citrix\cagse-x64.msi" %MSI%' />
+  <downgrade cmd='msiexec /i "%SOFTWARE%\Citrix\%PROCESSOR_ARCHITECTURE%\cagse.msi" %MSI%' />
+  <downgrade cmd='msiexec /i "%SOFTWARE%\Citrix\x86\cagse.msi" %MSI%' architecture="x64" />
   <downgrade cmd='REG ADD "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags" /v "{5042648C-F439-468D-859B-6CD12BA02D3A}" /t REG_DWORD /d 1 /f' />
 
-  <remove    cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec /x "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
-  <remove    cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /x "%SOFTWARE%\Citrix\cagse.msi" %MSI%' />
-  <remove    cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec /x "%SOFTWARE%\Citrix\cagse-x64.msi" %MSI%' />
+  <remove    cmd='msiexec /x "%SOFTWARE%\Citrix\%PROCESSOR_ARCHITECTURE%\cagse.msi" %MSI%' />
+  <remove    cmd='msiexec /x "%SOFTWARE%\Citrix\x86\cagse.msi" %MSI%' architecture="x64" />
   <remove    cmd='REG DELETE "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags" /v "{5042648C-F439-468D-859B-6CD12BA02D3A}" /f' />
 
 </package>
@@ -50,51 +54,26 @@
 <package
   id="citrix_xen"
   name="Citrix XenApp Client"
-  revision="4"
+  revision="5"
   reboot="false"
   priority="10">
 
-  <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Citrix XenApp Plugin for Hosted Apps" />
-    <check type="uninstall" condition="exists" path="Citrix XenApp Plugin für gehostete Anwendungen" />
-  </check>
+  <check type="uninstall" condition="exists" path="Citrix XenApp Plugin.*" />
 
-  <install cmd='taskkill /f /im iexplore.exe'>
-    <exit code="0" />
-    <exit code="1" />
-    <exit code="128" />
-  </install>
-  <install cmd='taskkill /f /im firefox.exe'>
-    <exit code="0" />
-    <exit code="1" />
-    <exit code="128" />
-  </install>
-  <install cmd='taskkill /f /im pnamain.exe'>
-    <exit code="0" />
-    <exit code="1" />
-    <exit code="128" />
-  </install>
+  <install cmd='taskkill /f /im iexplore.exe'><exit code="any" /></install>
+  <install cmd='taskkill /f /im firefox.exe'><exit code="any" /></install>
+  <install cmd='taskkill /f /im pnamain.exe'><exit code="any" /></install>
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Citrix\XenAppHosted.msi" ADDLOCAL=PN,SSON ENABLE_SSON=Yes ALLOW_REBOOT=No'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <upgrade cmd='taskkill /f /im iexplore.exe'>
-    <exit code="0" />
-    <exit code="1" />
-    <exit code="128" />
-  </upgrade>
-  <upgrade cmd='taskkill /f /im firefox.exe'>
-    <exit code="0" />
-    <exit code="1" />
-    <exit code="128" />
-  </upgrade>
-  <upgrade cmd='taskkill /f /im pnamain.exe'>
-    <exit code="0" />
-    <exit code="1" />
-    <exit code="128" />
-  </upgrade>
+
+  <upgrade cmd='taskkill /f /im iexplore.exe'><exit code="any" /></upgrade>
+  <upgrade cmd='taskkill /f /im firefox.exe'><exit code="any" /></upgrade>
+  <upgrade cmd='taskkill /f /im pnamain.exe'><exit code="any" /></upgrade>
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Citrix\XenAppHosted.msi" ADDLOCAL=PN,SSON ENABLE_SSON=Yes ALLOW_REBOOT=No'>
     <exit code="3010" reboot="postponed" />
   </upgrade>
+
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Citrix\XenAppHosted.msi"' />
 
 </package>
