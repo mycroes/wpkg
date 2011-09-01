@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!--
   Use nciman.exe in the admin folder from the setup directory to create
   an unattended file. Keep in mind that if you install additional features
@@ -11,16 +12,15 @@
   service pack, of the same version, which might cause user interaction if
   not altered.
 -->
-<packages>
+<packages xmlns:xsi="http://www.wpkg.org/packages" xsi:noNamespaceSchemaLocation="xsd/packages.xsd">
 
 <!--
   INSTRUCTIONS
-  1) Extract ACU to '%SOFTWARE%\Novell\Netware Client\NT%OS_MAJOR%\'.
-  2) Create '%SOFTWARE%\Novell\Netware Client\NT%OS_MAJOR%\unattend.txt'.
+  1) Extract ACU to '%SOFTWARE%\Novell\Netware Client\nt%OS_MAJOR%\'.
+  2) Create '%SOFTWARE%\Novell\Netware Client\nt%OS_MAJOR%\unattend.txt'.
 
   NOTES
-  1) 2k/XP only for now
-  2) Not sure what happens with upgrade and downgrade actions, but it happily
+  1) Not sure what happens with upgrade and downgrade actions, but it happily
      installs on clean Windows installs (my primary target).
 -->
 
@@ -30,24 +30,30 @@
   revision="%version%-0"
   priority="50">
 
-  <variable name="version" value="4.91.5.20080922" />
+  <!-- NT5 (Windows 2000/XP/2003) -->
+  <variable name="version" value="4.91.5.20080922" os=".+5\.\d\.\d{4}" />
+  <variable name="os_major" value="5" os=".+5\.\d\.\d{4}" />
+
+  <!-- NT6 (Windows Vista/7/2008) -->
+  <variable name="version" value="2-sp1" os=".+6\.\d\.\d{4}" />
+  <variable name="os_major" value="6" os=".+6\.\d\.\d{4}" />
 
   <check type="uninstall" condition="exists" path="Novell Client for Windows" />
 
-  <install cmd='"%SOFTWARE%\Novell\Netware Client\nt5\acu.exe" /D:no /U' reboot="postponed">
+  <install cmd='"%SOFTWARE%\Novell\Netware Client\nt%os_major%\acu.exe" /D:no /U' reboot="postponed">
     <exit code="1" />
   </install>
 
-  <upgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt5\acu.exe" /D:no /U' reboot="postponed">
+  <upgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt%os_major%\acu.exe" /D:no /U' reboot="postponed">
     <exit code="1" />
   </upgrade>
 
-  <downgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt5\acu.exe" /D:no /U' reboot="postponed">
+  <downgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt%os_major%\acu.exe" /D:no /U' reboot="postponed">
     <exit code="1" />
   </downgrade>
 
   <!-- Copy acu.exe and acu.ini to the 'remove' folder, edit acu.ini and change all items to 'yes' under 'uninstall' -->
-  <remove cmd='"%SOFTWARE%\Novell\Netware Client\nt5\remove\acu.exe" /D:no' reboot="postponed" />
+  <remove cmd='"%SOFTWARE%\Novell\Netware Client\nt%os_major%\remove\acu.exe" /D:no' reboot="postponed" />
 
 </package>
 
