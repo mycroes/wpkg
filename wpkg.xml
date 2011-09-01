@@ -26,6 +26,23 @@
 </package>
 
 <package
+  id="wpkg-gp"
+  name="WPKG-GP"
+  revision="%version%-0"
+  priority="0"
+  reboot="false">
+
+  <variable name="version" value="0.14" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="WPKG" value="%version%" />
+
+  <install   cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\settings.ini"' />
+  <upgrade   cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\settings.ini"' />
+  <downgrade cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\settings.ini"' />
+
+</package>
+
+<package
   id="wpkg-settings"
   name="Update WPKG settings"
   revision="3-0"
