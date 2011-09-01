@@ -262,6 +262,12 @@ PACKAGES = {
   {:url => 'http://wpkg.org/files/client/stable/WPKG%20Client%20%version%-x64.msi',
   :destination => ['WPKG', BIT_64_DIR, 'WPKG Client %version%.msi'],
   :package_id => 'wpkg' },
+  {:url => 'http://wpkg-gp.googlecode.com/files/Wpkg-GP-0.14_x86.exe',
+  :destination => ['WPKG', BIT_32_DIR, 'Wpkg-GP-%version%.exe'],
+  :package_id => 'wpkg-gp' },
+  {:url => 'http://wpkg-gp.googlecode.com/files/Wpkg-GP-0.14_x64.exe',
+  :destination => ['WPKG', BIT_64_DIR, 'Wpkg-GP-%version%.exe'],
+  :package_id => 'wpkg-gp' },
 ],
 
 }
