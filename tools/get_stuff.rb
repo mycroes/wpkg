@@ -161,10 +161,12 @@ PACKAGES = {
 
 
 :trueview => [
-  {:url => 'http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_32bit.exe',
-  :destination => ['Autodesk', 'DWGTrueview', '2011', BIT_32_DIR, 'SetupDWGTrueView2011_32bit.exe']},
-  {:url => 'http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_64bit.exe',
-  :destination => ['Autodesk', 'DWGTrueview', '2011', BIT_64_DIR, 'SetupDWGTrueView2011_64bit.exe']},
+  {:url => 'http://download.autodesk.com/esd/dwgtrueview/%version%/SetupDWGTrueView%version%_32bit.exe',
+  :destination => ['Autodesk', 'DWGTrueview', '%version%', BIT_32_DIR, 'SetupDWGTrueView%version%_32bit.exe'],
+  :package_id => 'autodesk_dwgtrueview' },
+  {:url => 'http://download.autodesk.com/esd/dwgtrueview/%version%/SetupDWGTrueView%version%_64bit.exe',
+  :destination => ['Autodesk', 'DWGTrueview', '%version%', BIT_64_DIR, 'SetupDWGTrueView%version%_64bit.exe'],
+  :package_id => 'autodesk_dwgtrueview' },
 ],
 
 # notice the 32-bit renaming
@@ -335,7 +337,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       pdn     PaintDotNet
       skype      Skype Business Edition (.msi)
       sumatrapdf SumatraPDF **
-      trueview   DWG TrueView 2011
+      trueview   DWG TrueView 2012
       ud         UltraDefrag
       vc         Visual C++ Runtime 2005, 2008, 2010
       visio      Visio Viewer 2010

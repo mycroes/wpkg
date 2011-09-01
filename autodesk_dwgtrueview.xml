@@ -13,8 +13,8 @@
 
 <package
   id="autodesk_dwgtrueview"
-  name="Autodesk DWG TrueView 2011"
-  revision="%version%-1"
+  name="Autodesk DWG TrueView 2012"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
@@ -27,7 +27,7 @@
   <!-- Requires .NET 3 -->
   <depends package-id="dotnet3" />
 
-  <variable name="version" value="2011" />
+  <variable name="version" value="2012" />
 
   <check type="uninstall" condition="exists" path="DWG TrueView %version%" />
 
