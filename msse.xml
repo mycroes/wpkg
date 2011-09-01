@@ -14,11 +14,11 @@
 <package
   id="msse"
   name="MS Security Essentials"
-  revision="%version%-1"
+  revision="%version%-0"
   reboot="false"
   priority="50">
 
-  <variable name='version' value='2.0.657.0' />
+  <variable name='version' value='2.1.1116.0' />
   <variable name='update_interval' value='4' />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Security Essentials" value="%version%" />
