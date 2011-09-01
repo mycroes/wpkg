@@ -45,7 +45,7 @@
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="%version%-6"
+  revision="%version%-7"
   priority="12"
   reboot="false">
 
@@ -53,7 +53,7 @@
   <variable name="version" value="2.39" />
   <variable name="tempdir" value="%SYSTEMDRIVE%\SWTOOLS\DRIVERS\EZEJECT" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject.+" value="%version%" />
+  <check type="uninstall" condition="versiongreaterorequal" path="ThinkPad EasyEject.*" value="%version%" />
 
   <install   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart' />
   <install   cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
