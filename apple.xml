@@ -20,7 +20,7 @@ NOTES
   <depends package-id="applemobile" />
   <depends package-id="quicktime" />
 
-  <variable name="version" value="10.4.0.80" />
+  <variable name="version" value="10.4.1.10" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="iTunes" value="%version%"/>
 
@@ -160,11 +160,11 @@ NOTES
 <package
   id="quicktime"
   name="Apple Quicktime"
-  revision="%version%-3"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="7.69.80.9" />
+  <variable name="version" value="7.70.80.34" />
   <variable name="RUN" value="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="QuickTime" value="%version%"/>
