@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages xmlns:xsi="http://www.wpkg.org/packages" xsi:noNamespaceSchemaLocation="xsd/packages.xsd">
+
+<!--
+  INSTRUCTIONS
+  1) Copy CD contents to "%SOFTWARE%\Microsoft\Windows MUI\XP".
+
+  NOTES
+  1) Also sets default language, because of the /d switch.
+-->
+
+<package
+  id="ms_windowsmui_nl"
+  name="Windows Multilingual User Interface (Dutch)"
+  revision="0"
+  priority="15">
+
+  <check type="registry" condition="equals" path="HKLM\SYSTEM\CurrentControlSet\Control\Nls\MUILanguages\0413" value="1" />
+
+  <install os=".+5\.1\.\d{4}" cmd='"%SOFTWARE%\Microsoft\Windows MUI\XP\muisetup.exe" /i 0413 /d 0413 /l /f /r /s' reboot="postponed" />
+
+  <remove os=".+5\.1\.\d{4}" cmd='"%SOFTWARE%\Microsoft\Windows MUI\XP\muisetup.exe" /u 0413' />
+
+</package>
+
+</packages>
