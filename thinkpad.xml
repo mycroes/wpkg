@@ -72,26 +72,25 @@
 <!--
   NOTES
   1) Turns out the uninstall name is different between computers on XP (haven't verified w7). Great...
-  2) It looks like WPKG doesn't do variable expension in sub-processes hence /passive /norestart instead of %MSI%
+  2) PKG_PARAMS comes from: <url:http://download.lenovo.com/ibmdl/pub/pc/pccbbs/thinkvantage_en/systemupdate401-2011-07-25.txt>
+  3) I added /norestart to PKG_PARAMS
 
   INSTALLER
   1) Download .exe from lenovo.com
-  2) Use 7z to extract into folder
-  3) Run psaddzip.exe - this creates a setup directory at the install source
 -->
 
 <package
   id="tp_systemupdate"
   name="ThinkPad System Update"
-  revision="%version%-4"
+  revision="%version%-5"
   priority="10"
   reboot="false">
 
-  <variable name="source" value="%SOFTWARE%\ThinkPad\systemupdate315-2011-07-25" os="windows xp" />
-  <variable name="source" value="%SOFTWARE%\ThinkPad\systemupdate401-2011-07-25" os="windows 7" />
   <variable name="version" value="3.15.0000" os="windows xp" />
   <variable name="version" value="4.01.0000" os="windows 7" />
-  <variable name="params" value='-s -a /s /v"/qn"' /> <!-- from: <url:http://download.lenovo.com/ibmdl/pub/pc/pccbbs/thinkvantage_en/systemupdate401-2011-07-25.txt> -->
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\ThinkPad\systemupdate315-2011-07-25.exe" os="windows xp" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\ThinkPad\systemupdate401-2011-07-25.exe" os="windows 7" />
+  <variable name="PKG_PARAMS" value='-s -a /s /v"/qn /norestart"' />
 
   <check type="logical" condition="or">
     <check type="uninstall" condition="versiongreaterorequal" path="System Update" value="%version%" />
@@ -99,20 +98,13 @@
   </check>
 
   <install cmd='net stop SUService'><exit code="2"/></install>
-  <install cmd='"%source%\setup.exe" %params%'>
-    <exit code="3010" reboot="false" />
-  </install>
+  <install cmd='"%PKG_SOURCE%" %PKG_PARAMS%'><exit code="3010" reboot="false" /></install>
+
   <upgrade cmd='net stop SUService'><exit code="2"/></upgrade>
-  <upgrade cmd='"%source%\setup.exe" %params%'>
-    <exit code="3010" reboot="false" />
-  </upgrade>
+  <upgrade cmd='"%PKG_SOURCE%" %PKG_PARAMS%'><exit code="3010" reboot="false" /></upgrade>
+
   <downgrade cmd='net stop SUService'><exit code="2"/></downgrade>
-  <downgrade cmd='"%source%\setup.exe" %params%'>
-    <exit code="3010" reboot="false" />
-  </downgrade>
-  <remove cmd='msiexec %MSI% /x "%source%\System Update.msi"'>
-    <exit code="3010" reboot="false" />
-  </remove>
+  <downgrade cmd='"%PKG_SOURCE%" %PKG_PARAMS%'><exit code="3010" reboot="false" /></downgrade>
 
 </package>
 
