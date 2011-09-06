@@ -14,7 +14,7 @@
 <package
   id="java"
   name="Java 6"
-  revision="%version%-4"
+  revision="%version%-5"
   reboot="false"
   priority="10">
 
@@ -22,8 +22,10 @@
   <variable name="version" value="1.6.0_27" />
   <variable name="last" value="27" /> <!-- last part of the version - used for looping through installed versions -->
 
-  <check type="uninstall" condition="exists" path="Java(TM) 6 Update %last%" />
-  <check type="uninstall" condition="exists" path="Java(TM) 6 Update %last% (64-bit)" architecture="x64" />
+  <check type="conditional" condition="or">
+    <check type="uninstall" condition="exists" path="Java(TM) 6 Update %last%" />
+    <check type="uninstall" condition="exists" path="Java(TM) 6 Update %last% (64-bit)" />
+  </check>
   <check type="file" condition="exists" path="%PROGRAMFILES%\Java\jre6\bin\javacpl.exe" />
 
   <install cmd='net stop JavaQuickStarterService'>
