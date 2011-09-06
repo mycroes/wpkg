@@ -14,7 +14,7 @@
 <package
   id="java"
   name="Java 6"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -33,11 +33,11 @@
   <install cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F832160%IFF}'> <exit code='1605' /></install>
   <install cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F864160%IFF}'> <exit code='1605' /></install>
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
     <exit code="0" />
   </install>
   <install cmd='"%SOFTWARE%\Java\amd64\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress' architecture="x64">
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
     <exit code="0" />
   </install>
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
@@ -61,11 +61,11 @@
   <upgrade cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F832160%IFF}'> <exit code='1605' /></upgrade>
   <upgrade cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F864160%IFF}'> <exit code='1605' /></upgrade>
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
     <exit code="0" />
   </upgrade>
   <upgrade cmd='"%SOFTWARE%\Java\amd64\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress' architecture="x64">
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
     <exit code="0" />
   </upgrade>
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
@@ -89,11 +89,11 @@
   <downgrade cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F832160%IFF}'> <exit code='1605' /></downgrade>
   <downgrade cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F864160%IFF}'> <exit code='1605' /></downgrade>
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
     <exit code="0" />
   </downgrade>
   <downgrade cmd='"%SOFTWARE%\Java\amd64\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress' architecture="x64">
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
     <exit code="0" />
   </downgrade>
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
