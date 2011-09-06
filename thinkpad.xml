@@ -83,7 +83,7 @@
 <package
   id="tp_systemupdate"
   name="ThinkPad System Update"
-  revision="%version%-3"
+  revision="%version%-4"
   priority="10"
   reboot="false">
 
@@ -91,19 +91,22 @@
   <variable name="source" value="%SOFTWARE%\ThinkPad\systemupdate401-2011-07-25" os="windows 7" />
   <variable name="version" value="3.15.0000" os="windows xp" />
   <variable name="version" value="4.01.0000" os="windows 7" />
-  <variable name="params" value='-s -a /s /v"/qn /norestart"' /> <!-- from: http://download.lenovo.com/ibmdl/pub/pc/pccbbs/thinkvantage_en/systemupdate401-2011-07-25.txt -->
+  <variable name="params" value='-s -a /s /v"/qn"' /> <!-- from: <url:http://download.lenovo.com/ibmdl/pub/pc/pccbbs/thinkvantage_en/systemupdate401-2011-07-25.txt> -->
 
   <check type="logical" condition="or">
     <check type="uninstall" condition="versiongreaterorequal" path="System Update" value="%version%" />
     <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage System Update" value="%version%" />
   </check>
 
+  <install cmd='net stop SUService'><exit code="2"/></install>
   <install cmd='"%source%\setup.exe" %params%'>
     <exit code="3010" reboot="false" />
   </install>
+  <upgrade cmd='net stop SUService'><exit code="2"/></upgrade>
   <upgrade cmd='"%source%\setup.exe" %params%'>
     <exit code="3010" reboot="false" />
   </upgrade>
+  <downgrade cmd='net stop SUService'><exit code="2"/></downgrade>
   <downgrade cmd='"%source%\setup.exe" %params%'>
     <exit code="3010" reboot="false" />
   </downgrade>
