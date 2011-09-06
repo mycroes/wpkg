@@ -54,7 +54,7 @@
 <package
   id="citrix_xen"
   name="Citrix XenApp Client"
-  revision="5"
+  revision="6"
   reboot="false"
   priority="10">
 
@@ -64,14 +64,14 @@
   <install cmd='taskkill /f /im firefox.exe'><exit code="any" /></install>
   <install cmd='taskkill /f /im pnamain.exe'><exit code="any" /></install>
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Citrix\XenAppHosted.msi" ADDLOCAL=PN,SSON ENABLE_SSON=Yes ALLOW_REBOOT=No'>
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
   </install>
 
   <upgrade cmd='taskkill /f /im iexplore.exe'><exit code="any" /></upgrade>
   <upgrade cmd='taskkill /f /im firefox.exe'><exit code="any" /></upgrade>
   <upgrade cmd='taskkill /f /im pnamain.exe'><exit code="any" /></upgrade>
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Citrix\XenAppHosted.msi" ADDLOCAL=PN,SSON ENABLE_SSON=Yes ALLOW_REBOOT=No'>
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
   </upgrade>
 
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Citrix\XenAppHosted.msi"' />
