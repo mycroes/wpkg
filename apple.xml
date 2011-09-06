@@ -94,7 +94,7 @@ NOTES
 <package
   id="applemobile"
   name="Apple Mobile Device Support"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -102,13 +102,13 @@ NOTES
 
   <check type="uninstall"  condition="versiongreaterorequal" path="Apple Mobile Device Support" value="%version%"/>
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\MobileDevice\%version%\%PROCESSOR_ARCHITECTURE%\AppleMobileDeviceSupport.msi"'>
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
   </install>
   <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\MobileDevice\%version%\%PROCESSOR_ARCHITECTURE%\AppleMobileDeviceSupport.msi"'>
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
   </upgrade>
   <downgrade cmd='msiexec %MSI% /fa "%SOFTWARE%\Apple\MobileDevice\%version%\%PROCESSOR_ARCHITECTURE%\AppleMobileDeviceSupport.msi"'>
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
   </downgrade>
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\MobileDevice\%version%\%PROCESSOR_ARCHITECTURE%\AppleMobileDeviceSupport.msi"'>
     <exit code="3010" />
@@ -118,7 +118,7 @@ NOTES
 <package
   id="applesupport"
   name="Apple Software Application Support"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -126,13 +126,13 @@ NOTES
 
   <check type="uninstall"  condition="versiongreaterorequal" path="Apple Application Support" value="%version%"/>
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\AppleApplicationSupport.msi"'>
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
   </install>
   <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\AppleApplicationSupport.msi"'>
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
   </upgrade>
   <downgrade cmd='msiexec %MSI% /fa "%SOFTWARE%\Apple\AppleApplicationSupport.msi"'>
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
   </downgrade>
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\AppleApplicationSupport.msi"'>
     <exit code="3010" />
