@@ -14,7 +14,7 @@
 <package
   id="java"
   name="Java 6"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -58,7 +58,7 @@
     <exit code="2" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /C FOR /L %I IN (0,1,9)       DO msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D01600%I0}'><exit code='1605' /></upgrade>
-  <upgrade cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F832160%IFF}'> <exit code='1605' /></upgrade>
+  <upgrade cmd='%COMSPEC% /C FOR /L %I IN (20,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F832160%IFF}'> <exit code='1605' /></upgrade>
   <upgrade cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F864160%IFF}' architecture="x64"> <exit code='1605' /></upgrade>
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
     <exit code="3010" reboot="false" />
