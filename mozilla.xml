@@ -15,11 +15,11 @@
 <package
   id="firefox"
   name="Mozilla Firefox"
-  revision="%version%-1"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="6.0.1" />
+  <variable name="version" value="6.0.2" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
 
@@ -39,7 +39,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.6.21" />
+  <variable name="version" value="3.6.22" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
 
@@ -59,17 +59,23 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.1.7" />
+  <variable name="version" value="3.1.14" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Thunderbird"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Thunderbird" architecture="x64" />
+
   <check type="uninstall" condition="exists" path="Mozilla Thunderbird (%version%)" />
+
   <install cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></install>
   <install cmd='"%SOFTWARE%\Mozilla\Thunderbird\Thunderbird Setup %version%.exe" -ms' />
+
   <upgrade cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></upgrade>
   <upgrade cmd='"%SOFTWARE%\Mozilla\Thunderbird\Thunderbird Setup %version%.exe" -ms' />
+
   <downgrade cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></downgrade>
   <downgrade cmd='"%SOFTWARE%\Mozilla\Thunderbird\Thunderbird Setup %version%.exe" -ms' />
+
   <remove  cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></remove>
-  <remove  cmd='%COMSPEC% /c if exist "%ProgramFiles%\Mozilla Thunderbird\uninstall\helper.exe" "%PROGRAMFILES%\Mozilla Thunderbird\uninstall\helper.exe" /S' />
-  <remove  cmd='%COMSPEC% /c if exist "%ProgramFiles(x86)%\Mozilla Thunderbird\uninstall\helper.exe" "%PROGRAMFILES(x86)%\Mozilla Thunderbird\uninstall\helper.exe" /S' />
+  <remove  cmd='"%PKG_DESTINATION%\uninstall\helper.exe" /S' />
 
 </package>
 
