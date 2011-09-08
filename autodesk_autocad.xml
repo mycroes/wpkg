@@ -60,7 +60,7 @@
 <package
   id="autodesk_autocad2012"
   name="AutoDesk AutoCAD 2012"
-  revision="%version%-0"
+  revision="%version%-1"
   priority="10"
   reboot="false">
 
@@ -68,23 +68,24 @@
   <depends package-id="vcruntime" />
 
   <variable name="version" value="22.0.00.000" />
-  <variable name="base" value="%SOFTWARE%\AutoDesk\AutoCAD\AutoCAD2012\%PROCESSOR_ARCHITECTURE%" />
+  <variable name="language" value="en-us" lcid="0409,0809,4809" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\AutoDesk\AutoCAD\AutoCAD2012\%PROCESSOR_ARCHITECTURE%\AdminImage" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="AutoCAD 2012 - English" value="%version%" />
 
-  <install cmd='msiexec /i "%base%\AdminImage\acad.msi" TRANSFORMS="%base%\AdminImage\custom.mst" %MSI%'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
+  <install cmd='"%PKG_SOURCE%\setup.exe" /qb /I "%PKG_SOURCE%\custom.ini" /language %language%'>
+    <exit code="1641" reboot="false" />
+    <exit code="3010" reboot="false" />
   </install>
 
-  <upgrade cmd='msiexec /i "%base%\AdminImage\acad.msi" TRANSFORMS="%base%\AdminImage\custom.mst" %MSI%'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
+  <upgrade cmd='"%PKG_SOURCE%\setup.exe" /qb /I "%PKG_SOURCE%\custom.ini" /language %language%'>
+    <exit code="1641" reboot="false" />
+    <exit code="3010" reboot="false" />
   </upgrade>
 
-  <downgrade cmd='msiexec /i "%base%\AdminImage\acad.msi" TRANSFORMS="%base%\AdminImage\custom.mst" %MSI%'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
+  <downgrade cmd='"%PKG_SOURCE%\setup.exe" /qb /I "%PKG_SOURCE%\custom.ini" /language %language%'>
+    <exit code="1641" reboot="false" />
+    <exit code="3010" reboot="false" />
   </downgrade>
 
   <remove cmd='msiexec /X{5783F2D7-5001-0409-0002-0060B0CE6BBA} %MSI%'>
@@ -96,7 +97,7 @@
 <package
   id="autodesk_autocad2007"
   name="AutoDesk AutoCAD 2007"
-  revision="%version%-0"
+  revision="%version%-1"
   priority="10"
   reboot="false">
 
@@ -108,18 +109,18 @@
   <check type="uninstall" condition="versiongreaterorequal" path="AutoCAD 2007 - English" value="%version%" />
 
   <install cmd='msiexec /i "%base%\AdminImage\acad.msi" TRANSFORMS="%base%\AdminImage\custom.mst" %MSI%'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
+    <exit code="1641" reboot="false" />
+    <exit code="3010" reboot="false" />
   </install>
 
   <upgrade cmd='msiexec /i "%base%\AdminImage\acad.msi" TRANSFORMS="%base%\AdminImage\custom.mst" %MSI%'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
+    <exit code="1641" reboot="false" />
+    <exit code="3010" reboot="false" />
   </upgrade>
 
   <downgrade cmd='msiexec /i "%base%\AdminImage\acad.msi" TRANSFORMS="%base%\AdminImage\custom.mst" %MSI%'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
+    <exit code="1641" reboot="false" />
+    <exit code="3010" reboot="false" />
   </downgrade>
 
   <remove cmd='msiexec /X{5783F2D7-5001-0409-0002-0060B0CE6BBA} %MSI%'>
