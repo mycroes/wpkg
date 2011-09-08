@@ -76,6 +76,11 @@ PACKAGES = {
   :destination => ['Microsoft', 'DotNet', 'NDP35SP1-KB958484-x86.exe']},
 ],
 
+:dotnet4 => [
+  {:url => 'http://download.microsoft.com/download/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe',
+  :destination => ['Microsoft', 'DotNet', 'dotNetFx40_Full_x86_x64.exe']},
+],
+
 :firefox => [
   {:url => 'ftp://ftp.mozilla.org/pub/firefox/releases/%version%/win32/%language%/Firefox Setup %version%.exe',
   :destination => ['Mozilla', 'Firefox', 'Firefox Setup %version%.exe'],
@@ -344,6 +349,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       bullzip    BullZIP PDFPrinter
       console    Console2
       dotnet3   .NET 3.5
+      dotnet4   .NET 4
       flash      Flash Player
       gs       	 GhostScript **
       ie8        Internet Explorer 8 for Windows XP
