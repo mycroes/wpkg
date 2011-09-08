@@ -7,6 +7,7 @@
   3) 32-bit installations on 64-bit is broken when using the .exe installer - you NEED to get the .cab and .msi from the 32 bit installer for 64 bit platforms
   4) install/up/downgrade must all remove the CURRENT VERSION before installing it as installing on top of the same version leaves the package in an inconsistent state
   5) we now loop through the versions to perform uninstall which also lets us remove old 64 bit versions
+  6) The java quick starter service only applies to the 32 bit version
 -->
 
 <packages>
@@ -14,7 +15,7 @@
 <package
   id="java"
   name="Java 6"
-  revision="%version%-6"
+  revision="%version%-7"
   reboot="false"
   priority="10">
 
@@ -49,7 +50,7 @@
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <install cmd='"%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister'><exit code='1' /></install>
+  <install cmd='"%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister' architecture="x86"><exit code='1' /></install>
   <install cmd='"%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" -unregister' architecture="x64"><exit code='1' /></install>
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
     <exit code="1" />
@@ -79,7 +80,7 @@
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <upgrade cmd='"%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister'><exit code='1' /></upgrade>
+  <upgrade cmd='"%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister' architecture="x86"><exit code='1' /></upgrade>
   <upgrade cmd='"%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" -unregister' architecture="x64"><exit code='1' /></upgrade>
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
     <exit code="1" />
@@ -109,7 +110,7 @@
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <downgrade cmd='"%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister'><exit code='1' /></downgrade>
+  <downgrade cmd='"%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister' architecture="x86"><exit code='1' /></downgrade>
   <downgrade cmd='"%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" -unregister' architecture="x64"><exit code='1' /></downgrade>
   <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
     <exit code="1" />
