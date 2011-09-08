@@ -9,6 +9,9 @@
   Direct download links:
   http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_32bit.exe
   http://download.autodesk.com/esd/dwgtrueview/2011/SetupDWGTrueView2011_64bit.exe
+
+
+SETUP.EXE /w /t /q setup.ini
   -->
 
 <package
@@ -28,11 +31,68 @@
   <depends package-id="dotnet3" />
 
   <variable name="version" value="2012" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\%PROCESSORARCHITECTURE%\dwgviwr\DWGVIEWR.msi" />
+
+  <check type="uninstall" condition="exists" path="DWG TrueView %version%" />
+
+  <install cmd='msiexec /i  "%PKG_SOURCE%" %MSI%'>
+    <exit code='3010' reboot="false" />
+  </install>
+  <install cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\DWG TrueView*.lnk"'>
+    <exit code="any" />
+  </install>
+  <install cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\DWG TrueView*.lnk"'>
+    <exit code="any" />
+  </install>
+
+  <upgrade cmd='msiexec /i  "%PKG_SOURCE%" %MSI%'>
+    <exit code='3010' reboot="false" />
+  </upgrade>
+  <upgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\DWG TrueView*.lnk"'>
+    <exit code="any" />
+  </upgrade>
+  <upgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\DWG TrueView*.lnk"' architecture="x64">
+    <exit code="any" />
+  </upgrade>
+
+  <downgrade cmd='msiexec /fa "%PKG_SOURCE%" %MSI%'>
+    <exit code='3010' reboot="false" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\DWG TrueView*.lnk"'>
+    <exit code="any" />
+  </downgrade>
+  <downgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\DWG TrueView*.lnk"'>
+    <exit code="any" />
+  </downgrade>
+
+  <remove cmd='msiexec /x  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%'>
+    <exit code='3010' />
+  </remove>
+
+</package>
+
+<package
+  id="autodesk_dwgtrueview"
+  name="Autodesk DWG TrueView 2011"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <!-- VCruntime 2008 is bundled -->
+  <depends package-id="vcruntime" />
+
+  <!-- MSXML 6 is bundled -->
+  <depends package-id="msxml" />
+
+  <!-- Requires .NET 3 -->
+  <depends package-id="dotnet3" />
+
+  <variable name="version" value="2011" />
 
   <check type="uninstall" condition="exists" path="DWG TrueView %version%" />
 
   <install cmd='msiexec /i  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%'>
-    <exit code='3010' reboot="postponed" />
+    <exit code='3010' reboot="false" />
   </install>
   <install cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\DWG TrueView*.lnk"'>
     <exit code="any" />
@@ -42,7 +102,7 @@
   </install>
 
   <upgrade cmd='msiexec /i  "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%'>
-    <exit code='3010' reboot="postponed" />
+    <exit code='3010' reboot="false" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\DWG TrueView*.lnk"'>
     <exit code="any" />
@@ -52,7 +112,7 @@
   </upgrade>
 
   <downgrade cmd='msiexec /fa "%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\DWGVIEWR.msi" %MSI%'>
-    <exit code='3010' reboot="postponed" />
+    <exit code='3010' reboot="false" />
   </downgrade>
   <downgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\DWG TrueView*.lnk"'>
     <exit code="any" />
