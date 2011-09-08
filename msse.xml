@@ -14,7 +14,7 @@
 <package
   id="msse"
   name="MS Security Essentials"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="50">
 
@@ -27,6 +27,7 @@
   <install cmd='"%SOFTWARE%\Microsoft\MSSE\%PROCESSOR_ARCHITECTURE%\mseinstall.exe" /s /runwgacheck'>
     <exit code="-2147156221" />
     <exit code="-2147156213" />
+    <exit code="-2147156218" />
     <exit code="327424" />
   </install>
   <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
@@ -37,6 +38,7 @@
   <upgrade cmd='"%SOFTWARE%\Microsoft\MSSE\%PROCESSOR_ARCHITECTURE%\mseinstall.exe" /s /runwgacheck'>
     <exit code="-2147156221" />
     <exit code="-2147156213" />
+    <exit code="-2147156218" />
     <exit code="327424" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
@@ -47,6 +49,7 @@
   <downgrade cmd='"%SOFTWARE%\Microsoft\MSSE\%PROCESSOR_ARCHITECTURE%\mseinstall.exe" /s /runwgacheck'>
     <exit code="-2147156221" />
     <exit code="-2147156213" />
+    <exit code="-2147156218" />
     <exit code="327424" />
   </downgrade>
   <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
