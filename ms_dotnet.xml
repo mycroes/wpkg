@@ -36,17 +36,36 @@
   </check>
 
   <install cmd='"%SOFTWARE%\Microsoft\DotNet\dotnetfx35.exe" /lang:ENU %MSI%'>
-    <exit code="194" reboot="postponed" />
+    <exit code="194" reboot="false" />
     <exit code="1603" />
-    <exit code="3010" reboot="postponed" />
+    <exit code="3010" reboot="false" />
   </install>
   <install cmd='"%SOFTWARE%\Microsoft\DotNet\NDP20SP2-KB958481-x86.exe" %MSI%'>
-    <exit code="-2147021886" reboot="postponed" />
+    <exit code="-2147021886" reboot="false" />
   </install>
   <install cmd='"%SOFTWARE%\Microsoft\DotNet\NDP30SP2-KB958483-x86.exe" %MSI%' />
   <install cmd='"%SOFTWARE%\Microsoft\DotNet\NDP35SP1-KB958484-x86.exe" %MSI%' />
 
   <remove cmd='"%WINDIR%\Microsoft.NET\Framework\v3.5\Microsoft .NET Framework 3.5 SP1\setup.exe" /uninstall %MSI%' />
+
+</package>
+
+<package
+  id="dotnet4"
+  name="Microsoft .NET 4"
+  revision="0"
+  reboot="false"
+  priority="50">
+
+  <check type="uninstall" condition="exists" path="Microsoft .NET Framework 4 Client Profile" />
+
+  <install cmd='"%SOFTWARE%\Microsoft\DotNet\dotNetFx40_Full_x86_x64.exe" /q /norestart /log "%TEMP%\dotnet4.txt"'>
+    <exit code="194" reboot="false" />
+    <exit code="1603" />
+    <exit code="3010" reboot="false" />
+  </install>
+
+  <remove cmd='msiexec %MSI% /x{F5B09CFD-F0B2-36AF-8DF4-1DF6B63FC7B4}' />
 
 </package>
 
