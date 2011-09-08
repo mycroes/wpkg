@@ -29,19 +29,19 @@
   <check type="uninstall" condition="exists" path="Bullzip PDF Printer %version%" />
 
   <install cmd='"%SOFTWARE%\Bullzip\BullzipPDFPrinter_%fileversion%.exe" %setupopts%'>
-    <exit code='3010' reboot="postponed" />
+    <exit code='3010' reboot="false" />
   </install>
 
   <upgrade cmd='"%SOFTWARE%\Bullzip\BullzipPDFPrinter_%fileversion%.exe" %setupopts%'>
-    <exit code='3010' reboot="postponed" />
+    <exit code='3010' reboot="false" />
   </upgrade>
 
   <downgrade cmd='"%SOFTWARE%\Bullzip\BullzipPDFPrinter_%fileversion%.exe" %setupopts%'>
-    <exit code='3010' reboot="postponed" />
+    <exit code='3010' reboot="false" />
   </downgrade>
 
-  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86" "%PROGRAMFILES%\Bullzip\PDF Printer\unins000.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART' />
-  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" "%PROGRAMFILES(x86)%\Bullzip\PDF Printer\unins000.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART' />
+  <remove cmd='"%PROGRAMFILES%\Bullzip\PDF Printer\unins000.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART' architecture="x86"/>
+  <remove cmd='"%PROGRAMFILES(x86)%\Bullzip\PDF Printer\unins000.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART' architecture="x64"/>
 
 </package>
 
