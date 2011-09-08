@@ -33,7 +33,7 @@
 <package
   id="loadplanner"
   name="LoadPlanner"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -56,6 +56,7 @@
   <install cmd='%COMSPEC% /c ftype LoadPlanner="%PKG_DESTINATION%\LpMultiP.exe" "%1"' />
   <install cmd='%COMSPEC% /c IF NOT EXIST "%PKG_DESTINATION%\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PKG_DESTINATION%" /Y' />
   <install cmd='%COMSPEC% /c echo Y | cacls "%PKG_DESTINATION%" /E /T /G Everyone:f >NUL'><exit code="8023" /></install>
+  <install cmd='%COMSPEC% /C move "%USERPROFILE%\Desktop\LoadPlanner.lnk" "%ALLUSERSPROFILE%\Desktop"' />
 
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
@@ -63,6 +64,7 @@
   <upgrade cmd='%COMSPEC% /c ftype LoadPlanner="%PKG_DESTINATION%\LpMultiP.exe" "%1"' />
   <upgrade cmd='%COMSPEC% /c IF NOT EXIST "%PKG_DESTINATION%\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PKG_DESTINATION%" /Y' />
   <upgrade cmd='%COMSPEC% /c echo Y | cacls "%PKG_DESTINATION%" /E /T /G Everyone:f >NUL'><exit code="8023" /></upgrade>
+  <upgrade cmd='%COMSPEC% /C move "%USERPROFILE%\Desktop\LoadPlanner.lnk" "%ALLUSERSPROFILE%\Desktop"' />
 
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
@@ -70,6 +72,7 @@
   <downgrade cmd='%COMSPEC% /c ftype LoadPlanner="%PKG_DESTINATION%\LpMultiP.exe" "%1"' />
   <downgrade cmd='%COMSPEC% /c IF NOT EXIST "%PKG_DESTINATION%\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PKG_DESTINATION%" /Y' />
   <downgrade cmd='%COMSPEC% /c echo Y | cacls "%PKG_DESTINATION%" /E /T /G Everyone:f >NUL'><exit code="8023" /></downgrade>
+  <downgrade cmd='%COMSPEC% /C move "%USERPROFILE%\Desktop\LoadPlanner.lnk" "%ALLUSERSPROFILE%\Desktop"' />
   <!--
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   -->
