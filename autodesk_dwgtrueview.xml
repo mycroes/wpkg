@@ -17,7 +17,7 @@ SETUP.EXE /w /t /q setup.ini
 <package
   id="autodesk_dwgtrueview"
   name="Autodesk DWG TrueView 2012"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -27,8 +27,8 @@ SETUP.EXE /w /t /q setup.ini
   <!-- MSXML 6 is bundled -->
   <depends package-id="msxml" />
 
-  <!-- Requires .NET 3 -->
-  <depends package-id="dotnet3" />
+  <!-- Requires .NET 4 -->
+  <depends package-id="dotnet4" />
 
   <variable name="version" value="2012" />
   <variable name="PKG_SOURCE" value="%SOFTWARE%\Autodesk\DWGTrueView\2012\%PROCESSOR_ARCHITECTURE%\%PROCESSOR_ARCHITECTURE%\dwgviewr\dwgviewr.msi" />
