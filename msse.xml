@@ -14,7 +14,7 @@
 <package
   id="msse"
   name="MS Security Essentials"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="50">
 
@@ -25,10 +25,12 @@
 
   <install cmd='net stop MsMpSvc'><exit code="2" /></install>
   <install cmd='"%SOFTWARE%\Microsoft\MSSE\%PROCESSOR_ARCHITECTURE%\mseinstall.exe" /s /runwgacheck'>
+    <exit code="-2147156138" /> <!-- Windows XP SP2, extra package required - http://support.microsoft.com/kb/914882?mkt=en-us -->
     <exit code="-2147156221" />
-    <exit code="-2147156213" />
+    <exit code="-2147156213" /> <!-- Windows hasn't been activated or WGA validation failed -->
     <exit code="-2147156218" />
     <exit code="327424" />
+    <exit code="327426" /> <!-- program already installed -->
   </install>
   <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
   <install cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Microsoft Antimalware\Signature Updates" /v SignatureUpdateInterval /t REG_DWORD /d %update_interval% /f' />
@@ -36,10 +38,12 @@
 
   <upgrade cmd='net stop MsMpSvc'><exit code="2" /></upgrade>
   <upgrade cmd='"%SOFTWARE%\Microsoft\MSSE\%PROCESSOR_ARCHITECTURE%\mseinstall.exe" /s /runwgacheck'>
+    <exit code="-2147156138" /> <!-- Windows XP SP2, extra package required - http://support.microsoft.com/kb/914882?mkt=en-us -->
     <exit code="-2147156221" />
-    <exit code="-2147156213" />
+    <exit code="-2147156213" /> <!-- Windows hasn't been activated or WGA validation failed -->
     <exit code="-2147156218" />
     <exit code="327424" />
+    <exit code="327426" /> <!-- program already installed -->
   </upgrade>
   <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
   <upgrade cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Microsoft Antimalware\Signature Updates" /v SignatureUpdateInterval /t REG_DWORD /d %update_interval% /f' />
@@ -47,10 +51,12 @@
 
   <downgrade cmd='net stop MsMpSvc'><exit code="2" /></downgrade>
   <downgrade cmd='"%SOFTWARE%\Microsoft\MSSE\%PROCESSOR_ARCHITECTURE%\mseinstall.exe" /s /runwgacheck'>
+    <exit code="-2147156138" /> <!-- Windows XP SP2, extra package required - http://support.microsoft.com/kb/914882?mkt=en-us -->
     <exit code="-2147156221" />
-    <exit code="-2147156213" />
+    <exit code="-2147156213" /> <!-- Windows hasn't been activated or WGA validation failed -->
     <exit code="-2147156218" />
     <exit code="327424" />
+    <exit code="327426" /> <!-- program already installed -->
   </downgrade>
   <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
   <downgrade cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Microsoft Antimalware\Signature Updates" /v SignatureUpdateInterval /t REG_DWORD /d %update_interval% /f' />
