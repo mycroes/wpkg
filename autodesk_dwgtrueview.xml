@@ -17,7 +17,7 @@ SETUP.EXE /w /t /q setup.ini
 <package
   id="autodesk_dwgtrueview"
   name="Autodesk DWG TrueView 2012"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -31,7 +31,7 @@ SETUP.EXE /w /t /q setup.ini
   <depends package-id="dotnet3" />
 
   <variable name="version" value="2012" />
-  <variable name="PKG_SOURCE" value="%SOFTWARE%\Autodesk\DWGTrueView\%version%\%PROCESSOR_ARCHITECTURE%\%PROCESSOR_ARCHITECTURE%\dwgviewr\DWGVIEWR.msi" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\Autodesk\DWGTrueView\2012\%PROCESSOR_ARCHITECTURE%\%PROCESSOR_ARCHITECTURE%\dwgviewr\dwgviewr.msi" />
 
   <check type="uninstall" condition="exists" path="DWG TrueView %version%" />
 
