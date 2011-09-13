@@ -13,7 +13,7 @@
 <package
   id="netextender"
   name="SonicWALL SSL-VPN NetExtender"
-  revision="%version%-10"
+  revision="%version%-11"
   reboot="false"
   priority="10">
 
@@ -25,21 +25,21 @@
     <exit code="3010" reboot="false" />
   </install>
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg" '/>
-  <install cmd='xcopy /Y "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" c:\ >NUL' />
+  <install cmd='xcopy /Y "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" c:\ >NUL'><exit code="any" /></install>
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.lnk" xcopy /y "%SOFTWARE%\SonicWall VPN\NetExtender.lnk" "%ALLUSERSPROFILE%\Start Menu" '/>
 
   <upgrade cmd='msiexec /i "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" %MSI%'>
     <exit code="3010" reboot="false" />
   </upgrade>
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg" '/>
-  <upgrade cmd='xcopy /Y "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" c:\ >NUL' />
+  <upgrade cmd='xcopy /Y "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" c:\ >NUL'><exit code="any" /></upgrade>
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.lnk" xcopy /y "%SOFTWARE%\SonicWall VPN\NetExtender.lnk" "%ALLUSERSPROFILE%\Start Menu" '/>
 
   <downgrade cmd='msiexec /i "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" %MSI%'>
     <exit code="3010" reboot="false" />
   </downgrade>
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.reg" regedit /s "%SOFTWARE%\SonicWall VPN\NetExtender.reg" '/>
-  <downgrade cmd='xcopy /Y "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" c:\ >NUL' />
+  <downgrade cmd='xcopy /Y "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" c:\ >NUL'><exit code="any" /></downgrade>
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\SonicWall VPN\NetExtender.lnk" xcopy /y "%SOFTWARE%\SonicWall VPN\NetExtender.lnk" "%ALLUSERSPROFILE%\Start Menu" '/>
 
   <remove    cmd='msiexec /x "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" %MSI%' />
