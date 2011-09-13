@@ -16,7 +16,7 @@
 <package
   id="ghostscript"
   name="GhostScript"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false">
 
   <variable name="version" value="9.02" />
@@ -25,16 +25,16 @@
   <check type="uninstall" condition="versiongreaterorequal" path="GPL Ghostscript" value="%version%" />
 
   <install cmd='"%SOFTWARE%\GhostScript\%PROCESSOR_ARCHITECTURE%\gs%fileversion%.exe" /S /D="%PROGRAMFILES%\gs"' />
-  <install cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" "%SOFTWARE%\GhostScript\x86\gs%fileversion%.exe" /S /D="%PROGRAMFILES(x86)%\gs"' />
+  <install cmd='"%SOFTWARE%\GhostScript\x86\gs%fileversion%.exe" /S /D="%PROGRAMFILES(x86)%\gs"' architecture="x64" />
 
   <upgrade cmd='"%SOFTWARE%\GhostScript\%PROCESSOR_ARCHITECTURE%\gs%fileversion%.exe" /S /D="%PROGRAMFILES%\gs"' />
-  <upgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" "%SOFTWARE%\GhostScript\x86\gs%fileversion%.exe" /S /D="%PROGRAMFILES(x86)%\gs"' />
+  <upgrade cmd='"%SOFTWARE%\GhostScript\x86\gs%fileversion%.exe" /S /D="%PROGRAMFILES(x86)%\gs"' architecture="x64"/>
 
   <downgrade cmd='"%SOFTWARE%\GhostScript\%PROCESSOR_ARCHITECTURE%\gs%fileversion%.exe" /S /D="%PROGRAMFILES%\gs"' />
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" "%SOFTWARE%\GhostScript\x86\gs%fileversion%.exe" /S /D="%PROGRAMFILES(x86)%\gs"' />
+  <downgrade cmd='"%SOFTWARE%\GhostScript\x86\gs%fileversion%.exe" /S /D="%PROGRAMFILES(x86)%\gs"' architecture="x64" />
 
   <remove cmd='"%PROGRAMFILES%\gs\gs%version%\uninstgs.exe" /S' />
-  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "amd64" "%PROGRAMFILES(x86)%\gs\gs%version%\uninstgs.exe" /S' />
+  <remove cmd='"%PROGRAMFILES(x86)%\gs\gs%version%\uninstgs.exe" /S' architecture="x64" />
 
 </package>
 
