@@ -79,7 +79,8 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="9.4.5" />
+  <variable name="version" value="9.4.6" />
+  <variable name="last" value="6" /> <!-- change this when the version increases -->
   <variable name="lt" value='"%WPKG%\tools\localetool.exe"' />
   <variable name="subst" value='%COMSPEC% /C FOR /F "usebackq tokens=1-10"' />
 
@@ -98,21 +99,7 @@
   <install cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdr940_%A_%B.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\9\reader9.mst"'>
     <exit code="3010" reboot="false" />
   </install>
-  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd941_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </install>
-  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd942_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </install>
-  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd943_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </install>
-  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd944_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </install>
-  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd945_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </install>
+  <install cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /i "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd94%I_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></install>
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\post_install.cmd" "%SOFTWARE%\Adobe\Reader\9\post_install.cmd"' />
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
     <exit code="1" />
@@ -134,21 +121,7 @@
   <upgrade cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdr940_%A_%B.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\9\reader9.mst"'>
     <exit code="3010" reboot="false" />
   </upgrade>
-  <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd941_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </upgrade>
-  <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd942_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </upgrade>
-  <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd943_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </upgrade>
-  <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd944_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </upgrade>
-  <upgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd945_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </upgrade>
+  <upgrade cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /i "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd94%I_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></upgrade>
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\post_install.cmd" "%SOFTWARE%\Adobe\Reader\9\post_install.cmd"' />
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
     <exit code="1" />
@@ -170,21 +143,7 @@
   <downgrade cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdr940_%A_%B.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\9\reader9.mst"'>
     <exit code="3010" reboot="false" />
   </downgrade>
-  <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd941_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </downgrade>
-  <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd942_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </downgrade>
-  <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd943_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </downgrade>
-  <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd944_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </downgrade>
-  <downgrade cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd945_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'>
-    <exit code="3010" reboot="false" />
-  </downgrade>
+  <downgrade cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /i "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd94%I_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></downgrade>
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\post_install.cmd" "%SOFTWARE%\Adobe\Reader\9\post_install.cmd"' />
   <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
     <exit code="1" />
