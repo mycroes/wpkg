@@ -52,6 +52,24 @@
 </package>
 
 <package
+  id="citrix_full"
+  name="Citrix Full Online Client"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="12.1.44.1" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Citrix online plug-in" value="%version%" />
+
+  <install   cmd='"%SOFTWARE%\Citrix\CitrixOnlinePluginFull.exe" /silent /norestart ADDLOCAL="ICA_Client,PN_Agent,SSON" ENABLE_SSON="Yes"' />
+  <upgrade   cmd='"%SOFTWARE%\Citrix\CitrixOnlinePluginFull.exe" /silent /norestart ADDLOCAL="ICA_Client,PN_Agent,SSON" ENABLE_SSON="Yes"' />
+  <downgrade cmd='"%SOFTWARE%\Citrix\CitrixOnlinePluginFull.exe" /silent /norestart ADDLOCAL="ICA_Client,PN_Agent,SSON" ENABLE_SSON="Yes"' />
+  <remove    cmd='"%ALLUSERSPROFILE%\Application Data\Citrix\Citrix online plug-in\TrolleyExpress.exe" /uninstall /cleanup' />
+
+</package>
+
+<package
   id="citrix_xen"
   name="Citrix XenApp Client"
   revision="6"
