@@ -5,14 +5,17 @@
 <package
   id="vim"
   name="VIM"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="7.3.280" />
   <variable name="fileversion" value="7-3-280" />
 
-  <check type="uninstall" condition="exists" path="VIM" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Vim %version%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="Vim" value="%version%" />
+  </check>
 
   <install    cmd='"%SOFTWARE%\VIM\gvim-%fileversion%.exe" /S /CONTEXTMENU 1' />
   <upgrade    cmd='"%SOFTWARE%\VIM\gvim-%fileversion%.exe" /S /CONTEXTMENU 1' />
