@@ -25,7 +25,7 @@
 <package
   id="adobereaderX"
   name="Adobe Reader X"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -37,17 +37,17 @@
 
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd" "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdr1010_%language%.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\10\readerX.mst"'><exit code="3010" reboot="false" /></install>
-  <install cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdrUpd101%I_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></install>
+  <install cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdrUpd101%I.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></install>
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\post_install.cmd" "%SOFTWARE%\Adobe\Reader\10\post_install.cmd"' />
 
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd" "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdr1010_%language%.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\10\readerX.mst"'><exit code="3010" reboot="false" /></upgrade>
-  <upgrade cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdrUpd101%I_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></upgrade>
+  <upgrade cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdrUpd101%I.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></upgrade>
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\post_install.cmd" "%SOFTWARE%\Adobe\Reader\10\post_install.cmd"' />
 
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd" "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdr1010_%language%.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\10\readerX.mst"'><exit code="3010" reboot="false" /></downgrade>
-  <downgrade cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdrUpd101%I_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></downgrade>
+  <downgrade cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdrUpd101%I.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></downgrade>
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\post_install.cmd" "%SOFTWARE%\Adobe\Reader\10\post_install.cmd"' />
 
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdr1010_%language%.msi"' />
