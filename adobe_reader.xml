@@ -25,13 +25,13 @@
 <package
   id="adobereaderX"
   name="Adobe Reader X"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="10.1.1" />
   <variable name="last" value="1" />
-  <variable name="language" value="%language%" lcid="0409,0809,4809" />
+  <variable name="language" value="en_US" lcid="0409,0809,4809" />
 
   <check type="uninstall" condition="exists" path="Adobe Reader X (%version%).*" />
 
