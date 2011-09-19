@@ -50,6 +50,10 @@
 
 </package>
 
+<!--
+  http://serverfault.com/questions/140698/deploy-net-4-via-active-directory-group-policy-or-wsus/157356#157356
+-->
+
 <package
   id="dotnet4"
   name="Microsoft .NET 4"
