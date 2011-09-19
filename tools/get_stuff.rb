@@ -287,10 +287,13 @@ PACKAGES = {
   {:url => 'http://wpkg.org/files/client/stable/WPKG%20Client%20%version%-x64.msi',
   :destination => ['WPKG', BIT_64_DIR, 'WPKG Client %version%.msi'],
   :package_id => 'wpkg' },
-  {:url => 'http://wpkg-gp.googlecode.com/files/Wpkg-GP-0.14_x86.exe',
+],
+
+:wpkg_gp => [
+  {:url => 'http://wpkg-gp.googlecode.com/files/Wpkg-GP-%version%_x86.exe',
   :destination => ['WPKG', BIT_32_DIR, 'Wpkg-GP-%version%.exe'],
   :package_id => 'wpkg-gp' },
-  {:url => 'http://wpkg-gp.googlecode.com/files/Wpkg-GP-0.14_x64.exe',
+  {:url => 'http://wpkg-gp.googlecode.com/files/Wpkg-GP-%version%_x64.exe',
   :destination => ['WPKG', BIT_64_DIR, 'Wpkg-GP-%version%.exe'],
   :package_id => 'wpkg-gp' },
 ],
@@ -344,12 +347,12 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
   --package, -p PACKAGE_NAME:
     Get one of the following packages:
 
-      all       All packages
-      sevenzip  7Zip **
+      all        All packages
+      sevenzip   7Zip **
       bullzip    BullZIP PDFPrinter
       console    Console2
-      dotnet3   .NET 3.5
-      dotnet4   .NET 4
+      dotnet3    .NET 3.5
+      dotnet4    .NET 4
       flash      Flash Player
       gs       	 GhostScript **
       ie8        Internet Explorer 8 for Windows XP
@@ -360,7 +363,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       npp        Notepad++ **
       lastpass	 LastPass
       msse       Microsoft Security Essentials
-      pdn     PaintDotNet
+      pdn        PaintDotNet
       skype      Skype Business Edition (.msi)
       sumatrapdf SumatraPDF **
       trueview   DWG TrueView 2012
@@ -370,7 +373,8 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       vj         Visual J Runtime
       vlc        VLC Player **
       xml        MSXML
-      wpkg	 WPKG **
+      wpkg       WPKG Client
+      wpkg_gp	 WPKG GP
 
       Packages marked with ** support version specific downloads
 
