@@ -57,7 +57,7 @@
 <package
   id="dotnet4"
   name="Microsoft .NET 4"
-  revision="2"
+  revision="3"
   reboot="false"
   priority="50">
 
@@ -66,7 +66,7 @@
 
   <check type="uninstall" condition="exists" path="Microsoft .NET Framework 4 Client Profile" />
 
-  <install cmd='%COMSPEC% /c XCOPY /Y "%PKG_SOURCE%" "%PKG_DESTINATION%"' />
+  <install cmd='%COMSPEC% /c echo f | XCOPY /Y "%PKG_SOURCE%" "%PKG_DESTINATION%"' />
 
   <install cmd='"%PKG_DESTINATION%" /q /norestart /msioptions "EXTUI=1" /log "%TEMP%\dotnet4.txt"' timeout="1200">
     <exit code="1614" reboot="false" />
