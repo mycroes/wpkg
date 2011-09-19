@@ -59,7 +59,7 @@
 <package
   id="dotnet4"
   name="Microsoft .NET 4"
-  revision="3"
+  revision="4"
   reboot="false"
   priority="50">
 
