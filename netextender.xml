@@ -13,13 +13,19 @@
 <package
   id="netextender"
   name="SonicWALL SSL-VPN NetExtender"
-  revision="%version%-11"
+  revision="%version%-12"
   reboot="false"
   priority="10">
 
   <variable name="version" value="4.0.138" />
+  <variable name="fileversion" value="4.0.138.1" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\SonicWall\SSL-VPN\NetExtender"      architectire="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\SonicWall\SSL-VPN\NetExtender" architectire="x64" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="SonicWALL SSL-VPN NetExtender" value="%version%" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="versiongreaterorequal" path="SonicWALL SSL-VPN NetExtender" value="%version%" />
+    <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\NEService.exe" value="%fileversion%" />
+  </check>
 
   <install cmd='msiexec /i "%SOFTWARE%\SonicWall VPN\NetExtender.%version%.msi" %MSI%'>
     <exit code="3010" reboot="false" />
