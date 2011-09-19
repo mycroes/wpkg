@@ -45,7 +45,7 @@
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="%version%-7"
+  revision="%version%-8"
   priority="12"
   reboot="false">
 
@@ -66,6 +66,8 @@
   <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart' />
   <downgrade cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
   <downgrade cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.iss' />
+
+  <remove    cmd='%COMSPEC% /c RD /Q /S "%tempdir%"'><exit code="any" /></remove>
 
 </package>
 
