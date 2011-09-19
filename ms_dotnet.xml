@@ -52,6 +52,8 @@
 
 <!--
   http://serverfault.com/questions/140698/deploy-net-4-via-active-directory-group-policy-or-wsus/157356#157356
+  NOTES
+    1) this piece of crap keeps hanging on XP so now we unpack the full installer and run the MSIs directly
 -->
 
 <package
@@ -61,14 +63,19 @@
   reboot="false"
   priority="50">
 
-  <variable name="PKG_SOURCE" value="%SOFTWARE%\Microsoft\DotNet\dotNetFx40_Full_x86_x64.exe" />
-  <variable name="PKG_DESTINATION" value="%TEMP%\dotNetFx40_Full_x86_x64.exe" />
+  <variable name="PKG_SOURCE_1" value="%SOFTWARE%\Microsoft\DotNet\dotNetFx40_Full_x86_x64\netfx_Core_x86.msi" architecture="x86"/>
+  <variable name="PKG_SOURCE_1" value="%SOFTWARE%\Microsoft\DotNet\dotNetFx40_Full_x86_x64\netfx_Core_x64.msi" architecture="x64"/>
+  <variable name="PKG_SOURCE_2" value="%SOFTWARE%\Microsoft\DotNet\dotNetFx40_Full_x86_x64\netfx_Extended_x86.msi" architecture="x86"/>
+  <variable name="PKG_SOURCE_2" value="%SOFTWARE%\Microsoft\DotNet\dotNetFx40_Full_x86_x64\netfx_Extended_x64.msi" architecture="x64"/>
 
   <check type="uninstall" condition="exists" path="Microsoft .NET Framework 4 Client Profile" />
+  <check type="uninstall" condition="exists" path="Microsoft .NET Framework 4 Extended" />
 
-  <install cmd='%COMSPEC% /c echo f | XCOPY /Y "%PKG_SOURCE%" "%PKG_DESTINATION%"' />
-
-  <install cmd='"%PKG_DESTINATION%" /q /norestart /msioptions "EXTUI=1" /log "%TEMP%\dotnet4.txt"' timeout="1200">
+  <install cmd='msiexec %MSI% /i "%PKG_SOURCE_1%" /quiet /norestart EXTUI=1' timeout="900">
+    <exit code="1614" reboot="false" />
+    <exit code="3010" reboot="false" />
+  </install>
+  <install cmd='msiexec %MSI% /i "%PKG_SOURCE_2%" /quiet /norestart EXTUI=1' timeout="900">
     <exit code="1614" reboot="false" />
     <exit code="3010" reboot="false" />
   </install>
