@@ -45,7 +45,7 @@
 <package
   id="tp_ezeject"
   name="ThinkPad EasyEject"
-  revision="%version%-7"
+  revision="%version%-8"
   priority="12"
   reboot="false">
 
@@ -67,6 +67,8 @@
   <downgrade cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
   <downgrade cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.iss' />
 
+  <remove    cmd='%COMSPEC% /c RD /Q /S "%tempdir%"'><exit code="any" /></remove>
+
 </package>
 
 <!--
@@ -86,7 +88,7 @@
   priority="10"
   reboot="false">
 
-  <variable name="version" value="3.15.0000" os="windows xp" />
+  <variable name="version" value="3.15.0017" os="windows xp" />
   <variable name="version" value="4.01.0000" os="windows 7" />
   <variable name="PKG_SOURCE" value="%SOFTWARE%\ThinkPad\systemupdate315-2011-07-25.exe" os="windows xp" />
   <variable name="PKG_SOURCE" value="%SOFTWARE%\ThinkPad\systemupdate401-2011-07-25.exe" os="windows 7" />

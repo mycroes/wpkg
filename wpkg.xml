@@ -32,7 +32,7 @@
   priority="0"
   reboot="false">
 
-  <variable name="version" value="0.14" />
+  <variable name="version" value="0.15" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="WPKG" value="%version%" />
 

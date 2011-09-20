@@ -11,31 +11,32 @@
 <package
   id="vjruntime"
   name="Visual J# Runtime"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
   <!-- Needs >= .NET 2.0 -->
   <depends package-id="dotnet3" />
 
-  <check type="uninstall" condition="exists" path="Microsoft Visual J# 2.0 Redistributable Package - SE" />
+  <check type="uninstall" condition="exists" path="Microsoft Visual J# 2.0 Redistributable Package - SE.*" />
+
   <variable name="version" value="2.0.50728" />
 
   <install cmd='"%SOFTWARE%\Microsoft\VJRuntime\%PROCESSOR_ARCHITECTURE%\install.exe" /q'>
-    <exit code='1641' reboot="postponed" />
-    <exit code='3010' reboot="postponed" />
+    <exit code='1641' reboot="false" />
+    <exit code='3010' reboot="false" />
   </install>
   <upgrade cmd='"%SOFTWARE%\Microsoft\VJRuntime\%PROCESSOR_ARCHITECTURE%\install.exe" /q'>
-    <exit code='1641' reboot="postponed" />
-    <exit code='3010' reboot="postponed" />
+    <exit code='1641' reboot="false" />
+    <exit code='3010' reboot="false" />
   </upgrade>
   <downgrade cmd='"%SOFTWARE%\Microsoft\VJRuntime\%PROCESSOR_ARCHITECTURE%\install.exe" /q'>
-    <exit code='1641' reboot="postponed" />
-    <exit code='3010' reboot="postponed" />
+    <exit code='1641' reboot="false" />
+    <exit code='3010' reboot="false" />
   </downgrade>
 
   <remove cmd='"%SOFTWARE%\Microsoft\VJRuntime\%PROCESSOR_ARCHITECTURE%\install.exe" /qu'>
-    <exit code='3010' reboot="postponed" />
+    <exit code='3010' reboot="false" />
   </remove>
 </package>
 

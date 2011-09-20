@@ -76,6 +76,11 @@ PACKAGES = {
   :destination => ['Microsoft', 'DotNet', 'NDP35SP1-KB958484-x86.exe']},
 ],
 
+:dotnet4 => [
+  {:url => 'http://download.microsoft.com/download/9/5/A/95A9616B-7A37-4AF6-BC36-D6EA96C8DAAE/dotNetFx40_Full_x86_x64.exe',
+  :destination => ['Microsoft', 'DotNet', 'dotNetFx40_Full_x86_x64.exe']},
+],
+
 :firefox => [
   {:url => 'ftp://ftp.mozilla.org/pub/firefox/releases/%version%/win32/%language%/Firefox Setup %version%.exe',
   :destination => ['Mozilla', 'Firefox', 'Firefox Setup %version%.exe'],
@@ -282,10 +287,13 @@ PACKAGES = {
   {:url => 'http://wpkg.org/files/client/stable/WPKG%20Client%20%version%-x64.msi',
   :destination => ['WPKG', BIT_64_DIR, 'WPKG Client %version%.msi'],
   :package_id => 'wpkg' },
-  {:url => 'http://wpkg-gp.googlecode.com/files/Wpkg-GP-0.14_x86.exe',
+],
+
+:wpkg_gp => [
+  {:url => 'http://wpkg-gp.googlecode.com/files/Wpkg-GP-%version%_x86.exe',
   :destination => ['WPKG', BIT_32_DIR, 'Wpkg-GP-%version%.exe'],
   :package_id => 'wpkg-gp' },
-  {:url => 'http://wpkg-gp.googlecode.com/files/Wpkg-GP-0.14_x64.exe',
+  {:url => 'http://wpkg-gp.googlecode.com/files/Wpkg-GP-%version%_x64.exe',
   :destination => ['WPKG', BIT_64_DIR, 'Wpkg-GP-%version%.exe'],
   :package_id => 'wpkg-gp' },
 ],
@@ -339,11 +347,12 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
   --package, -p PACKAGE_NAME:
     Get one of the following packages:
 
-      all       All packages
-      sevenzip  7Zip **
+      all        All packages
+      sevenzip   7Zip **
       bullzip    BullZIP PDFPrinter
       console    Console2
-      dotnet3   .NET 3.5
+      dotnet3    .NET 3.5
+      dotnet4    .NET 4
       flash      Flash Player
       gs       	 GhostScript **
       ie8        Internet Explorer 8 for Windows XP
@@ -354,7 +363,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       npp        Notepad++ **
       lastpass	 LastPass
       msse       Microsoft Security Essentials
-      pdn     PaintDotNet
+      pdn        PaintDotNet
       skype      Skype Business Edition (.msi)
       sumatrapdf SumatraPDF **
       trueview   DWG TrueView 2012
@@ -364,7 +373,8 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       vj         Visual J Runtime
       vlc        VLC Player **
       xml        MSXML
-      wpkg	 WPKG **
+      wpkg       WPKG Client
+      wpkg_gp	 WPKG GP
 
       Packages marked with ** support version specific downloads
 
