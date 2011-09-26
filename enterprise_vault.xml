@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+  <package
+    id="vault_plugin"
+    name="Enterprise Vault Outlook 2007 Plugin"
+    revision="%version%-0"
+    reboot="false"
+    priority="10">
+
+    <variable name="version" value="10.0.1316" />
+    <variable name="language" value="en" lcid="0409,0809,4809" />
+    <variable name="name" value="Symantec Enterprise Vault Outlook Add-In" />
+
+    <check type="uninstall" condition="versiongreaterorequal" path="%name%" value="%version%" />
+
+    <install   cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%name%-%language%.msi" %MSI%' />
+    <upgrade   cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%name%-%language%.msi" %MSI%' />
+    <downgrade cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%name%-%language%.msi" %MSI%' />
+
+  </package>
+
+  <package
+    id="vault_plugin_http"
+    name="Enterprise Vault Outlook 2010 Plugin - HTTP"
+    revision="%version%-0"
+    reboot="false"
+    priority="10">
+
+    <variable name="version" value="10.0.1316" />
+    <variable name="language" value="en" lcid="0409,0809,4809" />
+    <variable name="name" value="Symantec Enterprise Vault HTTP-only Outlook Add-In" />
+
+    <check type="uninstall" condition="versiongreaterorequal" path="%name%" value="%version%" />
+
+    <install   cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%name%-%language%.msi" %MSI%' />
+    <upgrade   cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%name%-%language%.msi" %MSI%' />
+    <downgrade cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%name%-%language%.msi" %MSI%' />
+
+  </package>
+
+</packages>
