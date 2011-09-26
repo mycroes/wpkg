@@ -48,42 +48,41 @@
 <!--
   INSTRUCTIONS
   1) Create an administrative install at '%SOFTWARE%\AutoDesk\AutoCAD\
-     AutoCAD2007'. (This will create the AdminImage folder and shortcut to the
-     customized profile.) Name the profile 'custom' so the transform's name
-     will be 'custom.mst'.
+     AutoCAD2012'. (This will create the AdminImage folder and shortcut to the
+     customized profile.) Name the profile 'custom' so the file name is custom.ini
 
   NOTES
-  1) Assumes English version of AutoCAD, might also work for other versions
-     if you change the install check.
+  1) Assumes English version of AutoCAD, might also work for other versions if you change the install check.
+  2) Do not quote the path to the .ini - it will break.
 -->
 
 <package
   id="autodesk_autocad2012"
   name="AutoDesk AutoCAD 2012"
-  revision="%version%-1"
+  revision="%version%-0"
   priority="10"
   reboot="false">
 
-  <depends package-id="dotnet3" />
+  <depends package-id="dotnet4" />
   <depends package-id="vcruntime" />
 
-  <variable name="version" value="22.0.00.000" />
+  <variable name="version" value="18.2.51.0" />
   <variable name="language" value="en-us" lcid="0409,0809,4809" />
   <variable name="PKG_SOURCE" value="%SOFTWARE%\AutoDesk\AutoCAD\AutoCAD2012\%PROCESSOR_ARCHITECTURE%\AdminImage" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="AutoCAD 2012 - English" value="%version%" />
+  <check type="uninstall" condition="versiongreaterorequal" path="AutoCAD.*2012 - .*" value="%version%" />
 
-  <install cmd='"%PKG_SOURCE%\setup.exe" /qb /I "%PKG_SOURCE%\custom.ini" /language %language%'>
+  <install cmd='"%PKG_SOURCE%\setup.exe" /qb /I %PKG_SOURCE%\custom.ini /language %language%'>
     <exit code="1641" reboot="false" />
     <exit code="3010" reboot="false" />
   </install>
 
-  <upgrade cmd='"%PKG_SOURCE%\setup.exe" /qb /I "%PKG_SOURCE%\custom.ini" /language %language%'>
+  <upgrade cmd='"%PKG_SOURCE%\setup.exe" /qb /I %PKG_SOURCE%\custom.ini /language %language%'>
     <exit code="1641" reboot="false" />
     <exit code="3010" reboot="false" />
   </upgrade>
 
-  <downgrade cmd='"%PKG_SOURCE%\setup.exe" /qb /I "%PKG_SOURCE%\custom.ini" /language %language%'>
+  <downgrade cmd='"%PKG_SOURCE%\setup.exe" /qb /I %PKG_SOURCE%\custom.ini /language %language%'>
     <exit code="1641" reboot="false" />
     <exit code="3010" reboot="false" />
   </downgrade>
@@ -93,6 +92,18 @@
   </remove>
 
 </package>
+
+<!--
+  INSTRUCTIONS
+  1) Create an administrative install at '%SOFTWARE%\AutoDesk\AutoCAD\
+     AutoCAD2007'. (This will create the AdminImage folder and shortcut to the
+     customized profile.) Name the profile 'custom' so the transform's name
+     will be 'custom.mst'.
+
+  NOTES
+  1) Assumes English version of AutoCAD, might also work for other versions
+     if you change the install check.
+-->
 
 <package
   id="autodesk_autocad2007"

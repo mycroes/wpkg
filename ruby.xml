@@ -14,7 +14,7 @@
   reboot="false">
 
   <variable name="version" value="1.9.2" />
-  <variable name="patch" value="180" />
+  <variable name="patch" value="290" />
   <variable name="flags" value='/verysilent /dir="%SYSTEMDRIVE%\Ruby\%version%" /tasks="assocfiles,modpath"' />
 
   <check type="uninstall" condition="exists" path="Ruby %version%-p%patch%" />
@@ -24,6 +24,28 @@
   <downgrade cmd='"%SOFTWARE%\Ruby\rubyinstaller-%version%-p%patch%.exe" %flags%' />
 
   <remove    cmd='"%SYSTEMDRIVE%\Ruby\%version%\unins000.exe" /VERYSILENT' />
+
+</package>
+
+<package
+  id="jruby"
+  name="JRuby"
+  revision="%version%-0"
+  reboot="false">
+
+  <depends package-id="java" />
+
+  <variable name="version" value="1.6.4" />
+  <variable name="fileversion" value="1_6_4" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\Ruby\jruby_windows_1_6_4.exe"     architecture="x86" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\Ruby\jruby_windows_x64_1_6_4.exe" architecture="x64" />
+
+  <check type="uninstall" condition="exists" path="JRuby %version%" />
+
+  <install   cmd='"%PKG_SOURCE%" -q' />
+  <upgrade   cmd='"%PKG_SOURCE%" -q' />
+  <downgrade cmd='"%PKG_SOURCE%" -q' />
+  <remove    cmd='"%SYSTEMDRIVE%\jruby-%fileversion%\uninstall.exe" -q' />
 
 </package>
 

@@ -19,7 +19,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="6.0.2" />
+  <variable name="version" value="7.0" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
 
