@@ -59,7 +59,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.1.14" />
+  <variable name="version" value="7.0.1" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Thunderbird"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Thunderbird" architecture="x64" />
 
