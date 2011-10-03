@@ -1,9 +1,3 @@
-GIT
-  remote: git://github.com/nwt/rget.git
-  revision: b8720a7c7b3e6189dd32a2a86e2a81de5690e45b
-  specs:
-    rget (0.0.2)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -13,5 +7,4 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  rget!
   xml-simple

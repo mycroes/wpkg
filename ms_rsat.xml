@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="rsat"
+  name="Remote Server Admininistration Tools"
+  revision="958830-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\Microsoft\RSAT\Windows6.1-KB958830-x86-RefreshPkg.msu" architecture="x86" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\Microsoft\RSAT\Windows6.1-KB958830-x64-RefreshPkg.msu" architecture="x64" />
+
+  <check type="uninstall" condition="exists" path="Microsoft Office Professional Plus 2010" />
+
+  <install   cmd='wusa %PKG_SOURCE% /quiet /norestart' />
+  <upgrade   cmd='wusa %PKG_SOURCE% /quiet /norestart' />
+  <downgrade cmd='wusa %PKG_SOURCE% /quiet /norestart' />
+  <remove    cmd='wusa /uninstall %PKG_SOURCE% /quiet /norestart' />
+
+</package>
+
+</packages>

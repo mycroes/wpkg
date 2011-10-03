@@ -11,22 +11,18 @@
 <package
   id="office2010plus"
   name="MS Office Pro Plus 2010"
-  revision="2"
+  revision="3"
   reboot="false"
   priority="10">
 
   <check type="uninstall" condition="exists" path="Microsoft Office Professional Plus 2010" />
 
   <install cmd='"%SOFTWARE%\Microsoft\MS Office Pro Plus 2010\%PROCESSOR_ARCHITECTURE%\setup.exe"'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
+    <exit code="1641" reboot="false" />
+    <exit code="3010" reboot="false" />
   </install>
-  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x{91140000-0011-0000-0000-0000000FF1CE}'>
-    <exit code="3010" />
-  </remove>
-  <remove  cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x{91140000-0011-0000-1000-0000000FF1CE}'>
-    <exit code="3010" />
-  </remove>
+  <remove  cmd='msiexec %MSI% /x{91140000-0011-0000-0000-0000000FF1CE}' architecture="x86"><exit code="3010" /></remove>
+  <remove  cmd='msiexec %MSI% /x{91140000-0011-0000-1000-0000000FF1CE}' architecture="x64"><exit code="3010" /></remove>
 
 </package>
 

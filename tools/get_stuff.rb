@@ -180,6 +180,13 @@ PACKAGES = {
   :unzip => true},
 ],
 
+:rsat => [
+  {:url => 'http://download.microsoft.com/download/4/F/7/4F71806A-1C56-4EF2-9B4F-9870C4CFD2EE/Windows6.1-KB958830-x86-RefreshPkg.msu',
+  :destination => ['Microsoft', 'RSAT', 'Windows6.1-KB958830-x86-RefreshPkg.msu']},
+  {:url => 'http://download.microsoft.com/download/4/F/7/4F71806A-1C56-4EF2-9B4F-9870C4CFD2EE/Windows6.1-KB958830-x64-RefreshPkg.msu',
+  :destination => ['Microsoft', 'RSAT', 'Windows6.1-KB958830-x64-RefreshPkg.msu']},
+],
+
 :skype => [
   {:url => 'http://download.skype.com/SkypeSetup.msi',
   :destination => ['Skype', 'SkypeSetup.msi']},
@@ -373,6 +380,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       lastpass	 LastPass
       msse       Microsoft Security Essentials
       pdn        PaintDotNet
+      rsat       Remote Systems Administration Tool
       skype      Skype Business Edition (.msi)
       sumatrapdf SumatraPDF **
       trueview   DWG TrueView 2012

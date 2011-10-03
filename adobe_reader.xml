@@ -25,7 +25,7 @@
 <package
   id="adobereaderX"
   name="Adobe Reader X"
-  revision="%version%-3"
+  revision="%version%-4"
   reboot="false"
   priority="10">
 
@@ -33,7 +33,10 @@
   <variable name="last" value="1" />
   <variable name="language" value="en_US" lcid="0409,0809,4809" />
 
-  <check type="uninstall" condition="exists" path="Adobe Reader X (%version%).*" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Adobe Reader X (%version%)" />
+    <check type="uninstall" condition="exists" path="Adobe Reader X (%version%).*" />
+  </check>
 
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd" "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdr1010_%language%.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\10\readerX.mst"'><exit code="3010" reboot="false" /></install>
