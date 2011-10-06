@@ -89,11 +89,17 @@ PACKAGES = {
 ],
 
 :flash => [
-  {:url => 'http://www.adobe.com/go/full_flashplayer_win_msi',
-  :destination => ['Adobe', 'Flash', '%shortversion%', 'install_flash_player_10_active_x.msi'],
+  {:url => 'http://fpdownload.macromedia.com/pub/flashplayer/current/licensing/win/install_flash_player_%mainversion%_active_x_32bit.msi',
+  :destination => ['Adobe', 'Flash', '%shortversion%', BIT_32_DIR, 'install_flash_player_%mainversion%_active_x.msi'],
   :package_id => 'flash' },
-  {:url => 'http://www.adobe.com/go/full_flashplayer_win_pl_msi',
-  :destination => ['Adobe', 'Flash', '%shortversion%', 'install_flash_player_10_plugin.msi'],
+  {:url => 'http://fpdownload.macromedia.com/pub/flashplayer/current/licensing/win/install_flash_player_%mainversion%_plugin_32bit.msi',
+  :destination => ['Adobe', 'Flash', '%shortversion%', BIT_32_DIR, 'install_flash_player_%mainversion%_plugin.msi'],
+  :package_id => 'flash' },
+  {:url => 'http://fpdownload.macromedia.com/pub/flashplayer/current/licensing/win/install_flash_player_%mainversion%_active_x_64bit.msi',
+  :destination => ['Adobe', 'Flash', '%shortversion%', BIT_64_DIR, 'install_flash_player_%mainversion%_active_x.msi'],
+  :package_id => 'flash' },
+  {:url => 'http://fpdownload.macromedia.com/pub/flashplayer/current/licensing/win/install_flash_player_%mainversion%_plugin_64bit.msi',
+  :destination => ['Adobe', 'Flash', '%shortversion%', BIT_64_DIR, 'install_flash_player_%mainversion%_plugin.msi'],
   :package_id => 'flash' },
 ],
 
@@ -329,8 +335,12 @@ opts = GetoptLong.new(
 @dir = nil
 @overwrite = false
 @language = nil
+
+@variables = {}
 @version = nil
 @fileversion = nil
+@mainversion = nil
+@shortversion = nil
 @reldate = nil
 @xmlpath = XMLPATH
 @bits = :all
@@ -420,6 +430,7 @@ end
 
 def replace_variables(str)
   s = str.gsub('%version%', @version.to_s)
+  s.gsub!('%mainversion%', @mainversion.to_s)
   s.gsub!('%shortversion%', @shortversion.to_s)
   s.gsub!('%fileversion%', @fileversion.to_s)
   s.gsub!('%language%', @language.to_s)
@@ -443,6 +454,7 @@ def download(package_def)
 	    # we should create a hash of found variables and automatically substitute them all
             @version = get_variable(xml, p[:package_id], 'version')
             @shortversion = get_variable(xml, p[:package_id], 'shortversion')
+            @mainversion = get_variable(xml, p[:package_id], 'mainversion')
             @fileversion = get_variable(xml, p[:package_id], 'fileversion')
             @reldate = get_variable(xml, p[:package_id], 'reldate')
             puts "INFO: Found version #{@version}(#{@fileversion}) in file #{xf}" if @version
