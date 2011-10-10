@@ -10,7 +10,7 @@
 <package
   id="flash"
   name="Adobe Flash Player"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -18,9 +18,15 @@
   <variable name="mainversion" value="11" />
   <variable name="shortversion" value="11.0" />
 
-  <check type="logical" condition="and">
-    <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 ActiveX" value="%version%" />
-    <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 Plugin" value="%version%" />
+  <check type="logical" condition="or">
+    <check type="logical" condition="and">
+      <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 ActiveX" value="%version%" />
+      <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 Plugin" value="%version%" />
+    </check>
+    <check type="logical" condition="and">
+      <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 ActiveX (x64)" value="%version%" />
+      <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 Plugin (x64)" value="%version%" />
+    </check>
   </check>
 
   <install cmd='taskkill /f /im iexplore.exe'>
@@ -33,8 +39,8 @@
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Adobe\Flash\mms.cfg" "%WINDIR%\system32\Macromed\Flash\"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\%PROCESSOR_ARCHITECTURE%\install_flash_player_11_active_x.msi"' />
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\%PROCESSOR_ARCHITECTURE%\install_flash_player_11_plugin.msi"' />
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_active_x.msi"' architecture="amd64"/>
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_plugin.msi"' architecture="amd64"/>
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_active_x.msi"' architecture="x64"/>
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_plugin.msi"' architecture="x64"/>
 
   <upgrade cmd='taskkill /f /im iexplore.exe'>
     <exit code="any" />
@@ -46,8 +52,8 @@
   <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Adobe\Flash\mms.cfg" "%WINDIR%\system32\Macromed\Flash\"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\%PROCESSOR_ARCHITECTURE%\install_flash_player_11_active_x.msi"' />
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\%PROCESSOR_ARCHITECTURE%\install_flash_player_11_plugin.msi"' />
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_active_x.msi"' architecture="amd64"/>
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_plugin.msi"' architecture="amd64"/>
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_active_x.msi"' architecture="x64"/>
+  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_plugin.msi"' architecture="x64"/>
 
   <downgrade cmd='taskkill /f /im iexplore.exe'>
     <exit code="any" />
@@ -59,8 +65,8 @@
   <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Adobe\Flash\mms.cfg" "%WINDIR%\system32\Macromed\Flash\"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\%PROCESSOR_ARCHITECTURE%\install_flash_player_11_active_x.msi"' />
   <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\%PROCESSOR_ARCHITECTURE%\install_flash_player_11_plugin.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_active_x.msi"' architecture="amd64"/>
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_plugin.msi"' architecture="amd64"/>
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_active_x.msi"' architecture="x64"/>
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_plugin.msi"' architecture="x64"/>
 
   <remove cmd='taskkill /f /im iexplore.exe'>
     <exit code="any" />
@@ -70,8 +76,8 @@
   </remove>
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\%PROCESSOR_ARCHITECTURE%\install_flash_player_11_active_x.msi"' />
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\%PROCESSOR_ARCHITECTURE%\install_flash_player_11_plugin.msi"' />
-  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_active_x.msi"' architecture="amd64"/>
-  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_plugin.msi"' architecture="amd64"/>
+  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_active_x.msi"' architecture="x64"/>
+  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_plugin.msi"' architecture="x64"/>
   <remove cmd='%COMSPEC% /c del /s /q "%WINDIR%\system32\Macromed\Flash\mms.cfg"' >
     <exit code="0" />
     <exit code="1" />
