@@ -33,13 +33,13 @@
 <package
   id="loadplanner"
   name="LoadPlanner"
-  revision="%version%-2"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.8.15" />
-  <variable name="fileversion" value="3.8.0.15" /> <!-- don't ask why - I don't know... -->
-  <variable name="updatefile" value="LoadPlanner 3815 update.msi" />  <!-- for .10 it should be 38100 -->
+  <variable name="version" value="3.8.18" />
+  <variable name="fileversion" value="3.8.0.18" /> <!-- don't ask why - I don't know... -->
+  <variable name="updatefile" value="LoadPlanner 3818 update.msi" />  <!-- for .10 it should be 38100 -->
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\LoadPlanner"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\LoadPlanner" architecture="x64" />
 
