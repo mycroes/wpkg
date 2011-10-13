@@ -20,7 +20,7 @@ NOTES
   <depends package-id="applemobile" />
   <depends package-id="quicktime" />
 
-  <variable name="version" value="10.4.1.10" />
+  <variable name="version" value="10.5.0.142" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="iTunes" value="%version%"/>
 
@@ -94,11 +94,11 @@ NOTES
 <package
   id="applemobile"
   name="Apple Mobile Device Support"
-  revision="%version%-2"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.4.1.2" />
+  <variable name="version" value="4.0.0.96" />
 
   <check type="uninstall"  condition="versiongreaterorequal" path="Apple Mobile Device Support" value="%version%"/>
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\MobileDevice\%version%\%PROCESSOR_ARCHITECTURE%\AppleMobileDeviceSupport.msi"'>
@@ -118,11 +118,11 @@ NOTES
 <package
   id="applesupport"
   name="Apple Software Application Support"
-  revision="%version%-2"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="1.5.2" />
+  <variable name="version" value="2.1.5" />
 
   <check type="uninstall"  condition="versiongreaterorequal" path="Apple Application Support" value="%version%"/>
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\AppleApplicationSupport.msi"'>
@@ -146,7 +146,7 @@ NOTES
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.0.0.2" />
+  <variable name="version" value="3.0.0.10" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Bonjour" value="%version%"/>
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\Bonjour\%version%\%PROCESSOR_ARCHITECTURE%\bonjour.msi"' />
