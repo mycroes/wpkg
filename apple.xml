@@ -215,7 +215,7 @@ NOTES
   <depends package-id="applesupport" />
   <depends package-id="applemobile" />
 
-  <variable name="version" value="3.3.0.274" />
+  <variable name="version" value="3.4.0.283" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="iPhone Configuration Utility" value="%version%"/>
 
