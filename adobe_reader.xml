@@ -61,7 +61,7 @@
 <package
   id="adobereader9"
   name="Adobe Reader 9"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -93,6 +93,12 @@
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f'>
     <exit code="1" />
   </install>
+  <install cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f' architecture="x64">
+    <exit code="1" />
+  </install>
+  <install cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f' architecture="x64">
+    <exit code="1" />
+  </install>
 
   <!-- First uninstall Adobe Reader 8.1.2 -->
   <upgrade cmd='msiexec /x{AC76BA86-7AD7-1033-7B44-A80000000002} /qn ' >
@@ -115,6 +121,12 @@
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f'>
     <exit code="1" />
   </upgrade>
+  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f' architecture="x64">
+    <exit code="1" />
+  </upgrade>
+  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f' architecture="x64">
+    <exit code="1" />
+  </upgrade>
 
   <!-- First uninstall Adobe Reader 8.1.2 -->
   <downgrade cmd='msiexec /x{AC76BA86-7AD7-1033-7B44-A80000000002} /qn ' >
@@ -135,6 +147,12 @@
     <exit code="1" />
   </downgrade>
   <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f'>
+    <exit code="1" />
+  </downgrade>
+  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f' architecture="x64">
+    <exit code="1" />
+  </downgrade>
+  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f' architecture="x64">
     <exit code="1" />
   </downgrade>
 
