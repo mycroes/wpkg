@@ -160,47 +160,33 @@ NOTES
 <package
   id="quicktime"
   name="Apple Quicktime"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
   <variable name="version" value="7.70.80.34" />
   <variable name="RUN" value="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" />
+  <variable name="RUN64" value="HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="QuickTime" value="%version%"/>
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\QuickTime\%version%\QuickTime.msi"' />
-  <install cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
-    <exit code="1" />
-  </install>
-  <install cmd='%COMSPEC% /c del /F /Q "%ALLUSERSPROFILE%\Desktop\QuickTime Player.lnk"'>
-    <exit code="1" />
-  </install>
-  <install cmd='%COMSPEC% /c del /F /Q "%PUBLIC%\Desktop\QuickTime Player.lnk"'>
-    <exit code="1" />
-  </install>
+  <install cmd='REG DELETE %RUN% /v "QuickTime Task" /f'><exit code="1" /></install>
+  <install cmd='REG DELETE %RUN64% /v "QuickTime Task" /f' architecture="x64"><exit code="1" /></install>
+  <install cmd='%COMSPEC% /c del /F /Q "%ALLUSERSPROFILE%\Desktop\QuickTime Player.lnk"'><exit code="1" /></install>
+  <install cmd='%COMSPEC% /c del /F /Q "%PUBLIC%\Desktop\QuickTime Player.lnk"'><exit code="1" /></install>
 
   <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Apple\QuickTime\%version%\QuickTime.msi"' />
-  <upgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
-    <exit code="1" />
-  </upgrade>
-  <upgrade cmd='%COMSPEC% /c del /F /Q "%ALLUSERSPROFILE%\Desktop\QuickTime Player.lnk"'>
-    <exit code="1" />
-  </upgrade>
-  <upgrade cmd='%COMSPEC% /c del /F /Q "%PUBLIC%\Desktop\QuickTime Player.lnk"'>
-    <exit code="1" />
-  </upgrade>
+  <upgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f'><exit code="1" /></upgrade>
+  <upgrade cmd='REG DELETE %RUN64% /v "QuickTime Task" /f' architecture="x64"><exit code="1" /></upgrade>
+  <upgrade cmd='%COMSPEC% /c del /F /Q "%ALLUSERSPROFILE%\Desktop\QuickTime Player.lnk"'><exit code="1" /></upgrade>
+  <upgrade cmd='%COMSPEC% /c del /F /Q "%PUBLIC%\Desktop\QuickTime Player.lnk"'><exit code="1" /></upgrade>
 
   <downgrade cmd='msiexec %MSI% /fa "%SOFTWARE%\Apple\QuickTime\%version%\QuickTime.msi"' />
-  <downgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f'>
-    <exit code="1" />
-  </downgrade>
-  <downgrade cmd='%COMSPEC% /c del /F /Q "%ALLUSERSPROFILE%\Desktop\QuickTime Player.lnk"'>
-    <exit code="1" />
-  </downgrade>
-  <downgrade cmd='%COMSPEC% /c del /F /Q "%PUBLIC%\Desktop\QuickTime Player.lnk"'>
-    <exit code="1" />
-  </downgrade>
+  <downgrade cmd='REG DELETE %RUN% /v "QuickTime Task" /f'><exit code="1" /></downgrade>
+  <downgrade cmd='REG DELETE %RUN64% /v "QuickTime Task" /f' architecture="x64"><exit code="1" /></downgrade>
+  <downgrade cmd='%COMSPEC% /c del /F /Q "%ALLUSERSPROFILE%\Desktop\QuickTime Player.lnk"'><exit code="1" /></downgrade>
+  <downgrade cmd='%COMSPEC% /c del /F /Q "%PUBLIC%\Desktop\QuickTime Player.lnk"'><exit code="1" /></downgrade>
 
   <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Apple\QuickTime\%version%\QuickTime.msi"' />
 </package>
