@@ -17,13 +17,12 @@
     reboot="false"
     priority="10">
 
-    <variable name="version" value="2.9.0.1" />
+    <variable name="version" value="2.9.0.2" />
+    <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Netpas\Distance" architecture="x86" />
+    <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Netpas\Distance" architecture="x64" />
 
     <check type="uninstall" condition="exists" path="Netpas Distance" />
-    <check type='logical' condition='or'>
-      <check type="file" condition="versiongreaterorequal" path="%ProgramFiles%\Netpas\Distance\distance.exe" value="%version%" />
-      <check type="file" condition="versiongreaterorequal" path="%ProgramFiles(x86)%\Netpas\Distance\distance.exe" value="%version%" />
-    </check>
+    <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\distance.exe" value="%version%" />
 
     <install cmd='%SOFTWARE%\Netpas\Distance\%version%\NetpasDistance.exe /VERYSILENT /sp- /norestart' />
     <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Netpas*.lnk"' />
@@ -33,12 +32,9 @@
 
     <downgrade cmd='%SOFTWARE%\Netpas\Distance\%version%\NetpasDistance.exe /VERYSILENT /sp- /norestart' />
     <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Netpas*.lnk"' />
-    <!-- Windows 32-bit -->
-    <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\Netpas\Distance" "%ProgramFiles%\Netpas\Distance\unins000.exe" /VERYSILENT' />
-    <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\Netpas\Distance" RD /Q /S "%ProgramFiles%\Netpas\Distance"' />
-    <!-- Windows 64-bit -->
-    <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Netpas\Distance" "%ProgramFiles(x86)%\Netpas\Distance\unins000.exe" /VERYSILENT' />
-    <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Netpas\Distance" RD /Q /S "%ProgramFiles(x86)%\Netpas\Distance"' />
+
+    <remove cmd='"%PKG_DESTINATION%\unins000.exe" /VERYSILENT' />
+    <remove cmd='%COMSPEC% /c IF EXIST "%PKG_DESTINATION%" RD /Q /S "%PKG_DESTINATION%"' />
 
   </package>
 
