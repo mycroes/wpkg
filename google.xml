@@ -73,7 +73,7 @@
 <package
   id="googletalk"
   name="Google Talk"
-  revision="%version%-2"
+  revision="%version%-3"
   priority="10"
   reboot="false">
 
@@ -87,14 +87,17 @@
   <install cmd='"%SOFTWARE%\Google\Google Talk\googletalk-setup.exe" /S' />
   <install cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></install>
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f'><exit code="1" /></install>
+  <install cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f' architecture="x64"><exit code="1" /></install>
 
   <upgrade cmd='"%SOFTWARE%\Google\Google Talk\googletalk-setup.exe" /S' />
   <upgrade cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></upgrade>
   <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f'><exit code="1" /></upgrade>
+  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f' architecture="x64"><exit code="1" /></upgrade>
 
   <downgrade cmd='"%SOFTWARE%\Google\Google Talk\googletalk-setup.exe" /S' />
   <downgrade cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></downgrade>
   <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f'><exit code="1" /></downgrade>
+  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f' architecture="x64"><exit code="1" /></downgrade>
 
   <remove cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></remove>
   <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Google\Google Talk\uninstall.exe" "%PROGRAMFILES%\Google\Google Talk\uninstall.exe" /S' />
