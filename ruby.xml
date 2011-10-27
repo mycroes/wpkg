@@ -35,10 +35,10 @@
 
   <depends package-id="java" />
 
-  <variable name="version" value="1.6.4" />
-  <variable name="fileversion" value="1_6_4" />
-  <variable name="PKG_SOURCE" value="%SOFTWARE%\Ruby\jruby_windows_1_6_4.exe"     architecture="x86" />
-  <variable name="PKG_SOURCE" value="%SOFTWARE%\Ruby\jruby_windows_x64_1_6_4.exe" architecture="x64" />
+  <variable name="version" value="1.6.5" />
+  <variable name="fileversion" value="1_6_5" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\Ruby\jruby_windows_1_6_5.exe"     architecture="x86" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\Ruby\jruby_windows_x64_1_6_5.exe" architecture="x64" />
 
   <check type="uninstall" condition="exists" path="JRuby %version%" />
 
