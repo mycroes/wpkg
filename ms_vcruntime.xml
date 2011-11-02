@@ -8,7 +8,8 @@
     a) Download from here: http://code.msdn.microsoft.com/KB932298
     b) Unpack using cabextract
     c) Rename msvcp71.dll and msvcr71.dll
-  4) We really should make amd64/x86 directories instead of renaming files
+  4) Package is prepared for possible expansion of extended host attribute
+     matches for checks.
 -->
 
 <packages>
@@ -16,46 +17,46 @@
 <package
   id="vcruntime"
   name="Visual C++ Runtime 2005, 2008 and 2010"
-  revision="8"
+  revision="9"
   reboot="false"
   priority="10">
 
   <check type="logical" condition="or">
     <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2005 Redistributable"       value="8.0.56336" />
-    <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2005 Redistributable - x64" value="8.0.56336" />
+    <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2005 Redistributable - x64" value="8.0.56336" architecture="x64" />
   </check>
   <check type="logical" condition="or">
     <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2008 Redistributable - x86 9.0.30729.17" />
-    <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2008 Redistributable - x64 9.0.30729.17" />
+    <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2008 Redistributable - x64 9.0.30729.17" architecture="x64" />
   </check>
   <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2010  x86 Redistributable - 10.0.30319" />
-    <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2010  x64 Redistributable - 10.0.30319" />
+    <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2010  x86 Redistributable - 10.0.40219" />
+    <check type="uninstall" condition="exists" path="Microsoft Visual C++ 2010  x64 Redistributable - 10.0.40219" architecture="x64" />
   </check>
 
-  <install   cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2005sp1.exe" /Q /R:N'><exit code="3010" /></install>
-  <install   cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2008sp1.exe" /Q /R:N'><exit code="3010" /></install>
-  <install   cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2010.exe" /Q /R:N'>   <exit code="3010" /></install>
+  <install   cmd='"%SOFTWARE%\Microsoft\VCRuntime\2005\vcredist_x86.exe" /Q /R:N'><exit code="3010" /></install>
+  <install   cmd='"%SOFTWARE%\Microsoft\VCRuntime\2008\vcredist_x86.exe" /Q /R:N'><exit code="3010" /></install>
+  <install   cmd='"%SOFTWARE%\Microsoft\VCRuntime\2010\vcredist_x86.exe" /Q /R:N'>   <exit code="3010" /></install>
 
-  <upgrade   cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2005sp1.exe" /Q /R:N'><exit code="3010" /></upgrade>
-  <upgrade   cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2008sp1.exe" /Q /R:N'><exit code="3010" /></upgrade>
-  <upgrade   cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2010.exe" /Q /R:N'>   <exit code="3010" /></upgrade>
+  <upgrade   cmd='"%SOFTWARE%\Microsoft\VCRuntime\2005\vcredist_x86.exe" /Q /R:N'><exit code="3010" /></upgrade>
+  <upgrade   cmd='"%SOFTWARE%\Microsoft\VCRuntime\2008\vcredist_x86.exe" /Q /R:N'><exit code="3010" /></upgrade>
+  <upgrade   cmd='"%SOFTWARE%\Microsoft\VCRuntime\2010\vcredist_x86.exe" /Q /R:N'>   <exit code="3010" /></upgrade>
 
-  <downgrade cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2005sp1.exe" /Q /R:N'><exit code="3010" /></downgrade>
-  <downgrade cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2008sp1.exe" /Q /R:N'><exit code="3010" /></downgrade>
-  <downgrade cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2010.exe" /Q /R:N'>   <exit code="3010" /></downgrade>
+  <downgrade cmd='"%SOFTWARE%\Microsoft\VCRuntime\2005\vcredist_x86.exe" /Q /R:N'><exit code="3010" /></downgrade>
+  <downgrade cmd='"%SOFTWARE%\Microsoft\VCRuntime\2008\vcredist_x86.exe" /Q /R:N'><exit code="3010" /></downgrade>
+  <downgrade cmd='"%SOFTWARE%\Microsoft\VCRuntime\2010\vcredist_x86.exe" /Q /R:N'>   <exit code="3010" /></downgrade>
 
-  <install   cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2005sp1.exe" /Q /R:N' architecture="x64"><exit code="3010" /></install>
-  <install   cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2008sp1.exe" /Q /R:N' architecture="x64"><exit code="3010" /></install>
-  <install   cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2010.exe" /Q /R:N'    architecture="x64"><exit code="3010" /></install>
+  <install   cmd='"%SOFTWARE%\Microsoft\VCRuntime\2005\vcredist_x64.exe" /Q /R:N' architecture="x64"><exit code="3010" /></install>
+  <install   cmd='"%SOFTWARE%\Microsoft\VCRuntime\2008\vcredist_x64.exe" /Q /R:N' architecture="x64"><exit code="3010" /></install>
+  <install   cmd='"%SOFTWARE%\Microsoft\VCRuntime\2010\vcredist_x64.exe" /Q /R:N'    architecture="x64"><exit code="3010" /></install>
 
-  <upgrade   cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2005sp1.exe" /Q /R:N' architecture="x64"><exit code="3010" /></upgrade>
-  <upgrade   cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2008sp1.exe" /Q /R:N' architecture="x64"><exit code="3010" /></upgrade>
-  <upgrade   cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2010.exe" /Q /R:N'    architecture="x64"><exit code="3010" /></upgrade>
+  <upgrade   cmd='"%SOFTWARE%\Microsoft\VCRuntime\2005\vcredist_x64.exe" /Q /R:N' architecture="x64"><exit code="3010" /></upgrade>
+  <upgrade   cmd='"%SOFTWARE%\Microsoft\VCRuntime\2008\vcredist_x64.exe" /Q /R:N' architecture="x64"><exit code="3010" /></upgrade>
+  <upgrade   cmd='"%SOFTWARE%\Microsoft\VCRuntime\2010\vcredist_x64.exe" /Q /R:N'    architecture="x64"><exit code="3010" /></upgrade>
 
-  <downgrade cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2005sp1.exe" /Q /R:N' architecture="x64"><exit code="3010" /></downgrade>
-  <downgrade cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2008sp1.exe" /Q /R:N' architecture="x64"><exit code="3010" /></downgrade>
-  <downgrade cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2010.exe" /Q /R:N'    architecture="x64"><exit code="3010" /></downgrade>
+  <downgrade cmd='"%SOFTWARE%\Microsoft\VCRuntime\2005\vcredist_x64.exe" /Q /R:N' architecture="x64"><exit code="3010" /></downgrade>
+  <downgrade cmd='"%SOFTWARE%\Microsoft\VCRuntime\2008\vcredist_x64.exe" /Q /R:N' architecture="x64"><exit code="3010" /></downgrade>
+  <downgrade cmd='"%SOFTWARE%\Microsoft\VCRuntime\2010\vcredist_x64.exe" /Q /R:N'    architecture="x64"><exit code="3010" /></downgrade>
 
   <!-- 2008 dumps files all over c:\ -->
   <install   cmd='%COMSPEC% /C DEL C:\eula.*.txt C:\install.* C:\VC_RED.* C:\vcredist.bmp C:\msdia80.dll C:\globdata.ini'><exit code="any" /></install>
