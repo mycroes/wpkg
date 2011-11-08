@@ -11,10 +11,9 @@ NOTES
 <package
   id="blackberry_desktop_manager"
   name="BlackBerry Desktop Manager"
-  revision="%version%-3"
+  revision="%version%-4"
   reboot="false"
-  priority="10"
-  execute="always">
+  priority="10">
 
   <variable name="version" value="6.1.0" />
   <variable name="majorversion" value="6.1" />
