@@ -9,31 +9,26 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="2.15" />
+  <variable name="version" value="2.16" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\KeePass Password Safe 2"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\KeePass Password Safe 2" architecture="x64" />
+  <variable name="RUN" value="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"             architecture="x86" />
+  <variable name="RUN" value="HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" architecture="x64"/>
+
   <check type="uninstall" condition="exists" path="KeePass Password Safe %version%" />
 
   <install cmd='"%SOFTWARE%\KeePass\KeePass-%version%-Setup.exe" /VERYSILENT /sp-' />
-  <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "KeePass 2 PreLoad" /f'>
-    <exit code="2" />
-  </install>
+  <install cmd='REG DELETE "%RUN%" /v "KeePass 2 PreLoad" /f'><exit code="2" /></install>
 
   <upgrade cmd='"%SOFTWARE%\KeePass\KeePass-%version%-Setup.exe" /VERYSILENT /sp-' />
-  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "KeePass 2 PreLoad" /f'>
-    <exit code="2" />
-  </upgrade>
+  <upgrade cmd='REG DELETE "%RUN%" /v "KeePass 2 PreLoad" /f'><exit code="2" /></upgrade>
 
   <downgrade cmd='"%SOFTWARE%\KeePass\KeePass-%version%-Setup.exe" /VERYSILENT /sp-' />
-  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "KeePass 2 PreLoad" /f'>
-    <exit code="2" />
-  </downgrade>
+  <downgrade cmd='REG DELETE "%RUN32%" /v "KeePass 2 PreLoad" /f'><exit code="2" /></downgrade>
 
   <remove cmd='taskkill.exe /f /im keepass.exe'><exit code="any" /></remove>
-  <!-- Windows 32-bit -->
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\KeePass Password Safe 2\unins000.exe" "%ProgramFiles%\KeePass Password Safe 2\unins000.exe" /VERYSILENT' />
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles%\KeePass Password Safe 2" REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce" /v keepass /d "%COMSPEC% /c IF NOT EXIST \"%ProgramFiles%\KeePass Password Safe 2\keepass.exe\" RD /Q /S \"%ProgramFiles%\KeePass Password Safe 2\"" /f' />
-  <!-- Windows 64-bit -->
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\KeePass Password Safe 2\unins000.exe" "%ProgramFiles(x86)%\KeePass Password Safe 2\unins000.exe" /VERYSILENT' />
-  <remove cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\KeePass Password Safe 2" REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce" /v keepass /d "%COMSPEC% /c IF NOT EXIST \"%ProgramFiles(x86)%\KeePass Password Safe 2\keepass.exe\" RD /Q /S \"%ProgramFiles(x86)%\KeePass Password Safe 2\"" /f' />
+  <remove cmd='"%PKG_DESTINATION%\unins000.exe" /VERYSILENT' />
+  <remove cmd='RD /Q /S "%PKG_DESTINATION%" /f'><exit code="any" /></remove>
 
 </package>
 
