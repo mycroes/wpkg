@@ -19,7 +19,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="7.0.1" />
+  <variable name="version" value="8.0" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
 
@@ -39,7 +39,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.6.23" />
+  <variable name="version" value="3.6.24" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
 
@@ -59,7 +59,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="7.0.1" />
+  <variable name="version" value="8.0" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Thunderbird"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Thunderbird" architecture="x64" />
 
