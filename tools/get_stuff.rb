@@ -148,9 +148,11 @@ PACKAGES = {
 
 :lastpass => [
   {:url => 'https://lastpass.com/lastpass.exe',
-  :destination => ['LastPass', BIT_32_DIR, 'lastpass.exe']},
+  :destination => ['LastPass', '%version%', BIT_32_DIR, 'lastpass.exe'],
+  :package_id => 'lastpass'},
   {:url => 'https://lastpass.com/lastpass_x64.exe',
-  :destination => ['LastPass', BIT_64_DIR, 'lastpass.exe']},
+  :destination => ['LastPass', '%version%', BIT_64_DIR, 'lastpass.exe'],
+  :package_id => 'lastpass'},
 ],
 
 :keepass => [

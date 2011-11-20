@@ -15,7 +15,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="5.9" />
+  <variable name="version" value="5.9.6.2" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Notepad++"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Notepad++" architecture="x64" />
 

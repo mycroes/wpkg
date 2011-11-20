@@ -5,16 +5,16 @@
 <package
   id="console2"
   name="Console2 (latest beta)"
-  revision="%version%-2"
+  revision="%version%-0"
   reboot="false"
   priority="0">
 
   <depends package-id="7zip" />
 
-  <variable name="version" value="2.0.0.147" />
-  <variable name="fileversion" value="2.00b147-Beta" />
-  <variable name="PKG_SOURCE" value="%SOFTWARE%\Console2\Console-2.00b147-Beta_32bit.zip" architecture="x86" />
-  <variable name="PKG_SOURCE" value="%SOFTWARE%\Console2\Console-2.00b147-Beta_64bit.zip" architecture="x64" />
+  <variable name="version" value="2.0.0.148" />
+  <variable name="fileversion" value="2.00b148-Beta" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\Console2\Console-2.00b148-Beta_32bit.zip" architecture="x86" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\Console2\Console-2.00b148-Beta_64bit.zip" architecture="x64" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Console2" /> <!-- do NOT set this to just %PROGRAMFILES% due to <remove> -->
 
   <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\console.exe" value="%version%" />
