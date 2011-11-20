@@ -15,13 +15,13 @@
 <package
   id="java"
   name="Java 6"
-  revision="%version%-9"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="short" value="6u27" /> <!-- part of the installer file name -->
-  <variable name="version" value="1.6.0_27" />
-  <variable name="last" value="27" /> <!-- last part of the version - used for looping through installed versions -->
+  <variable name="short" value="6u29" /> <!-- part of the installer file name -->
+  <variable name="version" value="1.6.0_29" />
+  <variable name="last" value="29" /> <!-- last part of the version - used for looping through installed versions -->
 
   <check type="logical" condition="or">
     <check type="uninstall" condition="exists" path="Java(TM) 6 Update %last%" />
