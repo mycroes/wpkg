@@ -58,7 +58,7 @@
     <exit code="3010" reboot="postponed" />
   </downgrade>
 
-  <remove cmd='msiexec /X{02CEA620-09F1-4C07-A049-41A6EE92F1F6} %MSI%'>
+  <remove cmd='msiexec /X{D00CAF11-248D-4F89-92F5-DE9EF75FB14E} %MSI%'>
     <exit code="3010" />
   </remove>
 
@@ -74,7 +74,7 @@
   <depends package-id="vcruntime" />
   <depends package-id="dotnet3" />
 
-  <variable name="version" value="1601.2" />
+  <variable name="version" value="1601.3" />
 
   <variable name="base" value="%SOFTWARE%\ISD\HiCAD\hicad2011" />
   <variable name="bits" value="32" architecture="x86" />
