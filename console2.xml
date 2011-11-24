@@ -5,7 +5,7 @@
 <package
   id="console2"
   name="Console2 (latest beta)"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="0">
 
@@ -19,9 +19,9 @@
 
   <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\console.exe" value="%version%" />
 
-  <install   cmd='"%PROGRAMFILES%\7-Zip\7z.exe" e -o"%PKG_DESTINATION%\" "%PKG_SOURCE%"' />
-  <upgrade   cmd='"%PROGRAMFILES%\7-Zip\7z.exe" e -o"%PKG_DESTINATION%\" "%PKG_SOURCE%"' />
-  <downgrade cmd='"%PROGRAMFILES%\7-Zip\7z.exe" e -o"%PKG_DESTINATION%\" "%PKG_SOURCE%"' />
+  <install   cmd='"%PROGRAMFILES%\7-Zip\7z.exe" e -y -o"%PKG_DESTINATION%\" "%PKG_SOURCE%"' />
+  <upgrade   cmd='"%PROGRAMFILES%\7-Zip\7z.exe" e -y -o"%PKG_DESTINATION%\" "%PKG_SOURCE%"' />
+  <downgrade cmd='"%PROGRAMFILES%\7-Zip\7z.exe" e -y -o"%PKG_DESTINATION%\" "%PKG_SOURCE%"' />
   <remove    cmd='%COMSPEC% /C RD /Q /S "%PKG_DESTINATION%"' />
 
 </package>
