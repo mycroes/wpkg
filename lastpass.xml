@@ -17,10 +17,10 @@
 
   <variable name="version" value="1.80.0.0" />
   <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\LastPass\lastpass.exe" value="%version%" />
-  <install   cmd='"%SOFTWARE%\LastPass\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -i -f -ia --installdir="%PROGRAMFILES%\LastPass"' />
-  <upgrade   cmd='"%SOFTWARE%\LastPass\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -i -f -ia --installdir="%PROGRAMFILES%\LastPass"' />
-  <downgrade cmd='"%SOFTWARE%\LastPass\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -i -f -ia --installdir="%PROGRAMFILES%\LastPass"' />
-  <remove    cmd='"%SOFTWARE%\LastPass\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -sb' />
+  <install   cmd='"%SOFTWARE%\LastPass\%version%\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -i -f -ia --installdir="%PROGRAMFILES%\LastPass"' />
+  <upgrade   cmd='"%SOFTWARE%\LastPass\%version%\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -i -f -ia --installdir="%PROGRAMFILES%\LastPass"' />
+  <downgrade cmd='"%SOFTWARE%\LastPass\%version%\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -i -f -ia --installdir="%PROGRAMFILES%\LastPass"' />
+  <remove    cmd='"%SOFTWARE%\LastPass\%version%\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -sb' />
 
 </package>
 

@@ -14,7 +14,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="11.0.1.152" />
+  <variable name="version" value="11.1.102.55" />
   <variable name="mainversion" value="11" />
   <variable name="shortversion" value="11.0" />
 

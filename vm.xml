@@ -10,12 +10,13 @@
 <package
   id="vm"
   name="Virtual Machine Settings"
-  revision="2"
+  revision="3"
   reboot="false"
   execute="once">
 
-  <!-- disable hibernation -->
-  <install cmd='powercfg -h off' />
+  <!-- disable hibernation
+       returns 1 if system does not support hibernation -->
+  <install cmd='powercfg -h off'><exit code='1' /></install>
   <!-- disable SuperFetch -->
   <install cmd='sc config SysMain start= disabled' />
 </package>
