@@ -66,7 +66,7 @@
 <package
   id="vcruntime_2003"
   name="Visual C++ Runtime 2003 SP1"
-  revision="1"
+  revision="2"
   reboot="false"
   priority="10">
 
@@ -75,9 +75,9 @@
     <check type="file" condition="versiongreaterorequal" path="%WINDIR%\msvcr71.dll" value="7.10.7031.4" />
   </check>
 
-  <install   cmd='xcopy /Y "%SOFTWARE%\Microsoft\VCRuntime\x86\msvc?71.dll" "%WINDIR%"' />
-  <upgrade   cmd='xcopy /Y "%SOFTWARE%\Microsoft\VCRuntime\x86\msvc?71.dll" "%WINDIR%"' />
-  <downgrade cmd='xcopy /Y "%SOFTWARE%\Microsoft\VCRuntime\x86\msvc?71.dll" "%WINDIR%"' />
+  <install   cmd='%COMSPEC% /C xcopy "%SOFTWARE%\Microsoft\VCRuntime\x86\msvc?71.dll" "%WINDIR%" /Y' />
+  <upgrade   cmd='%COMSPEC% /C xcopy "%SOFTWARE%\Microsoft\VCRuntime\x86\msvc?71.dll" "%WINDIR%" /Y' />
+  <downgrade cmd='%COMSPEC% /C xcopy "%SOFTWARE%\Microsoft\VCRuntime\x86\msvc?71.dll" "%WINDIR%" /Y' />
   <remove    cmd='%COMSPEC% /c del /Q /F "%WINDIR%\msvc?71.dll"' />
 </package>
 

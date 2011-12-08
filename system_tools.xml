@@ -5,12 +5,12 @@
 <package
   id="system_tools"
   name="Copy system utilities to %WINDIR%"
-  revision="1"
+  revision="2"
   reboot="false"
   priority="0"
   execute="once">
 
-  <install cmd='xcopy /y "%SOFTWARE%\SystemTools\*.*" "%WINDIR%"' />
+  <install cmd='%COMSPEC% /C xcopy /y "%SOFTWARE%\SystemTools\*.*" "%WINDIR%"' />
 
 </package>
 
