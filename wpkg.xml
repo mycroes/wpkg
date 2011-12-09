@@ -28,13 +28,16 @@
 <package
   id="wpkg-gp"
   name="WPKG-GP"
-  revision="%version%-1"
+  revision="%version%-2"
   priority="0"
   reboot="false">
 
   <variable name="version" value="0.15" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="WPKG" value="%version%" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="versiongreaterorequal" path="Wpkg-GP %version% (x86)" value="%version%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="Wpkg-GP %version% (x64)" value="%version%" />
+  </check>
 
   <install   cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\wpkg-gp.ini"' />
   <upgrade   cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\wpkg-gp.ini"' />
