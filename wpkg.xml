@@ -28,7 +28,7 @@
 <package
   id="wpkg-gp"
   name="WPKG-GP"
-  revision="%version%-0"
+  revision="%version%-1"
   priority="0"
   reboot="false">
 
@@ -36,16 +36,16 @@
 
   <check type="uninstall" condition="versiongreaterorequal" path="WPKG" value="%version%" />
 
-  <install   cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\settings.ini"' />
-  <upgrade   cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\settings.ini"' />
-  <downgrade cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\settings.ini"' />
+  <install   cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\wpkg-gp.ini"' />
+  <upgrade   cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\wpkg-gp.ini"' />
+  <downgrade cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\wpkg-gp.ini"' />
 
 </package>
 
 <package
   id="wpkg-settings"
   name="Update WPKG settings"
-  revision="3-0"
+  revision="4-0"
   priority="0"
   reboot="false"
   execute="once">
@@ -54,8 +54,9 @@
   <depends package-id="wpkg"/>
   -->
 
-  <install cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"' />
-  <upgrade cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"' />
+  <install cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\WPKG\wpkginst.exe" "%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"' />
+  <upgrade cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\WPKG\wpkginst.exe" "%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"' />
+  <downgrade cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\WPKG\wpkginst.exe" "%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"' />
 
 </package>
 
