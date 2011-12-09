@@ -13,7 +13,7 @@
   priority="10"
   reboot="false">
 
-  <variable name="version" value="1.8" />
+  <variable name="version" value="1.9" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\SumatraPDF"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\SumatraPDF" architecture="x64" />
 
