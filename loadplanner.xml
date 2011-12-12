@@ -37,9 +37,9 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.8.18" />
-  <variable name="fileversion" value="3.8.0.18" /> <!-- don't ask why - I don't know... -->
-  <variable name="updatefile" value="LoadPlanner 3818 update.msi" />  <!-- for .10 it should be 38100 -->
+  <variable name="version" value="3.8.21" />
+  <variable name="fileversion" value="3.8.0.21" /> <!-- don't ask why - I don't know... -->
+  <variable name="updatefile" value="LoadPlanner 3821 update.msi" />  <!-- for .10 it should be 38100 -->
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\LoadPlanner"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\LoadPlanner" architecture="x64" />
 
@@ -47,7 +47,7 @@
 
   <check type="logical" condition="or">
     <check type="uninstall" condition="exists" path="LoadPlanner %version% Update" />
-    <check type="file" condition="versionequalto" path="%PKG_DESTINATION%\LpMultiP.exe" value="%fileversion%" />
+    <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\LpMultiP.exe" value="%fileversion%" />
   </check>
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
