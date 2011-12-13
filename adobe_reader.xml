@@ -25,7 +25,7 @@
 <package
   id="adobereaderX"
   name="Adobe Reader X"
-  revision="%version%-4"
+  revision="%version%-5"
   reboot="false"
   priority="10">
 
