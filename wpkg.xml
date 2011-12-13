@@ -46,16 +46,20 @@
 <package
   id="wpkg-settings"
   name="Update WPKG settings"
-  revision="5-0"
+  revision="6"
   priority="0"
   reboot="false"
-  execute="once">
+  execute="always">
 
   <!--
   <depends package-id="wpkg"/>
   -->
 
-  <install cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\WPKG\wpkginst.exe" "%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"' />
+  <install cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"'>
+    <condition>
+      <check type='file' condition='exists' path='%PROGRAMFILES%\WPKG\wpkginst.exe' />
+    </condition>
+  </install>
   <upgrade   include='install' />
   <downgrade include='install' />
 
