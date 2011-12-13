@@ -10,62 +10,27 @@
 <package
   id="vlc"
   name="VideoLAN Client"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
+  <variable name="version" value="1.1.11" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\VideoLAN\VLC"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\VideoLAN\VLC" architecture="x64" />
+  <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop"                   os="windows xp" />
+  <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Microsoft\Windows\Desktop" os="windows 7" />
+
   <check type="uninstall" condition="exists" path="VLC media player %version%" />
 
-  <variable name="version" value="1.1.11" />
-  <variable name="A" value="%ProgramFiles%\VideoLAN" />
-  <variable name="B" value="%ProgramFiles(x86)%\VideoLAN" />
-
-  <install cmd='%ComSpec% /c if exist "%A%\VLC\uninstall.exe" "%A%\VLC\uninstall.exe" /S _?=%A%\VLC' />
-  <install cmd='%ComSpec% /c if exist "%A%" RD /S /Q "%A%"' />
-
-  <install cmd='%ComSpec% /c if exist "%B%\VLC\uninstall.exe" "%B%\VLC\uninstall.exe" /S _?=%B%\VLC' />
-  <install cmd='%ComSpec% /c if exist "%B%" RD /S /Q "%B%"' />
-
+  <install include="remove" />
   <install cmd='"%SOFTWARE%\VLC\vlc-%version%-win32.exe" /S' />
-  <install cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\VLC*.lnk"'>
-    <exit code="any" />
-  </install>
-  <install cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\VLC*.lnk"'>
-    <exit code="any" />
-  </install>
+  <install cmd='%COMSPEC% /c del /Q "%DESKTOP%\VLC*.lnk"'><exit code="any" /></install>
 
-  <upgrade cmd='%ComSpec% /c if exist "%A%\VLC\uninstall.exe" "%A%\VLC\uninstall.exe" /S _?=%A%\VLC' />
-  <upgrade cmd='%ComSpec% /c if exist "%A%" RD /S /Q "%A%"' />
+  <upgrade include="install" />
+  <downgrade include="install" />
 
-  <upgrade cmd='%ComSpec% /c if exist "%B%\VLC\uninstall.exe" "%B%\VLC\uninstall.exe" /S _?=%B%\VLC' />
-  <upgrade cmd='%ComSpec% /c if exist "%B%" RD /S /Q "%B%"' />
-
-  <upgrade cmd='"%SOFTWARE%\VLC\vlc-%version%-win32.exe" /S' />
-  <upgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\VLC*.lnk"'>
-    <exit code="any" />
-  </upgrade>
-  <upgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\VLC*.lnk"'>
-    <exit code="any" />
-  </upgrade>
-
-  <downgrade cmd='%ComSpec% /c if exist "%A%\VLC\uninstall.exe" "%A%\VLC\uninstall.exe" /S _?=%A%\VLC' />
-  <downgrade cmd='%ComSpec% /c if exist "%A%" RD /S /Q "%A%"' />
-
-  <downgrade cmd='%ComSpec% /c if exist "%B%\VLC\uninstall.exe" "%B%\VLC\uninstall.exe" /S _?=%B%\VLC' />
-  <downgrade cmd='%ComSpec% /c if exist "%B%" RD /S /Q "%B%"' />
-
-  <downgrade cmd='"%SOFTWARE%\VLC\vlc-%version%-win32.exe" /S' />
-  <downgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\VLC*.lnk"'>
-    <exit code="any" />
-  </downgrade>
-  <downgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\VLC*.lnk"'>
-    <exit code="any" />
-  </downgrade>
-
-  <remove  cmd='%ComSpec% /c if exist "%A%\VLC\uninstall.exe" "%A%\VLC\uninstall.exe" /S _?=%A%\VLC' />
-  <remove  cmd='%ComSpec% /c if exist "%A%" RD /S /Q "%A%"' />
-  <remove  cmd='%ComSpec% /c if exist "%B%\VLC\uninstall.exe" "%B%\VLC\uninstall.exe" /S _?=%B%\VLC' />
-  <remove  cmd='%ComSpec% /c if exist "%B%" RD /S /Q "%B%"' />
+  <remove cmd='"%PKG_DESTINATION%\uninstall.exe" /S _?="%PKG_DESTINATION%"' />
+  <remove cmd='%COMSPEC% /C RD /S /Q "%PKG_DESTINATION%"'><exit code="any"/></remove>
 </package>
 
 </packages>
