@@ -18,9 +18,8 @@
   <install cmd='netsh firewall set service remoteadmin enable' />
   <install cmd='netsh firewall set service remotedesktop enable' />
 
-  <upgrade cmd='REG ADD "%keypath%" /v "%key%" /t REG_DWORD /d 0 /f' />
-  <upgrade cmd='netsh firewall set service remoteadmin enable' />
-  <upgrade cmd='netsh firewall set service remotedesktop enable' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove  cmd='REG ADD "%keypath%" /v "%key%" /t REG_DWORD /d 1 /f' />
   <remove  cmd='netsh firewall set service remoteadmin disable' />
