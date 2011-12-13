@@ -2,6 +2,18 @@
 
 <packages>
 
+<package
+  id="ie"
+  name="Internet Explorer"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <depends package-id='ie8' os='windows xp' />
+  <depends package-id='ie9' os='windows 7' />
+
+</package>
+
 <!--
   NOTES
   1) We install both 32 and 64 bit on 64 bit machines
