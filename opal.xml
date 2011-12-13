@@ -24,18 +24,17 @@
 
   <install cmd='%COMSPEC% /C copy /y "%SOFTWARE%\Opal\setup.iss" "c:\opal.iss"' />
   <install cmd='"%SOFTWARE%\Opal\ieplug.exe" /s /a /s /sms /f1c:\opal.iss' />
-  <install cmd='%COMSPEC% /C del /F /Q c:\opal.iss' />
+  <install include='remove_iss' />
 
-  <upgrade cmd='%comspec% /c copy /y "%SOFTWARE%\Opal\setup.iss" "c:\opal.iss"' />
-  <upgrade cmd='"%SOFTWARE%\Opal\ieplug.exe" /s /a /s /sms /f1c:\opal.iss' />
-  <upgrade cmd='%COMSPEC% /C del /F /Q c:\opal.iss' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='%comspec% /c copy /y "%SOFTWARE%\Opal\setup.iss" "c:\opal.iss"' />
-  <downgrade cmd='"%SOFTWARE%\Opal\ieplug.exe" /s /a /s /sms /f1c:\opal.iss' />
-  <downgrade cmd='%COMSPEC% /C del /F /Q c:\opal.iss' />
+  <remove include='remove_iss' />
+  <remove cmd='%comspec% /c RD /Q /S "%PROGRAMFILES%\Internet Explorer\Plugins\Opal"' />
 
-  <remove  cmd='%comspec% /c RD /Q /S "%PROGRAMFILES%\Internet Explorer\Plugins\Opal"' />
-  <remove  cmd='%COMSPEC% /C IF EXIST c:\opal.iss del /F /Q c:\opal.iss' />
+  <commands>
+    <command type='remove_iss' cmd='%COMSPEC% /C IF EXIST c:\opal.iss del /F /Q c:\opal.iss' />
+  </commands>
 
 </package>
 
