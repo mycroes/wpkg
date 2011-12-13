@@ -21,22 +21,16 @@
   <check type="uninstall" condition="versiongreaterorequal" path="ThinkVantage Active Protection System" value="%version%" />
 
   <install cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <install cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"%MSI%"'>
-    <exit code="3010" reboot="false" />
-  </install>
-  <upgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <upgrade cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"%MSI%"'>
-    <exit code="3010" reboot="false" />
-  </upgrade>
-  <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart"' />
-  <downgrade cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"%MSI%"'>
-    <exit code="3010" reboot="false" />
-  </downgrade>
+  <install cmd='"%SYSTEMDRIVE%\SWTOOLS\readyapps\HPROTECT\setup.exe" /s /V"%MSI%"'><exit code="3010" /></install>
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
   <remove  cmd='msiexec %MSI% /X{46A84694-59EC-48F0-964C-7E76E9F8A2ED}"' />
 </package>
 
 <!-- NOTES
-  1) v2.39 writes a space at the end of the name in uninstall on the English version hence the duplicate check
+  1) v2.39 writes a space at the end of the name in uninstall on the English version hence the regex check
   2) DisplayName will change with default system language
   3) Removed -l0x9 (English) and -l0x6 (Danish) from uninstaller, as we don't care about language
   4) Item 3 is moot as silent uninstaller doesn't work for two reasons: a) -s is not supported  and b) rundll32 only accepts shortnames
@@ -59,13 +53,8 @@
   <install   cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
   <install   cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.iss' />
 
-  <upgrade   cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart' />
-  <upgrade   cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
-  <upgrade   cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.iss' />
-
-  <downgrade cmd='"%SOFTWARE%\ThinkPad\%file%" /VERYSILENT /norestart' />
-  <downgrade cmd='%COMSPEC% /c copy /y "%SOFTWARE%\ThinkPad\easyeject_setup.iss" "%tempdir%\setup.iss"' />
-  <downgrade cmd='%tempdir%\setup.exe /s /sms /f1%tempdir%\setup.iss' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove    cmd='%COMSPEC% /c RD /Q /S "%tempdir%"'><exit code="any" /></remove>
 
@@ -100,13 +89,10 @@
   </check>
 
   <install cmd='net stop SUService'><exit code="2"/></install>
-  <install cmd='"%PKG_SOURCE%" %PKG_PARAMS%'><exit code="3010" reboot="false" /></install>
+  <install cmd='"%PKG_SOURCE%" %PKG_PARAMS%'><exit code="3010" /></install>
 
-  <upgrade cmd='net stop SUService'><exit code="2"/></upgrade>
-  <upgrade cmd='"%PKG_SOURCE%" %PKG_PARAMS%'><exit code="3010" reboot="false" /></upgrade>
-
-  <downgrade cmd='net stop SUService'><exit code="2"/></downgrade>
-  <downgrade cmd='"%PKG_SOURCE%" %PKG_PARAMS%'><exit code="3010" reboot="false" /></downgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
 </package>
 
