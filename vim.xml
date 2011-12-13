@@ -18,8 +18,8 @@
   </check>
 
   <install    cmd='"%SOFTWARE%\VIM\gvim-%fileversion%.exe" /S /CONTEXTMENU 1' />
-  <upgrade    cmd='"%SOFTWARE%\VIM\gvim-%fileversion%.exe" /S /CONTEXTMENU 1' />
-  <downgrade  cmd='"%SOFTWARE%\VIM\gvim-%fileversion%.exe" /S /CONTEXTMENU 1' />
+  <upgrade    include='install' />
+  <downgrade  include='install' />
 </package>
 
 </packages>
