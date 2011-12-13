@@ -11,7 +11,7 @@
 <package
   id="notepad"
   name="Notepad++"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -24,21 +24,19 @@
     <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\notepad++.exe" value="%version%" />
   </check>
 
-  <install cmd='taskkill /f /im notepad++.exe'><exit code="any" /></install>
-  <install cmd='%COMSPEC% /c RD /Q /S "%PKG_DESTINATION%\plugins"'><exit code="any" /></install>
+  <install include="prepare" />
   <install cmd='"%SOFTWARE%\Notepad\npp.%version%.Installer.exe" /S' />
 
-  <upgrade cmd='taskkill /f /im notepad++.exe'><exit code="any" /></upgrade>
-  <upgrade cmd='%COMSPEC% /c RD /Q /S "%PKG_DESTINATION%\plugins"'><exit code="any" /></upgrade>
-  <upgrade cmd='"%SOFTWARE%\Notepad\npp.%version%.Installer.exe" /S' />
+  <upgrade   include="install" />
+  <downgrade include="install" />
 
-  <downgrade cmd='taskkill /f /im notepad++.exe'><exit code="any" /></downgrade>
-  <downgrade cmd='%COMSPEC% /c RD /Q /S "%PKG_DESTINATION%\plugins"'><exit code="any" /></downgrade>
-  <downgrade cmd='"%SOFTWARE%\Notepad\npp.%version%.Installer.exe" /S' />
-
-  <remove cmd='taskkill /f /im notepad++.exe'><exit code="any" /></remove>
-  <remove cmd='%COMSPEC% /c RD /Q /S "%PKG_DESTINATION%\plugins"'><exit code="any" /></remove>
+  <remove include="prepare" />
   <remove cmd='"%PKG_DESTINATION%\uninstall.exe" /S' />
+
+  <commands>
+    <command type="prepare" cmd='taskkill /f /im notepad++.exe'><exit code="any" /></command>
+    <command type="prepare" cmd='%COMSPEC% /c RD /Q /S "%PKG_DESTINATION%\plugins"'><exit code="any" /></command>
+  </commands>
 
 </package>
 
