@@ -2,7 +2,7 @@
 
 <!--
   NOTES
-  1) Not tested on 64 bit
+  1) Version 4 crashes at times on win7 64bit, but v5 works
   2) Previous version 3.5 would fail when installed as SYSTEM
   3) We must uninstall v3 before installing v4
   4) I've added copying the msi to c:\ - it's technically not necessary, but if for some reason the client isn't installed correctly, people have real problems, so it's just to be safe
@@ -18,30 +18,25 @@
   priority="10">
 
   <variable name="version" value="5.5.156" />
-  <variable name="fileversion" value="5.5.156.1" />
+  <variable name="fileversion" value="%version%.1" />
   <variable name="PKG_SOURCE_DIR"  value="%SOFTWARE%\SonicWall VPN" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\SonicWall\SSL-VPN\NetExtender"      architectire="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\SonicWall\SSL-VPN\NetExtender" architectire="x64" />
+  <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
+  <variable name="DESKTOP" value="%PUBLIC%\Desktop"          os="windows 7" />
 
   <check type="logical" condition="or">
     <check type="uninstall" condition="versiongreaterorequal" path="SonicWALL SSL-VPN NetExtender" value="%version%" />
     <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\NEService.exe" value="%fileversion%" />
   </check>
 
-  <install cmd='msiexec /i "%PKG_SOURCE_DIR%\NetExtender.%version%.msi" %MSI%'><exit code="3010" reboot="false" /></install>
+  <install cmd='msiexec /i "%PKG_SOURCE_DIR%\NetExtender.%version%.msi" %MSI%'><exit code="3010" /></install>
   <install cmd='%COMSPEC% /c IF EXIST "%PKG_SOURCE_DIR%\NetExtender.reg" regedit /s "%PKG_SOURCE_DIR%\NetExtender.reg" '/>
   <install cmd='%COMSPEC% /c xcopy /Y "%PKG_SOURCE_DIR%\NetExtender.%version%.msi" c:\ >NUL'><exit code="any" /></install>
-  <install cmd='%COMSPEC% /c IF EXIST "%PKG_SOURCE_DIR%\NetExtender.lnk" xcopy /y "%PKG_SOURCE_DIR%\NetExtender.lnk" "%ALLUSERSPROFILE%\Start Menu" '/>
+  <install cmd='%COMSPEC% /c IF EXIST "%PKG_SOURCE_DIR%\NetExtender.lnk" xcopy /y "%PKG_SOURCE_DIR%\NetExtender.lnk" "%DESKTOP%" '/>
 
-  <upgrade cmd='msiexec /i "%PKG_SOURCE_DIR%\NetExtender.%version%.msi" %MSI%'><exit code="3010" reboot="false" /></upgrade>
-  <upgrade cmd='%COMSPEC% /c IF EXIST "%PKG_SOURCE_DIR%\NetExtender.reg" regedit /s "%PKG_SOURCE_DIR%\NetExtender.reg" '/>
-  <upgrade cmd='%COMSPEC% /c xcopy /Y "%PKG_SOURCE_DIR%\NetExtender.%version%.msi" c:\ >NUL'><exit code="any" /></upgrade>
-  <upgrade cmd='%COMSPEC% /c IF EXIST "%PKG_SOURCE_DIR%\NetExtender.lnk" xcopy /y "%PKG_SOURCE_DIR%\NetExtender.lnk" "%ALLUSERSPROFILE%\Start Menu" '/>
-
-  <downgrade cmd='msiexec /i "%PKG_SOURCE_DIR%\NetExtender.%version%.msi" %MSI%'><exit code="3010" reboot="false" /></downgrade>
-  <downgrade cmd='%COMSPEC% /c IF EXIST "%PKG_SOURCE_DIR%\NetExtender.reg" regedit /s "%PKG_SOURCE_DIR%\NetExtender.reg" '/>
-  <downgrade cmd='%COMSPEC% /c xcopy /Y "%PKG_SOURCE_DIR%\NetExtender.%version%.msi" c:\ >NUL'><exit code="any" /></downgrade>
-  <downgrade cmd='%COMSPEC% /c IF EXIST "%PKG_SOURCE_DIR%\NetExtender.lnk" xcopy /y "%PKG_SOURCE_DIR%\NetExtender.lnk" "%ALLUSERSPROFILE%\Start Menu" '/>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove    cmd='msiexec /x "%PKG_SOURCE_DIR%\NetExtender.%version%.msi" %MSI%' />
 
