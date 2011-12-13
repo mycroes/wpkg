@@ -20,6 +20,8 @@
 
   <variable name='version' value='2.1.1116.0' />
   <variable name='update_interval' value='4' />
+  <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
+  <variable name="DESKTOP" value="%PUBLIC%\Desktop"          os="windows 7" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Security Essentials" value="%version%" />
 
@@ -32,35 +34,12 @@
     <exit code="327424" />
     <exit code="327426" /> <!-- program already installed -->
   </install>
-  <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
+  <install cmd='%COMSPEC% /c del "%DESKTOP%\Microsoft*.lnk"' />
   <install cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Microsoft Antimalware\Signature Updates" /v SignatureUpdateInterval /t REG_DWORD /d %update_interval% /f' />
   <install cmd='net start MsMpSvc'><exit code="2" /></install>
 
-  <upgrade cmd='net stop MsMpSvc'><exit code="2" /></upgrade>
-  <upgrade cmd='"%SOFTWARE%\Microsoft\MSSE\%PROCESSOR_ARCHITECTURE%\mseinstall.exe" /s /runwgacheck'>
-    <exit code="-2147156138" /> <!-- Windows XP SP2, extra package required - http://support.microsoft.com/kb/914882?mkt=en-us -->
-    <exit code="-2147156221" />
-    <exit code="-2147156213" /> <!-- Windows hasn't been activated or WGA validation failed -->
-    <exit code="-2147156218" />
-    <exit code="327424" />
-    <exit code="327426" /> <!-- program already installed -->
-  </upgrade>
-  <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
-  <upgrade cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Microsoft Antimalware\Signature Updates" /v SignatureUpdateInterval /t REG_DWORD /d %update_interval% /f' />
-  <upgrade cmd='net start MsMpSvc'><exit code="2" /></upgrade>
-
-  <downgrade cmd='net stop MsMpSvc'><exit code="2" /></downgrade>
-  <downgrade cmd='"%SOFTWARE%\Microsoft\MSSE\%PROCESSOR_ARCHITECTURE%\mseinstall.exe" /s /runwgacheck'>
-    <exit code="-2147156138" /> <!-- Windows XP SP2, extra package required - http://support.microsoft.com/kb/914882?mkt=en-us -->
-    <exit code="-2147156221" />
-    <exit code="-2147156213" /> <!-- Windows hasn't been activated or WGA validation failed -->
-    <exit code="-2147156218" />
-    <exit code="327424" />
-    <exit code="327426" /> <!-- program already installed -->
-  </downgrade>
-  <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Microsoft*.lnk"' />
-  <downgrade cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Microsoft Antimalware\Signature Updates" /v SignatureUpdateInterval /t REG_DWORD /d %update_interval% /f' />
-  <downgrade cmd='net start MsMpSvc'><exit code="2" /></downgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove cmd='"%PROGRAMFILES%\Microsoft Security Client\setup.exe" /x /s' />
 
