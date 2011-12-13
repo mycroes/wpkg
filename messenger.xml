@@ -58,17 +58,23 @@
   priority="10">
 
   <variable name="version" value="10.0.0.1270" />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Yahoo!\Messenger'      architecture="x86" />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES(x86)%\Yahoo!\Messenger' architecture="x64" />
 
-  <check type="logical" condition="or">
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Yahoo!\Messenger\YahooMessenger.exe" value="%version%" />
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Yahoo!\Messenger\YahooMessenger.exe" value="%version%" />
-  </check>
+  <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\YahooMessenger.exe" value="%version%" />
+
+  <install   include='kill' />
   <install   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s /q' />
-  <upgrade   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s /q' />
-  <downgrade cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s /q' />
-  <remove    cmd='taskkill /f /im YahooMessenger.exe'><exit code="any" /></remove>
-  <remove    cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Yahoo!\Messenger\UNWISE.exe" "%PROGRAMFILES%\Yahoo!\Messenger\UNWISE.exe" /S /U "%PROGRAMFILES%\Yahoo!\Messenger\INSTALL.log"' />
-  <remove    cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Yahoo!\Messenger\UNWISE.exe" "%PROGRAMFILES(x86)%\Yahoo!\Messenger\UNWISE.exe" /S /U "%PROGRAMFILES(x86)%\Yahoo!\Messenger\INSTALL.log"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+  <remove include='kill' />
+  <remove cmd='"%PKG_DESTINATION%\UNWISE.exe" /S /U "%PKG_DESTINATION%\INSTALL.log"' />
+
+  <commands>
+    <command type='kill' cmd='taskkill /f /im YahooMessenger.exe'><exit code="any" /></command>
+  </commands>
+
 </package>
 
 <package
@@ -76,6 +82,7 @@
   name="Windows Messenger Uninstall"
   revision="2"
   execute="once">
+
   <install cmd='%COMSPEC% /c IF EXIST %windir%\INF\msmsgs.inf RunDll32 advpack.dll,LaunchINFSection %windir%\INF\msmsgs.inf,BLC.Remove' />
 </package>
 
