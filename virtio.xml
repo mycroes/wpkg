@@ -30,14 +30,9 @@
     <exit code="2" />
   </install>
   <install   cmd='%COMSPEC% /C xcopy /q /r /i /e /y "%SOFTWARE%\VirtIO" "%SYSTEMDRIVE%\DRIVERS\VirtIO"' />
-  <upgrade   cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"'>
-    <exit code="2" />
-  </upgrade>
-  <upgrade   cmd='%COMSPEC% /C xcopy /q /r /i /e /y "%SOFTWARE%\VirtIO" "%SYSTEMDRIVE%\DRIVERS\VirtIO"' />
-  <downgrade cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"'>
-    <exit code="2" />
-  </downgrade>
-  <downgrade cmd='%COMSPEC% /C xcopy /q /r /i /e /y "%SOFTWARE%\VirtIO" "%SYSTEMDRIVE%\DRIVERS\VirtIO"' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
 </package>
 
