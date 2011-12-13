@@ -2,8 +2,11 @@
 
 <!--
   NOTES
-  1) When running as standard user, the program will fail with a message about being unable to add to addressbook. This is because of permissions and why we set them using cacls
+  1) When running as standard user, the program will fail with a message about
+     being unable to add to addressbook. This is because of permissions and
+     why we set them using cacls
   2) Notice the casing of "BroadBand" in the check
+  3) I am not sure where to download this - I lifted it off the USB stick
  -->
 
 <packages>
@@ -16,22 +19,20 @@
   reboot="false">
 
   <variable name="version" value="11.302.09.37.88" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Broadband on Mobile"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Broadband on Mobile" architecture="x64" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="BroadBand on Mobile" value='%version%' />
 
   <install cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
   <install cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f >NUL'><exit code="8023" /></install>
 
-  <upgrade cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
-  <upgrade cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f >NUL'><exit code="8023" /></upgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='"%SOFTWARE%\SingTel\Broadband on Mobile\Setup.exe" /S' />
-  <downgrade cmd='cacls "%ALLUSERSPROFILE%\Application Data\Microsoft\Network\Connections" /E /T /G Everyone:f >NUL'><exit code="8023" /></downgrade>
+  <remove cmd='"%PKG_DESTINATION%\uninst.exe" /S' />
+  <remove cmd='%COMSPEC% /C IF EXIST "%PKG_DESTINATION%" RD /Q /S "%PKG_DESTINATION%"' />
 
-  <remove cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\Broadband on Mobile\uninst.exe" "%PROGRAMFILES%\Broadband on Mobile\uninst.exe" /S' />
-  <remove cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\Broadband on Mobile" RD /Q /S "%PROGRAMFILES%\Broadband on Mobile"' />
-  <remove cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES(x86)%\Broadband on Mobile\uninst.exe" "%PROGRAMFILES(x86)%\Broadband on Mobile\uninst.exe" /S' />
-  <remove cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES(x86)%\Broadband on Mobile" RD /Q /S "%PROGRAMFILES(x86)%\Broadband on Mobile"' />
 </package>
 
 </packages>
