@@ -20,8 +20,8 @@
   <check type="uninstall" condition="exists" path="Ruby %version%-p%patch%" />
 
   <install   cmd='"%SOFTWARE%\Ruby\rubyinstaller-%version%-p%patch%.exe" %flags%' />
-  <upgrade   cmd='"%SOFTWARE%\Ruby\rubyinstaller-%version%-p%patch%.exe" %flags%' />
-  <downgrade cmd='"%SOFTWARE%\Ruby\rubyinstaller-%version%-p%patch%.exe" %flags%' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove    cmd='"%SYSTEMDRIVE%\Ruby\%version%\unins000.exe" /VERYSILENT' />
 
@@ -37,14 +37,14 @@
 
   <variable name="version" value="1.6.5" />
   <variable name="fileversion" value="1_6_5" />
-  <variable name="PKG_SOURCE" value="%SOFTWARE%\Ruby\jruby_windows_1_6_5.exe"     architecture="x86" />
-  <variable name="PKG_SOURCE" value="%SOFTWARE%\Ruby\jruby_windows_x64_1_6_5.exe" architecture="x64" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\Ruby\jruby_windows_%fileversion%.exe"     architecture="x86" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\Ruby\jruby_windows_x64_%fileversion%.exe" architecture="x64" />
 
   <check type="uninstall" condition="exists" path="JRuby %version%" />
 
   <install   cmd='"%PKG_SOURCE%" -q' />
-  <upgrade   cmd='"%PKG_SOURCE%" -q' />
-  <downgrade cmd='"%PKG_SOURCE%" -q' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='"%SYSTEMDRIVE%\jruby-%fileversion%\uninstall.exe" -q' />
 
 </package>
