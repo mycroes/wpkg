@@ -10,32 +10,31 @@
 
 <packages>
 
-  <package
-    id="netpas"
-    name="Netpas Distance"
-    revision="%version%-0"
-    reboot="false"
-    priority="10">
+<package
+  id="netpas"
+  name="Netpas Distance"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
 
-    <variable name="version" value="2.9.0.5" />
-    <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Netpas\Distance" architecture="x86" />
-    <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Netpas\Distance" architecture="x64" />
+  <variable name="version" value="2.9.0.8" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Netpas\Distance" architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Netpas\Distance" architecture="x64" />
+  <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
+  <variable name="DESKTOP" value="%PUBLIC%\Desktop"          os="windows 7" />
 
-    <check type="uninstall" condition="exists" path="Netpas Distance" />
-    <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\distance.exe" value="%version%" />
+  <check type="uninstall" condition="exists" path="Netpas Distance" />
+  <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\distance.exe" value="%version%" />
 
-    <install cmd='%SOFTWARE%\Netpas\Distance\%version%\NetpasDistance.exe /VERYSILENT /sp- /norestart' />
-    <install cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Netpas*.lnk"' />
+  <install cmd='%SOFTWARE%\Netpas\Distance\%version%\NetpasDistance.exe /VERYSILENT /sp- /norestart' />
+  <install cmd='%COMSPEC% /c del "%DESKTOP%\Netpas*.lnk"' />
 
-    <upgrade cmd='%SOFTWARE%\Netpas\Distance\%version%\NetpasDistance.exe /VERYSILENT /sp- /norestart' />
-    <upgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Netpas*.lnk"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-    <downgrade cmd='%SOFTWARE%\Netpas\Distance\%version%\NetpasDistance.exe /VERYSILENT /sp- /norestart' />
-    <downgrade cmd='%COMSPEC% /c del "%ALLUSERSPROFILE%\Desktop\Netpas*.lnk"' />
+  <remove cmd='"%PKG_DESTINATION%\unins000.exe" /VERYSILENT' />
+  <remove cmd='%COMSPEC% /c IF EXIST "%PKG_DESTINATION%" RD /Q /S "%PKG_DESTINATION%"' />
 
-    <remove cmd='"%PKG_DESTINATION%\unins000.exe" /VERYSILENT' />
-    <remove cmd='%COMSPEC% /c IF EXIST "%PKG_DESTINATION%" RD /Q /S "%PKG_DESTINATION%"' />
-
-  </package>
+</package>
 
 </packages>
