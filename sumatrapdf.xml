@@ -19,10 +19,10 @@
 
   <check type="uninstall" condition="versiongreaterorequal" path="SumatraPDF" value="%version%" />
 
-  <install cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
-  <upgrade cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
-  <downgrade cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
-  <remove cmd='"%PKG_DESTINATION%\Uninstall.exe" /S' />
+  <install   cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
+  <remove    cmd='"%PKG_DESTINATION%\Uninstall.exe" /S' />
 
 </package>
 </packages>
