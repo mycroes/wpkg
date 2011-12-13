@@ -13,46 +13,34 @@
 <package
   id="ultradefrag"
   name="Ultra Defragmenter"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
   <variable name="version" value="4.4.0" />
+  <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
+  <variable name="DESKTOP" value="%PUBLIC%\Desktop"          os="windows 7" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="Ultra Defragmenter" value="%version%" />
 
-  <install cmd='"%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.%PROCESSOR_ARCHITECTURE%.exe" /S /NCRC' />
-  <install cmd='%ComSpec% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
+  <install cmd='"%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.%PROCESSOR_ARCHITECTURE%.exe" /S' />
+  <install cmd='%COMSPEC% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
   <install cmd='"%SystemRoot%\system32\bootexctrl.exe" /r defrag_native' />
-  <install cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'><exit code="any" /></install>
-  <install cmd='%ComSpec% /c del /q "%PUBLIC%\Desktop\UltraDefrag.lnk"'><exit code="any" /></install>
-  <install cmd='schtasks /Delete /TN DefragWeekly /F'>
-    <exit code="any" />
-  </install>
+  <install cmd='%COMSPEC% /c del /q "%DESKTOP%\UltraDefrag.lnk"'><exit code="any" /></install>
+  <install include='delete_task' />
   <install cmd='schtasks /Create /TN DefragWeekly /RU SYSTEM /SC WEEKLY /D SUN /ST 02:00:00 /TR "udefrag --wait c:"' />
 
-  <upgrade cmd='"%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.%PROCESSOR_ARCHITECTURE%.exe" /S /NCRC' />
-  <upgrade cmd='%ComSpec% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
-  <upgrade cmd='"%SystemRoot%\system32\bootexctrl.exe" /r defrag_native' />
-  <upgrade cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'><exit code="any" /></upgrade>
-  <upgrade cmd='%ComSpec% /c del /q "%PUBLIC%\Desktop\UltraDefrag.lnk"'><exit code="any" /></upgrade>
-  <upgrade cmd='schtasks /Delete /TN DefragWeekly /F'>
-    <exit code="any" />
-  </upgrade>
-  <upgrade cmd='schtasks /Create /TN DefragWeekly /RU SYSTEM /SC WEEKLY /D SUN /ST 02:00:00 /TR "udefrag --wait c:"' />
+  <upgrade   include='install' />
+  <downgrade include='install'  />
 
-  <downgrade cmd='"%SOFTWARE%\UltraDefrag\ultradefrag-%version%.bin.%PROCESSOR_ARCHITECTURE%.exe" /S /NCRC' />
-  <downgrade cmd='%ComSpec% /c if exist "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" copy /b /v /y "%SOFTWARE%\UltraDefrag\ud-boot-time.cmd" "%SystemRoot%\system32"' />
-  <downgrade cmd='"%SystemRoot%\system32\bootexctrl.exe" /r defrag_native' />
-  <downgrade cmd='%ComSpec% /c del /q "%ALLUSERSPROFILE%\Desktop\UltraDefrag.lnk"'><exit code="any" /></downgrade>
-  <downgrade cmd='%ComSpec% /c del /q "%PUBLIC%\Desktop\UltraDefrag.lnk"'><exit code="any" /></downgrade>
-  <downgrade cmd='schtasks /Delete /TN DefragWeekly /F'>
-    <exit code="any" />
-  </downgrade>
-  <downgrade cmd='schtasks /Create /TN DefragWeekly /RU SYSTEM /SC WEEKLY /D SUN /ST 02:00:00 /TR "udefrag --wait c:"' />
+  <remove include='delete_task' />
+  <remove cmd='%COMSPEC% /c "%SystemRoot%\UltraDefrag\uninstall.exe" /S' />
+  <remove cmd='%COMSPEC% /c if exist "%SystemRoot%\UltraDefrag" rmdir /s /q "%SystemRoot%\UltraDefrag"' />
 
-  <remove  cmd='%ComSpec% /c "%SystemRoot%\UltraDefrag\uninstall.exe" /S /NCRC' />
-  <remove  cmd='%ComSpec% /c if exist "%SystemRoot%\UltraDefrag" rmdir /s /q "%SystemRoot%\UltraDefrag"' />
+  <commands>
+    <command type='delete_task' cmd='schtasks /Delete /TN DefragWeekly /F'><exit code="any" /></command>
+  </commands>
+
 </package>
 
 </packages>
