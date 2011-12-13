@@ -28,7 +28,7 @@
 <package
   id="wpkg-gp"
   name="WPKG-GP"
-  revision="%version%-3"
+  revision="%version%-4"
   priority="0"
   reboot="false">
 
@@ -38,6 +38,9 @@
   <check type="uninstall" condition="versiongreaterorequal" path="Wpkg-GP %version% (x64)" value="%version%" architecture="x64" />
 
   <install   cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\wpkg-gp.ini"' />
+  <install   cmd='msiexec %MSI% /x "%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\WPKG Client 1.3.14.msi" SETTINGSFILE="%WPKG%\settings.xml"'>
+    <condition><check type='file' condition='exists' path='%PROGRAMFILES%\WPKG\WpkgSrv.exe' /></condition>
+  </install>
   <upgrade   include='install' />
   <downgrade include='install' />
 
