@@ -11,25 +11,28 @@
 <package
   id="office2010plus"
   name="MS Office Pro Plus 2010"
-  revision="3"
+  revision="4"
   reboot="false"
   priority="10">
+
+  <variable name="GUID" value="91140000-0011-0000-0000-0000000FF1CE" architecture="x86" />
+  <variable name="GUID" value="91140000-0011-0000-1000-0000000FF1CE" architecture="x64" />
 
   <check type="uninstall" condition="exists" path="Microsoft Office Professional Plus 2010" />
 
   <install cmd='"%SOFTWARE%\Microsoft\MS Office Pro Plus 2010\%PROCESSOR_ARCHITECTURE%\setup.exe"'>
-    <exit code="1641" reboot="false" />
-    <exit code="3010" reboot="false" />
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
   </install>
-  <remove  cmd='msiexec %MSI% /x{91140000-0011-0000-0000-0000000FF1CE}' architecture="x86"><exit code="3010" /></remove>
-  <remove  cmd='msiexec %MSI% /x{91140000-0011-0000-1000-0000000FF1CE}' architecture="x64"><exit code="3010" /></remove>
+
+  <remove  cmd='msiexec %MSI% /x{%GUID%}'><exit code="3010" reboot="postponed" /></remove>
 
 </package>
 
 <package
   id="office2007plus"
   name="MS Office Pro Plus 2007"
-  revision="5"
+  revision="6"
   reboot="false"
   priority="10"
   execute="once">
@@ -41,16 +44,14 @@
     <exit code="3010" reboot="postponed" />
   </install>
 
-  <remove cmd="MsiExec.exe /X{90120000-0011-0000-0000-0000000FF1CE} %MSI%">
-    <exit code="3010" />
-  </remove>
+  <remove cmd="MsiExec.exe /X{90120000-0011-0000-0000-0000000FF1CE} %MSI%"><exit code="3010" reboot="postponed" /></remove>
 
 </package>
 
 <package
   id="office2007std"
   name="MS Office Standard 2007"
-  revision="5"
+  revision="6"
   reboot="false"
   priority="10"
   execute="once">
@@ -62,9 +63,7 @@
     <exit code="3010" reboot="postponed" />
   </install>
 
-  <remove cmd="MsiExec.exe /X{90120000-0012-0000-0000-0000000FF1CE} %MSI%">
-    <exit code="3010" />
-  </remove>
+  <remove cmd="MsiExec.exe /X{90120000-0012-0000-0000-0000000FF1CE} %MSI%"><exit code="3010" reboot="postponed" /></remove>
 
 </package>
 
@@ -78,7 +77,7 @@
 <package
   id="office2007compatibility"
   name="Compatibility pack for Microsoft Office 2007 Formats"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -95,19 +94,10 @@
     <exit code='3010' reboot="postponed" />
   </install>
 
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\FileFormatConverters\O12Conv.msi"'>
-    <exit code='1641' reboot="postponed" />
-    <exit code='3010' reboot="postponed" />
-  </upgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\FileFormatConverters\O12Conv.msi"'>
-    <exit code='1641' reboot="postponed" />
-    <exit code='3010' reboot="postponed" />
-  </downgrade>
-
-  <remove cmd='msiexec %MSI% /X "%SOFTWARE%\Microsoft\FileFormatConverters\O12Conv.msi"'>
-    <exit code='3010' />
-  </remove>
+  <remove cmd='msiexec %MSI% /X "%SOFTWARE%\Microsoft\FileFormatConverters\O12Conv.msi"'><exit code='3010' reboot="postponed" /></remove>
 </package>
 
 <!--
@@ -121,13 +111,12 @@
   priority="10"
   execute="once">
 
-  <install cmd='REG DELETE "HKLM\SOFTWARE\Classes\Outlook.File.eml" /f'>
-    <exit code="1" />
-  </install>
-  <install cmd='REG DELETE "HKCR\Outlook.File.eml" /f'>
-    <exit code="1" />
-  </install>
+  <install cmd='REG DELETE "HKLM\SOFTWARE\Classes\Outlook.File.eml" /f'><exit code="1" /></install>
+  <install cmd='REG DELETE "HKCR\Outlook.File.eml" /f'><exit code="1" /></install>
   <install cmd='regedit /s "%SOFTWARE%\Microsoft\Office\eml-outlook2010.reg"' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
 </package>
 
@@ -139,13 +128,12 @@
   priority="10"
   execute="once">
 
-  <install cmd='REG DELETE "HKLM\SOFTWARE\Classes\Outlook.File.eml" /f'>
-    <exit code="1" />
-  </install>
-  <install cmd='REG DELETE "HKCR\Outlook.File.eml" /f'>
-    <exit code="1" />
-  </install>
+  <install cmd='REG DELETE "HKLM\SOFTWARE\Classes\Outlook.File.eml" /f'><exit code="1" /></install>
+  <install cmd='REG DELETE "HKCR\Outlook.File.eml" /f'><exit code="1" /></install>
   <install cmd='regedit /s "%SOFTWARE%\Microsoft\Office\eml-outlook2007-%PROCESSOR_ARCHITECTURE%.reg"' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
 </package>
 
@@ -159,8 +147,8 @@
   <check type="registry" condition="exists" path="HKLM\SOFTWARE\Classes\Outlook.File.eml" />
 
   <install   cmd='regedit /s "%SOFTWARE%\Microsoft\Office\eml-outlook2003-%PROCESSOR_ARCHITECTURE%.reg"' />
-  <upgrade   cmd='regedit /s "%SOFTWARE%\Microsoft\Office\eml-outlook2003-%PROCESSOR_ARCHITECTURE%.reg"' />
-  <downgrade cmd='regedit /s "%SOFTWARE%\Microsoft\Office\eml-outlook2003-%PROCESSOR_ARCHITECTURE%.reg"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
 </package>
 
@@ -176,7 +164,7 @@
 <package
   id="office2000pro"
   name="MS Office 2000 Professional"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -192,26 +180,19 @@
     <exit code="3010" reboot="postponed" />
   </install>
 
-  <upgrade cmd='%subst% %A IN (`%lt% abbrlang`) DO "%base%\%A\setup.exe" TRANSFORMS="%base%\%A\custom.mst" /wait /qn'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
-  </upgrade>
-
-  <downgrade cmd='%subst% %A IN (`%lt% abbrlang`) DO "%base%\%A\setup.exe" TRANSFORMS="%base%\%A\custom.mst" /wait /qn'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
-  </downgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove cmd='%subst% %A IN (`%lt% lcid`) DO MsiExec.exe /X{0001%A-78E1-11D2-B60F-006097C998E7} %MSI%'>
-    <exit code="1641" />
-    <exit code="3010" />
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
   </remove>
 </package>
 
 <package
   id="ms_office2000premium"
   name="Microsoft Office 2000 Premium"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -227,19 +208,12 @@
     <exit code="3010" reboot="postponed" />
   </install>
 
-  <upgrade cmd='%subst% %A IN (`%lt% abbrlang`) DO "%base%\%A\setup.exe" TRANSFORMS="%base%\%A\custom.mst" /wait /qn'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
-  </upgrade>
-
-  <downgrade cmd='%subst% %A IN (`%lt% abbrlang`) DO "%base%\%A\setup.exe" TRANSFORMS="%base%\%A\custom.mst" /wait /qn'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
-  </downgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove cmd='%subst% %A IN (`%lt% lcid`) DO MsiExec.exe /X{0000%A-78E1-11D2-B60F-006097C998E7} %MSI%'>
-    <exit code="1641" />
-    <exit code="3010" />
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
   </remove>
 </package>
 
@@ -268,15 +242,8 @@
     <exit code="3010" reboot="postponed" />
   </install>
 
-  <upgrade cmd='msiexec /i "%base%\INSTALL.MSI" TRANSFORMS="%base%\custom.mst" allusers=1 ADDLOCAL=ALL %MSI%'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
-  </upgrade>
-
-  <downgrade cmd='msiexec /i "%base%\INSTALL.MSI" TRANSFORMS="%base%\custom.mst" allusers=1 ADDLOCAL=ALL %MSI%'>
-    <exit code="1641" reboot="postponed" />
-    <exit code="3010" reboot="postponed" />
-  </downgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove cmd='msiexec /X{08B8D81A-5A0E-11D3-8A60-00805F9BD2E6} %MSI%'>
     <exit code="1641" />
@@ -328,14 +295,11 @@
   <!-- mso97.dll version: 8.0.0.3507 (no SR) -->
   <!-- mso97.dll version: 8.0.0.4202 (SR1) -->
   <!-- mso97.dll version: 8.0.0.5425 (SR2b) -->
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Microsoft Office\Office"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Microsoft Office\Office" architecture="x64" />
 
-  <check type="logical" condition="and">
-    <check type="uninstall" condition="exists" path="Microsoft Office 97, Professional" />
-    <check type="logical" condition="or">
-      <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Microsoft Office\Office\mso97.dll" value="%version%" />
-      <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Microsoft Office\Office\mso97.dll" value="%version%" />
-    </check>
-  </check>
+  <check type="uninstall" condition="exists" path="Microsoft Office 97, Professional" />
+  <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\mso97.dll" value="%version%" />
 
   <!--
     Excuse my French, but Windows doesn't allow use of subcommands (in an easy
@@ -346,16 +310,10 @@
   <install cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr1off97.exe" /Q /C:"SR1Off97.exe /Q /C:""off97sr1.exe /Q"" "' />
   <install cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr2bof97.exe" /Q /C:"sr2patch.exe /Q"' />
 
-  <upgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Microsoft\Office\Office97\pro\key.txt"`) DO "%SOFTWARE%\Microsoft\Office\Office97\pro\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
-  <upgrade cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr1off97.exe" /Q /C:"SR1Off97.exe /Q /C:""off97sr1.exe /Q"" "' />
-  <upgrade cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr2bof97.exe" /Q /C:"sr2patch.exe /Q"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Microsoft\Office\Office97\pro\key.txt"`) DO "%SOFTWARE%\Microsoft\Office\Office97\pro\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
-  <downgrade cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr1off97.exe" /Q /C:"SR1Off97.exe /Q /C:""off97sr1.exe /Q"" "' />
-  <downgrade cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr2bof97.exe" /Q /C:"sr2patch.exe /Q"' />
-
-  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   "%PROGRAMFILES%\Microsoft Office\Office\Setup\Acme.exe" /w Off97Pro.STF /UA /QNT' />
-  <remove cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" "%PROGRAMFILES(x86)%\Microsoft Office\Office\Setup\Acme.exe" /w Off97Pro.STF /UA /QNT' />
+  <remove cmd='"%PKG_DESTINATION%\Setup\Acme.exe" /w Off97Pro.STF /UA /QNT' />
 </package>
 
 <!--
