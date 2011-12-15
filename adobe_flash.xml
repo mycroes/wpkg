@@ -10,7 +10,7 @@
 <package
   id="flash"
   name="Adobe Flash Player"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -18,10 +18,16 @@
   <variable name="shortversion" value="%mainversion%.1" />
   <variable name="version" value="%shortversion%.102.55" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 ActiveX" value="%version%" />
-  <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 Plugin" value="%version%" />
-  <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 ActiveX (x64)" value="%version%" architecture="x64"/>
-  <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 Plugin (x64)"  value="%version%" architecture="x64"/>
+  <check type='logical' condition='or'>
+    <check type='logical' condition='and'>
+      <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 ActiveX" value="%version%" />
+      <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 Plugin" value="%version%" />
+    </check>
+    <check type='logical' condition='and'>
+      <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 ActiveX (x64)" value="%version%" />
+      <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 Plugin (x64)"  value="%version%" />
+    </check>
+  </check>
 
   <install include='kill' />
   <install cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\system32\Macromed\Flash" mkdir "%WINDIR%\system32\Macromed\Flash"' />
