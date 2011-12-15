@@ -13,7 +13,7 @@
 <package
   id="netextender"
   name="SonicWALL SSL-VPN NetExtender"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -30,6 +30,19 @@
     <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\NEService.exe" value="%fileversion%" />
   </check>
 
+  <!-- Version 3 -->
+  <install cmd='"%PKG_DESTINATION%\uninst.exe" /S'>
+    <condition>
+      <check type='file' condition='exists' path='%PKG_DESTINATION%\uninst.exe' />
+    </condition>
+  </install>
+  <!-- Version 4 -->
+  <install cmd='msiexec /x "%PKG_SOURCE_DIR%\NetExtender.4.0.138.msi" %MSI%'>
+    <exit code='3010' />
+    <condition>
+      <check type='file' condition='versionequalto' path='%PKG_DESTINATION%\NEService.exe' value='4.0.138.1' />
+    </condition>
+  </install>
   <install cmd='msiexec /i "%PKG_SOURCE_DIR%\NetExtender.%version%.msi" %MSI%'><exit code="3010" /></install>
   <install cmd='%COMSPEC% /c IF EXIST "%PKG_SOURCE_DIR%\NetExtender.reg" regedit /s "%PKG_SOURCE_DIR%\NetExtender.reg" '/>
   <install cmd='%COMSPEC% /c xcopy /Y "%PKG_SOURCE_DIR%\NetExtender.%version%.msi" c:\ >NUL'><exit code="any" /></install>
