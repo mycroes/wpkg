@@ -14,7 +14,7 @@
 <package
   id="vcruntime"
   name="Visual C++ Runtime 2005, 2008 and 2010"
-  revision="11"
+  revision="12"
   reboot="false"
   priority="10">
 
@@ -22,12 +22,13 @@
   <variable name='version_2008' value='9.0.30729' />
   <variable name='version_2010' value='10.0.30319' />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2005 Redistributable"       value='%version_2005%' />
-  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2005 Redistributable (x64)" value='%version_2005%' architecture="x64"/>
-  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2008 Redistributable - x86 9.*" value='%version_2008%' />
-  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2008 Redistributable - x64 9.*" value='%version_2008%' architecture="x64"/>
-  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2010  x86 Redistributable - 10.*" value='%version_2010%' />
-  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C++ 2010  x64 Redistributable - 10.*" value='%version_2010%' architecture="x64"/>
+  <!-- We need to escape + to allow it work as a regexp -->
+  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C\+\+ 2005 Redistributable"       value='%version_2005%' />
+  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C\+\+ 2005 Redistributable (x64)" value='%version_2005%' architecture="x64"/>
+  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C\+\+ 2008 Redistributable - x86 9\..*" value='%version_2008%' />
+  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C\+\+ 2008 Redistributable - x64 9\..*" value='%version_2008%' architecture="x64"/>
+  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C\+\+ 2010  x86 Redistributable - 10\..*" value='%version_2010%' />
+  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C\+\+ 2010  x64 Redistributable - 10\..*" value='%version_2010%' architecture="x64"/>
 
   <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2005sp1.exe" /Q /R:N'><exit code="3010" /></install>
   <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2008sp1.exe" /Q /R:N'><exit code="3010" /></install>
