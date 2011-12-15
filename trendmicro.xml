@@ -14,7 +14,8 @@
   reboot="false">
 
   <variable name="version" value="10.5" />
-  <variable name="fileversion" value="10.5.0.1766" />
+  <variable name="fileversion" value="%version%.0.1766" />
+  <variable name='PKG_SOURCE' value='%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi' />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Trend Micro\OfficeScan Client"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Trend Micro\OfficeScan Client" architecture="x64" />
   <variable name='UNINSTALLER' value='"%PKG_DESTINATION%\ntrmv.exe"' />
@@ -32,9 +33,9 @@
   </install>
   <install   include='upgrade' />
 
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi" /lv* "%TEMP%\tmicro.log"' />
+  <upgrade   cmd='msiexec %MSI% /i "%PKG_SOURCE%" /lv* "%TEMP%\tmicro.log"' timeout='1200' />
 
-  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\TrendMicro\OfficeScan\client_105.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%PKG_SOURCE%"' />
 </package>
 
 </packages>
