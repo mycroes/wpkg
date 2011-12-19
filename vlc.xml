@@ -11,7 +11,7 @@
 <package
   id="vlc"
   name="VideoLAN Client"
-  revision="%version%-4"
+  revision="%version%-5"
   reboot="false"
   priority="10">
 
@@ -30,7 +30,7 @@
   <upgrade include="install" />
   <downgrade include="install" />
 
-  <remove cmd='"%PKG_DESTINATION%\uninstall.exe" /S _?=%PKG_DESTINATION%'><exit code='1' /></remove>
+  <remove cmd='"%PKG_DESTINATION%\uninstall.exe" /S _?=%PKG_DESTINATION%'><exit code='-1' /></remove>
   <remove cmd='%COMSPEC% /C RD /S /Q "%PKG_DESTINATION%"'><exit code="any"/></remove>
 </package>
 
