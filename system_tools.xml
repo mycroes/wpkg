@@ -5,10 +5,12 @@
 <package
   id="system_tools"
   name="Copy system utilities to %WINDIR%"
-  revision="2"
+  revision="3"
   reboot="false"
-  priority="0"
-  execute="once">
+  priority="0">
+
+  <check type='file' condition='exists' path='%WINDIR%\devcon_x32.exe' architecture='x86' />
+  <check type='file' condition='exists' path='%WINDIR%\devcon_x64.exe' architecture='x64' />
 
   <install cmd='%COMSPEC% /C xcopy /y "%SOFTWARE%\SystemTools\*.*" "%WINDIR%"' />
 
