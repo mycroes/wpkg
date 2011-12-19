@@ -3,6 +3,7 @@
 <!--
   NOTES
   1) VLC can be really tricky but this should work fine
+  2) We do not choke if uninstaller does not exist
 -->
 
 <packages>
@@ -10,7 +11,7 @@
 <package
   id="vlc"
   name="VideoLAN Client"
-  revision="%version%-3"
+  revision="%version%-4"
   reboot="false"
   priority="10">
 
@@ -29,7 +30,7 @@
   <upgrade include="install" />
   <downgrade include="install" />
 
-  <remove cmd='"%PKG_DESTINATION%\uninstall.exe" /S _?=%PKG_DESTINATION%' />
+  <remove cmd='"%PKG_DESTINATION%\uninstall.exe" /S _?=%PKG_DESTINATION%'><exit code='1' /></remove>
   <remove cmd='%COMSPEC% /C RD /S /Q "%PKG_DESTINATION%"'><exit code="any"/></remove>
 </package>
 
