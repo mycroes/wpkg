@@ -14,7 +14,7 @@
 <package
   id="virtio_net_xp"
   name="VirtIO Network Drivers for XP"
-  revision="%version%-5"
+  revision="%version%-6"
   priority="10">
 
   <variable name="version" value="5.1.209.605" />
@@ -29,7 +29,7 @@
   <install   cmd='devcon_x32 install "%SOFTWARE%\VirtIO\NetKVM\XP\x86\netkvm.inf" "PCI\VEN_1AF4&amp;DEV_1000&amp;SUBSYS_00011AF4&amp;REV_00"'>
     <exit code="2" />
   </install>
-  <install   cmd='%COMSPEC% /C xcopy /q /r /i /e /y "%SOFTWARE%\VirtIO" "%SYSTEMDRIVE%\DRIVERS\VirtIO"' />
+  <install   cmd='%COMSPEC% /C xcopy /q /r /i /e /y "%SOFTWARE%\VirtIO" "%SYSTEMDRIVE%\DRIVERS\VirtIO" > "%TEMP%\system_tools_log.txt"' />
 
   <upgrade   include='install' />
   <downgrade include='install' />
