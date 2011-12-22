@@ -12,9 +12,11 @@
 <package
   id="cdburnerxp"
   name="CDBurnerXP"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
+
+  <depends package-id='dotnet3' />
 
   <variable name="version" value="4.4.0.2838" />
   <variable name='product_code' value='5932A5C4-BB44-4CFB-AD66-1B826F4D788B' /> <!-- version 4 -->
