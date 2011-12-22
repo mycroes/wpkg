@@ -10,21 +10,21 @@
 <package
   id="image_resizer"
   name="Image Resizer Powertoy Clone for Windows"
-  revision="%version%-0"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.0.4319.33193" />
+  <variable name="version" value="2.1" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="Image Resizer for Windows" value="%version%" />
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="versiongreaterorequal" path="Image Resizer Powertoy Clone for Windows" value="%version%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="Image Resizer Powertoy Clone for Windows (64 bit)" value="%version%" />
+  </check>
 
-  <install cmd='msiexec %MSI% /x "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'><exit code='1605' /></install>
-  <install cmd='"%SOFTWARE%\Microsoft\Powertoys\ImageResizerSetup.exe" /quiet' />
-
-  <upgrade   include='install' />
-  <downgrade include='install' />
-
-  <remove cmd='"%SOFTWARE%\Microsoft\Powertoys\ImageResizerSetup.exe" /quiet /uninstall' />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'/>
+  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'/>
+  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'/>
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'/>
 
 </package>
 
