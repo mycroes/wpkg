@@ -16,12 +16,24 @@
 
 <package
   id="java"
+  name='Java Runtime Environment'
+  revision='0'
+  reboot='false'
+  priority='10'
+  execute='once'>
+
+  <depends package-id='java6' />
+
+</package>
+
+<package
+  id="java6"
   name="Java 6"
-  revision="%version%-1"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="last" value="29" /> <!-- last part of the version - used for looping through installed versions -->
+  <variable name="last" value="30" /> <!-- last part of the version - used for looping through installed versions -->
   <variable name="short" value="6u%last%" /> <!-- part of the installer file name -->
   <variable name="version" value="1.6.0_%last%" />
   <variable name='flags' value='ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress' />
