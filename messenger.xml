@@ -57,7 +57,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="10.0.0.1270" />
+  <variable name="version" value="11.0.0.1270" />
   <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Yahoo!\Messenger'      architecture="x86" />
   <variable name='PKG_DESTINATION' value='%PROGRAMFILES(x86)%\Yahoo!\Messenger' architecture="x64" />
 
