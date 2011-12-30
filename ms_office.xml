@@ -32,14 +32,14 @@
 <package
   id="office2007plus"
   name="MS Office Pro Plus 2007"
-  revision="6"
+  revision="7"
   reboot="false"
   priority="10"
   execute="once">
 
   <check type="uninstall" condition="exists" path="Microsoft Office Professional Plus 2007" />
 
-  <install cmd='"%SOFTWARE%\Microsoft\MS Office Pro Plus 2007 SP2\setup.exe"'>
+  <install cmd='"%SOFTWARE%\Microsoft\MS Office Pro Plus 2007 SP3\setup.exe"'>
     <exit code="1641" reboot="postponed" />
     <exit code="3010" reboot="postponed" />
   </install>
@@ -51,14 +51,14 @@
 <package
   id="office2007std"
   name="MS Office Standard 2007"
-  revision="6"
+  revision="7"
   reboot="false"
   priority="10"
   execute="once">
 
   <check type="uninstall" condition="exists" path="Microsoft Office Standard 2007" />
 
-  <install cmd='"%SOFTWARE%\Microsoft\MS Office Std 2007 SP2\setup.exe"'>
+  <install cmd='"%SOFTWARE%\Microsoft\MS Office Std 2007 SP3\setup.exe"'>
     <exit code="1641" reboot="postponed" />
     <exit code="3010" reboot="postponed" />
   </install>
