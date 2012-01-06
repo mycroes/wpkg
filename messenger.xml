@@ -22,9 +22,11 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
+
+  <depends package-id='vcruntime' />
 
   <variable name="version" value="14.0.8117.0416" os='windows xp' />
   <variable name="version" value="15.4.3538.0513" os='windows 7' />
@@ -53,9 +55,11 @@
 <package
   id="yahoomessenger"
   name="Yahoo Messenger"
-  revision="%version%-3"
+  revision="%version%-4"
   reboot="false"
   priority="10">
+
+  <depends package-id='vcruntime' />
 
   <variable name="version" value="11.0.0.1270" />
   <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Yahoo!\Messenger'      architecture="x86" />
