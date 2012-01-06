@@ -5,7 +5,7 @@
 <package
   id="console2"
   name="Console2 (latest beta)"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="0">
 

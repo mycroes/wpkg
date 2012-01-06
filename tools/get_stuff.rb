@@ -207,6 +207,12 @@ PACKAGES = {
   :package_id => 'sumatrapdf'},
 ],
 
+:tnef => [
+  {:url => 'http://www.petersen.de/tnef2win/files/tnef2win.exe',
+  :destination => ['tnef2win', 'tnef2win.exe'],
+  :package_id => 'tnef2win'},
+],
+
 :trueview => [
   {:url => 'http://download.autodesk.com/esd/dwgtrueview/%version%/SetupDWGTrueView%version%_32bit.exe',
   :destination => ['Autodesk', 'DWGTrueview', '%version%', BIT_32_DIR, 'SetupDWGTrueView%version%_32bit.exe'],
@@ -396,6 +402,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
       rsat       Remote Systems Administration Tool
       skype      Skype Business Edition (.msi)
       sumatrapdf SumatraPDF **
+      tnef       TNEF2WIN - TNEF viewer
       trueview   DWG TrueView 2012
       ud         UltraDefrag
       vc         Visual C++ Runtime 2005, 2008, 2010
