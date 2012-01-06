@@ -67,10 +67,33 @@
 
 </package>
 
+<package
+  id="office2003pro"
+  name="MS Office 2003"
+  revision="0"
+  reboot="false"
+  priority="10"
+  execute="once">
+
+  <check type="uninstall" condition="exists" path="Microsoft Office Standard 2007" />
+
+  <install cmd='"%SOFTWARE%\Microsoft\MS Office 2003 Pro\setup.exe" TRANSFORMS=unattended.mst /qb-'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </install>
+  <install include='upgrade' />
+
+  <upgrade cmd='msiexec /p "%SOFTWARE%\Microsoft\MS Office 2003 Pro\MAINSP3.MSP" /qn' />
+  <upgrade cmd='msiexec /p "%SOFTWARE%\Microsoft\MS Office 2003 Pro\OWC11SP3.MSP" /qn' />
+
+  <downgrade include='upgrade' />
+
+</package>
+
 <!--
   NOTES:
-  1) Download FileFormatConverters and extract with /extract:<path>. Recent
-     versions include up to SP2 in the MSI.
+  1) Download FileFormatConverters and extract with /extract:<path> or 7zip.
+     Recent versions include up to SP2 in the MSI.
   2) Package uses MSI to uninstall, because the GUID depends on locale.
 -->
 
