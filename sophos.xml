@@ -47,15 +47,8 @@
     <exit code='3010' reboot="postponed" />
   </install>
 
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\savxp\Sophos Anti-Virus.msi" CHECKFORCOMPETITORS=1'>
-    <exit code='1641' reboot="postponed" />
-    <exit code='3010' reboot="postponed" />
-  </upgrade>
-
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\savxp\Sophos Anti-Virus.msi" CHECKFORCOMPETITORS=1'>
-    <exit code='1641' reboot="postponed" />
-    <exit code='3010' reboot="postponed" />
-  </downgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove cmd='msiexec %MSI% /X{9ACB414D-9347-40B6-A453-5EFB2DB59DFA}'>
     <exit code='3010' reboot="postponed" />
@@ -89,15 +82,8 @@
     <exit code='3010' reboot="postponed" />
   </install>
 
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\sau\Sophos AutoUpdate.msi" TRANSFORMS="%SOFTWARE%\Sophos\sau\custom.mst" RMSACTION=0 BOOTSTRAP=NOUPDATE'>
-    <exit code='1641' reboot="postponed" />
-    <exit code='3010' reboot="postponed" />
-  </upgrade>
-
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\sau\Sophos AutoUpdate.msi" TRANSFORMS="%SOFTWARE%\Sophos\sau\custom.mst" RMSACTION=0 BOOTSTRAP=NOUPDATE'>
-    <exit code='1641' reboot="postponed" />
-    <exit code='3010' reboot="postponed" />
-  </downgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove cmd='msiexec %MSI% /X{15C418EB-7675-42be-B2B3-281952DA014D}'>
     <exit code='3010' reboot="postponed" />

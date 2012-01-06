@@ -53,18 +53,18 @@
 <package
   id="yahoomessenger"
   name="Yahoo Messenger"
-  revision="%version%-1"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="10.0.0.1270" />
+  <variable name="version" value="11.0.0.1270" />
   <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Yahoo!\Messenger'      architecture="x86" />
   <variable name='PKG_DESTINATION' value='%PROGRAMFILES(x86)%\Yahoo!\Messenger' architecture="x64" />
 
   <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\YahooMessenger.exe" value="%version%" />
 
   <install   include='kill' />
-  <install   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s /q' />
+  <install   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s' timeout='600' />
   <upgrade   include='install' />
   <downgrade include='install' />
 

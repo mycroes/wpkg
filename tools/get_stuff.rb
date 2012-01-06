@@ -224,10 +224,10 @@ PACKAGES = {
 
 # notice the 32-bit renaming
 :ud => [
-  {:url => 'http://sourceforge.net/projects/ultradefrag/files/ultradefrag/ultradefrag-%version%/ultradefrag-%version%.bin.i386.exe/download',
+  {:url => 'http://downloads.sourceforge.net/project/ultradefrag/stable-release/%version%/ultradefrag-%version%.bin.i386.exe',
   :destination => ['UltraDefrag', 'ultradefrag-%version%.bin.x86.exe'],
   :package_id => 'ultradefrag'},
-  {:url => 'http://sourceforge.net/projects/ultradefrag/files/ultradefrag/ultradefrag-%version%/ultradefrag-%version%.bin.amd64.exe/download',
+  {:url => 'http://downloads.sourceforge.net/project/ultradefrag/stable-release/%version%/ultradefrag-%version%.bin.amd64.exe',
   :destination => ['UltraDefrag', 'ultradefrag-%version%.bin.amd64.exe'],
   :package_id => 'ultradefrag'},
 ],
