@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages xmlns:xsi="http://www.wpkg.org/packages" xsi:noNamespaceSchemaLocation="xsd/packages.xsd">
+
+<package
+  id="tnef2win"
+  name="tnef2win - TNEF viewer"
+  revision="%version%-0"
+  reboot="false"
+  priority="0">
+
+  <variable name="version" value="1.07" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\tnef2win\tnef2win.exe" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\tnef2win"      architecture="x86" /> <!-- do NOT set this to just %PROGRAMFILES% due to <remove> -->
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\tnef2win" architecture="x64" /> <!-- do NOT set this to just %PROGRAMFILES% due to <remove> -->
+
+  <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\tnef2win.exe" value="%version%" />
+
+  <install cmd='%COMSPEC% /C mkdir "%PKG_DESTINATION%" >NUL' />
+  <install cmd='%COMSPEC% /C xcopy /q /y "%PKG_SOURCE%" "%PKG_DESTINATION%\"' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+  <remove    cmd='%COMSPEC% /C RD /Q /S "%PKG_DESTINATION%"' />
+
+</package>
+
+</packages>
