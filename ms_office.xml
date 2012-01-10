@@ -70,7 +70,7 @@
 <package
   id="office2003pro"
   name="MS Office 2003"
-  revision="0"
+  revision="1"
   reboot="false"
   priority="10"
   execute="once">
@@ -83,8 +83,8 @@
   </install>
   <install include='upgrade' />
 
-  <upgrade cmd='msiexec /p "%SOFTWARE%\Microsoft\MS Office 2003 SP\MAINSP3.MSP" /qn' />
-  <upgrade cmd='msiexec /p "%SOFTWARE%\Microsoft\MS Office 2003 SP\OWC11SP3.MSP" /qn' />
+  <upgrade cmd='msiexec /p "%SOFTWARE%\Microsoft\MS Office 2003 SP\MAINSP3.MSP" /qn'><exit code='1642' /></upgrade>
+  <upgrade cmd='msiexec /p "%SOFTWARE%\Microsoft\MS Office 2003 SP\OWC11SP3.MSP" /qn'><exit code='1642' /></upgrade>
 
   <downgrade include='upgrade' />
 
