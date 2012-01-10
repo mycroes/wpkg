@@ -116,6 +116,7 @@
     <exit code='1641' reboot="postponed" />
     <exit code='3010' reboot="postponed" />
   </install>
+  <install cmd='"%SOFTWARE%\Microsoft\FileFormatConverters\compatibilitypacksp3-kb2526297-fullfile-en-us.exe" /quiet /norestart' />
 
   <upgrade   include='install' />
   <downgrade include='install' />
