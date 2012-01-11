@@ -25,11 +25,11 @@
 <package
   id="adobereaderX"
   name="Adobe Reader X"
-  revision="%version%-6"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="last" value="1" />
+  <variable name="last" value="2" />
   <variable name="version" value="10.1.%last%" />
   <variable name="language" value="en_US" lcid="0409,0809,4809" />
 
@@ -65,8 +65,9 @@
   reboot="false"
   priority="10">
 
-  <variable name="last" value="7" /> <!-- change this when the version increases -->
-  <variable name="version" value="9.4.%last%" />
+  <variable name="last" value="0" /> <!-- change this when the version increases -->
+  <variable name="mainversion" value="9.5" />
+  <variable name="version" value="%mainversion%.%last%" />
   <variable name="lt" value='"%WPKG%\tools\localetool.exe"' />
   <variable name="subst" value='%COMSPEC% /C FOR /F "usebackq tokens=1-10"' />
 
@@ -82,17 +83,15 @@
   <install cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 8.2" ' ><exit code="any" /></install>
   <install cmd='msiexec %MSI% /x{AC76BA86-7AD7-1033-7B44-AA0000000001}'><exit code="1605" /></install> <!-- remove 10.0 -->
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\pre_install.cmd" "%SOFTWARE%\Adobe\Reader\9\pre_install.cmd"' />
-  <install cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdr940_%A_%B.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\9\reader9.mst"'>
-    <exit code="3010" reboot="false" />
-  </install>
-  <install cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd94%I_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></install>
+  <install cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\%mainversion%\AdbeRdr950_%A_%B.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\9\reader9.mst"'><exit code="3010" /></install>
+  <install cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /p "%SOFTWARE%\Adobe\Reader\%mainversion%\AdbeRdrUpd95%I_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' /></install>
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\post_install.cmd" "%SOFTWARE%\Adobe\Reader\9\post_install.cmd"' />
   <install include='kill' />
 
   <upgrade   include='install' />
   <downgrade include='install' />
 
-  <remove cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /x "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdr940_%A_%B.msi"' />
+  <remove cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /x "%SOFTWARE%\Adobe\Reader\%mainversion%\AdbeRdr950_%A_%B.msi"' />
   <remove include='kill' />
 
   <commands>
