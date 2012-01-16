@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages xmlns:xsi="http://www.wpkg.org/packages" xsi:noNamespaceSchemaLocation="xsd/packages.xsd">
+
+<package
+  id="puretext"
+  name="PureText"
+  revision="%version%-0"
+  reboot="false"
+  priority="0">
+
+  <depends package-id="7zip" />
+
+  <variable name="version" value="2.0.0.0" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\PureText\puretext20_x86.zip" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\PureText"      architecture='x86' />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\PureText" architecture='x64' />
+
+  <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\puretext.exe" value="%version%" />
+
+  <install   cmd='"%PROGRAMFILES%\7-Zip\7z.exe" e -y -o"%PKG_DESTINATION%\" "%PKG_SOURCE%" >NUL' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
+  <remove    cmd='%COMSPEC% /C RD /Q /S "%PKG_DESTINATION%"' />
+
+</package>
+
+</packages>
