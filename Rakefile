@@ -29,4 +29,15 @@ task :package_list do
   system %q[ grep name= *.xml | grep -v variable | cut -f2 -d '"' | sort -u | todos > package_list.txt ]
 end
 
+desc 'Pull latest source'
+task :pull do
+  system 'git pull'
+  system 'git submodule update --init --recursive'
+end
+
+desc 'Push source'
+task :push do
+  system 'git push'
+end
+
 task :default => [:clean, :permissions, :tidy, :check ]
