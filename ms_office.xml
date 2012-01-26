@@ -69,15 +69,38 @@
 
 <package
   id="office2003pro"
-  name="MS Office 2003"
-  revision="1"
+  name="MS Office 2003 Professional"
+  revision="2"
   reboot="false"
   priority="10"
   execute="once">
 
-  <check type="uninstall" condition="exists" path="Microsoft Office Standard 2003" />
+  <check type="uninstall" condition="exists" path="Microsoft Office Professional Edition 2003" />
 
   <install cmd='"%SOFTWARE%\Microsoft\MS Office 2003 Pro\setup.exe" TRANSFORMS=unattended.mst /qb-'>
+    <exit code="1641" reboot="postponed" />
+    <exit code="3010" reboot="postponed" />
+  </install>
+  <install include='upgrade' />
+
+  <upgrade cmd='msiexec /p "%SOFTWARE%\Microsoft\MS Office 2003 SP\MAINSP3.MSP" /qn'><exit code='1642' /></upgrade>
+  <upgrade cmd='msiexec /p "%SOFTWARE%\Microsoft\MS Office 2003 SP\OWC11SP3.MSP" /qn'><exit code='1642' /></upgrade>
+
+  <downgrade include='upgrade' />
+
+</package>
+
+<package
+  id="office2003std"
+  name="MS Office 2003 Standard"
+  revision="2"
+  reboot="false"
+  priority="10"
+  execute="once">
+
+  <check type="uninstall" condition="exists" path="Microsoft Office Standard Edition 2003" />
+
+  <install cmd='"%SOFTWARE%\Microsoft\MS Office 2003 Std\setup.exe" TRANSFORMS=unattended.mst /qb-'>
     <exit code="1641" reboot="postponed" />
     <exit code="3010" reboot="postponed" />
   </install>
