@@ -123,28 +123,27 @@
 <package
   id="office2007compatibility"
   name="Compatibility pack for Microsoft Office 2007 Formats"
-  revision="%version%-1"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="12.0.6514.5001" />
+  <variable name="version" value="12.0.6654.5003" />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Microsoft Office\Office12'      architecture='x86' />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES(x86)%\Microsoft Office\Office12' architecture='x64' />
 
   <!-- Name differs depending on installed language, so check path instead -->
-  <check type="logical" condition="or">
-    <check type="file" condition="exists" path="%PROGRAMFILES%\Microsoft Office\Office12\Moc.exe" />
-    <check type="file" condition="exists" path="%PROGRAMFILES(x86)%\Microsoft Office\Office12\Moc.exe" />
-  </check>
+  <check type='file' condition='versiongreaterorequal' path='%PKG_DESTINATION%\excelcnv.exe' value='%version%' />
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\FileFormatConverters\O12Conv.msi"'>
-    <exit code='1641' reboot="postponed" />
-    <exit code='3010' reboot="postponed" />
+    <exit code='1641' />
+    <exit code='3010' />
   </install>
   <install cmd='"%SOFTWARE%\Microsoft\FileFormatConverters\compatibilitypacksp3-kb2526297-fullfile-en-us.exe" /quiet /norestart' />
 
   <upgrade   include='install' />
   <downgrade include='install' />
 
-  <remove cmd='msiexec %MSI% /X "%SOFTWARE%\Microsoft\FileFormatConverters\O12Conv.msi"'><exit code='3010' reboot="postponed" /></remove>
+  <remove cmd='msiexec %MSI% /X "%SOFTWARE%\Microsoft\FileFormatConverters\O12Conv.msi"'><exit code='3010' /></remove>
 </package>
 
 <!--
