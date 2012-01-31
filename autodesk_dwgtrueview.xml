@@ -16,7 +16,7 @@ SETUP.EXE /w /t /q setup.ini
 
 <package
   id="autodesk_dwgtrueview"
-  name="Autodesk DWG TrueView - latest version"
+  name="Autodesk DWG TrueView"
   revision="2012"
   reboot="false"
   priority="10"
