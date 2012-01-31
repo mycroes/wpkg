@@ -11,6 +11,17 @@
 <package
   id="dameware"
   name="DameWare Remote Control Client"
+  revision="7"
+  reboot="false"
+  priority="10">
+
+  <depends package-id='dameware7' />
+
+</package>
+
+<package
+  id="dameware7"
+  name="DameWare Remote Control Client 7"
   revision="%version%-0"
   reboot="false"
   priority="10">
@@ -26,4 +37,21 @@
 
 </package>
 
+<package
+  id="dameware6"
+  name="DameWare Remote Control Client 6"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="6.8.1.4" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="DameWare Mini Remote Control" value="%version%" />
+
+  <install   cmd='msiexec /i "%SOFTWARE%\DameWare\%PROCESSOR_ARCHITECTURE%\DWMRC6x.msi" %MSI%' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
+  <remove    cmd='msiexec /x "%SOFTWARE%\DameWare\%PROCESSOR_ARCHITECTURE%\DWMRC6x.msi" %MSI%' />
+
+</package>
 </packages>
