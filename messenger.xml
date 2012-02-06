@@ -22,7 +22,7 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="%version%-3"
+  revision="%version%-4"
   reboot="false"
   priority="10">
 
@@ -31,6 +31,8 @@
   <variable name="version" value="14.0.8117.0416" os='windows xp' />
   <variable name="version" value="15.4.3538.0513" os='windows 7' />
   <variable name='params' value='/q /AppSelect:Messenger /noHomepage /noSearch /noLaunch /NOToolbarCEIP' />
+  <variable name='PKG_DESTIONATION' value='%PROGRAMFILES%\Windows Live'      architecture='x86' />
+  <variable name='PKG_DESTIONATION' value='%PROGRAMFILES(x86)%\Windows Live' architecture='x64' />
 
   <check type='logical' condition='or'>
     <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Messenger" value="%version%" />
@@ -38,11 +40,10 @@
     <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Essentials 2011" value="%version%" />
   </check>
 
-  <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2009\wlsetup-all.exe" %params%' os='windows xp' />
-  <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2011\wlsetup-all.exe" %params%' os='windows 7' />
+  <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2009\wlsetup-all.exe" %params%' timeout='600' os='windows xp' />
+  <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2011\wlsetup-all.exe" %params%' timeout='600' os='windows 7' />
 
-  <remove  cmd='"%PROGRAMFILES%"\Windows Live\Installer\wlarp.exe" /uninstall:Messenger /quiet' architecture='x86' />
-  <remove  cmd='"%PROGRAMFILES(x86)%"\Windows Live\Installer\wlarp.exe" /uninstall:Messenger /quiet' architecture='x64' />
+  <remove  cmd='"%PKG_DESTINATION%"\Installer\wlarp.exe" /uninstall:Messenger /quiet' />
 
 </package>
 
