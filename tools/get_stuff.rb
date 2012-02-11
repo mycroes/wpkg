@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby -w
 
 =begin
-Copyright 2011 Peter Hoeg <p.hoeg@northwind.sg>
+Copyright 2011-2012 Peter Hoeg <peter@speartail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -147,10 +147,10 @@ PACKAGES = {
 ],
 
 :lastpass => [
-  {:url => 'https://lastpass.com/lastpass.exe',
+  {:url => 'https://download.lastpass.com/lastpass.exe',
   :destination => ['LastPass', '%version%', BIT_32_DIR, 'lastpass.exe'],
   :package_id => 'lastpass'},
-  {:url => 'https://lastpass.com/lastpass_x64.exe',
+  {:url => 'https://download.lastpass.com/lastpass_x64.exe',
   :destination => ['LastPass', '%version%', BIT_64_DIR, 'lastpass.exe'],
   :package_id => 'lastpass'},
 ],
