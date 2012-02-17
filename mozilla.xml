@@ -19,7 +19,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="10.0.1" />
+  <variable name="version" value="10.0.2" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
 
@@ -47,7 +47,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="10.0.1" />
+  <variable name="version" value="10.0.2" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
 
