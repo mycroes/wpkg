@@ -11,7 +11,7 @@
 <package
   id="citrix_cag"
   name="Citrix CAG Plug-in"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -19,13 +19,13 @@
 
   <check type="uninstall" condition="versiongreaterorequal" path="Citrix Access Gateway Plug-in" value="%version%" />
 
-  <install   cmd='msiexec /i "%SOFTWARE%\Citrix\%version%\%PROCESSOR_ARCHITECTURE%\cagse.msi" %MSI%' />
+  <install   cmd='msiexec /i "%SOFTWARE%\Citrix\CAG\%version%\%PROCESSOR_ARCHITECTURE%\cagse.msi" %MSI%' />
   <install   cmd='REG ADD "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags" /v "{5042648C-F439-468D-859B-6CD12BA02D3A}" /t REG_DWORD /d 1 /f' />
 
   <upgrade   include='install' />
   <downgrade include='install' />
 
-  <remove    cmd='msiexec /x "%SOFTWARE%\Citrix\%version%\%PROCESSOR_ARCHITECTURE%\cagse.msi" %MSI%' />
+  <remove    cmd='msiexec /x "%SOFTWARE%\Citrix\CAG\%version%\%PROCESSOR_ARCHITECTURE%\cagse.msi" %MSI%' />
   <remove    cmd='REG DELETE "HKLM\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags" /v "{5042648C-F439-468D-859B-6CD12BA02D3A}" /f' />
 
 </package>
