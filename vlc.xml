@@ -11,20 +11,23 @@
 <package
   id="vlc"
   name="VideoLAN Client"
-  revision="%version%-5"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="1.1.11" />
+  <variable name="version" value="2.0.0" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\VideoLAN\VLC"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\VideoLAN\VLC" architecture="x64" />
   <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
   <variable name="DESKTOP" value="%PUBLIC%\Desktop"          os="windows 7" />
 
-  <check type="uninstall" condition="exists" path="VLC media player %version%" />
+  <check type='logical' condition='or'>
+    <check type='uninstall' condition='exists' path='VLC media player %version%' />
+    <check type='uninstall' condition='versiongreaterorequal' path='VLC media player' value='%version%' />
+  </check>
 
   <install include="remove" />
-  <install cmd='"%SOFTWARE%\VLC\vlc-%version%-win32.exe" /S' />
+  <install cmd='"%SOFTWARE%\VLC\vlc-%version%-win32.exe" /S' timeout='300' />
   <install cmd='%COMSPEC% /c del /Q "%DESKTOP%\VLC*.lnk"'><exit code="any" /></install>
 
   <upgrade include="install" />
