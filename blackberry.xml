@@ -3,7 +3,9 @@
 <!--
 NOTES
  1) It might be better to fudge setup.ini instead of removing the Run key
- 2) BDM depends on a specific version of the C++ runtime which we force install here. vcruntime installs a newer version that BDM doesn't detect.
+ 2) BDM depends on a specific version of the C++ runtime which we force install here. 
+    vcruntime installs a newer version that BDM doesn't detect.
+ 3) BDM comes with msxml6 but the package provided by 'msxml' works
 -->
 
 <packages>
@@ -11,13 +13,13 @@ NOTES
 <package
   id="blackberry_desktop_manager"
   name="BlackBerry Desktop Manager"
-  revision="%version%-4"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="6.1.0" />
-  <variable name="majorversion" value="6.1" />
-  <variable name="minorversion" value="35" />
+  <variable name='version' value='7.0.0' />
+  <variable name='majorversion' value='7.0' />
+  <variable name='minorversion' value='43' />
   <variable name="vc_id" value="{8D6472BE-E246-4e63-A578-53EDAE1F40AB}" />
 
   <depends package-id="msxml" />
