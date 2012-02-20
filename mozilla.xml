@@ -19,7 +19,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="10.0" />
+  <variable name="version" value="10.0.2" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
 
@@ -27,6 +27,34 @@
 
   <install   include='kill' />
   <install   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+  <remove    include='kill' />
+  <remove    cmd='"%PKG_DESTINATION%\uninstall\helper.exe" /S' />
+
+  <commands>
+    <command type='kill' cmd='taskkill.exe /f /im firefox.exe'><exit code="any" /></command>
+  </commands>
+
+</package>
+
+<package
+  id="firefox_esr"
+  name="Mozilla Firefox - Extended Support Release"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="10.0.1" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
+
+  <check type="uninstall" condition="exists" path="Mozilla Firefox %version% (.*)" />
+
+  <install   include='kill' />
+  <install   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%esr.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
 
   <upgrade   include='install' />
   <downgrade include='install' />
@@ -75,7 +103,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="8.0" />
+  <variable name="version" value="10.0.2" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Thunderbird"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Thunderbird" architecture="x64" />
 

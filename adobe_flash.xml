@@ -10,13 +10,13 @@
 <package
   id="flash"
   name="Adobe Flash Player"
-  revision="%version%-3"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
   <variable name="mainversion" value="11" />
   <variable name="shortversion" value="%mainversion%.1" />
-  <variable name="version" value="%shortversion%.102.55" />
+  <variable name="version" value="%shortversion%.102.62" />
 
   <check type='logical' condition='or'>
     <check type='logical' condition='and'>

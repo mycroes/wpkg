@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby -w
 
 =begin
-Copyright 2011 Peter Hoeg <p.hoeg@northwind.sg>
+Copyright 2011-2012 Peter Hoeg <peter@speartail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -88,6 +88,13 @@ PACKAGES = {
   :language => 'en-US'},
 ],
 
+:firefox_esr => [
+  {:url => 'ftp://ftp.mozilla.org/pub/firefox/releases/%version%esr/win32/%language%/Firefox Setup %version%esr.exe',
+  :destination => ['Mozilla', 'Firefox', 'Firefox Setup %version%esr.exe'],
+  :package_id => 'firefox_esr',
+  :language => 'en-US'},
+],
+
 :flash => [
   {:url => 'http://fpdownload.macromedia.com/pub/flashplayer/current/licensing/win/install_flash_player_%mainversion%_active_x_32bit.msi',
   :destination => ['Adobe', 'Flash', '%shortversion%', BIT_32_DIR, 'install_flash_player_%mainversion%_active_x.msi'],
@@ -147,10 +154,10 @@ PACKAGES = {
 ],
 
 :lastpass => [
-  {:url => 'https://lastpass.com/lastpass.exe',
+  {:url => 'https://download.lastpass.com/lastpass.exe',
   :destination => ['LastPass', '%version%', BIT_32_DIR, 'lastpass.exe'],
   :package_id => 'lastpass'},
-  {:url => 'https://lastpass.com/lastpass_x64.exe',
+  {:url => 'https://download.lastpass.com/lastpass_x64.exe',
   :destination => ['LastPass', '%version%', BIT_64_DIR, 'lastpass.exe'],
   :package_id => 'lastpass'},
 ],
@@ -381,37 +388,39 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
   --package, -p PACKAGE_NAME:
     Get one of the following packages:
 
-      all        All packages
-      sevenzip   7Zip **
-      bullzip    BullZIP PDFPrinter
-      console    Console2
-      dotnet3    .NET 3.5
-      dotnet4    .NET 4
-      flash      Flash Player
-      gs       	 GhostScript **
-      ie8        Internet Explorer 8 for Windows XP
-      ie9        Internet Explorer 9
-      installer  Windows Installer 4.5
-      jruby      JRuby
-      keepass	 KeePass
-      netpas     Netpas Distance
-      npp        Notepad++ **
-      lastpass	 LastPass
-      msse       Microsoft Security Essentials
-      pdn        PaintDotNet
-      rsat       Remote Systems Administration Tool
-      skype      Skype Business Edition (.msi)
-      sumatrapdf SumatraPDF **
-      tnef       TNEF2WIN - TNEF viewer
-      trueview   DWG TrueView 2012
-      ud         UltraDefrag
-      vc         Visual C++ Runtime 2005, 2008, 2010
-      visio      Visio Viewer 2010
-      vj         Visual J Runtime
-      vlc        VLC Player **
-      xml        MSXML
-      wpkg       WPKG Client
-      wpkg_gp	 WPKG GP
+      all         All packages
+      sevenzip    7Zip **
+      bullzip     BullZIP PDFPrinter
+      console     Console2
+      dotnet3     .NET 3.5
+      dotnet4     .NET 4
+      firefox     Firefox **
+      firefox_esr Firefox Extended Support Release **
+      flash       Flash Player
+      gs       	  GhostScript **
+      ie8         Internet Explorer 8 for Windows XP
+      ie9         Internet Explorer 9
+      installer   Windows Installer 4.5
+      jruby       JRuby
+      keepass	    KeePass
+      netpas      Netpas Distance
+      npp         Notepad++ **
+      lastpass	  LastPass
+      msse        Microsoft Security Essentials
+      pdn         PaintDotNet
+      rsat        Remote Systems Administration Tool
+      skype       Skype Business Edition (.msi)
+      sumatrapdf  SumatraPDF **
+      tnef        TNEF2WIN - TNEF viewer
+      trueview    DWG TrueView 2012
+      ud          UltraDefrag
+      vc          Visual C++ Runtime 2005, 2008, 2010
+      visio       Visio Viewer 2010
+      vj          Visual J Runtime
+      vlc         VLC Player **
+      xml         MSXML
+      wpkg        WPKG Client
+      wpkg_gp	    WPKG GP
 
       Packages marked with ** support version specific downloads
 
