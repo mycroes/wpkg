@@ -23,7 +23,7 @@
 <package
   id="ie9"
   name="Internet Explorer 9 - for Windows 7"
-  revision="4"
+  revision="5"
   reboot="false"
   priority="10">
 
@@ -32,6 +32,12 @@
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Internet Explorer\iexplore.exe" value="9.00.8112.16421" />
   </check>
 
+  <variable name='PKG_SOURCE' value='%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\Windows6.1-KB2454826-v2-x86.msu' architecture='x86' />
+  <variable name='PKG_SOURCE' value='%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\Windows6.1-KB2454826-v2-x64.msu' architecture='x64' />
+
+  <install cmd='wusa "%PKG_SOURCE%" /quiet /norestart'>
+    <exit code='3010' />
+  </install>
   <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\IE9-Windows7-%A.exe" /passive /norestart /update-no'>
     <exit code="3010" reboot="postponed" />
   </install>

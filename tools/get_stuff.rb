@@ -131,10 +131,14 @@ PACKAGES = {
 ],
 
 :ie9 => [
-  {:url => 'http://download.microsoft.com/download/C/3/B/C3BF2EF4-E764-430C-BDCE-479F2142FC81/IE9-Windows7-x86-enu.exe',
-  :destination => ['Microsoft', 'IE9', BIT_32_DIR, 'IE9-Windows7-enu.exe']},
-  {:url => 'http://download.microsoft.com/download/C/1/6/C167B427-722E-4665-9A40-A37BC5222B0A/IE9-Windows7-x64-enu.exe',
-  :destination => ['Microsoft', 'IE9', BIT_64_DIR, 'IE9-Windows7-enu.exe']},
+  { url: 'http://download.microsoft.com/download/5/E/4/5E404378-9A5D-41AB-AFBA-1AC04F3B2A13/Windows6.1-KB2454826-v2-x86.msu',
+    destination: ['Microsoft', 'IE9', BIT_32_DIR, 'Windows6.1-KB2454826-v2-x86.msu']},
+  { url: 'http://download.microsoft.com/download/D/B/D/DBD62263-2627-49CB-B675-AA1601EBE0BD/Windows6.1-KB2454826-v2-x64.msu',
+    destination: ['Microsoft', 'IE9', BIT_64_DIR, 'Windows6.1-KB2454826-v2-x64.msu']},
+  { url: 'http://download.microsoft.com/download/C/3/B/C3BF2EF4-E764-430C-BDCE-479F2142FC81/IE9-Windows7-x86-enu.exe',
+   destination: ['Microsoft', 'IE9', BIT_32_DIR, 'IE9-Windows7-enu.exe']},
+  { url: 'http://download.microsoft.com/download/C/1/6/C167B427-722E-4665-9A40-A37BC5222B0A/IE9-Windows7-x64-enu.exe',
+   destination: ['Microsoft', 'IE9', BIT_64_DIR, 'IE9-Windows7-enu.exe']},
 ],
 
 :installer => [
