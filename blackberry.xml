@@ -3,7 +3,7 @@
 <!--
 NOTES
  1) It might be better to fudge setup.ini instead of removing the Run key
- 2) BDM depends on a specific version of the C++ runtime which we force install here. 
+ 2) BDM depends on a specific version of the C++ runtime which we force install here.
     vcruntime installs a newer version that BDM doesn't detect.
  3) BDM comes with msxml6 but the package provided by 'msxml' works
 -->
