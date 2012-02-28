@@ -18,7 +18,7 @@
 
   <depends package-id='dotnet3' />
 
-  <variable name="version" value="4.4.0.2838" />
+  <variable name="version" value="4.4.0.2905" />
   <variable name='product_code' value='5932A5C4-BB44-4CFB-AD66-1B826F4D788B' /> <!-- version 4 -->
   <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
   <variable name="DESKTOP" value="%PUBLIC%\Desktop"          os="windows 7" />
@@ -26,7 +26,7 @@
   <check type="uninstall" condition="versiongreaterorequal" path="CDBurnerXP" value="%version%" />
 
   <install cmd='msiexec /x{%product_code%} %MSI%'><exit code="1605" /></install>
-  <install cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
+  <install cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' timeout='600' />
   <install cmd='%COMSPEC% /c del /Q "%DESKTOP%\CDBurnerXP.lnk"'><exit code="any" /></install>
 
   <upgrade   include='install' />
