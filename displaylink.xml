@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<!--
+  NOTES
+  1) Go to http://www.displaylink.com/corporateinstall
+  2) Register
+  3) Go to http://www.displaylink.com/corporateinstall/download.php
+  4) Extract and place in x86/amd64 directories
+-->
+
+<package
+  id="displaylink"
+  name="DisplayLink Drivers"
+  revision="1"
+  reboot="false">
+
+  <variable name='VERSION' value='6.0.33743.0' />
+
+  <check type='uninstall' condition='versiongreaterorequal' path='DisplayLink Core Software' value='%VERSION%' />
+
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\DisplayLink\%PROCESSOR_ARCHITECTURE%\Setup.msi"'><exit code='3010' /></install>
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\DisplayLink\%PROCESSOR_ARCHITECTURE%\Setup.msi"' />
+
+</package>
+
+</packages>
