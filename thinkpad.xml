@@ -8,6 +8,31 @@
 <packages xmlns:xsi="http://www.wpkg.org/packages" xsi:noNamespaceSchemaLocation="xsd/packages.xsd">
 
 <package
+  id="tp_hotkeys"
+  name="ThinkPad HotKeys"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <variable name="file" value="8jvu12yy.exe" />
+  <variable name="file" value="8jvu12yy.exe" />
+  <variable name="version" value="3.70" />
+  <variable name="version" value="3.70" />
+
+  <check type='logical' condition='and'>
+    <check type="uninstall" condition="versiongreaterorequal" path="Lenovo System Interface Driver" value="1.05" />
+    <check type="uninstall" condition="versiongreaterorequal" path="On Screen Display" value="6.60.03" />
+  </check>
+
+  <install cmd='"%SOFTWARE%\ThinkPad\%file%" /SP- /VERYSILENT /norestart"' />
+  <install cmd='"%SYSTEMDRIVE%\DRIVERS\WIN\HOTKEY\setup.exe" /S'><exit code="3010" /></install>
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+</package>
+
+<package
   id="tp_airbag"
   name="ThinkPad HDD AirBag"
   revision="%version%-2"
