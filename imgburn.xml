@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<packages
+  xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+  xsi:noNamespaceSchemaLocation='../xsd/packages.xsd' >
+
+  <package id='imgburn'
+    name='ImgBurn'
+    revision='%PKG_VERSION%-0'
+    reboot='false'
+    priority='10'>
+
+    <variable name='PKG_VERSION'     value='2.5.6.0' />
+    <variable name='PKG_DESTINATION' value='%ProgramFiles%\ImgBurn'      architecture='x86'/>
+    <variable name='PKG_DESTINATION' value='%ProgramFiles(x86)%\ImgBurn' architecture='x64'/>
+    <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
+    <variable name="DESKTOP" value="%PUBLIC%\Desktop"          os="windows 7" />
+
+    <check type='uninstall' condition='versiongreaterorequal' path='ImgBurn'                       value='%PKG_VERSION%' />
+    <check type='file'      condition='versiongreaterorequal' path='%PKG_DESTINATION%\ImgBurn.exe' value='%PKG_VERSION%' />
+
+    <install cmd='"%SOFTWARE%\ImgBurn\SetupImgBurn_%PKG_VERSION%.exe" /S' />
+    <install cmd='%COMSPEC% /C IF EXIST "%DESKTOP%\ImgBurn.lnk" DEL "%DESKTOP%\ImgBurn.lnk"' />
+
+    <upgrade   include='install' />
+    <downgrade include='install' />
+
+    <remove cmd='"%PKG_DESTINATION%\uninstall.exe" /S' />
+    <remove cmd='%ComSpec% /C if exist "%PKG_DESTINATION%\uninstall.exe" ping -n 30 localhost &gt;NUL' />
+    <remove cmd='%ComSpec% /C if exist "%PKG_DESTINATION%\uninstall.exe" exit 999' />
+  </package>
+</packages>
