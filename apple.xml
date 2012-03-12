@@ -20,7 +20,7 @@ NOTES
   <depends package-id="applemobile" />
   <depends package-id="quicktime" />
 
-  <variable name="version" value="10.5.3.3" />
+  <variable name="version" value="10.6.0.40" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="iTunes" value="%version%"/>
 
@@ -49,7 +49,7 @@ NOTES
   reboot="false"
   priority="10">
 
-  <variable name="version" value="4.0.0.97" />
+  <variable name="version" value="5.1.1.4" />
 
   <check type="uninstall"  condition="versiongreaterorequal" path="Apple Mobile Device Support" value="%version%"/>
 
@@ -66,7 +66,7 @@ NOTES
   reboot="false"
   priority="10">
 
-  <variable name="version" value="2.1.6" />
+  <variable name="version" value="2.1.7" />
 
   <check type="uninstall"  condition="versiongreaterorequal" path="Apple Application Support" value="%version%"/>
 
