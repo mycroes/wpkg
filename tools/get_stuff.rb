@@ -207,8 +207,9 @@ PACKAGES = {
   :destination => ['Microsoft', 'RSAT', 'Windows6.1-KB958830-x64-RefreshPkg.msu']},
 ],
 
+# 'http://download.skype.com/SkypeSetup.msi',
 :skype => [
-  {:url => 'http://download.skype.com/SkypeSetup.msi',
+  {:url => 'http://download.skype.com/1cd64f2e45ea98868326f54397db45bf/SkypeSetup.msi',
   :destination => ['Skype', 'SkypeSetup.msi']},
 ],
 

@@ -19,11 +19,11 @@
 <package
   id="skype"
   name="Skype 5"
-  revision="%version%-1"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name='version' value='5.5.32.124' /> <!-- 5.5.32.119 claims to be .119 but is in fact .117 -->
+  <variable name='version' value='5.8.32.158' /> <!-- 5.5.32.119 claims to be .119 but is in fact .117 -->
   <variable name='flags' value='INSTALLLEVEL=1 ALLUSERS=1 STARTSKYPE=FALSE TRANSFORMS=:removeStartup.mst TRANSFORMS=:removeDesktopShortcut.mst' />
   <variable name='product_code' value='F1CECE09-7CBE-4E98-B435-DA87CDA86167' /> <!-- this is for 5.[3] -->
   <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Skype\Phone'      architecture="x86" />
