@@ -17,7 +17,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="2.9.0.9" />
+  <variable name="version" value="3.0.0.3" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Netpas\Distance" architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Netpas\Distance" architecture="x64" />
   <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
