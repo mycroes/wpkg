@@ -452,7 +452,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
 end
 
 def replace_variables(str)
-  s = str.gsub('%version%', @version.to_s)
+  s = str.gsub(/%version%/i, @version.to_s)
   s.gsub!('%mainversion%', @mainversion.to_s)
   s.gsub!('%shortversion%', @shortversion.to_s)
   s.gsub!('%fileversion%', @fileversion.to_s)
