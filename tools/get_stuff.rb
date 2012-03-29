@@ -471,10 +471,10 @@ def download(package_def)
     if p[:package_id]
       [ @xmlpath ].flatten.each do |xp|
         Dir.glob(File.join(xp, '*.xml')).sort.each do |xf|
-	  # puts "Processing: #{xf}"
+          # puts "Processing: #{xf}"
           xml = XmlSimple.xml_in(xf, {'KeyAttr' => {'package' => 'id', 'variable' => 'name'}})
           if xml['package'] && xml['package'][p[:package_id]] && xml['package'][p[:package_id]]['variable'] && @version.nil?
-	    # we should create a hash of found variables and automatically substitute them all
+            # we should create a hash of found variables and automatically substitute them all
             @version = get_variable(xml, p[:package_id], 'version')
             @shortversion = get_variable(xml, p[:package_id], 'shortversion')
             @mainversion = get_variable(xml, p[:package_id], 'mainversion')
