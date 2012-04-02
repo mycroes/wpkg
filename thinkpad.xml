@@ -99,14 +99,14 @@
 <package
   id="tp_systemupdate"
   name="ThinkPad System Update"
-  revision="%version%-5"
+  revision="%version%-0"
   priority="10"
   reboot="false">
 
   <variable name="version" value="3.15.0017" os="windows xp" />
-  <variable name="version" value="4.01.0000" os="windows 7" />
+  <variable name="version" value="4.03.0007" os="windows 7" />
   <variable name="PKG_SOURCE" value="%SOFTWARE%\ThinkPad\systemupdate315-2011-07-25.exe" os="windows xp" />
-  <variable name="PKG_SOURCE" value="%SOFTWARE%\ThinkPad\systemupdate401-2011-07-25.exe" os="windows 7" />
+  <variable name="PKG_SOURCE" value="%SOFTWARE%\ThinkPad\systemupdate43-2012-3-16.exe" os="windows 7" />
   <variable name="PKG_PARAMS" value='-s -a /s /v"/qn /norestart"' />
 
   <check type="logical" condition="or">
