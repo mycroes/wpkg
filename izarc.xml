@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="izarc"
+  name="IZArc"
+  revision="%version%-0"
+  reboot="false">
+
+  <variable name="VERSION" value="4.1.6" />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\IZArc'      architecture="x86" />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES(x86)%\IZArc' architecture="x64" />
+
+  <check type="uninstall" condition="exists" path="IZArc %VERSION%" />
+
+  <install   cmd='"%SOFTWARE%\IZAarc\IZArc%VERSION%.exe" /VERYSILENT' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+  <remove    cmd='"%PKG_DESTINATION%\IZArc\unins000.exe" /VERYSILENT' />
+
+</package>
+
+</packages>
