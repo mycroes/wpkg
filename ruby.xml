@@ -35,8 +35,8 @@
 
   <depends package-id="java" />
 
-  <variable name="version" value="1.6.5" />
-  <variable name="fileversion" value="1_6_5" />
+  <variable name="version" value="1.6.7" />
+  <variable name="fileversion" value="1_6_7" />
   <variable name="PKG_SOURCE" value="%SOFTWARE%\Ruby\jruby_windows_%fileversion%.exe"     architecture="x86" />
   <variable name="PKG_SOURCE" value="%SOFTWARE%\Ruby\jruby_windows_x64_%fileversion%.exe" architecture="x64" />
 
