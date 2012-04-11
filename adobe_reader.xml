@@ -29,7 +29,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="last" value="2" />
+  <variable name="last" value="3" />
   <variable name="version" value="10.1.%last%" />
   <variable name="language" value="en_US" lcid="0409,0809,4809" />
 
@@ -65,7 +65,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="last" value="0" /> <!-- change this when the version increases -->
+  <variable name="last" value="1" /> <!-- change this when the version increases -->
   <variable name="mainversion" value="9.5" />
   <variable name="version" value="%mainversion%.%last%" />
   <variable name="lt" value='"%WPKG%\tools\localetool.exe"' />
