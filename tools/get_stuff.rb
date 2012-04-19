@@ -499,7 +499,7 @@ def download(package_def)
     raise AppError, "Unable to figure out where to write local file: #{fullpath}" unless fullpath
     FileUtils.mkdir_p(path) unless Dir.exists?(path)
     if File.exists?(fullpath)
-      if @overwrite
+      if @overwrite && File.exist?(fullpath)
         FileUtils.safe_unlink(fullpath)
         puts 'INFO: Removing existing file'
       end
