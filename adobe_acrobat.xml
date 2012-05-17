@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<package
+  id="adobeacrobat_standard"
+  name="Adobe Acrobat X - Standard"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version"     value="10.1.3" />
+  <variable name="fileversion" value="1013" />
+  <variable name="language"    value="en_US" lcid="0409,0809,4809" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Adobe Acrobat X Standard.*" value="%version%" />
+
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Standard\10\AcroStan.msi" TRANSFORMS="%SOFTWARE%\Adobe\Standard\custom.mst"'>
+    <exit code="3010" reboot="false" />
+  </install>
+  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Standard\10\AcrobatUpd%fileversion%.msp" REINSTALL=ALL REINSTALLMODE=omus'>
+    <exit code='3010' reboot='false' />
+  </install>
+  <install include='kill' />
+
+  <upgrade include="install" />
+  <downgrade include="install" />
+
+  <remove include='kill' />
+  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Standard\10\AcroStan.msi"' />
+
+  <commands>
+    <command type='kill' cmd='net stop AdobeARMservice'><exit code='any' /></command>
+    <command type='kill' cmd='sc config AdobeARMservice start= disabled' />
+  </commands>
+
+</package>
+
+</packages>
