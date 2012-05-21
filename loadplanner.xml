@@ -37,9 +37,9 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.8.21" />
-  <variable name="fileversion" value="3.8.0.21" /> <!-- don't ask why - I don't know... -->
-  <variable name="updatefile" value="LoadPlanner 3821 update.msi" />  <!-- for .10 it should be 38100 -->
+  <variable name="version" value="4.0.0" />
+  <variable name="fileversion" value="4.0.0.0" /> <!-- don't ask why - I don't know... -->
+  <variable name="updatefile" value="LoadPlanner 4000 update.msi" />  <!-- for .10 it should be 38100 -->
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\LoadPlanner"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\LoadPlanner" architecture="x64" />
   <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
