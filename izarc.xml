@@ -5,7 +5,7 @@
 <package
   id="izarc"
   name="IZArc"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false">
 
   <variable name="VERSION" value="4.1.6" />
@@ -15,6 +15,9 @@
   <check type="uninstall" condition="exists" path="IZArc %VERSION%" />
 
   <install   cmd='"%SOFTWARE%\IZAarc\IZArc%VERSION%.exe" /VERYSILENT' />
+  <install   cmd='%COMSPEC% /C copy /Y "%SOFTWARE%\IzArc\*.dll" "%PKG_DESTINATION%"' />
+  <install   cmd='regsvr32.exe /s /u "%PKG_DESTINATION%\IZArcCM64.dll"'  architecture="x64" />
+  <install   cmd='regsvr32.exe /s "%PKG_DESTINATION%\IZArcCM64_NEW.dll"' architecture="x64" />
   <upgrade   include='install' />
   <downgrade include='install' />
 
