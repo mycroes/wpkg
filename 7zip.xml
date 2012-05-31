@@ -4,7 +4,7 @@
   <package
     id="7zip"
     name="7-Zip (32 and 64 bit) - patched to support opening images"
-    revision="%version%-2"
+    revision="%version%-3"
     reboot="false"
     priority="0">
 
@@ -20,7 +20,7 @@
     <install cmd='msiexec /i "%SOFTWARE%\7zip\%PROCESSOR_ARCHITECTURE%\7z%fileversion%.msi" %MSI%'><exit code="3010" /></install>
     <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.reg" regedit /s "%SOFTWARE%\7zip\7zip.reg"'/>
     <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\7zip\7zip.cmd" "%SOFTWARE%\7zip\7zip.cmd"'/>
-    <install cmd='%COMSPEC% /c IF EXIST "%patched_exe%" copy /Y "%patched_exe%" "%PROGRAMFILES%\7zip"'/>
+    <install cmd='copy /Y "%patched_exe%" "%PROGRAMFILES%\7zip"'/>
 
     <upgrade   include='install' />
     <downgrade include='install' />
