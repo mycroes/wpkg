@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+     Version mapping
+     1.7.9   171.2
+-->
+
+<packages>
+
+<package
+  id="mark5"
+  name="MARK Communication System 5"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <variable name="version" value="171.2" />
+
+  <variable name='PKG_SOURCE'      value='%SOFTWARE%\Mark5\%PROCESSOR_ARCHITECTURE%\Mark5ClientSetup.msi' />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Mark5' />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Mark5 Client" />
+
+  <install   cmd='msiexec /i "%PKG_SOURCE%" %MSI%' />
+  <install   cmd='%COMSPEC% /C copy /Y "%SOFTWARE%\Mark5\ConnectionInfo.xml" "%PKG_DESTINATION%"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+  <remove    cmd='msiexec /x "%PKG_SOURCE%" %MSI%' />
+</package>
+
+</packages>
