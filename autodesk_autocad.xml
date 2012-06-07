@@ -59,7 +59,7 @@
 <package
   id="autodesk_autocad2012"
   name="AutoDesk AutoCAD 2012"
-  revision="%version%-1"
+  revision="%version%-2"
   priority="10"
   reboot="false">
 
@@ -78,8 +78,13 @@
     <exit code="3010" />
   </install>
 
+  <!--
+       we cannot up and downgrade using setup it seems
+  -->
+  <!--
   <upgrade   include='install' />
   <downgrade include='install' />
+  -->
 
   <remove cmd='msiexec /x{%GUID%} %MSI%'><exit code="3010" /></remove>
 
