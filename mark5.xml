@@ -14,8 +14,9 @@
   priority="10"
   reboot="false">
 
-  <variable name="version" value="171.2" />
+  <depends package-id="dotnet3" os="windows xp" />
 
+  <variable name="version" value="171.2" />
   <variable name='PKG_SOURCE'      value='%SOFTWARE%\Mark5\%PROCESSOR_ARCHITECTURE%\Mark5ClientSetup.msi' />
   <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Mark5' />
 
