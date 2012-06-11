@@ -504,6 +504,13 @@ def download(package_def)
         puts 'INFO: Removing existing file'
       end
     end
+    d = File.dirname(fullpath)
+    unless Dir.exists?(d)
+      puts "INFO: Directory #{d} not found. Creating..."
+      FileUtils.mkdir_p(d) 
+    else
+      puts "NOTICE: Directory #{d} exists."
+    end
     system "axel '#{url}' -a -o '#{fullpath}'"
     puts "NOTICE: #{p[:notice] unless p[:notice].nil?}"
   end
