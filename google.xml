@@ -24,13 +24,11 @@
 
   <check type="uninstall" condition="versiongreaterorequal" path="Google Earth" value="%version%" />
 
-  <install cmd='%COMSPEC% /C "md %SystemDrive%\netinst\logs\"' >
-    <exit code="0" />
-    <exit code="1" /> <!-- directory already exists -->
-  </install>
+  <install   cmd='%COMSPEC% /C "md %SystemDrive%\netinst\logs\"' ><exit code="1" /></install>
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\%shortversion%\Google Earth.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\%shortversion%\Google Earth.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google\Google Earth\%shortversion%\Google Earth.msi"' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Google\Google Earth\%shortversion%\Google Earth.msi"' />
 
 </package>
@@ -44,6 +42,8 @@
 
   <variable name="version" value="3.8" />
   <variable name="fileversion" value="38" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Google\Picasa3"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Google\Picasa3" architecture="x64" />
 
   <check type='uninstall' condition='versiongreaterorequal' path='Picasa 3' value='%version%' />
 
@@ -53,62 +53,47 @@
   </install>
   <install cmd='sc config gusvc start= disabled' />
 
-  <upgrade cmd='"%SOFTWARE%\Google\Picasa\picasa%fileversion%-setup.exe" /S /L' >
-    <exit code='1' />
-    <exit code='128' />
-  </upgrade>
-  <upgrade cmd='sc config gusvc start= disabled' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='"%SOFTWARE%\Google\Picasa\picasa%fileversion%-setup.exe" /S /L' >
-    <exit code='1' />
-    <exit code='128' />
-  </downgrade>
-  <downgrade cmd='sc config gusvc start= disabled' />
-
-  <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Google\Picasa3\Uninstall.exe" "%PROGRAMFILES%\Google\Picasa3\Uninstall.exe" /S' />
-  <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Google\Picasa3\Uninstall.exe" "%PROGRAMFILES(x86)%\Google\Picasa3\Uninstall.exe" /S' />
+  <remove cmd='"%PKG_DESTINATION%\Uninstall.exe" /S' />
 
 </package>
 
 <package
   id="googletalk"
   name="Google Talk"
-  revision="%version%-3"
+  revision="%version%-4"
   priority="10"
   reboot="false">
 
   <variable name="version" value="1.0.0.104" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Google\Google Talk"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Google\Google Talk" architecture="x64" />
 
-  <check type="logical" condition="or">
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Google\Google Talk\googletalk.exe" value="%version%" />
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Google\Google Talk\googletalk.exe" value="%version%" />
-  </check>
+  <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\googletalk.exe" value="%version%" />
 
   <install cmd='"%SOFTWARE%\Google\Google Talk\googletalk-setup.exe" /S' />
-  <install cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></install>
+  <install include='kill' />
   <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f'><exit code="1" /></install>
   <install cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f' architecture="x64"><exit code="1" /></install>
 
-  <upgrade cmd='"%SOFTWARE%\Google\Google Talk\googletalk-setup.exe" /S' />
-  <upgrade cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></upgrade>
-  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f'><exit code="1" /></upgrade>
-  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f' architecture="x64"><exit code="1" /></upgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='"%SOFTWARE%\Google\Google Talk\googletalk-setup.exe" /S' />
-  <downgrade cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></downgrade>
-  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f'><exit code="1" /></downgrade>
-  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v googletalk /f' architecture="x64"><exit code="1" /></downgrade>
+  <remove include='kill' />
+  <remove cmd='"%PKG_DESTINATION%\uninstall.exe" /S' />
 
-  <remove cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></remove>
-  <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Google\Google Talk\uninstall.exe" "%PROGRAMFILES%\Google\Google Talk\uninstall.exe" /S' />
-  <remove cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Google\Google Talk\uninstall.exe" "%PROGRAMFILES%\Google\Google Talk\uninstall.exe" /S' />
+  <commands>
+    <command type='kill' cmd='taskkill /f /IM googletalk.exe'><exit code="any" /></command>
+  </commands>
 
 </package>
 
 <package
   id="googleappssync"
   name="Google Apps Sync"
-  revision="%version%-0"
+  revision="%version%-1"
   priority="10"
   reboot="false">
 
@@ -120,8 +105,8 @@
   </check>
 
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Google\GoogleAppsSync\enterprise_gsync_%PROCESSOR_ARCHITECTURE%.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Google\GoogleAppsSync\enterprise_gsync_%PROCESSOR_ARCHITECTURE%.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Google\GoogleAppsSync\enterprise_gsync_%PROCESSOR_ARCHITECTURE%.msi"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='msiexec %MSI% /i "%SOFTWARE%\Google\GoogleAppsSync\enterprise_gsync_%PROCESSOR_ARCHITECTURE%.msi"' />
 
 </package>

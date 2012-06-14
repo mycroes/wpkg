@@ -2,7 +2,19 @@
 
 <!--
   NOTES
-  1) See below for full instructions
+  It is possible to install in 2 different ways:
+  1) Manual install of the various MSIs after doing a local install, or
+    1) Download Windows Live Installer from download.live.com.
+    2) Install or upgrade the Windows Live Messenger to latest version.
+    3) Browse to \Program Files\Common Files\Windows Live\.cache\ folder.
+    4) Locate the following files in the subfolders and copy them out:
+     a) crt.msi
+     b) contacts.msi
+     c) segoefont.msi
+     d) messenger.msi
+     e) dw20shared.msi (I couldn't find this and it seems to work without)
+  2) Use the offline installer (download from: http://explore.live.com/windows-live-essentials-install-offline-faq)
+  3) I don't know if upgrades/downgrades work this way
 -->
 
 <packages>
@@ -10,32 +22,28 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="%version%-1"
+  revision="%version%-4"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="14.0.8117.0416" />
-  <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Messenger" value="%version%" />
+  <depends package-id='vcruntime' />
 
-  <install cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\Fonts\segoeui.ttf" msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\SegoeFont.msi"' />
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\crt.msi"' />
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\Contacts.msi"' />
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\Messenger.msi"'><exit code="3010" /></install>
+  <variable name="version" value="14.0.8117.0416" os='windows xp' />
+  <variable name="version" value="15.4.3538.0513" os='windows 7' />
+  <variable name='params' value='/q /AppSelect:Messenger /noHomepage /noSearch /noLaunch /NOToolbarCEIP' />
+  <variable name='PKG_DESTIONATION' value='%PROGRAMFILES%\Windows Live'      architecture='x86' />
+  <variable name='PKG_DESTIONATION' value='%PROGRAMFILES(x86)%\Windows Live' architecture='x64' />
 
-  <upgrade cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\Fonts\segoeui.ttf" msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\SegoeFont.msi"' />
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\crt.msi"' />
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\Contacts.msi"' />
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\Messenger.msi"'><exit code="3010" /></upgrade>
+  <check type='logical' condition='or'>
+    <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Messenger" value="%version%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Essentials 2009" value="%version%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Essentials 2011" value="%version%" />
+  </check>
 
-  <downgrade cmd='%COMSPEC% /c IF NOT EXIST "%WINDIR%\Fonts\segoeui.ttf" msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\SegoeFont.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\crt.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\Contacts.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Windows Live\Messenger.msi"'><exit code="3010" /></downgrade>
+  <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2009\wlsetup-all.exe" %params%' timeout='600' os='windows xp' />
+  <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2011\wlsetup-all.exe" %params%' timeout='600' os='windows 7' />
 
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Microsoft\Windows Live\SegoeFont.msi"' />
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Microsoft\Windows Live\crt.msi"' />
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Microsoft\Windows Live\Contacts.msi"' />
-  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\Microsoft\Windows Live\Messenger.msi"'><exit code="3010" /></remove>
+  <remove  cmd='"%PKG_DESTINATION%"\Installer\wlarp.exe" /uninstall:Messenger /quiet' />
 
 </package>
 
@@ -48,22 +56,30 @@
 <package
   id="yahoomessenger"
   name="Yahoo Messenger"
-  revision="%version%-1"
+  revision="%version%-4"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="10.0.0.1270" />
+  <depends package-id='vcruntime' />
 
-  <check type="logical" condition="or">
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Yahoo!\Messenger\YahooMessenger.exe" value="%version%" />
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Yahoo!\Messenger\YahooMessenger.exe" value="%version%" />
-  </check>
-  <install   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s /q' />
-  <upgrade   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s /q' />
-  <downgrade cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s /q' />
-  <remove    cmd='taskkill /f /im YahooMessenger.exe'><exit code="any" /></remove>
-  <remove    cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES%\Yahoo!\Messenger\UNWISE.exe" "%PROGRAMFILES%\Yahoo!\Messenger\UNWISE.exe" /S /U "%PROGRAMFILES%\Yahoo!\Messenger\INSTALL.log"' />
-  <remove    cmd='%COMSPEC% /c IF EXIST "%PROGRAMFILES(x86)%\Yahoo!\Messenger\UNWISE.exe" "%PROGRAMFILES(x86)%\Yahoo!\Messenger\UNWISE.exe" /S /U "%PROGRAMFILES(x86)%\Yahoo!\Messenger\INSTALL.log"' />
+  <variable name="version" value="11.0.0.1270" />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Yahoo!\Messenger'      architecture="x86" />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES(x86)%\Yahoo!\Messenger' architecture="x64" />
+
+  <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\YahooMessenger.exe" value="%version%" />
+
+  <install   include='kill' />
+  <install   cmd='"%SOFTWARE%\Yahoo\ymsgr_inst.exe" /s' timeout='600' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+  <remove include='kill' />
+  <remove cmd='"%PKG_DESTINATION%\UNWISE.exe" /S /U "%PKG_DESTINATION%\INSTALL.log"' />
+
+  <commands>
+    <command type='kill' cmd='taskkill /f /im YahooMessenger.exe'><exit code="any" /></command>
+  </commands>
+
 </package>
 
 <package
@@ -71,6 +87,7 @@
   name="Windows Messenger Uninstall"
   revision="2"
   execute="once">
+
   <install cmd='%COMSPEC% /c IF EXIST %windir%\INF\msmsgs.inf RunDll32 advpack.dll,LaunchINFSection %windir%\INF\msmsgs.inf,BLC.Remove' />
 </package>
 
@@ -78,13 +95,4 @@
 
 <!--
   HOW TO OBTAIN THE FILES
-  1) Download Windows Live Installer from download.live.com.
-  2) Install or upgrade the Windows Live Messenger to latest version.
-  3) Browse to \Program Files\Common Files\Windows Live\.cache\ folder.
-  4) Locate the following files in the subfolders and copy them out:
-   a) crt.msi
-   b) contacts.msi
-   c) segoefont.msi
-   d) messenger.msi
-   e) dw20shared.msi (I couldn't find this and it seems to work without)
 -->

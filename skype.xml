@@ -9,6 +9,7 @@
   5) REMEMBER to check the product_code when upgrading
 
   OLD PRODUCT CODES for reference
+  5.[5]  ?
   5.[3]  F1CECE09-7CBE-4E98-B435-DA87CDA86167
   5.[01] 9C538746-C2DC-40FC-B1FB-D4EA7966ABEB
 -->
@@ -22,35 +23,24 @@
   reboot="false"
   priority="10">
 
-  <variable name='version' value='5.5.32.124' /> <!-- 5.5.32.119 claims to be .119 but is in fact .117 -->
+  <variable name='version' value='5.9.32.115' /> <!-- 5.5.32.119 claims to be .119 but is in fact .117 -->
   <variable name='flags' value='INSTALLLEVEL=1 ALLUSERS=1 STARTSKYPE=FALSE TRANSFORMS=:removeStartup.mst TRANSFORMS=:removeDesktopShortcut.mst' />
   <variable name='product_code' value='F1CECE09-7CBE-4E98-B435-DA87CDA86167' /> <!-- this is for 5.[3] -->
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Skype\Phone'      architecture="x86" />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES(x86)%\Skype\Phone' architecture="x64" />
 
-  <check type="logical" condition="or">
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Skype\Phone\Skype.exe" value="%version%" />
-    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" value="%version%" />
-  </check>
+  <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\Skype.exe" value="%version%" />
 
   <install cmd='msiexec %MSI% /x{%product_code%}'><exit code="1605" /></install>
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\%version%\SkypeSetup.msi" %flags%'/>
   <install cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableVersionCheckPolicy" /d "1" /t REG_DWORD /f' />
   <install cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableSupernodePolicy" /d "1" /t REG_DWORD /f' />
-  <install cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' ><exit code="1" /></install>
+  <install cmd='%COMSPEC% /C reg delete "HKCU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' ><exit code="1" /></install>
 
-  <upgrade cmd='msiexec %MSI% /x{%product_code%}'><exit code="1605" /></upgrade>
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\%version%\SkypeSetup.msi" %flags%'/>
-  <upgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableVersionCheckPolicy" /d "1" /t REG_DWORD /f' />
-  <upgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableSupernodePolicy" /d "1" /t REG_DWORD /f' />
-  <upgrade cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' ><exit code="1" /></upgrade>
+  <upgrade include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='msiexec %MSI% /x{%product_code%}'><exit code="1605" /></downgrade>
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Skype\%version%\SkypeSetup.msi" %flags%'/>
-  <downgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableVersionCheckPolicy" /d "1" /t REG_DWORD /f' />
-  <downgrade cmd='%COMSPEC% /C reg add "HKLM\Software\Policies\Skype\Phone" /v "DisableSupernodePolicy" /d "1" /t REG_DWORD /f' />
-  <downgrade cmd='%COMSPEC% /C reg delete "HKU\.DEFAULT\Software\Microsoft\Windows\CurrentVersion\Run" /v "Skype" /f' ><exit code="1" /></downgrade>
-
-  <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES%\Skype\Phone\Skype.exe" "%PROGRAMFILES%\Skype\Phone\Skype.exe" /shutdown' />
-  <remove cmd='%COMSPEC% /C if exist "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" "%PROGRAMFILES(x86)%\Skype\Phone\Skype.exe" /shutdown' />
+  <remove cmd='"%PKG_DESTINATION%\Skype.exe" /shutdown' />
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Skype\%version%\SkypeSetup.msi"' />
 
 </package>

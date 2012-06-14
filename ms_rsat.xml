@@ -11,7 +11,7 @@
 <package
   id="rsat"
   name="Remote Server Admininistration Tools for Windows 7"
-  revision="958830-1"
+  revision="958830-2"
   reboot="false"
   priority="10"
   execute="once">
@@ -19,7 +19,9 @@
   <variable name="PKG_SOURCE" value="%SOFTWARE%\Microsoft\RSAT\Windows6.1-KB958830-x86-RefreshPkg.msu" architecture="x86" />
   <variable name="PKG_SOURCE" value="%SOFTWARE%\Microsoft\RSAT\Windows6.1-KB958830-x64-RefreshPkg.msu" architecture="x64" />
 
-  <install   cmd='wusa %PKG_SOURCE% /quiet /norestart' os="windows 7" />
+  <install   cmd='wusa %PKG_SOURCE% /quiet /norestart' os="windows 7">
+    <exit code='2359302' /> <!-- I think this means 'Already installed' -->
+  </install>
   <remove    cmd='wusa /uninstall %PKG_SOURCE% /quiet /norestart' os="windows 7" />
 
 </package>

@@ -4,13 +4,13 @@
 
   <!--
      1) Download from here: http://imageresizer.codeplex.com/
-     2) Remember to rename the 64 bit version
+     2) As of v3 there is now only one installer but it doesn't work properly on Win7
   -->
 
 <package
   id="image_resizer"
   name="Image Resizer Powertoy Clone for Windows"
-  revision="%version%-2"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -22,8 +22,8 @@
   </check>
 
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'/>
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'/>
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'/>
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Microsoft\Powertoys\ImageResizer-2.1_%PROCESSOR_ARCHITECTURE%.msi"'/>
 
 </package>

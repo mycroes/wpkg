@@ -4,6 +4,7 @@
 <!--
   NOTES
   1) 1.3 cannot be auto-(un)installed. If you do not want to use 1.4, you can use 1.2
+  2) As of 1.9 the version is suddenly part of the name hence the .*
 -->
 
 <package
@@ -13,16 +14,16 @@
   priority="10"
   reboot="false">
 
-  <variable name="version" value="1.8" />
+  <variable name="version" value="2.1.1" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\SumatraPDF"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\SumatraPDF" architecture="x64" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="SumatraPDF" value="%version%" />
+  <check type="uninstall" condition="versiongreaterorequal" path="SumatraPDF.*" value="%version%" />
 
-  <install cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
-  <upgrade cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
-  <downgrade cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
-  <remove cmd='"%PKG_DESTINATION%\Uninstall.exe" /S' />
+  <install   cmd='"%SOFTWARE%\SumatraPDF\SumatraPDF-%version%-install.exe" /S' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
+  <remove    cmd='"%PKG_DESTINATION%\Uninstall.exe" /S' />
 
 </package>
 </packages>

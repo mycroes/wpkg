@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!--
-  NOTES
-  1) Do not install this on anything > XP SP3 for now
-  2) If you want to preload some search providers then export SearchScopes from another machine and name it iesearch.reg
-  3) This script relies on localetool to detect Windows install language and use correct installer
-  4) Do NOT install dev toolbar on 8 - it's only for 6 and 7
--->
-
 <packages>
+
+<package
+  id="ie"
+  name="Internet Explorer"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <depends package-id='ie8' os='windows xp' />
+  <depends package-id='ie9' os='windows 7' />
+
+</package>
 
 <!--
   NOTES
@@ -19,7 +23,7 @@
 <package
   id="ie9"
   name="Internet Explorer 9 - for Windows 7"
-  revision="3"
+  revision="5"
   reboot="false"
   priority="10">
 
@@ -28,23 +32,37 @@
     <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Internet Explorer\iexplore.exe" value="9.00.8112.16421" />
   </check>
 
+  <variable name='PKG_SOURCE' value='%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\Windows6.1-KB2454826-v2-x86.msu' architecture='x86' />
+  <variable name='PKG_SOURCE' value='%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\Windows6.1-KB2454826-v2-x64.msu' architecture='x64' />
+
+  <install cmd='wusa "%PKG_SOURCE%" /quiet /norestart'>
+    <exit code='3010' />
+  </install>
   <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\IE9-Windows7-%A.exe" /passive /norestart /update-no'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <install cmd='%COMSPEC% /C IF %PROCESSOR_ARCHITECTURE% == "amd64" FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\IE9\x86\IE9-Windows7-%A.exe" /passive /norestart /update-no'>
-    <exit code="3010" reboot="postponed" />
-  </install>
-  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE9\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE9\iesearch.reg"' />
+  <install include='search' />
 
-  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE9\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE9\iesearch.reg"' />
-
-  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE9\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE9\iesearch.reg"' />
+  <upgrade   include='search' />
+  <downgrade include='upgrade' />
 
   <remove cmd='"%WINDIR%\ie9\spuninst\spuninst.exe" %MSI%'>
     <exit code="3010" reboot="postponed" />
   </remove>
 
+  <commands>
+    <command type='search' cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE9\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE9\iesearch.reg"' />
+  </commands>
+
 </package>
+
+<!--
+  NOTES
+  1) Do not install this on anything > XP SP3 for now
+  2) If you want to preload some search providers then export SearchScopes from another machine and name it iesearch.reg
+  3) This script relies on localetool to detect Windows install language and use correct installer
+  4) Do NOT install dev toolbar on 8 - it's only for 6 and 7
+-->
 
 <package
   id="ie8"
@@ -58,21 +76,18 @@
   <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\IE8\IE8-WindowsXP-x86-%A.exe" /passive /norestart /update-no'>
     <exit code="3010" reboot="postponed" />
   </install>
-  <install cmd='REG ADD "HKLM\SOFTWARE\Clients\StartMenuInternet\IEXPLORE.EXE\DefaultIcon" /ve /d "%PROGRAMFILES%\Internet Explorer\iexplore.exe" /f' />
-  <install cmd='REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Main" /v DisableFirstRunCustomize /t REG_DWORD /d 1 /f' />
-  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE8\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE8\iesearch.reg"' />
+  <install include='setup' />
 
-  <upgrade cmd='REG ADD "HKLM\SOFTWARE\Clients\StartMenuInternet\IEXPLORE.EXE\DefaultIcon" /ve /d "%PROGRAMFILES%\Internet Explorer\iexplore.exe" /f' />
-  <upgrade cmd='REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Main" /v DisableFirstRunCustomize /t REG_DWORD /d 1 /f' />
-  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE8\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE8\iesearch.reg"' />
+  <upgrade   include='setup' />
+  <downgrade include='setup' />
 
-  <downgrade cmd='REG ADD "HKLM\SOFTWARE\Clients\StartMenuInternet\IEXPLORE.EXE\DefaultIcon" /ve /d "%PROGRAMFILES%\Internet Explorer\iexplore.exe" /f' />
-  <downgrade cmd='REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Main" /v DisableFirstRunCustomize /t REG_DWORD /d 1 /f' />
-  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE8\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE8\iesearch.reg"' />
+  <remove cmd='"%WINDIR%\ie8\spuninst\spuninst.exe" %MSI%'><exit code="3010" reboot="postponed" /></remove>
 
-  <remove cmd='"%WINDIR%\ie8\spuninst\spuninst.exe" %MSI%'>
-    <exit code="3010" reboot="postponed" />
-  </remove>
+  <commands>
+    <command type='setup' cmd='REG ADD "HKLM\SOFTWARE\Clients\StartMenuInternet\IEXPLORE.EXE\DefaultIcon" /ve /d "%PROGRAMFILES%\Internet Explorer\iexplore.exe" /f' />
+    <command type='setup' cmd='REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Main" /v DisableFirstRunCustomize /t REG_DWORD /d 1 /f' />
+    <command type='setup' cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE8\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE8\iesearch.reg"' />
+  </commands>
 
 </package>
 
@@ -88,8 +103,8 @@
   <check type="uninstall" condition="versiongreaterorequal" path="Internet Explorer Developer Toolbar" value="%version%" />
 
   <install   cmd='msiexec /i "%SOFTWARE%\Microsoft\IE7\IEDevToolBarSetup.msi" %MSI%' />
-  <upgrade   cmd='msiexec /i "%SOFTWARE%\Microsoft\IE7\IEDevToolBarSetup.msi" %MSI%' />
-  <downgrade cmd='msiexec /i "%SOFTWARE%\Microsoft\IE7\IEDevToolBarSetup.msi" %MSI%' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='msiexec /x "%SOFTWARE%\Microsoft\IE7\IEDevToolBarSetup.msi" %MSI%' />
 
 </package>

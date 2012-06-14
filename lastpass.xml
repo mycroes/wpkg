@@ -15,11 +15,11 @@
   priority="10"
   reboot="false">
 
-  <variable name="version" value="1.80.0.0" />
+  <variable name="version" value="1.90.0.0" />
   <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\LastPass\lastpass.exe" value="%version%" />
   <install   cmd='"%SOFTWARE%\LastPass\%version%\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -i -f -ia --installdir="%PROGRAMFILES%\LastPass"' />
-  <upgrade   cmd='"%SOFTWARE%\LastPass\%version%\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -i -f -ia --installdir="%PROGRAMFILES%\LastPass"' />
-  <downgrade cmd='"%SOFTWARE%\LastPass\%version%\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -i -f -ia --installdir="%PROGRAMFILES%\LastPass"' />
+  <upgrade   include="install" />
+  <downgrade include="install" />
   <remove    cmd='"%SOFTWARE%\LastPass\%version%\%PROCESSOR_ARCHITECTURE%\lastpass.exe" -sb' />
 
 </package>

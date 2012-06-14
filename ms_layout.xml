@@ -4,7 +4,7 @@
 <package
   id="ms_layout"
   name="Microsoft Layout.dll for jumpy icons - XP"
-  revision="%version%-0"
+  revision="%version%-3"
   priority="10"
   reboot="false">
 
@@ -12,26 +12,15 @@
 
   <check type="file" condition="versiongreaterorequal" path="%WINDIR%\system32\layout.dll" value="%version%" />
 
-  <install   cmd='xcopy /Y "%SOFTWARE%\Microsoft\WindowsXP\DesktopLayout\layout.dll" "%WINDIR%\system32"' />
+  <install   cmd='%COMSPEC% /C xcopy "%SOFTWARE%\Microsoft\WindowsXP\DesktopLayout\layout.dll" "%WINDIR%\system32" /Y' />
   <install   cmd='reg add "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}" /ve /t REG_SZ /d "Desktop Icon Layout" /f' />
   <install   cmd='reg add "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}\InProcServer32" /ve /t REG_SZ /d "Layout.dll" /f' />
   <install   cmd='reg add "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}\InProcServer32" /v "ThreadingModel" /t REG_SZ /d "Apartment" /f' />
   <install   cmd='reg add "HKCR\Folder\shellex\ContextMenuHandlers\IconLayout" /ve /t REG_SZ /d "{19F500E0-9964-11cf-B63D-08002B317C03}" /f' />
   <install   cmd='reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved" /v "{19F500E0-9964-11cf-B63D-08002B317C03}" /t REG_SZ /d "Desktop Icon Layout" /f' />
 
-  <upgrade   cmd='xcopy /Y "%SOFTWARE%\Microsoft\WindowsXP\DesktopLayout\layout.dll" "%WINDIR%\system32"' />
-  <upgrade   cmd='reg add "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}" /ve /t REG_SZ /d "Desktop Icon Layout" /f' />
-  <upgrade   cmd='reg add "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}\InProcServer32" /ve /t REG_SZ /d "Layout.dll" /f' />
-  <upgrade   cmd='reg add "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}\InProcServer32" /v "ThreadingModel" /t REG_SZ /d "Apartment" /f' />
-  <upgrade   cmd='reg add "HKCR\Folder\shellex\ContextMenuHandlers\IconLayout" /ve /t REG_SZ /d "{19F500E0-9964-11cf-B63D-08002B317C03}" /f' />
-  <upgrade   cmd='reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved" /v "{19F500E0-9964-11cf-B63D-08002B317C03}" /t REG_SZ /d "Desktop Icon Layout" /f' />
-
-  <downgrade cmd='xcopy /Y "%SOFTWARE%\Microsoft\WindowsXP\DesktopLayout\layout.dll" "%WINDIR%\system32"' />
-  <downgrade cmd='reg add "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}" /ve /t REG_SZ /d "Desktop Icon Layout" /f' />
-  <downgrade cmd='reg add "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}\InProcServer32" /ve /t REG_SZ /d "Layout.dll" /f' />
-  <downgrade cmd='reg add "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}\InProcServer32" /v "ThreadingModel" /t REG_SZ /d "Apartment" /f' />
-  <downgrade cmd='reg add "HKCR\Folder\shellex\ContextMenuHandlers\IconLayout" /ve /t REG_SZ /d "{19F500E0-9964-11cf-B63D-08002B317C03}" /f' />
-  <downgrade cmd='reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions\Approved" /v "{19F500E0-9964-11cf-B63D-08002B317C03}" /t REG_SZ /d "Desktop Icon Layout" /f' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove    cmd='reg delete "HKCR\CLSID\{19F500E0-9964-11cf-B63D-08002B317C03}" /f' />
   <remove    cmd='reg delete "HKCR\Folder\shellex\ContextMenuHandlers\IconLayout" /f' />

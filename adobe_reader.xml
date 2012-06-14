@@ -25,12 +25,13 @@
 <package
   id="adobereaderX"
   name="Adobe Reader X"
-  revision="%version%-4"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="10.1.1" />
-  <variable name="last" value="1" />
+  <variable name="last" value="3" />
+  <variable name="mainversion" value="10.1" />
+  <variable name="version" value="%mainversion%.%last%" />
   <variable name="language" value="en_US" lcid="0409,0809,4809" />
 
   <check type="logical" condition="or">
@@ -38,35 +39,33 @@
     <check type="uninstall" condition="exists" path="Adobe Reader X (%version%).*" />
   </check>
 
-  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd" "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd"' />
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdr1010_%language%.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\10\readerX.mst"'><exit code="3010" reboot="false" /></install>
-  <install cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /p "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdrUpd101%I.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></install>
-  <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\post_install.cmd" "%SOFTWARE%\Adobe\Reader\10\post_install.cmd"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\%mainversion%\AdbeRdr1010_%language%.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\10\readerX.mst"'><exit code="3010" reboot="false" /></install>
+  <install cmd='msiexec %MSI% /p "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdrUpd101%last%.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></install>
+  <install include='kill' />
 
-  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd" "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd"' />
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdr1010_%language%.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\10\readerX.mst"'><exit code="3010" reboot="false" /></upgrade>
-  <upgrade cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /p "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdrUpd101%I.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></upgrade>
-  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\post_install.cmd" "%SOFTWARE%\Adobe\Reader\10\post_install.cmd"' />
+  <upgrade include="install" />
+  <downgrade include="install" />
 
-  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd" "%SOFTWARE%\Adobe\Reader\10\pre_install.cmd"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdr1010_%language%.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\10\readerX.mst"'><exit code="3010" reboot="false" /></downgrade>
-  <downgrade cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /p "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdrUpd101%I.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></downgrade>
-  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\10\post_install.cmd" "%SOFTWARE%\Adobe\Reader\10\post_install.cmd"' />
-
+  <remove include='kill' />
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Reader\10.1\AdbeRdr1010_%language%.msi"' />
-  <remove cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\post_install.cmd" "%SOFTWARE%\Adobe\Reader\post_install.cmd"' />
+
+  <commands>
+    <command type='kill' cmd='net stop AdobeARMservice'><exit code='any'/></command>
+    <command type='kill' cmd='sc config AdobeARMservice start= disabled' />
+  </commands>
 
 </package>
 
 <package
   id="adobereader9"
   name="Adobe Reader 9"
-  revision="%version%-2"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="9.4.6" />
-  <variable name="last" value="6" /> <!-- change this when the version increases -->
+  <variable name="last" value="1" /> <!-- change this when the version increases -->
+  <variable name="mainversion" value="9.5" />
+  <variable name="version" value="%mainversion%.%last%" />
   <variable name="lt" value='"%WPKG%\tools\localetool.exe"' />
   <variable name="subst" value='%COMSPEC% /C FOR /F "usebackq tokens=1-10"' />
 
@@ -82,94 +81,30 @@
   <install cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 8.2" ' ><exit code="any" /></install>
   <install cmd='msiexec %MSI% /x{AC76BA86-7AD7-1033-7B44-AA0000000001}'><exit code="1605" /></install> <!-- remove 10.0 -->
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\pre_install.cmd" "%SOFTWARE%\Adobe\Reader\9\pre_install.cmd"' />
-  <install cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdr940_%A_%B.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\9\reader9.mst"'>
-    <exit code="3010" reboot="false" />
-  </install>
-  <install cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd94%I_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></install>
+  <install cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\%mainversion%\AdbeRdr950_%A_%B.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\9\reader9.mst"'><exit code="3010" /></install>
+  <install cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /p "%SOFTWARE%\Adobe\Reader\%mainversion%\AdbeRdrUpd95%I_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' /></install>
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\post_install.cmd" "%SOFTWARE%\Adobe\Reader\9\post_install.cmd"' />
-  <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
-    <exit code="1" />
-  </install>
-  <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f'>
-    <exit code="1" />
-  </install>
-  <install cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f' architecture="x64">
-    <exit code="1" />
-  </install>
-  <install cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f' architecture="x64">
-    <exit code="1" />
-  </install>
+  <install include='kill' />
 
-  <!-- First uninstall Adobe Reader 8.1.2 -->
-  <upgrade cmd='msiexec /x{AC76BA86-7AD7-1033-7B44-A80000000002} /qn ' >
-    <exit code="1605" />
-    <exit code="1618" />
-  </upgrade>
-  <upgrade cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 8.0" ' ><exit code="any" /></upgrade>
-  <upgrade cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 8.1" ' ><exit code="any" /></upgrade>
-  <upgrade cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 8.2" ' ><exit code="any" /></upgrade>
-  <upgrade cmd='msiexec %MSI% /x{AC76BA86-7AD7-1033-7B44-AA0000000001}'><exit code="1605" /></upgrade> <!-- remove 10.0 -->
-  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\pre_install.cmd" "%SOFTWARE%\Adobe\Reader\9\pre_install.cmd"' />
-  <upgrade cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdr940_%A_%B.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\9\reader9.mst"'>
-    <exit code="3010" reboot="false" />
-  </upgrade>
-  <upgrade cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd94%I_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></upgrade>
-  <upgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\post_install.cmd" "%SOFTWARE%\Adobe\Reader\9\post_install.cmd"' />
-  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
-    <exit code="1" />
-  </upgrade>
-  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f'>
-    <exit code="1" />
-  </upgrade>
-  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f' architecture="x64">
-    <exit code="1" />
-  </upgrade>
-  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f' architecture="x64">
-    <exit code="1" />
-  </upgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <!-- First uninstall Adobe Reader 8.1.2 -->
-  <downgrade cmd='msiexec /x{AC76BA86-7AD7-1033-7B44-A80000000002} /qn ' >
-   <exit code="1605" />
-   <exit code="1618" />
-  </downgrade>
-  <downgrade cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 8.0" ' ><exit code="any" /></downgrade>
-  <downgrade cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 8.1" ' ><exit code="any" /></downgrade>
-  <downgrade cmd='%COMSPEC% /C rd /Q /S "%PROGRAMFILES%\Adobe\Reader 8.2" ' ><exit code="any" /></downgrade>
-  <downgrade cmd='msiexec %MSI% /x{AC76BA86-7AD7-1033-7B44-AA0000000001}'><exit code="1605" /></downgrade> <!-- remove 10.0 -->
-  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\pre_install.cmd" "%SOFTWARE%\Adobe\Reader\9\pre_install.cmd"' />
-  <downgrade cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdr940_%A_%B.msi" TRANSFORMS="%SOFTWARE%\Adobe\Reader\9\reader9.mst"'>
-    <exit code="3010" reboot="false" />
-  </downgrade>
-  <downgrade cmd='%COMSPEC% /C FOR /L %I IN (1,1,%last%) DO msiexec /p "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdrUpd94%I_all_incr.msp" REINSTALL=ALL REINSTALLMODE=omus'><exit code='3010' reboot='false' /></downgrade>
-  <downgrade cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Reader\9\post_install.cmd" "%SOFTWARE%\Adobe\Reader\9\post_install.cmd"' />
-  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
-    <exit code="1" />
-  </downgrade>
-  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f'>
-    <exit code="1" />
-  </downgrade>
-  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f' architecture="x64">
-    <exit code="1" />
-  </downgrade>
-  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f' architecture="x64">
-    <exit code="1" />
-  </downgrade>
+  <remove cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /x "%SOFTWARE%\Adobe\Reader\%mainversion%\AdbeRdr950_%A_%B.msi"' />
+  <remove include='kill' />
 
-  <remove cmd='%subst% %A IN (`%lt% isolang isoctry`) DO msiexec %MSI% /x "%SOFTWARE%\Adobe\Reader\9.4\AdbeRdr940_%A_%B.msi"' />
-  <remove cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'>
-    <exit code="1" />
-  </remove>
-  <remove cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f'>
-    <exit code="1" />
-  </remove>
+  <commands>
+    <command type='kill' cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f'><exit code="1" /></command>
+    <command type='kill' cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f'><exit code="1" /></command>
+    <command type='kill' cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe Reader Speed Launcher" /f' architecture="x64"><exit code="1" /></command>
+    <command type='kill' cmd='REG DELETE "HKLM\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run" /v "Adobe ARM" /f' architecture="x64"><exit code="1" /></command>
+  </commands>
 
 </package>
 
 <package
   id="adobewizard"
   name="Adobe Customization Wizard X"
-  revision="%version%-4"
+  revision="%version%-5"
   reboot="false"
   priority="10">
 
@@ -178,15 +113,15 @@
   <check type="uninstall" condition="exists" path="Adobe Customization Wizard X" />
 
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10\CustWiz.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10\CustWiz.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10\CustWiz.msi"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Reader\10\CustWiz.msi"' />
 </package>
 
 <package
   id="adobereader_jp"
   name="Acrobat Reader X - Japanese Font Pack"
-  revision="%version%-3"
+  revision="%version%-4"
   reboot="false"
   priority="10">
 
@@ -197,8 +132,8 @@
   <check type="uninstall" condition="versiongreaterorequal" path="Japanese Fonts Support For Adobe Reader X" value="%version%" />
 
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10\FontPack1000_ja_JP.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10\FontPack1000_ja_JP.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10\FontPack1000_ja_JP.msi"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Reader\10\FontPack1000_ja_JP.msi"' />
 </package>
 
@@ -216,15 +151,15 @@
   <check type="uninstall" condition="versiongreaterorequal" path="Chinese Simplified Fonts Support For Adobe Reader X" value="%version%" />
 
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10\FontPack1000_zh_CN.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10\FontPack1000_zh_CN.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10\FontPack1000_zh_CN.msi"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Reader\10\FontPack1000_zh_CN.msi"' />
 </package>
 
 <package
   id="adobereader_kr"
   name="Acrobat Reader X - Korean Font Pack"
-  revision="%version%-3"
+  revision="%version%-4"
   reboot="false"
   priority="10">
 
@@ -235,15 +170,15 @@
   <check type="uninstall" condition="versiongreaterorequal" path="Korean Fonts Support For Adobe Reader X" value="%version%" />
 
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10\FontPack1000_ko_KR.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10\FontPack1000_ko_KR.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\10\FontPack1000_ko_KR.msi"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Reader\10\FontPack1000_ko_KR.msi"' />
 </package>
 
 <package
   id="adobereader_jp_9"
   name="Acrobat Reader 9 Japanese"
-  revision="%version%-5"
+  revision="%version%-6"
   reboot="false"
   priority="10">
 
@@ -253,8 +188,8 @@
 
   <check type="uninstall" condition="versiongreaterorequal" path="Japanese Fonts Support For Adobe Reader 9" value="%version%" />
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\9\FontPack90_ja_JP.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\9\FontPack90_ja_JP.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Reader\9\FontPack90_ja_JP.msi"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Reader\9\FontPack90_ja_JP.msi"' />
 
 </package>

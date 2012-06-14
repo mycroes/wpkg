@@ -19,16 +19,52 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="8.0" />
+  <variable name="version" value="13.0" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
 
   <check type="uninstall" condition="exists" path="Mozilla Firefox %version% (.*)" />
 
+  <install   include='kill' />
   <install   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
-  <upgrade   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
-  <downgrade cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
-  <remove cmd='%ComSpec% /c if exist "%PKG_DESTINATION%\uninstall\helper.exe" "%PKG_DESTINATION%\uninstall\helper.exe" /S' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+  <remove    include='kill' />
+  <remove    cmd='"%PKG_DESTINATION%\uninstall\helper.exe" /S' />
+
+  <commands>
+    <command type='kill' cmd='taskkill.exe /f /im firefox.exe'><exit code="any" /></command>
+  </commands>
+
+</package>
+
+<package
+  id="firefox_esr"
+  name="Mozilla Firefox - Extended Support Release"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="10.0.3" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
+
+  <check type="uninstall" condition="exists" path="Mozilla Firefox %version% (.*)" />
+
+  <install   include='kill' />
+  <install   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%esr.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+  <remove    include='kill' />
+  <remove    cmd='"%PKG_DESTINATION%\uninstall\helper.exe" /S' />
+
+  <commands>
+    <command type='kill' cmd='taskkill.exe /f /im firefox.exe'><exit code="any" /></command>
+  </commands>
 
 </package>
 
@@ -39,16 +75,24 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="3.6.24" />
+  <variable name="version" value="3.6.28" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Firefox"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Firefox" architecture="x64" />
 
   <check type="uninstall" condition="exists" path="Mozilla Firefox (%version%)" />
 
+  <install   include='kill' />
   <install   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
-  <upgrade   cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
-  <downgrade cmd='"%SOFTWARE%\Mozilla\Firefox\Firefox Setup %version%.exe" /S /INI="%SOFTWARE%\Mozilla\Firefox\installer.ini"' />
-  <remove cmd='%ComSpec% /c if exist "%PKG_DESTINATION%\uninstall\helper.exe" "%PKG_DESTINATION%\uninstall\helper.exe" /S' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+  <remove    include='kill' />
+  <remove    cmd='"%PKG_DESTINATION%\uninstall\helper.exe" /S' />
+
+  <commands>
+    <command type='kill' cmd='taskkill.exe /f /im firefox.exe'><exit code="any" /></command>
+  </commands>
 
 </package>
 
@@ -59,23 +103,24 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="8.0" />
+  <variable name="version" value="13.0" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Thunderbird"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Thunderbird" architecture="x64" />
 
   <check type="uninstall" condition="exists" path="Mozilla Thunderbird (%version%)" />
 
-  <install cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></install>
+  <install include='kill' />
   <install cmd='"%SOFTWARE%\Mozilla\Thunderbird\Thunderbird Setup %version%.exe" -ms' />
 
-  <upgrade cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></upgrade>
-  <upgrade cmd='"%SOFTWARE%\Mozilla\Thunderbird\Thunderbird Setup %version%.exe" -ms' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></downgrade>
-  <downgrade cmd='"%SOFTWARE%\Mozilla\Thunderbird\Thunderbird Setup %version%.exe" -ms' />
-
-  <remove  cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></remove>
+  <remove include='kill' />
   <remove  cmd='"%PKG_DESTINATION%\uninstall\helper.exe" /S' />
+
+  <commands>
+    <command type='kill' cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></command>
+  </commands>
 
 </package>
 

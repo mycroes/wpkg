@@ -9,7 +9,7 @@
 <package
   id="icu"
   name="Icon Configuration Utility"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -20,9 +20,9 @@
 
   <install   cmd='%COMSPEC% /C mkdir "%PKG_DESTINATION%"'><exit code="any" /></install>
 
-  <install   cmd='xcopy "%SOFTWARE%\ICU\icu.exe" "%PKG_DESTINATION%" /y >NUL'><exit code="any" /></install>
-  <upgrade   cmd='xcopy "%SOFTWARE%\ICU\icu.exe" "%PKG_DESTINATION%" /y >NUL'><exit code="any" /></upgrade>
-  <downgrade cmd='xcopy "%SOFTWARE%\ICU\icu.exe" "%PKG_DESTINATION%" /y >NUL'><exit code="any" /></downgrade>
+  <install   cmd='%COMSPEC% /C xcopy "%SOFTWARE%\ICU\icu.exe" "%PKG_DESTINATION%" /y >NUL' />
+  <upgrade   cmd='%COMSPEC% /C xcopy "%SOFTWARE%\ICU\icu.exe" "%PKG_DESTINATION%" /y >NUL' />
+  <downgrade cmd='%COMSPEC% /C xcopy "%SOFTWARE%\ICU\icu.exe" "%PKG_DESTINATION%" /y >NUL' />
 
   <remove    cmd='taskkill /f /im icu.exe'><exit code="any" /></remove>
   <remove    cmd='%COMSPEC% /C rd /Q /S "%PKG_DESTINATION%"' />

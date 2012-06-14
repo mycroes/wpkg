@@ -10,112 +10,56 @@
   6) The java quick starter service only applies to the 32 bit version
 -->
 
-<packages>
+<packages xmlns:packages="http://www.wpkg.org/packages"
+  xmlns:wpkg="http://www.wpkg.org/wpkg" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.wpkg.org/packages ../xsd/packages.xsd">
 
 <package
   id="java"
+  name='Java Runtime Environment'
+  revision='0'
+  reboot='false'
+  priority='10'
+  execute='once'>
+
+  <depends package-id='java6' />
+
+</package>
+
+<package
+  id="java6"
   name="Java 6"
   revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="short" value="6u29" /> <!-- part of the installer file name -->
-  <variable name="version" value="1.6.0_29" />
-  <variable name="last" value="29" /> <!-- last part of the version - used for looping through installed versions -->
+  <variable name="last" value="33" /> <!-- last part of the version - used for looping through installed versions -->
+  <variable name="short" value="6u%last%" /> <!-- part of the installer file name -->
+  <variable name="version" value="1.6.0_%last%" />
+  <variable name='flags' value='ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress' />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Java\jre6' />
 
-  <check type="logical" condition="or">
-    <check type="uninstall" condition="exists" path="Java(TM) 6 Update %last%" />
-    <check type="uninstall" condition="exists" path="Java(TM) 6 Update %last% (64-bit)" />
-  </check>
-  <check type="file" condition="exists" path="%PROGRAMFILES%\Java\jre6\bin\javacpl.exe" />
+  <check type="uninstall" condition="exists" path="Java(TM) 6 Update %last%" />
+  <check type="uninstall" condition="exists" path="Java(TM) 6 Update %last% (64-bit)" architecture="x64" />
+  <check type="file" condition="exists" path="%PKG_DESTINATION%\bin\javacpl.exe" />
 
-  <install cmd='net stop JavaQuickStarterService'>
-    <exit code="2" />
-  </install>
+  <install include="kill" />
   <install cmd='%COMSPEC% /C FOR /L %I IN (0,1,9)       DO msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D01600%I0}'><exit code='1605' /></install>
-  <install cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F832160%IFF} >NUL 2>&amp;1'> <exit code='1605' /></install>
-  <install cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F864160%IFF} >NUL 2>&amp;1' architecture="x64"> <exit code='1605' /></install>
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
-    <exit code="3010" reboot="false" />
-    <exit code="0" />
-  </install>
-  <install cmd='"%SOFTWARE%\Java\amd64\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress' architecture="x64">
-    <exit code="3010" reboot="false" />
-    <exit code="0" />
-  </install>
+  <install cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F832160%IFF} >NUL 2>&amp;1'><exit code='1605' /></install>
+  <install cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F864160%IFF} >NUL 2>&amp;1' architecture="x64"><exit code='1605' /></install>
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi" %flags% '><exit code="3010" /></install>
+  <install cmd='"%SOFTWARE%\Java\amd64\jre-%short%-windows-x64.exe" /s %flags%' architecture="x64"><exit code="3010" /></install>
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
   <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableJavaUpdate /t REG_DWORD /d 0 /f' />
-  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <install cmd='"%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister' architecture="x86"><exit code='1' /></install>
-  <install cmd='"%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" -unregister' architecture="x64"><exit code='1' /></install>
-  <install cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
-    <exit code="1" />
-  </install>
-  <install cmd='net stop JavaQuickStarterService'>
-    <exit code="2" />
-  </install>
+  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PKG_DESTINATION%" /f' />
+  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PKG_DESTINATION%" /f' />
+  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PKG_DESTINATION%" /f' />
+  <install include='kill' />
 
-  <upgrade cmd='net stop JavaQuickStarterService'>
-    <exit code="2" />
-  </upgrade>
-  <upgrade cmd='%COMSPEC% /C FOR /L %I IN (0,1,9)       DO msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D01600%I0}'><exit code='1605' /></upgrade>
-  <upgrade cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F832160%IFF} >NUL 2>&amp;1'> <exit code='1605' /></upgrade>
-  <upgrade cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F864160%IFF} >NUL 2>&amp;1' architecture="x64"> <exit code='1605' /></upgrade>
-  <upgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
-    <exit code="3010" reboot="false" />
-    <exit code="0" />
-  </upgrade>
-  <upgrade cmd='"%SOFTWARE%\Java\amd64\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress' architecture="x64">
-    <exit code="3010" reboot="false" />
-    <exit code="0" />
-  </upgrade>
-  <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
-  <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableJavaUpdate /t REG_DWORD /d 0 /f' />
-  <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <upgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <upgrade cmd='"%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister' architecture="x86"><exit code='1' /></upgrade>
-  <upgrade cmd='"%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" -unregister' architecture="x64"><exit code='1' /></upgrade>
-  <upgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
-    <exit code="1" />
-  </upgrade>
-  <upgrade cmd='net stop JavaQuickStarterService'>
-    <exit code="2" />
-  </upgrade>
+  <upgrade   include="install" />
+  <downgrade include="install" />
 
-  <downgrade cmd='net stop JavaQuickStarterService'>
-    <exit code="2" />
-  </downgrade>
-  <downgrade cmd='%COMSPEC% /C FOR /L %I IN (0,1,9)       DO msiexec %MSI% /x {3248F0A8-6813-11D6-A77B-00B0D01600%I0}'><exit code='1605' /></downgrade>
-  <downgrade cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F832160%IFF} >NUL 2>&amp;1'> <exit code='1605' /></downgrade>
-  <downgrade cmd='%COMSPEC% /C FOR /L %I IN (10,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F864160%IFF} >NUL 2>&amp;1' architecture="x64"> <exit code='1605' /></downgrade>
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\Java\x86\jre%version%.msi"  ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress'>
-    <exit code="3010" reboot="false" />
-    <exit code="0" />
-  </downgrade>
-  <downgrade cmd='"%SOFTWARE%\Java\amd64\jre-%short%-windows-x64.exe" /s ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress' architecture="x64">
-    <exit code="3010" reboot="false" />
-    <exit code="0" />
-  </downgrade>
-  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
-  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableJavaUpdate /t REG_DWORD /d 0 /f' />
-  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <downgrade cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PROGRAMFILES%\Java\jre6" /f' />
-  <downgrade cmd='"%PROGRAMFILES%\Java\jre6\bin\jqs.exe" -unregister' architecture="x86"><exit code='1' /></downgrade>
-  <downgrade cmd='"%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" -unregister' architecture="x64"><exit code='1' /></downgrade>
-  <downgrade cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'>
-    <exit code="1" />
-  </downgrade>
-  <downgrade cmd='net stop JavaQuickStarterService'>
-    <exit code="2" />
-  </downgrade>
-
-  <remove cmd='net stop JavaQuickStarterService'>
-    <exit code="1060" />
-  </remove>
+  <remove include='kill' />
   <remove cmd='msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F832160%last%FF}'>
     <exit code="1605" />
     <exit code="3010" />
@@ -124,6 +68,64 @@
     <exit code="1605" />
     <exit code="3010" />
   </remove>
+
+  <commands>
+    <command type='kill' cmd='"%PKG_DESTINATION%\bin\jqs.exe" -unregister'             architecture="x86"><exit code='any' /></command>
+    <command type='kill' cmd='"%PROGRAMFILES(x86)%\Java\jre6\bin\jqs.exe" -unregister' architecture="x64"><exit code='any' /></command>
+    <command type='kill' cmd='net stop JavaQuickStarterService'><exit code="any" /></command>
+    <command type='kill' cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'><exit code="1" /></command>
+  </commands>
+
+</package>
+
+<package
+  id="java7"
+  name="Java 7"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="last" value="5" />         <!-- last part of the version - used for looping through installed versions -->
+  <variable name="short" value="7u%last%" /> <!-- part of the installer file name -->
+  <variable name="version" value="1.7.0_%last%" />
+  <variable name='flags' value='ADDLOCAL=ALL IEXPLORER=1 MOZILLA=1 REBOOT=Suppress' />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Java\jre7' />
+
+  <check type="uninstall" condition="exists" path="Java(TM) 7 Update %last%" />
+  <check type="uninstall" condition="exists" path="Java(TM) 7 Update %last% (64-bit)" architecture="x64" />
+  <check type="file" condition="exists" path="%PKG_DESTINATION%\bin\javacpl.exe" />
+
+  <install include="kill" />
+  <install cmd='%COMSPEC% /C FOR /L %I IN (0,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F832170%IFF} >NUL 2>&amp;1'><exit code='1605' /></install>
+  <install cmd='%COMSPEC% /C FOR /L %I IN (0,1,%last%) DO msiexec %MSI% /x {26A24AE4-039D-4CA4-87B4-2F864170%IFF} >NUL 2>&amp;1' architecture="x64"><exit code='1605' /></install>
+  <install cmd='"%SOFTWARE%\Java\x86\jre%version%.exe" %flags%'>                                   <exit code="3010" /></install>
+  <install cmd='"%SOFTWARE%\Java\amd64\jre-%short%-windows-x64.exe" /s %flags%' architecture="x64"><exit code="3010" /></install>
+  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableAutoUpdateCheck /t REG_DWORD /d 0 /f' />
+  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Update\Policy" /v EnableJavaUpdate /t REG_DWORD /d 0 /f' />
+  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Runtime Environment\%version%" /v JavaHome /d "%PKG_DESTINATION%" /f' />
+  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Plug-in\%version%" /v JavaHome /d "%PKG_DESTINATION%" /f' />
+  <install cmd='REG ADD "HKLM\SOFTWARE\JavaSoft\Java Web Start\%version%" /v JavaHome /d "%PKG_DESTINATION%" /f' />
+  <install include='kill' />
+
+  <upgrade   include="install" />
+  <downgrade include="install" />
+
+  <remove include='kill' />
+  <remove cmd='msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F832170%last%FF}'>
+    <exit code="1605" />
+    <exit code="3010" />
+  </remove>
+  <remove cmd='msiexec %MSI% /X{26A24AE4-039D-4CA4-87B4-2F864170%last%FF}' architecture="x64">
+    <exit code="1605" />
+    <exit code="3010" />
+  </remove>
+
+  <commands>
+    <command type='kill' cmd='"%PKG_DESTINATION%\bin\jqs.exe" -unregister'             architecture="x86"><exit code='any' /></command>
+    <command type='kill' cmd='"%PROGRAMFILES(x86)%\Java\jre7\bin\jqs.exe" -unregister' architecture="x64"><exit code='any' /></command>
+    <command type='kill' cmd='net stop JavaQuickStarterService'><exit code="any" /></command>
+    <command type='kill' cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "SunJavaUpdateSched" /f'><exit code="1" /></command>
+  </commands>
 
 </package>
 

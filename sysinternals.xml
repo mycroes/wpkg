@@ -24,7 +24,7 @@
 <package
   id="si_pagedefrag"
   name="SysInternals PageDefrag"
-  revision="%version%-3"
+  revision="%version%-5"
   reboot="false">
 
   <depends package-id="sysinternals" />
@@ -33,14 +33,12 @@
   <check type="file" condition="versiongreaterorequal" path="%WINDIR%\Sysinternals\PageDfrg.exe" value="%version%" />
 
   <install   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\PageDefrag" /v EulaAccepted /t REG_DWORD /d 1 /f' />
-  <install   cmd='xcopy /y "%SOFTWARE%\Microsoft\Sysinternals\PageDfrg.*" "%WINDIR%\Sysinternals"' />
-  <install   cmd='%WINDIR%\SysInternals\pagedfrg.exe -e -t 3' />
+  <install   include='upgrade' />
 
-  <upgrade   cmd='xcopy /y "%SOFTWARE%\Microsoft\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
+  <upgrade   cmd='%COMSPEC% /C xcopy /y "%SOFTWARE%\Microsoft\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
   <upgrade   cmd='%WINDIR%\SysInternals\pagedfrg.exe -e -t 3' />
 
-  <downgrade cmd='xcopy /y "%SOFTWARE%\Microsoft\Sysinternals\PageDfrg.exe" "%WINDIR%\Sysinternals"' />
-  <downgrade cmd='%WINDIR%\SysInternals\pagedfrg.exe -e -t 3' />
+  <downgrade include='upgrade' />
 
   <remove    cmd='%WINDIR%\SysInternals\pagedfrg.exe -n' />
   <remove    cmd='%COMSPEC% /c del /Q "%WINDIR%\SysInternals\PageDfrg.exe"' />
@@ -50,7 +48,7 @@
 <package
   id="si_bginfo"
   name="SysInternals BgInfo"
-  revision="%version%-5"
+  revision="%version%-7"
   reboot="false">
 
   <depends package-id="sysinternals" />
@@ -64,17 +62,13 @@
   </check>
 
   <install   cmd='REG ADD "HKCU\SOFTWARE\Sysinternals\BgInfo" /v EulaAccepted /t REG_DWORD /d 1 /f' />
-  <install   cmd='xcopy /Y "%SOFTWARE%\Microsoft\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
-  <install   cmd='%cmd%' />
-  <install   cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BgInfo /t REG_SZ /d "%cmd%" /f' />
+  <install   include='upgrade' />
 
-  <upgrade   cmd='xcopy /Y "%SOFTWARE%\Microsoft\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
+  <upgrade   cmd='%COMSPEC% /C xcopy /Y "%SOFTWARE%\Microsoft\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
   <upgrade   cmd='%cmd%' />
   <upgrade   cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BgInfo /t REG_SZ /d "%cmd%" /f' />
 
-  <downgrade cmd='xcopy /Y "%SOFTWARE%\Microsoft\Sysinternals\BgInfo.*" "%WINDIR%\Sysinternals"' />
-  <downgrade cmd='%cmd%' />
-  <downgrade cmd='REG ADD "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BgInfo /t REG_SZ /d "%cmd%" /f' />
+  <downgrade include='upgrade' />
 
   <remove    cmd='%COMSPEC% /c del /Q "%WINDIR%\SysInternals\BgInfo.*"' />
   <remove    cmd='REG DELETE "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v BgInfo /f' />

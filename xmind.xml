@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <packages>
-  <package
-    id="xmind"
-    name="XMind"
-    revision="%version%-3"
-    reboot="false"
-    priority="0">
 
-    <variable name="version" value="3.2.1" />
-    <variable name="fileversion" value="201011212218" />
+<package
+  id="xmind"
+  name="XMind"
+  revision="%version%-4"
+  reboot="false"
+  priority="0">
 
-    <depends package-id="java" />
+  <variable name="version" value="3.2.1" />
+  <variable name="fileversion" value="201011212218" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\XMind"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\XMind" architecture="x64" />
+  <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
+  <variable name="DESKTOP" value="%PUBLIC%\Desktop"          os="windows 7" />
 
-    <check type="uninstall" condition="versiongreaterorequal" path="XMind" value="%version%" />
-    <install   cmd='"%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
-    <install   cmd='%COMSPEC% /C IF EXIST "%ALLUSERSPROFILE%\Desktop\XMind.lnk" DEL "%ALLUSERSPROFILE%\Desktop\XMind.lnk"' />
-    <upgrade   cmd='"%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
-    <upgrade   cmd='%COMSPEC% /C IF EXIST "%ALLUSERSPROFILE%\Desktop\XMind.lnk" DEL "%ALLUSERSPROFILE%\Desktop\XMind.lnk"' />
-    <downgrade cmd='"%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
-    <downgrade cmd='%COMSPEC% /C IF EXIST "%ALLUSERSPROFILE%\Desktop\XMind.lnk" DEL "%ALLUSERSPROFILE%\Desktop\XMind.lnk"' />
-    <remove    cmd='%COMSPEC% /C IF EXISTS "%PROGRAMFILES%\XMind\uninstall.exe" "%PROGRAMFILES%\XMind\uninstall.exe" /S' />
-  </package>
+  <depends package-id="java" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="XMind" value="%version%" />
+
+  <install   cmd='"%SOFTWARE%\XMind\xmind-win-%version%.%fileversion%.exe" /S' />
+  <install   cmd='%COMSPEC% /C IF EXIST "%DESKTOP%\XMind.lnk" DEL "%DESKTOP%\XMind.lnk"' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+  <remove    cmd='"%PKG_DESTINATION%\uninstall.exe" /S' />
+</package>
+
 </packages>

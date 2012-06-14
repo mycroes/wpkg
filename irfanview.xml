@@ -29,22 +29,19 @@
 
   <variable name="version" value="4.2.8.0" />
   <variable name="fileversion" value="428" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\IrfanView"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\IrfanView" architecture="x64" />
 
-  <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\IrfanView\i_view32.exe" value="%version%" />
+  <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\i_view32.exe" value="%version%" />
 
-  <install cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\IrfanView\iv_uninstall.exe" "%PROGRAMFILES%\IrfanView\iv_uninstall.exe" /silent' />
-  <install cmd='"%SOFTWARE%\irfanview\iview%fileversion%_setup.exe" /silent /folder="%PROGRAMFILES%\Irfanview" /desktop=0 /group=1 /allusers=1 /assoc=0' />
-  <install cmd='%COMSPEC% /c xcopy /y "%SOFTWARE%\irfanview\i_view32.ini" "%PROGRAMFILES%\Irfanview\" >NUL' />
+  <install include='remove' />
+  <install cmd='"%SOFTWARE%\irfanview\iview%fileversion%_setup.exe" /silent /folder="%PKG_DESTINATION%" /desktop=0 /group=1 /allusers=1 /assoc=0' />
+  <install cmd='%COMSPEC% /c xcopy /y "%SOFTWARE%\irfanview\i_view32.ini" "%PKG_DESTINATION%\" >NUL' />
 
-  <upgrade cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\IrfanView\iv_uninstall.exe" "%PROGRAMFILES%\IrfanView\iv_uninstall.exe" /silent' />
-  <upgrade cmd='"%SOFTWARE%\irfanview\iview%fileversion%_setup.exe" /silent /folder="%PROGRAMFILES%\Irfanview" /desktop=0 /group=1 /allusers=1 /assoc=0' />
-  <upgrade cmd='%COMSPEC% /c xcopy /y "%SOFTWARE%\irfanview\i_view32.ini" "%PROGRAMFILES%\Irfanview\" >NUL' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='%COMSPEC% /C IF EXIST "%PROGRAMFILES%\IrfanView\iv_uninstall.exe" "%PROGRAMFILES%\IrfanView\iv_uninstall.exe" /silent' />
-  <downgrade cmd='"%SOFTWARE%\irfanview\iview%fileversion%_setup.exe" /silent /folder="%PROGRAMFILES%\Irfanview" /desktop=0 /group=1 /allusers=1 /assoc=0' />
-  <downgrade cmd='%COMSPEC% /c xcopy /y "%SOFTWARE%\irfanview\i_view32.ini" "%PROGRAMFILES%\Irfanview\" >NUL' />
-
-  <remove cmd='"%PROGRAMFILES%\IrfanView\iv_uninstall.exe" /silent' />
+  <remove cmd='%COMSPEC% /C IF EXIST "%PKG_DESTINATION%\iv_uninstall.exe" "%PKG_DESTINATION%\iv_uninstall.exe" /silent' />
 </package>
 
 <package
@@ -55,16 +52,18 @@
   priority="10">
 
   <variable name="version" value="428" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\IrfanView"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\IrfanView" architecture="x64" />
 
   <depends package-id="irfanview" />
 
-  <check type="file" condition="exists" path="%PROGRAMFILES%\IrfanView\plugins\IV_player.exe" />
+  <check type="file" condition="exists" path="%PKG_DESTINATION%\plugins\IV_player.exe" />
 
   <install   cmd='"%SOFTWARE%\irfanview\irfanview_plugins_%version%_setup.exe" /silent' />
-  <upgrade   cmd='"%SOFTWARE%\irfanview\irfanview_plugins_%version%_setup.exe" /silent' />
-  <downgrade cmd='"%SOFTWARE%\irfanview\irfanview_plugins_%version%_setup.exe" /silent' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <!-- we just need WPKG to see this as removed -->
-  <remove    cmd='%COMSPEC% /c del "%ProgramFiles%\Irfanview\Plugins\IV_player.exe"' />
+  <remove    cmd='%COMSPEC% /c del "%PKG_DESTINATION%\Plugins\IV_player.exe"' />
 </package>
 
 </packages>

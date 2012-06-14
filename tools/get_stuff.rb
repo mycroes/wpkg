@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby -w
 
 =begin
-Copyright 2011 Peter Hoeg <p.hoeg@northwind.sg>
+Copyright 2011-2012 Peter Hoeg <peter@speartail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -88,6 +88,13 @@ PACKAGES = {
   :language => 'en-US'},
 ],
 
+:firefox_esr => [
+  {:url => 'ftp://ftp.mozilla.org/pub/firefox/releases/%version%esr/win32/%language%/Firefox Setup %version%esr.exe',
+  :destination => ['Mozilla', 'Firefox', 'Firefox Setup %version%esr.exe'],
+  :package_id => 'firefox_esr',
+  :language => 'en-US'},
+],
+
 :flash => [
   {:url => 'http://fpdownload.macromedia.com/pub/flashplayer/current/licensing/win/install_flash_player_%mainversion%_active_x_32bit.msi',
   :destination => ['Adobe', 'Flash', '%shortversion%', BIT_32_DIR, 'install_flash_player_%mainversion%_active_x.msi'],
@@ -124,10 +131,14 @@ PACKAGES = {
 ],
 
 :ie9 => [
-  {:url => 'http://download.microsoft.com/download/C/3/B/C3BF2EF4-E764-430C-BDCE-479F2142FC81/IE9-Windows7-x86-enu.exe',
-  :destination => ['Microsoft', 'IE9', BIT_32_DIR, 'IE9-Windows7-enu.exe']},
-  {:url => 'http://download.microsoft.com/download/C/1/6/C167B427-722E-4665-9A40-A37BC5222B0A/IE9-Windows7-x64-enu.exe',
-  :destination => ['Microsoft', 'IE9', BIT_64_DIR, 'IE9-Windows7-enu.exe']},
+  { url: 'http://download.microsoft.com/download/5/E/4/5E404378-9A5D-41AB-AFBA-1AC04F3B2A13/Windows6.1-KB2454826-v2-x86.msu',
+    destination: ['Microsoft', 'IE9', BIT_32_DIR, 'Windows6.1-KB2454826-v2-x86.msu']},
+  { url: 'http://download.microsoft.com/download/D/B/D/DBD62263-2627-49CB-B675-AA1601EBE0BD/Windows6.1-KB2454826-v2-x64.msu',
+    destination: ['Microsoft', 'IE9', BIT_64_DIR, 'Windows6.1-KB2454826-v2-x64.msu']},
+  { url: 'http://download.microsoft.com/download/C/3/B/C3BF2EF4-E764-430C-BDCE-479F2142FC81/IE9-Windows7-x86-enu.exe',
+   destination: ['Microsoft', 'IE9', BIT_32_DIR, 'IE9-Windows7-enu.exe']},
+  { url: 'http://download.microsoft.com/download/C/1/6/C167B427-722E-4665-9A40-A37BC5222B0A/IE9-Windows7-x64-enu.exe',
+   destination: ['Microsoft', 'IE9', BIT_64_DIR, 'IE9-Windows7-enu.exe']},
 ],
 
 :installer => [
@@ -147,10 +158,10 @@ PACKAGES = {
 ],
 
 :lastpass => [
-  {:url => 'https://lastpass.com/lastpass.exe',
+  {:url => 'https://download.lastpass.com/lastpass.exe',
   :destination => ['LastPass', '%version%', BIT_32_DIR, 'lastpass.exe'],
   :package_id => 'lastpass'},
-  {:url => 'https://lastpass.com/lastpass_x64.exe',
+  {:url => 'https://download.lastpass.com/lastpass_x64.exe',
   :destination => ['LastPass', '%version%', BIT_64_DIR, 'lastpass.exe'],
   :package_id => 'lastpass'},
 ],
@@ -196,8 +207,9 @@ PACKAGES = {
   :destination => ['Microsoft', 'RSAT', 'Windows6.1-KB958830-x64-RefreshPkg.msu']},
 ],
 
+# 'http://download.skype.com/SkypeSetup.msi',
 :skype => [
-  {:url => 'http://download.skype.com/SkypeSetup.msi',
+  {:url => 'http://download.skype.com/1cd64f2e45ea98868326f54397db45bf/SkypeSetup.msi',
   :destination => ['Skype', 'SkypeSetup.msi']},
 ],
 
@@ -205,6 +217,12 @@ PACKAGES = {
   {:url => 'http://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-%version%-install.exe',
   :destination => ['SumatraPDF', 'SumatraPDF-%version%-install.exe'],
   :package_id => 'sumatrapdf'},
+],
+
+:tnef => [
+  {:url => 'http://www.petersen.de/tnef2win/files/tnef2win.exe',
+  :destination => ['tnef2win', 'tnef2win.exe'],
+  :package_id => 'tnef2win'},
 ],
 
 :trueview => [
@@ -218,10 +236,10 @@ PACKAGES = {
 
 # notice the 32-bit renaming
 :ud => [
-  {:url => 'http://sourceforge.net/projects/ultradefrag/files/ultradefrag/ultradefrag-%version%/ultradefrag-%version%.bin.i386.exe/download',
+  {:url => 'http://downloads.sourceforge.net/project/ultradefrag/stable-release/%version%/ultradefrag-%version%.bin.i386.exe',
   :destination => ['UltraDefrag', 'ultradefrag-%version%.bin.x86.exe'],
   :package_id => 'ultradefrag'},
-  {:url => 'http://sourceforge.net/projects/ultradefrag/files/ultradefrag/ultradefrag-%version%/ultradefrag-%version%.bin.amd64.exe/download',
+  {:url => 'http://downloads.sourceforge.net/project/ultradefrag/stable-release/%version%/ultradefrag-%version%.bin.amd64.exe',
   :destination => ['UltraDefrag', 'ultradefrag-%version%.bin.amd64.exe'],
   :package_id => 'ultradefrag'},
 ],
@@ -375,36 +393,39 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
   --package, -p PACKAGE_NAME:
     Get one of the following packages:
 
-      all        All packages
-      sevenzip   7Zip **
-      bullzip    BullZIP PDFPrinter
-      console    Console2
-      dotnet3    .NET 3.5
-      dotnet4    .NET 4
-      flash      Flash Player
-      gs       	 GhostScript **
-      ie8        Internet Explorer 8 for Windows XP
-      ie9        Internet Explorer 9
-      installer  Windows Installer 4.5
-      jruby      JRuby
-      keepass	 KeePass
-      netpas     Netpas Distance
-      npp        Notepad++ **
-      lastpass	 LastPass
-      msse       Microsoft Security Essentials
-      pdn        PaintDotNet
-      rsat       Remote Systems Administration Tool
-      skype      Skype Business Edition (.msi)
-      sumatrapdf SumatraPDF **
-      trueview   DWG TrueView 2012
-      ud         UltraDefrag
-      vc         Visual C++ Runtime 2005, 2008, 2010
-      visio      Visio Viewer 2010
-      vj         Visual J Runtime
-      vlc        VLC Player **
-      xml        MSXML
-      wpkg       WPKG Client
-      wpkg_gp	 WPKG GP
+      all         All packages
+      sevenzip    7Zip **
+      bullzip     BullZIP PDFPrinter
+      console     Console2
+      dotnet3     .NET 3.5
+      dotnet4     .NET 4
+      firefox     Firefox **
+      firefox_esr Firefox Extended Support Release **
+      flash       Flash Player
+      gs       	  GhostScript **
+      ie8         Internet Explorer 8 for Windows XP
+      ie9         Internet Explorer 9
+      installer   Windows Installer 4.5
+      jruby       JRuby
+      keepass	    KeePass
+      netpas      Netpas Distance
+      npp         Notepad++ **
+      lastpass	  LastPass
+      msse        Microsoft Security Essentials
+      pdn         PaintDotNet
+      rsat        Remote Systems Administration Tool
+      skype       Skype Business Edition (.msi)
+      sumatrapdf  SumatraPDF **
+      tnef        TNEF2WIN - TNEF viewer
+      trueview    DWG TrueView 2012
+      ud          UltraDefrag
+      vc          Visual C++ Runtime 2005, 2008, 2010
+      visio       Visio Viewer 2010
+      vj          Visual J Runtime
+      vlc         VLC Player **
+      xml         MSXML
+      wpkg        WPKG Client
+      wpkg_gp	    WPKG GP
 
       Packages marked with ** support version specific downloads
 
@@ -432,7 +453,7 @@ get_stuff.rb [OPTIONS] --package PACKAGE_NAME DIR
 end
 
 def replace_variables(str)
-  s = str.gsub('%version%', @version.to_s)
+  s = str.gsub(/%version%/i, @version.to_s)
   s.gsub!('%mainversion%', @mainversion.to_s)
   s.gsub!('%shortversion%', @shortversion.to_s)
   s.gsub!('%fileversion%', @fileversion.to_s)
@@ -451,10 +472,10 @@ def download(package_def)
     if p[:package_id]
       [ @xmlpath ].flatten.each do |xp|
         Dir.glob(File.join(xp, '*.xml')).sort.each do |xf|
-	  # puts "Processing: #{xf}"
+          # puts "Processing: #{xf}"
           xml = XmlSimple.xml_in(xf, {'KeyAttr' => {'package' => 'id', 'variable' => 'name'}})
           if xml['package'] && xml['package'][p[:package_id]] && xml['package'][p[:package_id]]['variable'] && @version.nil?
-	    # we should create a hash of found variables and automatically substitute them all
+            # we should create a hash of found variables and automatically substitute them all
             @version = get_variable(xml, p[:package_id], 'version')
             @shortversion = get_variable(xml, p[:package_id], 'shortversion')
             @mainversion = get_variable(xml, p[:package_id], 'mainversion')
@@ -478,10 +499,17 @@ def download(package_def)
     raise AppError, "Unable to figure out where to write local file: #{fullpath}" unless fullpath
     FileUtils.mkdir_p(path) unless Dir.exists?(path)
     if File.exists?(fullpath)
-      if @overwrite
+      if @overwrite && File.exist?(fullpath)
         FileUtils.safe_unlink(fullpath)
         puts 'INFO: Removing existing file'
       end
+    end
+    d = File.dirname(fullpath)
+    unless Dir.exists?(d)
+      puts "INFO: Directory #{d} not found. Creating..."
+      FileUtils.mkdir_p(d) 
+    else
+      puts "NOTICE: Directory #{d} exists."
     end
     system "axel '#{url}' -a -o '#{fullpath}'"
     puts "NOTICE: #{p[:notice] unless p[:notice].nil?}"

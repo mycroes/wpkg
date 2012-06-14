@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+  <!--
+  NOTES
+  1) http://www.igniterealtime.org/projects/spark/index.jsp
+  2) For some super odd reason, Spark needs to be started once as admin before normal users can start it - we use ping to let it run for 30 seconds before killing it again
+  -->
+
+<package
+  id="spark"
+  name="Spark IM"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <depends package-id="java" />
+
+  <variable name="version" value="2.6.3" />
+  <variable name="fileversion" value="2_6_3" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Spark"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Spark" architecture="x64" />
+  <variable name="PKG_FLAGS" value="-q -Dinstall4j.suppressStdout=true -Dinstall4j.suppressUnattendedReboot=true" />
+  <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
+  <variable name="DESKTOP" value="%PUBLIC%\Desktop"          os="windows 7" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Spark" value="%version%" />
+
+  <install include='kill' />
+  <install cmd='"%SOFTWARE%\SparkIM\spark_%fileversion%_online.exe" %PKG_FLAGS%' />
+  <install cmd='%COMSPEC% /c DEL /Q "%DESKTOP%\Spark*.lnk"'><exit code="any" /></install>
+  <!-- <install cmd='%COMSPEC% /c start "%PKG_DESTINATION%\Spark.exe"' /> -->
+  <!-- <install cmd="ping -n31 localhost >NUL"><exit code="any" /></install> -->
+  <install include='kill' />
+
+  <upgrade include='install' />
+  <downgrade include='install' />
+
+  <remove include='kill' />
+  <remove cmd='"%PKG_DESTINATION%\uninstall.exe" %PKG_OPTIONS%' />
+
+  <commands>
+    <command type='kill' cmd='taskkill /f /im spark.exe'><exit code="any" /></command>
+  </commands>
+</package>
+
+</packages>

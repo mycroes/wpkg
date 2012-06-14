@@ -11,56 +11,50 @@
 <package
   id="nitropdfpro"
   name="NitroPDF 6 Pro"
-  revision="%version%-0"
+  revision="%version%-2"
   reboot="false"
   priority="15">
 
   <variable name="version" value="6.1.4.1" />
 
-  <check type="logical" condition="or">
+  <check type='logical' condition='or'>
     <check type="uninstall" condition="versiongreaterorequal" path="Nitro PDF Professional"          value="%version%" />
     <check type="uninstall" condition="versiongreaterorequal" path="Nitro PDF Professional (64-bit)" value="%version%" />
   </check>
 
-  <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_x86.msi"' />
-  <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_x64.msi"' />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_x86.msi"' architecture="x86" />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_x64.msi"' architecture="x64" />
 
-  <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_x86.msi"' />
-  <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_x64.msi"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_x86.msi"' />
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_x64.msi"' />
-
-  <remove    cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x "%SOFTWARE%\NitroPDF\nitro_x86.msi"' />
-  <remove    cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%SOFTWARE%\NitroPDF\nitro_x64.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\NitroPDF\nitro_x86.msi"' architecture="x86" />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\NitroPDF\nitro_x64.msi"' architecture="x64" />
 
 </package>
 
 <package
   id="nitropdfproocr"
   name="NitroPDF 6 Pro OCR"
-  revision="%version%-0"
+  revision="%version%-2"
   reboot="false"
   priority="15">
 
   <variable name="version" value="6.1.4.1" />
 
-  <check type="logical" condition="or">
+  <check type='logical' condition='or'>
     <check type="uninstall" condition="versiongreaterorequal" path="Nitro PDF Professional"          value="%version%" />
     <check type="uninstall" condition="versiongreaterorequal" path="Nitro PDF Professional (64-bit)" value="%version%" />
   </check>
 
-  <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_ocr_x86.msi"' />
-  <install   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_ocr_x64.msi"' />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_ocr_x86.msi"' architecture="x86" />
+  <install   cmd='msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_ocr_x64.msi"' architecture="x64" />
 
-  <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_ocr_x86.msi"' />
-  <upgrade   cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_ocr_x64.msi"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_ocr_x86.msi"' />
-  <downgrade cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /i "%SOFTWARE%\NitroPDF\nitro_ocr_x64.msi"' />
-
-  <remove    cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "x86"   msiexec %MSI% /x "%SOFTWARE%\NitroPDF\nitro_ocr_x86.msi"' />
-  <remove    cmd='%COMSPEC% /C IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" msiexec %MSI% /x "%SOFTWARE%\NitroPDF\nitro_ocr_x64.msi"' />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\NitroPDF\nitro_ocr_x86.msi"' architecture="x86" />
+  <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\NitroPDF\nitro_ocr_x64.msi"' architecture="x64" />
 
 </package>
 

@@ -7,6 +7,10 @@ The following criteria must be fulfilled before the recipe is included here:
 * 32-bit and 64-bit safe
 * Uses "msiexec /x package_file.msi" for uninstallations whenever possible to avoid knowing CLSIDs that change
 
+NOTICE: We are slowly migrating to WPKG 1.3 as it contains a number of features (and bug fixes) that make our lives so much easier. Specifically:
+* Nested variables work
+* Chaining commands
+
 h2. Branches
 
 All development takes place in 'master' - for production use please use the 'prod' branch.

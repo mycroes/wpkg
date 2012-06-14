@@ -10,7 +10,7 @@
 <package
   id="wpkg"
   name="WPKG"
-  revision="%version%-1"
+  revision="%version%-2"
   priority="0"
   reboot="false">
 
@@ -19,8 +19,8 @@
   <check type="uninstall" condition="versiongreaterorequal" path="WPKG" value="%version%" />
 
   <install   cmd='msiexec %MSI% /i "%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\WPKG Client %version%.msi" SETTINGSFILE="%WPKG%\settings.xml"' />
-  <upgrade   cmd='msiexec %MSI% /i "%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\WPKG Client %version%.msi" SETTINGSFILE="%WPKG%\settings.xml"' />
-  <downgrade cmd='msiexec %MSI% /i "%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\WPKG Client %version%.msi" SETTINGSFILE="%WPKG%\settings.xml"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='msiexec %MSI% /x "%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\WPKG Client %version%.msi" SETTINGSFILE="%WPKG%\settings.xml"' />
 
 </package>
@@ -28,41 +28,50 @@
 <package
   id="wpkg-gp"
   name="WPKG-GP"
-  revision="%version%-0"
+  revision="%version%-4"
   priority="0"
   reboot="false">
 
   <variable name="version" value="0.15" />
 
-  <check type="uninstall" condition="versiongreaterorequal" path="WPKG" value="%version%" />
+  <check type="uninstall" condition="versiongreaterorequal" path="Wpkg-GP %version% (x86)" value="%version%" architecture="x86" />
+  <check type="uninstall" condition="versiongreaterorequal" path="Wpkg-GP %version% (x64)" value="%version%" architecture="x64" />
 
-  <install   cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\settings.ini"' />
-  <upgrade   cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\settings.ini"' />
-  <downgrade cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\settings.ini"' />
+  <install   cmd='"%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\Wpkg-GP-%version%.exe" /S /INI "%WPKG%\wpkg-gp.ini"' />
+  <install   cmd='msiexec %MSI% /x "%SOFTWARE%\WPKG\%PROCESSOR_ARCHITECTURE%\WPKG Client 1.3.14.msi" SETTINGSFILE="%WPKG%\settings.xml"'>
+    <condition><check type='file' condition='exists' path='%PROGRAMFILES%\WPKG\WpkgSrv.exe' /></condition>
+  </install>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
 </package>
 
 <package
   id="wpkg-settings"
   name="Update WPKG settings"
-  revision="3-0"
+  revision="6"
   priority="0"
   reboot="false"
-  execute="once">
+  execute="always">
 
   <!--
   <depends package-id="wpkg"/>
   -->
 
-  <install cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"' />
-  <upgrade cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"' />
+  <install cmd='"%PROGRAMFILES%\WPKG\wpkginst.exe" --SETTINGSFILE="%WPKG%\settings.xml"'>
+    <condition>
+      <check type='file' condition='exists' path='%PROGRAMFILES%\WPKG\wpkginst.exe' />
+    </condition>
+  </install>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
 </package>
 
 <package
   id="wpkg-restart"
   name="Restart WPKG after 60 minutes idle"
-  revision="2"
+  revision="3"
   priority="0"
   reboot="false">
 
@@ -70,14 +79,13 @@
 
   <check type="file" condition="exists" path="%WINDIR%\Tasks\WPKGRestart.job" />
 
-  <install cmd='schtasks /Delete /TN WPKGRestart /F'><exit code="any" /></install>
+  <install include='remove' />
   <install cmd='schtasks /Create /TN WPKGRestart /RU SYSTEM /SC ONIDLE /I 60 /TR "%COMSPEC% /c net stop WPKGService &amp; net start WPKGService"' />
 
-  <upgrade cmd='schtasks /Delete /TN WPKGRestart /F'><exit code="any" /></upgrade>
-  <upgrade cmd='schtasks /Create /TN WPKGRestart /RU SYSTEM /SC ONIDLE /I 60 /TR "%COMSPEC% /c net stop WPKGService &amp; net start WPKGService"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='schtasks /Delete /TN WPKGRestart /F'><exit code="any" /></downgrade>
-  <downgrade cmd='schtasks /Create /TN WPKGRestart /RU SYSTEM /SC ONIDLE /I 60 /TR "%COMSPEC% /c net stop WPKGService &amp; net start WPKGService"' />
+  <remove cmd='schtasks /Delete /TN WPKGRestart /F'><exit code="any" /></remove>
 
 </package>
 

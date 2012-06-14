@@ -2,7 +2,9 @@
 
 <!--
   NOTES
-  1) Killing explorer.exe before removing was needed for releases older than Aug 2010, HOWEVER it is still needed for upgrades together with vboxservice and sh.exe - I have removed this after all. Killing explorer.exe is just not acceptable.
+  1) Killing explorer.exe before removing was needed for releases older than Aug 2010,
+     HOWEVER it is still needed for upgrades together with vboxservice and sh.exe.
+     I have removed this after all. Killing explorer.exe is just not acceptable.
 -->
 
 <packages>
@@ -14,31 +16,29 @@
   priority="10"
   reboot="false">
 
-  <variable name="version" value="1.7.4" />
-  <variable name="reldate" value="20110204" />
+  <variable name="version" value="1.7.9" />
+  <variable name="reldate" value="20120201" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Git"      architecture='x86' />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Git" architecture='x64' />
 
   <check type="uninstall" condition="exists" path="Git version %version%-preview%reldate%" />
 
-  <install   cmd='taskkill /f /im sh.exe'><exit code="any" /></install>
-  <install   cmd='net stop vboxservice'><exit code="any" /></install>
+  <install   include='stop' />
   <install   cmd='"%SOFTWARE%\Git\Git-%version%-preview%reldate%.exe" /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES /LOG' />
-  <install   cmd='net start vboxservice'><exit code="any" /></install>
+  <install   include='start' />
 
-  <upgrade   cmd='taskkill /f /im sh.exe'><exit code="any" /></upgrade>
-  <upgrade   cmd='net stop vboxservice'><exit code="any" /></upgrade>
-  <upgrade   cmd='"%SOFTWARE%\Git\Git-%version%-preview%reldate%.exe" /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES /LOG' />
-  <upgrade   cmd='net start vboxservice'><exit code="any" /></upgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
-  <downgrade cmd='taskkill /f /im sh.exe'><exit code="any" /></downgrade>
-  <downgrade cmd='net stop vboxservice'><exit code="any" /></downgrade>
-  <downgrade cmd='"%SOFTWARE%\Git\Git-%version%-preview%reldate%.exe" /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES /LOG' />
-  <downgrade cmd='net start vboxservice'><exit code="any" /></downgrade>
+  <remove    include='stop' />
+  <remove    cmd='"%PKG_DESTINATION%\unins000.exe" /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES' />
+  <remove    include='start' />
 
-  <remove    cmd='taskkill /f /im sh.exe'><exit code="any" /></remove>
-  <remove    cmd='net stop vboxservice'><exit code="any" /></remove>
-  <remove    cmd='%ComSpec% /c if exist "%ProgramFiles%\Git\unins000.exe"      "%ProgramFiles%\Git\unins000.exe" /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES' />
-  <remove    cmd='%ComSpec% /c if exist "%ProgramFiles(x86)%\Git\unins000.exe" "%ProgramFiles(x86)%\Git\unins000.exe" /SP- /VERYSILENT /NORESTART /SUPPRESSMSGBOXES' />
-  <remove    cmd='net start vboxservice'><exit code="any" /></remove>
+  <commands>
+    <command type='stop' cmd='taskkill /f /im sh.exe'><exit code="any" /></command>
+    <command type='stop' cmd='net stop vboxservice'><exit code="any" /></command>
+    <command type='start' cmd='net start vboxservice'><exit code='any' /></command>
+  </commands>
 
 </package>
 

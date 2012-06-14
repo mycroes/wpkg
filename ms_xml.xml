@@ -28,10 +28,8 @@
 
   <install   cmd='msiexec %MSI% /i "%base%\msxml4\msxml.msi"' />
   <install   cmd='%COMSPEC% /C msiexec %MSI% /i "%base%\msxml6\msxml6_%PROCESSOR_ARCHITECTURE:amd=x%.msi"' />
-  <upgrade   cmd='msiexec %MSI% /i "%base%\msxml4\msxml.msi"' />
-  <upgrade   cmd='%COMSPEC% /C msiexec %MSI% /i "%base%\msxml6\msxml6_%PROCESSOR_ARCHITECTURE:amd=x%.msi"' />
-  <downgrade cmd='msiexec %MSI% /i "%base%\msxml4\msxml.msi"' />
-  <downgrade cmd='%COMSPEC% /C msiexec %MSI% /i "%base%\msxml6\msxml6_%PROCESSOR_ARCHITECTURE:amd=x%.msi"' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='msiexec %MSI% /x "%base%\msxml4\msxml.msi"' />
   <remove    cmd='%COMSPEC% /C msiexec %MSI% /x "%base%\msxml6\msxml6_%PROCESSOR_ARCHITECTURE:amd=x%.msi"' />
 

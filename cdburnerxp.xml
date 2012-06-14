@@ -16,37 +16,21 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="4.3.8.2523" />
+  <depends package-id='dotnet3' />
+
+  <variable name="version" value="4.4.0.2905" />
   <variable name='product_code' value='5932A5C4-BB44-4CFB-AD66-1B826F4D788B' /> <!-- version 4 -->
+  <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
+  <variable name="DESKTOP" value="%PUBLIC%\Desktop"          os="windows 7" />
 
   <check type="uninstall" condition="versiongreaterorequal" path="CDBurnerXP" value="%version%" />
 
   <install cmd='msiexec /x{%product_code%} %MSI%'><exit code="1605" /></install>
-  <install cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
-  <install cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\CDBurnerXP.lnk"'>
-    <exit code="any" />
-  </install>
-  <install cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\CDBurnerXP.lnk"'>
-    <exit code="any" />
-  </install>
+  <install cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' timeout='600' />
+  <install cmd='%COMSPEC% /c del /Q "%DESKTOP%\CDBurnerXP.lnk"'><exit code="any" /></install>
 
-  <upgrade cmd='msiexec /x{%product_code%} %MSI%'><exit code="1605" /></upgrade>
-  <upgrade cmd='msiexec /i "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
-  <upgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\CDBurnerXP.lnk"'>
-    <exit code="any" />
-  </upgrade>
-  <upgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\CDBurnerXP.lnk"'>
-    <exit code="any" />
-  </upgrade>
-
-  <downgrade cmd='msiexec /x{%product_code%} %MSI%'><exit code="1605" /></downgrade>
-  <downgrade cmd='msiexec /fa "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
-  <downgrade cmd='%COMSPEC% /c del /Q "%ALLUSERSPROFILE%\Desktop\CDBurnerXP.lnk"'>
-    <exit code="any" />
-  </downgrade>
-  <downgrade cmd='%COMSPEC% /c del /Q "%PUBLIC%\Desktop\CDBurnerXP.lnk"'>
-    <exit code="any" />
-  </downgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove    cmd='msiexec /x "%SOFTWARE%\CDBurnerXP\cdbxp_setup_%version%.msi" %MSI%' />
 
