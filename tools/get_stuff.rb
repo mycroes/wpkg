@@ -502,7 +502,7 @@ def download(package_def)
     d = File.dirname(fullpath)
     unless Dir.exists?(d)
       puts "INFO: Directory #{d} not found. Creating..."
-      FileUtils.mkdir_p(d) 
+      FileUtils.mkdir_p(d)
     else
       puts "NOTICE: Directory #{d} exists."
     end
