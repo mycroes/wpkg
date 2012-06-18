@@ -12,7 +12,7 @@
 <package
   id="flash"
   name="Adobe Flash Player"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
