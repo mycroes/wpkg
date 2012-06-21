@@ -22,14 +22,14 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="%version%-4"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
   <depends package-id='vcruntime' />
 
   <variable name="version" value="14.0.8117.0416" os='windows xp' />
-  <variable name="version" value="15.4.3538.0513" os='windows 7' />
+  <variable name="version" value="15.4.3555.0308" os='windows 7' />
   <variable name='params' value='/q /AppSelect:Messenger /noHomepage /noSearch /noLaunch /NOToolbarCEIP' />
   <variable name='PKG_DESTIONATION' value='%PROGRAMFILES%\Windows Live'      architecture='x86' />
   <variable name='PKG_DESTIONATION' value='%PROGRAMFILES(x86)%\Windows Live' architecture='x64' />
@@ -42,6 +42,9 @@
 
   <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2009\wlsetup-all.exe" %params%' timeout='600' os='windows xp' />
   <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2011\wlsetup-all.exe" %params%' timeout='600' os='windows 7' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove  cmd='"%PKG_DESTINATION%"\Installer\wlarp.exe" /uninstall:Messenger /quiet' />
 
