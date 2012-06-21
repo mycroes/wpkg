@@ -15,7 +15,7 @@
      e) dw20shared.msi (I couldn't find this and it seems to work without)
   2) Use the offline installer (download from: http://explore.live.com/windows-live-essentials-install-offline-faq)
   3) Upgrades are tricky as older versions WILL leave crufty reg keys behind so
-     we need to check file versions instead
+     we need to check file versions instead.
   4) File version is NOT the same as what we see in Uninstall but we need the
      file check due to note 3
 -->
@@ -25,7 +25,7 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="%version%-9"
+  revision="%version%-10"
   reboot="false"
   priority="10">
 
@@ -46,8 +46,9 @@
   <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2009\wlsetup-all.exe" %params%' timeout='600' os='windows xp' />
   <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2011\wlsetup-all.exe" %params%' timeout='600' os='windows 7' />
 
+  <upgrade   include='remove' />
   <upgrade   include='install' />
-  <downgrade include='install' />
+  <downgrade include='upgrade' />
 
   <remove  cmd='"%PKG_DESTINATION%"\Installer\wlarp.exe" /uninstall:Messenger /quiet' />
 
