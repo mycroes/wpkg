@@ -14,7 +14,10 @@
      d) messenger.msi
      e) dw20shared.msi (I couldn't find this and it seems to work without)
   2) Use the offline installer (download from: http://explore.live.com/windows-live-essentials-install-offline-faq)
-  3) I don't know if upgrades/downgrades work this way
+  3) Upgrades are tricky as older versions WILL leave crufty reg keys behind so
+     we need to check file versions instead
+  4) File version is NOT the same as what we see in Uninstall but we need the
+     file check due to note 3
 -->
 
 <packages>
@@ -22,23 +25,20 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="%version%-0"
+  revision="%version%-8"
   reboot="false"
   priority="10">
 
   <depends package-id='vcruntime' />
 
-  <variable name="version" value="14.0.8117.0416" os='windows xp' />
-  <variable name="version" value="15.4.3555.0308" os='windows 7' />
+  <variable name="version"     value="14.0.8117.0416" os='windows xp' />
+  <variable name="version"     value="15.4.3555.0308" os='windows 7' />
+  <variable name="fileversion" value="15.4.3555.308"  os='windows 7' />
   <variable name='params' value='/q /AppSelect:Messenger /noHomepage /noSearch /noLaunch /NOToolbarCEIP' />
   <variable name='PKG_DESTIONATION' value='%PROGRAMFILES%\Windows Live'      architecture='x86' />
   <variable name='PKG_DESTIONATION' value='%PROGRAMFILES(x86)%\Windows Live' architecture='x64' />
 
-  <check type='logical' condition='or'>
-    <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Messenger" value="%version%" />
-    <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Essentials 2009" value="%version%" />
-    <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Essentials 2011" value="%version%" />
-  </check>
+  <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\Messenger\msnmsgr.exe" value="%fileversion%" />
 
   <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2009\wlsetup-all.exe" %params%' timeout='600' os='windows xp' />
   <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2011\wlsetup-all.exe" %params%' timeout='600' os='windows 7' />
