@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages xmlns:xsi="http://www.wpkg.org/packages" xsi:noNamespaceSchemaLocation="xsd/packages.xsd">
+
+<package
+  id="neifusion"
+  name="NEi Fusion"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <variable name="version" value="2.1.2001" />
+  <variable name="version_engine" value="10.0.2881" />
+
+  <depends package-id='dotnet3' os='windows xp' />
+  <depends package-id='vsta_2005' />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="NEiFusion" value="%version%" />
+  <check type="uninstall" condition="versiongreaterorequal" path="NEiNastran Engine" value="%version_engine%" />
+
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\NEiFusion\%PROCESSOR_ARCHITECTURE%\%file%"' />
+  <!--
+  dependencies
+  engine
+  neifusion
+  copy license
+       -->
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+</package>
+
+</packages>
