@@ -15,7 +15,7 @@
 <package
   id="skype"
   name="Skype 5"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -42,7 +42,9 @@
   <remove include='kill' />
   <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Skype\%version%\SkypeSetup.msi"' />
 
-  <command type='kill' cmd='"%PKG_DESTINATION%\Skype.exe" /shutdown'><exit code='any' /></command>
+  <commands>
+    <command type='kill' cmd='"%PKG_DESTINATION%\Skype.exe" /shutdown'><exit code='any' /></command>
+  </commands>
 
 </package>
 
