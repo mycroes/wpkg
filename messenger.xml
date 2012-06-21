@@ -25,7 +25,7 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="%version%-8"
+  revision="%version%-9"
   reboot="false"
   priority="10">
 
@@ -38,7 +38,10 @@
   <variable name='PKG_DESTIONATION' value='%PROGRAMFILES%\Windows Live'      architecture='x86' />
   <variable name='PKG_DESTIONATION' value='%PROGRAMFILES(x86)%\Windows Live' architecture='x64' />
 
-  <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\Messenger\msnmsgr.exe" value="%fileversion%" />
+  <check type='logical' condition='or'>
+    <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\Messenger\msnmsgr.exe" value="%fileversion%" />
+    <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\Messenger\msgsres.dll" value="%fileversion%" />
+  </check>
 
   <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2009\wlsetup-all.exe" %params%' timeout='600' os='windows xp' />
   <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2011\wlsetup-all.exe" %params%' timeout='600' os='windows 7' />
