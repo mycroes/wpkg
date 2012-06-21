@@ -25,7 +25,7 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="%version%-11"
+  revision="%version%-12"
   reboot="false"
   priority="10">
 
@@ -46,6 +46,7 @@
   <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2009\wlsetup-all.exe" %params%' timeout='600' os='windows xp' />
   <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2011\wlsetup-all.exe" %params%' timeout='600' os='windows 7' />
 
+  <upgrade   include='remove' />
   <upgrade   include='install' />
   <downgrade include='upgrade' />
 
