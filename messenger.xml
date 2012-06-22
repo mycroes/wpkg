@@ -25,7 +25,7 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="%version%-13"
+  revision="%version%-14"
   reboot="false"
   priority="10">
 
@@ -35,7 +35,7 @@
   <variable name="fileversion" value="14.0.8117.416"  os='windows xp' />
   <variable name="version"     value="15.4.3555.0308" os='windows 7' />
   <variable name="fileversion" value="15.4.3555.308"  os='windows 7' />
-  <variable name='params' value='/q /AppSelect:Messenger /noHomepage /noSearch /noLaunch /NOToolbarCEIP /MessengerOnly' />
+  <variable name='params' value='/AppSelect:Messenger /noHomepage /noSearch /noLaunch /NOToolbarCEIP /log:"%TEMP%\windows_live_essentials.log" /q' />
   <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Windows Live'      architecture='x86' />
   <variable name='PKG_DESTINATION' value='%PROGRAMFILES(x86)%\Windows Live' architecture='x64' />
 
