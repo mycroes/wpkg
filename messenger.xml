@@ -25,13 +25,14 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="%version%-12"
+  revision="%version%-13"
   reboot="false"
   priority="10">
 
   <depends package-id='vcruntime' />
 
   <variable name="version"     value="14.0.8117.0416" os='windows xp' />
+  <variable name="fileversion" value="14.0.8117.416"  os='windows xp' />
   <variable name="version"     value="15.4.3555.0308" os='windows 7' />
   <variable name="fileversion" value="15.4.3555.308"  os='windows 7' />
   <variable name='params' value='/q /AppSelect:Messenger /noHomepage /noSearch /noLaunch /NOToolbarCEIP /MessengerOnly' />
@@ -50,7 +51,7 @@
   <upgrade   include='install' />
   <downgrade include='upgrade' />
 
-  <remove  cmd='"%PKG_DESTINATION%"\Installer\wlarp.exe" /uninstall:Messenger /quiet' />
+  <remove  cmd='"%PKG_DESTINATION%"\Installer\wlarp.exe" /uninstall:all /q' timeout='600'><exit code='any' /></remove>
 
 </package>
 
