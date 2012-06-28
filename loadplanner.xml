@@ -70,4 +70,44 @@
 
 </package>
 
+<package
+  id="loadplanner3"
+  name="LoadPlanner 3"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="3.8.21" />
+  <variable name="fileversion" value="3.8.0.21" /> <!-- don't ask why - I don't know... -->
+  <variable name="updatefile" value="LoadPlanner 3821 update.msi" />  <!-- for .10 it should be 38100 -->
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\LoadPlanner"      architecture="x86" />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\LoadPlanner" architecture="x64" />
+  <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
+  <variable name="DESKTOP" value="%PUBLIC%\Desktop"          os="windows 7" />
+
+  <depends package-id="system_tools" />
+
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="LoadPlanner %version% Update" />
+    <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\LpMultiP.exe" value="%fileversion%" />
+  </check>
+
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
+  <install cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
+  <install cmd='%COMSPEC% /c ftype LoadPlanner="%PKG_DESTINATION%\LpMultiP.exe" "%1"' />
+  <install cmd='%COMSPEC% /c IF NOT EXIST "%PKG_DESTINATION%\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PKG_DESTINATION%" /Y' />
+  <install cmd='%COMSPEC% /c echo Y | cacls "%PKG_DESTINATION%" /E /T /G Everyone:f >NUL'><exit code="8023" /></install>
+  <install cmd='%COMSPEC% /C move "%USERPROFILE%\Desktop\LoadPlanner.lnk" "%DESKTOP%"'><exit code="any" /></install>
+
+  <upgrade   include="install" />
+  <downgrade include="install" />
+
+  <!--
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\LoadPlanner\%updatefile%"' />
+  -->
+  <remove  cmd='msiexec %MSI% /x "%SOFTWARE%\LoadPlanner\LoadPlanner.msi"' />
+
+</package>
+
 </packages>
