@@ -33,7 +33,7 @@
 <package
   id="loadplanner"
   name="LoadPlanner"
-  revision="%version%-3"
+  revision="%version%-4"
   reboot="false"
   priority="10">
 
@@ -54,6 +54,7 @@
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <install cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
   <install cmd='%COMSPEC% /c ftype LoadPlanner="%PKG_DESTINATION%\LpMultiP.exe" "%1"' />
+  <install cmd='%COMSPEC% /c copy /Y "%SOFTWARE%\LoadPlanner\ini.mdb" "%PKG_DESTINATION%"' />
   <install cmd='%COMSPEC% /c IF NOT EXIST "%PKG_DESTINATION%\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PKG_DESTINATION%" /Y' />
   <install cmd='%COMSPEC% /c echo Y | cacls "%PKG_DESTINATION%" /E /T /G Everyone:f >NUL'><exit code="8023" /></install>
   <install cmd='%COMSPEC% /C move "%USERPROFILE%\Desktop\LoadPlanner.lnk" "%DESKTOP%"'><exit code="any" /></install>
@@ -71,7 +72,7 @@
 <package
   id="loadplanner3"
   name="LoadPlanner 3"
-  revision="%version%-1"
+  revision="%version%-2"
   reboot="false"
   priority="10">
 
@@ -92,6 +93,7 @@
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\LoadPlanner\%updatefile%"' />
   <install cmd='%COMSPEC% /c assoc .pjc=LoadPlanner' />
   <install cmd='%COMSPEC% /c ftype LoadPlanner="%PKG_DESTINATION%\LpMultiP.exe" "%1"' />
+  <install cmd='%COMSPEC% /c copy /Y "%SOFTWARE%\LoadPlanner\ini.mdb" "%PKG_DESTINATION%"' />
   <install cmd='%COMSPEC% /c IF NOT EXIST "%PKG_DESTINATION%\data5.mdb" XCOPY "%SOFTWARE%\LoadPlanner\*.mdb" "%PKG_DESTINATION%" /Y' />
   <install cmd='%COMSPEC% /c echo Y | cacls "%PKG_DESTINATION%" /E /T /G Everyone:f >NUL'><exit code="8023" /></install>
   <install cmd='%COMSPEC% /C move "%USERPROFILE%\Desktop\LoadPlanner.lnk" "%DESKTOP%"'><exit code="any" /></install>
