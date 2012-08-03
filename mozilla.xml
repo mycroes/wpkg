@@ -103,11 +103,11 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="14.0.1" />
+  <variable name="version" value="14.0" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Thunderbird"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Thunderbird" architecture="x64" />
 
-  <check type="uninstall" condition="exists" path="Mozilla Thunderbird (%version%)" />
+  <check type="uninstall" condition="exists" path="Mozilla Thunderbird %version% (.*)" />
 
   <install include='kill' />
   <install cmd='"%SOFTWARE%\Mozilla\Thunderbird\Thunderbird Setup %version%.exe" -ms' />
