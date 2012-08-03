@@ -5,14 +5,14 @@
 <package
   id="system_tools"
   name="Copy system utilities to %WINDIR%"
-  revision="4"
+  revision="5"
   reboot="false"
   priority="0">
 
   <check type='file' condition='exists' path='%WINDIR%\devcon_x32.exe' architecture='x86' />
   <check type='file' condition='exists' path='%WINDIR%\devcon_x64.exe' architecture='x64' />
 
-  <install cmd='%COMSPEC% /C xcopy /q /i /e /y "%SOFTWARE%\SystemTools\*.*" "%WINDIR%"' />
+  <install cmd='%COMSPEC% /C xcopy /q /e /y "%SOFTWARE%\SystemTools\*.*" "%WINDIR%\" >NUL' />
 
 </package>
 

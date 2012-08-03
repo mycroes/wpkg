@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages xmlns:xsi="http://www.wpkg.org/packages" xsi:noNamespaceSchemaLocation="xsd/packages.xsd">
+
+<package
+  id="vcc"
+  name="Visual Cargo Care"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <variable name="version" value="1.0.2.1" />
+
+  <depends package-id='dotnet3' os='windows xp' />
+  <depends package-id='mssql_2005' />
+  <!--
+  <depends package-id='msoledb' />
+  -->
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Visual Cargo Care" value="%version%" />
+
+  <install cmd='"%SOFTWARE%\VCC\VCCsetup.exe" /SP- /VERYSILENT /norestart"' />
+  <install cmd='"%SOFTWARE%\VCC\SP_VCC.exe" /SP- /VERYSILENT /norestart"' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+</package>
+
+</packages>

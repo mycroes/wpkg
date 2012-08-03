@@ -24,12 +24,25 @@
   <install   cmd='"%SOFTWARE%\Intel\iata_enu.exe" %flags%' />
   <install   cmd='"%SOFTWARE%\Intel\iata_enu.exe" -s -a -p "%systemdrive%\DRIVERS\intel_sata"' />
   <install   cmd='reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "IAStorIcon" /f'><exit code="1" /></install>
-  <upgrade   cmd='"%SOFTWARE%\Intel\iata_enu.exe" %flags%' />
-  <upgrade   cmd='"%SOFTWARE%\Intel\iata_enu.exe" -s -a -p "%systemdrive%\DRIVERS\intel_sata"' />
-  <upgrade   cmd='reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "IAStorIcon" /f'><exit code="1" /></upgrade>
-  <downgrade cmd='"%SOFTWARE%\Intel\iata_enu.exe" %flags%' />
-  <downgrade cmd='"%SOFTWARE%\Intel\iata_enu.exe" -s -a -p "%systemdrive%\DRIVERS\intel_sata"' />
-  <downgrade cmd='reg delete "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /v "IAStorIcon" /f'><exit code="1" /></downgrade>
+  <upgrade   include='install' />
+  <downgrade include='install' />
+</package>
+
+<package
+  id="intel_ssd"
+  name="Intel SSD Toolbox"
+  revision="%version%-0"
+  priority="10"
+  reboot="false">
+
+  <variable name="version" value="3.0.3" />
+  <variable name="build" value="400" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="Intel(R) Solid-State Drive Toolbox" value="%version%.%build%" />
+
+  <install   cmd='"%SOFTWARE%\Intel\Intel SSD Toolbox - v%version%.exe" -i silent' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 </package>
 
 </packages>

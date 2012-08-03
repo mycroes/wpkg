@@ -4,14 +4,15 @@
 
   <!--
     NOTES
-    1) We install both 32 and 64 bit on 64 bit hosts
+    1) As of 11.3, the installer contains both 32 and 64 bit files
     2) http://helpx.adobe.com/flash-player/kb/administration-configure-auto-update-notification.html
+    3) Download: www.adobe.com/special/products/flashplayer/fp_distribution3.html
   -->
 
 <package
   id="flash"
   name="Adobe Flash Player"
-  revision="%version%-1"
+  revision="%version%-3"
   reboot="false"
   priority="10">
 
@@ -21,35 +22,25 @@
   <variable name='CFG_DESTINATION_32' value='%WINDIR%\system32\Macromed\Flash' />
   <variable name='CFG_DESTINATION_64' value='%WINDIR%\SysWOW64' />
 
-  <check type='logical' condition='or'>
-    <check type='logical' condition='and'>
-      <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 ActiveX" value="%version%" />
-      <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 Plugin" value="%version%" />
-    </check>
-    <check type='logical' condition='and'>
-      <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 ActiveX (x64)" value="%version%" />
-      <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 Plugin (x64)"  value="%version%" />
-    </check>
+  <check type='logical' condition='and'>
+    <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 ActiveX" value="%version%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="Adobe Flash Player 11 Plugin" value="%version%" />
   </check>
 
   <install include='kill' />
   <install cmd='%COMSPEC% /c IF NOT EXIST "%CFG_DESTINATION_32%" mkdir "%CFG_DESTINATION_32%"' />
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Adobe\Flash\mms.cfg" "%CFG_DESTINATION_32%"' />
   <install cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Adobe\Flash\mms.cfg" copy /y /v "%SOFTWARE%\Adobe\Flash\mms.cfg" "%CFG_DESTINATION_64%"' architecture='x64' />
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\%PROCESSOR_ARCHITECTURE%\install_flash_player_11_active_x.msi"' />
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\%PROCESSOR_ARCHITECTURE%\install_flash_player_11_plugin.msi"' />
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_active_x.msi"' architecture="x64"/>
-  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_plugin.msi"'   architecture="x64"/>
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_11_active_x.msi"' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_11_plugin.msi"' />
   <install cmd='sc config AdobeFlashPlayerUpdateSvc start= disabled' />
 
   <upgrade   include='install' />
   <downgrade include='install' />
 
   <remove include='kill' />
-  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\%PROCESSOR_ARCHITECTURE%\install_flash_player_11_active_x.msi"' />
-  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\%PROCESSOR_ARCHITECTURE%\install_flash_player_11_plugin.msi"' />
-  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_active_x.msi"' architecture="x64"/>
-  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\x86\install_flash_player_11_plugin.msi"'   architecture="x64"/>
+  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_11_active_x.msi"' />
+  <remove cmd='msiexec %MSI% /x "%SOFTWARE%\Adobe\Flash\%shortversion%\install_flash_player_11_plugin.msi"' />
   <remove cmd='%COMSPEC% /c del /s /q "%WINDIR%\system32\Macromed\Flash\mms.cfg"' >
     <exit code="0" />
     <exit code="1" />

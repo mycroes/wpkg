@@ -15,7 +15,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="2.0.1" />
+  <variable name="version" value="2.0.3" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\VideoLAN\VLC"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\VideoLAN\VLC" architecture="x64" />
   <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />

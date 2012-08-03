@@ -95,18 +95,13 @@ PACKAGES = {
   :language => 'en-US'},
 ],
 
+
 :flash => [
-  {:url => 'http://fpdownload.macromedia.com/pub/flashplayer/current/licensing/win/install_flash_player_%mainversion%_active_x_32bit.msi',
-  :destination => ['Adobe', 'Flash', '%shortversion%', BIT_32_DIR, 'install_flash_player_%mainversion%_active_x.msi'],
+  {:url => 'http://download.macromedia.com/get/flashplayer/current/licensing/win/install_flash_player_%mainversion%_active_x.msi',
+  :destination => ['Adobe', 'Flash', '%shortversion%', 'install_flash_player_%mainversion%_active_x.msi'],
   :package_id => 'flash' },
-  {:url => 'http://fpdownload.macromedia.com/pub/flashplayer/current/licensing/win/install_flash_player_%mainversion%_plugin_32bit.msi',
-  :destination => ['Adobe', 'Flash', '%shortversion%', BIT_32_DIR, 'install_flash_player_%mainversion%_plugin.msi'],
-  :package_id => 'flash' },
-  {:url => 'http://fpdownload.macromedia.com/pub/flashplayer/current/licensing/win/install_flash_player_%mainversion%_active_x_64bit.msi',
-  :destination => ['Adobe', 'Flash', '%shortversion%', BIT_64_DIR, 'install_flash_player_%mainversion%_active_x.msi'],
-  :package_id => 'flash' },
-  {:url => 'http://fpdownload.macromedia.com/pub/flashplayer/current/licensing/win/install_flash_player_%mainversion%_plugin_64bit.msi',
-  :destination => ['Adobe', 'Flash', '%shortversion%', BIT_64_DIR, 'install_flash_player_%mainversion%_plugin.msi'],
+  {:url => 'http://download.macromedia.com/get/flashplayer/current/licensing/win/install_flash_player_%mainversion%_plugin.msi',
+  :destination => ['Adobe', 'Flash', '%shortversion%', 'install_flash_player_%mainversion%_plugin.msi'],
   :package_id => 'flash' },
 ],
 
@@ -507,7 +502,7 @@ def download(package_def)
     d = File.dirname(fullpath)
     unless Dir.exists?(d)
       puts "INFO: Directory #{d} not found. Creating..."
-      FileUtils.mkdir_p(d) 
+      FileUtils.mkdir_p(d)
     else
       puts "NOTICE: Directory #{d} exists."
     end

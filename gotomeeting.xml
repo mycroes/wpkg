@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages xmlns:xsi="http://www.wpkg.org/packages" xsi:noNamespaceSchemaLocation="xsd/packages.xsd">
+
+<package
+  id="gotomeeting"
+  name="GoToMeeting"
+  revision="%version%-0"
+  reboot="false"
+  priority="0">
+
+  <variable name="build" value="977" />
+  <variable name="version" value="5.3.0.%build%" />
+
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Citrix\GoToMeeting\%build%"      architecture='x86' />
+  <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Citrix\GoToMeeting\%build%" architecture='x64' />
+
+  <check type='logical' condition='or'>
+    <check type="file" condition="versiongreaterorequal"      path="%PKG_DESTINATION%\g2m.dll" value="%version%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="GoToMeeting %version%"     value="%version%" />
+  </check>
+
+  <install include='kill' />
+  <install cmd='"%SOFTWARE%\Citrix\GoToMeeting\g2m_codec.exe" /silent' />
+  <install include='kill' />
+
+  <upgrade   include='install' />
+  <downgrade include='install' />
+
+  <remove include='kill' />
+  <remove cmd='"%PKG_DESTINATION%\g2muninstall.exe" /uninstall /silent' />
+
+  <commands>
+    <command type='kill' cmd='taskkill /f /im g2mstart.exe'><exit code='any'/></command>
+    <command type='kill' cmd='taskkill /f /im g2mlauncher.exe'><exit code='any'/></command>
+    <command type='kill' cmd='taskkill /f /im g2mcomm.exe'><exit code='any'/></command>
+  </commands>
+
+</package>
+
+</packages>

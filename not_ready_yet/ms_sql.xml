@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<packages>
+
+<!--
+  NOTES
+  1) http://www.microsoft.com/en-us/download/details.aspx?id=184
+-->
+
+<package
+  id="mssql2005"
+  name="MS SQL 2005"
+  revision="%version%-0"
+  reboot="false"
+  priority="10">
+
+  <check type="logical" condition="or">
+    <check type="uninstall" condition="exists" path="Windows Internet Explorer 9" />
+    <check type="file" condition="versiongreaterorequal" path="%PROGRAMFILES%\Internet Explorer\iexplore.exe" value="9.00.8112.16421" />
+  </check>
+
+  <variable name='PKG_SOURCE' value='%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\Windows6.1-KB2454826-v2-x86.msu' architecture='x86' />
+
+  <install cmd='wusa "%PKG_SOURCE%" /quiet /norestart'>
+    <exit code='3010' />
+  </install>
+  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\IE9-Windows7-%A.exe" /passive /norestart /update-no'>
+    <exit code="3010" reboot="postponed" />
+  </install>
+  <install include='search' />
+
+  <upgrade   include='search' />
+  <downgrade include='upgrade' />
+
+  <remove cmd='"%WINDIR%\ie9\spuninst\spuninst.exe" %MSI%'>
+    <exit code="3010" reboot="postponed" />
+  </remove>
+
+  <commands>
+    <command type='search' cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE9\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE9\iesearch.reg"' />
+  </commands>
+
+</package>
+
+</packages>

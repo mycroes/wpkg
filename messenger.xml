@@ -14,7 +14,7 @@
      d) messenger.msi
      e) dw20shared.msi (I couldn't find this and it seems to work without)
   2) Use the offline installer (download from: http://explore.live.com/windows-live-essentials-install-offline-faq)
-  3) I don't know if upgrades/downgrades work this way
+  3) Upgrades have been removed as they simply broke too many cases
 -->
 
 <packages>
@@ -22,28 +22,31 @@
 <package
   id="livemessenger"
   name="Windows Live Messenger"
-  revision="%version%-4"
+  revision="%version%-16"
   reboot="false"
   priority="10">
 
   <depends package-id='vcruntime' />
 
-  <variable name="version" value="14.0.8117.0416" os='windows xp' />
-  <variable name="version" value="15.4.3538.0513" os='windows 7' />
-  <variable name='params' value='/q /AppSelect:Messenger /noHomepage /noSearch /noLaunch /NOToolbarCEIP' />
-  <variable name='PKG_DESTIONATION' value='%PROGRAMFILES%\Windows Live'      architecture='x86' />
-  <variable name='PKG_DESTIONATION' value='%PROGRAMFILES(x86)%\Windows Live' architecture='x64' />
+  <variable name="version"     value="14.0.8117.0416" os='windows xp' />
+  <variable name="fileversion" value="14.0.8117.416"  os='windows xp' />
+  <variable name="version"     value="15.4.3555.0308" os='windows 7' />
+  <variable name="fileversion" value="15.4.3555.308"  os='windows 7' />
+  <variable name='params' value='/AppSelect:Messenger /noHomepage /noSearch /noLaunch /NOToolbarCEIP /log:"%TEMP%\windows_live_essentials.log" /q' />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Windows Live'      architecture='x86' />
+  <variable name='PKG_DESTINATION' value='%PROGRAMFILES(x86)%\Windows Live' architecture='x64' />
 
   <check type='logical' condition='or'>
-    <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Messenger" value="%version%" />
-    <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Essentials 2009" value="%version%" />
-    <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Essentials 2011" value="%version%" />
+    <check type="file"      condition="versiongreaterorequal" path="%PKG_DESTINATION%\Messenger\msnmsgr.exe" value="%fileversion%" />
+    <check type="file"      condition="versiongreaterorequal" path="%PKG_DESTINATION%\Messenger\msgsres.dll" value="%fileversion%" />
+    <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Essentials 2009" value="%version%" architecture="x86" />
+    <check type="uninstall" condition="versiongreaterorequal" path="Windows Live Essentials 2011" value="%version%" architecture="x64" />
   </check>
 
   <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2009\wlsetup-all.exe" %params%' timeout='600' os='windows xp' />
   <install cmd='"%SOFTWARE%\Microsoft\Windows Live\2011\wlsetup-all.exe" %params%' timeout='600' os='windows 7' />
 
-  <remove  cmd='"%PKG_DESTINATION%"\Installer\wlarp.exe" /uninstall:Messenger /quiet' />
+  <remove  cmd='"%PKG_DESTINATION%"\Installer\wlarp.exe" /uninstall:all /q' timeout='600'><exit code='any' /></remove>
 
 </package>
 
