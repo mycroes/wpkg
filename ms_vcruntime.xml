@@ -33,12 +33,12 @@
   <check type="uninstall" condition="exists" path="Microsoft Visual C\+\+ 2010  x86 Redistributable - 10\..*" />
   <check type="uninstall" condition="exists" path="Microsoft Visual C\+\+ 2010  x64 Redistributable - 10\..*" architecture="x64"/>
 
-  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\2005\vcredist_x86.exe" /Q /R:N'><exit code="3010" /></install>
-  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\2008\vcredist_x86.exe" /Q /R:N'><exit code="3010" /></install>
-  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\2010\vcredist_x86.exe" /Q /R:N'><exit code="3010" /></install>
-  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2005sp1.exe" /Q /R:N' architecture="x64"><exit code="3010" /></install>
-  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2008sp1.exe" /Q /R:N' architecture="x64"><exit code="3010" /></install>
-  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2010.exe" /Q /R:N'    architecture="x64"><exit code="3010" /></install>
+  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2005sp1.exe" /Q /R:N'><exit code="3010" /></install>
+  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2008sp1.exe" /Q /R:N'><exit code="3010" /></install>
+  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2010.exe" /Q /R:N'>   <exit code="3010" /></install>
+  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\amd64\vcredist_2005sp1.exe" /Q /R:N' architecture="x64"><exit code="3010" /></install>
+  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\amd64\vcredist_2008sp1.exe" /Q /R:N' architecture="x64"><exit code="3010" /></install>
+  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\amd64\vcredist_2010.exe" /Q /R:N'    architecture="x64"><exit code="3010" /></install>
   <install cmd='%COMSPEC% /C DEL C:\eula.*.txt C:\install.* C:\VC_RED.* C:\vcredist.bmp C:\msdia80.dll C:\globdata.ini'><exit code="any" /></install>
 
   <upgrade   include="install" />
