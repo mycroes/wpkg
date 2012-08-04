@@ -15,13 +15,23 @@
 <packages xmlns:xsi="http://www.wpkg.org/packages" xsi:noNamespaceSchemaLocation="xsd/packages.xsd">
 
 <!--
-  INSTRUCTIONS
-  1) Extract ACU to '%SOFTWARE%\Novell\Netware Client\nt%OS_MAJOR%\'.
-  2) Create '%SOFTWARE%\Novell\Netware Client\nt%OS_MAJOR%\unattend.txt'.
+  INSTRUCTIONS - NT5
+  1) Extract ACU to '%SOFTWARE%\Novell\Netware Client\nt5\'.
+  2) Edit acu.ini (see comments in that file).
+  3) Create '%SOFTWARE%\Novell\Netware Client\nt5\unattend.txt'.
+
+  INSTRUCTIONS - NT6
+  1) Extract ACU to '%SOFTWARE%\Novell\Netware Client\nt6\'.
+  2) Edit Install.ini (see comments in that file).
+  3) Create '%SOFTWARE%\Novell\Netware Client\nt6\unattend.txt'.
 
   NOTES
   1) Not sure what happens with upgrade and downgrade actions, but it happily
      installs on clean Windows installs (my primary target).
+  2) Windows will ask if you're sure you want to install some driver. I don't
+     get this message on XP, but there the DriverSigningPolicy is always
+     turned off. On Windows 7 however, a dialog pops up and waits for user
+     action.
 -->
 
 <package
@@ -40,20 +50,20 @@
 
   <check type="uninstall" condition="exists" path="Novell Client for Windows" />
 
-  <install cmd='"%SOFTWARE%\Novell\Netware Client\nt%os_major%\acu.exe" /D:no /U' reboot="postponed">
+  <install cmd='"%SOFTWARE%\Novell\Netware Client\nt%os_major%\acu.exe" /D:no /U'>
     <exit code="1" />
   </install>
 
-  <upgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt%os_major%\acu.exe" /D:no /U' reboot="postponed">
+  <upgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt%os_major%\acu.exe" /D:no /U'>
     <exit code="1" />
   </upgrade>
 
-  <downgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt%os_major%\acu.exe" /D:no /U' reboot="postponed">
+  <downgrade cmd='"%SOFTWARE%\Novell\Netware Client\nt%os_major%\acu.exe" /D:no /U'>
     <exit code="1" />
   </downgrade>
 
   <!-- Copy acu.exe and acu.ini to the 'remove' folder, edit acu.ini and change all items to 'yes' under 'uninstall' -->
-  <remove cmd='"%SOFTWARE%\Novell\Netware Client\nt%os_major%\remove\acu.exe" /D:no' reboot="postponed" />
+  <remove cmd='"%SOFTWARE%\Novell\Netware Client\nt%os_major%\remove\acu.exe" /D:no' />
 
 </package>
 

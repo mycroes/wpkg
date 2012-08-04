@@ -8,6 +8,8 @@
     b) Unpack using cabextract
     c) Rename msvcp71.dll and msvcr71.dll
   3) The checks are a real pain, so now we simply check if the main version (2008 v9, 2010 v10, etc) are in place
+  4) Package is prepared for possible expansion of extended host attribute
+     matches for checks.
 -->
 
 <packages>
@@ -21,19 +23,19 @@
 
   <variable name='version_2005' value='8.0.56336' />
   <variable name='version_2008' value='9.0.30729' />
-  <variable name='version_2010' value='10.0.30319' />
+  <variable name='version_2010' value='10.0.40219' />
 
   <!-- We need to escape + to allow it work as a regexp -->
-  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C\+\+ 2005 Redistributable"       value='%version_2005%' />
+  <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C\+\+ 2005 Redistributable"         value='%version_2005%' />
   <check type="uninstall" condition="versiongreaterorequal" path="Microsoft Visual C\+\+ 2005 Redistributable \(x64\)" value='%version_2005%' architecture="x64"/>
   <check type="uninstall" condition="exists" path="Microsoft Visual C\+\+ 2008 Redistributable - x86 9\..*" />
   <check type="uninstall" condition="exists" path="Microsoft Visual C\+\+ 2008 Redistributable - x64 9\..*" architecture="x64"/>
   <check type="uninstall" condition="exists" path="Microsoft Visual C\+\+ 2010  x86 Redistributable - 10\..*" />
   <check type="uninstall" condition="exists" path="Microsoft Visual C\+\+ 2010  x64 Redistributable - 10\..*" architecture="x64"/>
 
-  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2005sp1.exe" /Q /R:N'><exit code="3010" /></install>
-  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2008sp1.exe" /Q /R:N'><exit code="3010" /></install>
-  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\%PROCESSOR_ARCHITECTURE%\vcredist_2010.exe" /Q /R:N'>   <exit code="3010" /></install>
+  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\2005\vcredist_x86.exe" /Q /R:N'><exit code="3010" /></install>
+  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\2008\vcredist_x86.exe" /Q /R:N'><exit code="3010" /></install>
+  <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\2010\vcredist_x86.exe" /Q /R:N'><exit code="3010" /></install>
   <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2005sp1.exe" /Q /R:N' architecture="x64"><exit code="3010" /></install>
   <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2008sp1.exe" /Q /R:N' architecture="x64"><exit code="3010" /></install>
   <install cmd='"%SOFTWARE%\Microsoft\VCRuntime\x86\vcredist_2010.exe" /Q /R:N'    architecture="x64"><exit code="3010" /></install>
