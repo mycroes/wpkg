@@ -21,8 +21,8 @@
   <install   cmd='%COMSPEC% /C mkdir "%PKG_DESTINATION%"'><exit code="any" /></install>
 
   <install   cmd='%COMSPEC% /C xcopy "%SOFTWARE%\ICU\icu.exe" "%PKG_DESTINATION%" /y >NUL' />
-  <upgrade   cmd='%COMSPEC% /C xcopy "%SOFTWARE%\ICU\icu.exe" "%PKG_DESTINATION%" /y >NUL' />
-  <downgrade cmd='%COMSPEC% /C xcopy "%SOFTWARE%\ICU\icu.exe" "%PKG_DESTINATION%" /y >NUL' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
 
   <remove    cmd='taskkill /f /im icu.exe'><exit code="any" /></remove>
   <remove    cmd='%COMSPEC% /C rd /Q /S "%PKG_DESTINATION%"' />
