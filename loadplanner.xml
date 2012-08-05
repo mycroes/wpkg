@@ -33,13 +33,13 @@
 <package
   id="loadplanner"
   name="LoadPlanner"
-  revision="%version%-4"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="version" value="4.0.3" />
-  <variable name="fileversion" value="4.0.0.3" /> <!-- don't ask why - I don't know... -->
-  <variable name="updatefile" value="LoadPlanner 4003 update.msi" />  <!-- for .10 it should be 38100 -->
+  <variable name="version" value="4.0.4" />
+  <variable name="fileversion" value="4.0.0.4" /> <!-- don't ask why - I don't know... -->
+  <variable name="updatefile" value="LoadPlanner 4004 update.msi" />  <!-- for .10 it should be 38100 -->
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\LoadPlanner"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\LoadPlanner" architecture="x64" />
   <variable name="DESKTOP" value="%ALLUSERSPROFILE%\Desktop" os="windows xp" />
