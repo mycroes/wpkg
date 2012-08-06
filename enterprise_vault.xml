@@ -16,8 +16,8 @@
     <check type="uninstall" condition="versiongreaterorequal" path="%name%" value="%version%" />
 
     <install   cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%version%\%name%-%language%.msi" %MSI%' />
-    <upgrade   cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%version%\%name%-%language%.msi" %MSI%' />
-    <downgrade cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%version%\%name%-%language%.msi" %MSI%' />
+    <upgrade   include='install' />
+    <downgrade include='install' />
 
   </package>
 
@@ -35,8 +35,8 @@
     <check type="uninstall" condition="versiongreaterorequal" path="%name%" value="%version%" />
 
     <install   cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%version%\%name%-%language%.msi" %MSI%' />
-    <upgrade   cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%version%\%name%-%language%.msi" %MSI%' />
-    <downgrade cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%version%\%name%-%language%.msi" %MSI%' />
+    <upgrade   include='install' />
+    <downgrade include='install' />
 
   </package>
 
@@ -54,8 +54,8 @@
     <check type="uninstall" condition="versiongreaterorequal" path="%name%" value="%version%" />
 
     <install   cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%version%\%name%-%language%.msi" %MSI%' />
-    <upgrade   cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%version%\%name%-%language%.msi" %MSI%' />
-    <downgrade cmd='msiexec /i "%SOFTWARE%\Symantec\EnterpriseVault\%version%\%name%-%language%.msi" %MSI%' />
+    <upgrade   include='install' />
+    <downgrade include='install' />
 
   </package>
 

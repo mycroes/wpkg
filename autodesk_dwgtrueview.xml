@@ -7,8 +7,8 @@
   2) After downloading the .exe packages use 7zip (or just run the exe) to extract the files into x86 and amd64 folders
 
   Direct download links:
-  http://download.autodesk.com/esd/dwgtrueview/2012/SetupDWGTrueView2011_32bit.exe
-  http://download.autodesk.com/esd/dwgtrueview/2012/SetupDWGTrueView2011_64bit.exe
+  http://download.autodesk.com/esd/dwgtrueview/2012/SetupDWGTrueView2012_32bit.exe
+  http://download.autodesk.com/esd/dwgtrueview/2012/SetupDWGTrueView2012_64bit.exe
 
 
 SETUP.EXE /w /t /q setup.ini
