@@ -63,7 +63,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="last" value="1" /> <!-- change this when the version increases -->
+  <variable name="last" value="2" /> <!-- change this when the version increases -->
   <variable name="mainversion" value="9.5" />
   <variable name="version" value="%mainversion%.%last%" />
   <variable name="lt" value='"%WPKG%\tools\localetool.exe"' />
