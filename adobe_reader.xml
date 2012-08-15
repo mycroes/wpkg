@@ -25,11 +25,11 @@
 <package
   id="adobereaderX"
   name="Adobe Reader X"
-  revision="%version%-1"
+  revision="%version%-0"
   reboot="false"
   priority="10">
 
-  <variable name="last" value="3" />
+  <variable name="last" value="4" />
   <variable name="mainversion" value="10.1" />
   <variable name="version" value="%mainversion%.%last%" />
   <variable name="language" value="en_US" lcid="0409,0809,4809" />
