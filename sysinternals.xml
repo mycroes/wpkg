@@ -13,10 +13,8 @@
   <check type="file" condition="exists" path="%root%\MANAGED_BY_WPKG.txt" />
   <install   cmd='%COMSPEC% /c IF NOT EXIST "%root%" mkdir "%root%"' />
   <install   cmd='%COMSPEC% /c echo "The files in here are managed by WPKG" >> "%root%\MANAGED_BY_WPKG.txt' />
-  <upgrade   cmd='%COMSPEC% /c IF NOT EXIST "%root%" mkdir "%root%"' />
-  <upgrade   cmd='%COMSPEC% /c echo "The files in here are managed by WPKG" >> "%root%\MANAGED_BY_WPKG.txt' />
-  <downgrade cmd='%COMSPEC% /c IF NOT EXIST "%root%" mkdir "%root%"' />
-  <downgrade cmd='%COMSPEC% /c echo "The files in here are managed by WPKG" >> "%root%\MANAGED_BY_WPKG.txt' />
+  <upgrade   include='install' />
+  <downgrade include='install' />
   <remove    cmd='%COMSPEC% /c rd /Q /S "%root%"' />
 
 </package>
