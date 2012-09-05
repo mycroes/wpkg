@@ -1,0 +1,11 @@
+<!DOCTYPE addon [
+  <!ENTITY id "sieve-out-of-office">
+  <!ENTITY name "Sieve Out Of Office">
+  <!ENTITY filename "out-of-office_1.0.4.xpi">
+  <!ENTITY addon-id "out.of.office@milimail.org">
+  <!ENTITY version "1.0.4">
+  <!ENTITY url "http://adullact.net/frs/download.php/6019/out-of-office_1.0.4.xpi">
+  <!ENTITY pkg SYSTEM "../templates/mozilla_thunderbird_addon.xml">
+]>
+<!-- Addon version restrictions need to be manually modified -->
+<packages>&pkg;</packages>

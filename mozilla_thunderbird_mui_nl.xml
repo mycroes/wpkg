@@ -1,0 +1,10 @@
+<!DOCTYPE addon [
+  <!ENTITY id "lang-nl">
+  <!ENTITY name "Nederlands">
+  <!ENTITY filename "nl.xpi">
+  <!ENTITY addon-id "langpack-nl@thunderbird.mozilla.org">
+  <!ENTITY version "15.0">
+  <!ENTITY url "http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/15.0/win32/xpi/nl.xpi">
+  <!ENTITY pkg SYSTEM "../templates/mozilla_thunderbird_addon.xml">
+]>
+<packages>&pkg;</packages>
