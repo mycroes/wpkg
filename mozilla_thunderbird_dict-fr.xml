@@ -1,0 +1,10 @@
+<!DOCTYPE addon [
+  <!ENTITY id "dict-fr">
+  <!ENTITY name "French Dictionary">
+  <!ENTITY filename "dictionnaires_francais-4.6-fx+tb+sm.xpi">
+  <!ENTITY addon-id "fr-dicollecte@dictionaries.addons.mozilla.org">
+  <!ENTITY version "4.6">
+  <!ENTITY url "https://addons.mozilla.org/thunderbird/downloads/file/166124/dictionnaires_francais-4.6-fx+tb+sm.xpi?src=version-history">
+  <!ENTITY pkg SYSTEM "../templates/mozilla_thunderbird_addon.xml">
+]>
+<packages>&pkg;</packages>

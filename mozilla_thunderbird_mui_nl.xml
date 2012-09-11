@@ -1,6 +1,6 @@
 <!DOCTYPE addon [
   <!ENTITY id "lang-nl">
-  <!ENTITY name "Nederlands">
+  <!ENTITY name "Dutch Translation">
   <!ENTITY filename "nl.xpi">
   <!ENTITY addon-id "langpack-nl@thunderbird.mozilla.org">
   <!ENTITY version "15.0">
