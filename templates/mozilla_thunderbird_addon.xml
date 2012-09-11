@@ -26,6 +26,8 @@
   <downgrade include="remove" />
   <downgrade include="install" />
 
-  <remove cmd='%COMSPEC% /S /C "RMDIR /s /q "%moz_dir%\Extensions\&addon-id;""' />
+  <remove cmd='%COMSPEC% /S /C "RMDIR /s /q "%moz_dir%\Extensions\&addon-id;""'>
+    <exit code='2' />
+  </remove>
 
 </package>
