@@ -148,7 +148,7 @@
   reboot="false"
   priority="10">
 
-  <variable name="version" value="12.0.6654.5003" />
+  <variable name="version" value="12.0.6611.1000" />
   <variable name='PKG_DESTINATION' value='%PROGRAMFILES%\Microsoft Office\Office12'      architecture='x86' />
   <variable name='PKG_DESTINATION' value='%PROGRAMFILES(x86)%\Microsoft Office\Office12' architecture='x64' />
 
