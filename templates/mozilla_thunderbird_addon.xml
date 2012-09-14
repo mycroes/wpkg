@@ -1,0 +1,33 @@
+<package
+  id="mozilla_thunderbird_addon_&id;"
+  name="Mozilla Thunderbird - &name;"
+  revision="&version;"
+  reboot="false"
+  priority="10">
+
+  <variable name="moz_dir" value="%PROGRAMFILES%\Mozilla Thunderbird" architecture="x86" />
+  <variable name="moz_dir" value="%PROGRAMFILES(x86)\Mozilla Thunderbird" architecture="x64" />
+  <variable name="7z" value="%PROGRAMFILES%\7-zip\7z.exe" />
+
+  <variable name="addon_dir" value="%SOFTWARE%\mozilla\thunderbird\addons" />
+
+  <download url="&url;" target="%addon_dir%\&filename;" />
+
+  <depends package-id="thunderbird" />
+  <depends package-id="7zip" /><!-- Install only dependency -->
+
+  <check type="file" condition="exists" path="%moz_dir%\Extensions\&addon-id;\install.rdf" />
+
+  <install cmd='%COMSPEC% /S /C ""%7z%" x "%addon_dir%\&filename;" -y -o"%moz_dir%\Extensions\&addon-id;\">NUL"' />
+
+  <upgrade include="remove" />
+  <upgrade include="install" />
+
+  <downgrade include="remove" />
+  <downgrade include="install" />
+
+  <remove cmd='%COMSPEC% /S /C "RMDIR /s /q "%moz_dir%\Extensions\&addon-id;""'>
+    <exit code='2' />
+  </remove>
+
+</package>

@@ -107,7 +107,7 @@
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Mozilla Thunderbird"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Mozilla Thunderbird" architecture="x64" />
 
-  <check type="uninstall" condition="exists" path="Mozilla Thunderbird (%version%)" />
+  <check type="uninstall" condition="exists" path="Mozilla Thunderbird %version% (.*)" />
 
   <install include='kill' />
   <install cmd='"%SOFTWARE%\Mozilla\Thunderbird\Thunderbird Setup %version%.exe" -ms' />
@@ -122,6 +122,28 @@
     <command type='kill' cmd='taskkill.exe /f /im thunderbird.exe'><exit code="any" /></command>
   </commands>
 
+</package>
+
+<package
+  id="mozilla_thunderbird_use-system-locale"
+  name="Mozilla Thunderbird - Use system locale"
+  revision="1"
+  reboot="false">
+
+  <check type="file" condition="exists" path="%pref_dir%\%pref_file%" />
+
+  <variable name="pref_dir" value="%PROGRAMFILES%\Mozilla Thunderbird\defaults\pref" architecture="x86" />
+  <variable name="pref_dir" value="%PROGRAMFILES(x86)%\Mozilla Thunderbird\defaults\pref" architecture="x64" />
+  <variable name="pref_file" value="use-system-locale.js" />
+  <variable name="entry" value="intl.locale.matchOS" />
+  <variable name="value" value='true' />
+
+  <install cmd='%COMSPEC% /S /C "echo pref("%entry%", %value%);>"%pref_dir%\%pref_file%" "' />
+
+  <upgrade include="install" />
+  <downgrade include="install" />
+
+  <remove cmd='%COMSPEC% /S /C "del "%pref_dir%\%pref_file%" "' />
 </package>
 
 </packages>

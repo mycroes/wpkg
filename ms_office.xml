@@ -376,6 +376,7 @@
   <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Microsoft\Office\Office97\pro\key.txt"`) DO "%SOFTWARE%\Microsoft\Office\Office97\pro\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
   <install cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr1off97.exe" /Q /C:"SR1Off97.exe /Q /C:""off97sr1.exe /Q"" "' />
   <install cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr2bof97.exe" /Q /C:"sr2patch.exe /Q"' />
+  <install cmd='"%WPKG%\tools\subinacl.exe" /file "%SystemRoot%\SysWow64\msjet35.dll" /grant=Everyone=F' />
 
   <upgrade   include='install' />
   <downgrade include='install' />

@@ -1,0 +1,10 @@
+<!DOCTYPE addon [
+  <!ENTITY id "dict-de">
+  <!ENTITY name "German Dictionary">
+  <!ENTITY filename "german_dictionary_de_de_new_orthography-20120628-fn+sm+an+fx+tb.xpi">
+  <!ENTITY addon-id "de_DE@dicts.j3e.de">
+  <!ENTITY version "20120628">
+  <!ENTITY url "https://addons.mozilla.org/thunderbird/downloads/file/156815/german_dictionary_de_de_new_orthography-20120628-fn+sm+an+fx+tb.xpi">
+  <!ENTITY pkg SYSTEM "../templates/mozilla_thunderbird_addon.xml">
+]>
+<packages>&pkg;</packages>
