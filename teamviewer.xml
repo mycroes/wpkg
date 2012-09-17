@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  NOTES
+  1) Relies on TeamViewer Corporate MSI.
+  2) Follow instructions in TeamViewer Corporate MSI wrapper readme to change
+     settings during installation.
+-->
+
+<packages>
+
+<package
+  id="teamviewer7-host"
+  name="TeamViewer 7 Host"
+  revision="%version-0"
+  reboot="false"
+  priority="10">
+
+  <variable name="version" value="7.0.14563" />
+
+  <check type="uninstall" condition="versiongreaterorequal" path="TeamViewer 7 Host (MSI Wrapper)" value="%version%" />
+
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\TeamViewer\TeamViewer_Host.msi"' />
+  <install cmd='taskkill /f /im TeamViewer.exe'>
+    <exit code='128' />
+  </install>
+
+  <upgrade include="install" />
+  <downgrade include="install" />
+
+  <remove cmd='msiexec %MSI% /x "{CA4DE7D2-24ED-4C0A-BBE7-B9FA80B518E1}"' />
+
+</package>
+
+</packages>
