@@ -6,7 +6,7 @@
   priority="10">
 
   <variable name="moz_dir" value="%PROGRAMFILES%\Mozilla Thunderbird" architecture="x86" />
-  <variable name="moz_dir" value="%PROGRAMFILES(x86)\Mozilla Thunderbird" architecture="x64" />
+  <variable name="moz_dir" value="%PROGRAMFILES(x86)%\Mozilla Thunderbird" architecture="x64" />
   <variable name="7z" value="%PROGRAMFILES%\7-zip\7z.exe" />
 
   <variable name="addon_dir" value="%SOFTWARE%\mozilla\thunderbird\addons" />
