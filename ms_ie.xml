@@ -35,10 +35,13 @@
   <variable name='PKG_SOURCE' value='%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\Windows6.1-KB2454826-v2-x86.msu' architecture='x86' />
   <variable name='PKG_SOURCE' value='%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\Windows6.1-KB2454826-v2-x64.msu' architecture='x64' />
 
+  <variable name='lang' value='ENU' lcidOS='409' />
+  <variable name='lang' value='NLD' lcidOS='413' />
+
   <install cmd='wusa "%PKG_SOURCE%" /quiet /norestart'>
     <exit code='3010' />
   </install>
-  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\IE9-Windows7-%A.exe" /passive /norestart /update-no'>
+  <install cmd='"%SOFTWARE%\Microsoft\IE9\%PROCESSOR_ARCHITECTURE%\IE9-Windows7-%lang%.exe" /passive /norestart /update-no'>
     <exit code="3010" reboot="postponed" />
   </install>
   <install include='search' />
@@ -60,8 +63,7 @@
   NOTES
   1) Do not install this on anything > XP SP3 for now
   2) If you want to preload some search providers then export SearchScopes from another machine and name it iesearch.reg
-  3) This script relies on localetool to detect Windows install language and use correct installer
-  4) Do NOT install dev toolbar on 8 - it's only for 6 and 7
+  3) Do NOT install dev toolbar on 8 - it's only for 6 and 7
 -->
 
 <package
@@ -73,7 +75,10 @@
 
   <check type="uninstall" condition="exists" path="Windows Internet Explorer 8" />
 
-  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`"%WPKG%\tools\localetool.exe" abbrlang`) DO "%SOFTWARE%\Microsoft\IE8\IE8-WindowsXP-x86-%A.exe" /passive /norestart /update-no'>
+  <variable name='lang' value='ENU' lcidOS='409' />
+  <variable name='lang' value='NLD' lcidOS='413' />
+
+  <install cmd='"%SOFTWARE%\Microsoft\IE8\IE8-WindowsXP-x86-%lang%.exe" /passive /norestart /update-no'>
     <exit code="3010" reboot="postponed" />
   </install>
   <install include='setup' />
@@ -88,6 +93,30 @@
     <command type='setup' cmd='REG ADD "HKLM\SOFTWARE\Policies\Microsoft\Internet Explorer\Main" /v DisableFirstRunCustomize /t REG_DWORD /d 1 /f' />
     <command type='setup' cmd='%COMSPEC% /c IF EXIST "%SOFTWARE%\Microsoft\IE8\iesearch.reg" regedit /s "%SOFTWARE%\Microsoft\IE8\iesearch.reg"' />
   </commands>
+
+</package>
+
+<!--
+  NOTES
+  1) Requires a reboot after IE8 install before install will succeed.
+-->
+
+<package
+  id="ie8mui"
+  name="Internet Explorer 8 MUI"
+  revision="1"
+  reboot="false"
+  priority="10">
+
+  <check type="registry" condition="exists" path="HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\IE8-MUI" />
+
+  <install cmd='"%SOFTWARE%\Microsoft\IE8\IE8MUI-x86-enu.exe" %MSI%'>
+    <exit code="3010" reboot="postponed" />
+  </install>
+
+  <remove cmd='"%WINDIR%\ie8updates\IE8-MUI\spuninst\spuninst.exe" %MSI%'>
+    <exit code="3010" reboot="postponed" />
+  </remove>
 
 </package>
 
