@@ -11,7 +11,7 @@
 <package
   id="paintdotnet"
   name="Paint.Net"
-  revision="%version%-0"
+  revision="%version%-1"
   reboot="false"
   priority="10">
 
@@ -24,7 +24,7 @@
   <install cmd='msiexec %MSI% /x {43602F34-1AA3-44FB-AEB2-D08C2C73743F}'><exit code='any' /></install>
   <install cmd='msiexec %MSI% /x {4F77F6EE-2C99-49F7-940A-2E9C208C3BE1}'><exit code='any' /></install>
   <install cmd='msiexec %MSI% /x {F0E2B312-D7FD-4349-A9B6-E90B36DB1BD0}'><exit code='any' /></install>
-  <install cmd='msiexec %MSI% /i %SOFTWARE%\PaintDotNet\%version%\PaintDotNet.x86.msi' />
+  <install cmd='msiexec %MSI% /i "%SOFTWARE%\PaintDotNet\%version%\PaintDotNet.x86.msi"' />
 
   <upgrade include='install' />
   <downgrade include='install' />
