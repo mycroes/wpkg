@@ -40,7 +40,7 @@
 
   <check type="uninstall" condition="versiongreaterorequal" path="Sophos Anti-Virus" value="%version%" />
 
-  <variable name="version" value="9.0.5" />
+  <variable name="version" value="10.0.8" />
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\savxp\Sophos Anti-Virus.msi" CHECKFORCOMPETITORS=1'>
     <exit code='1641' reboot="postponed" />
@@ -75,7 +75,7 @@
 
   <check type="uninstall" condition="versiongreaterorequal" path="Sophos AutoUpdate" value="%version%" />
 
-  <variable name="version" value="2.5.4" />
+  <variable name="version" value="2.7.4.317" />
 
   <install cmd='msiexec %MSI% /i "%SOFTWARE%\Sophos\sau\Sophos AutoUpdate.msi" TRANSFORMS="%SOFTWARE%\Sophos\sau\custom.mst" RMSACTION=0 BOOTSTRAP=NOUPDATE'>
     <exit code='1641' reboot="postponed" />
