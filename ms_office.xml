@@ -332,15 +332,19 @@
 
   NOTES
   1) Uninstall leaves a lot of dirt behind, however when using the default
-     install location there will office 2000 stuff here too, so we can't
+     install location there will be office 2000 stuff here too, so we can't
      just prune the install dirs.
-  2) Access 97 requires some work on 64 bit systems, because some hardcoded
-     paths are used (%WINDIR%\System32\). Installation will probably hang or
-     fail.
-  3) Access 97 might fail to set the workgroup correctly, but this can be fixed
-     by running the workgroup admin manually at a later time. This will hold
-     the install! Will get fixed later if it appears to be a returning issue.
-  4) The administrative install is moveable. However, if you rely on the msapps
+  2) On Windows 7, wrkgadm.exe complains about ctl3d32.dll. This stalls the 
+     install.
+  3) Because of wrkgadm.exe issues it's wise to include the jet35sp3 update,
+     this package will check if it's available and install it.
+  4) SR2 fails on Windows 7 because of font installation issues. If you extract
+     the sr2bof97.exe you can remove the lines for tahoma.ttf, tahomabd.ttf,
+     comic.ttf and comicbd.ttf in filelist.txt, and then repack into a self-
+     extracting archive which runs 'sr2patch.exe /Q'. I created a 7-Zip SFX
+     archive for this, it happily ignores the default sr2bof97.exe options so
+     those are still supplied in this package definition.
+  5) The administrative install is moveable. However, if you rely on the msapps
      folder that was also created during the administrative install, you need to
      alter it's location in the 'CUSTOM/CUSTOM.STF' file.
 -->
@@ -365,6 +369,11 @@
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES%\Microsoft Office\Office"      architecture="x86" />
   <variable name="PKG_DESTINATION" value="%PROGRAMFILES(x86)%\Microsoft Office\Office" architecture="x64" />
 
+  <variable name="base" value="%SOFTWARE%\Microsoft\Office\Office97" />
+
+  <variable name="x32system32" value="%SystemRoot%\System32" architecture="x86" />
+  <variable name="x32system32" value="%SystemRoot%\SysWow64" architecture="x64" />
+
   <check type="uninstall" condition="exists" path="Microsoft Office 97, Professional" />
   <check type="file" condition="versiongreaterorequal" path="%PKG_DESTINATION%\mso97.dll" value="%version%" />
 
@@ -373,15 +382,21 @@
     way). The 'usebackq' prevents the need to escape single quotes that define
     the command for 'FOR /F'.
   -->
-  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%SOFTWARE%\Microsoft\Office\Office97\pro\key.txt"`) DO "%SOFTWARE%\Microsoft\Office\Office97\pro\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
-  <install cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr1off97.exe" /Q /C:"SR1Off97.exe /Q /C:""off97sr1.exe /Q"" "' />
-  <install cmd='"%SOFTWARE%\Microsoft\Office\Office97\sr2bof97.exe" /Q /C:"sr2patch.exe /Q"' />
-  <install cmd='"%WPKG%\tools\subinacl.exe" /file "%SystemRoot%\SysWow64\msjet35.dll" /grant=Everyone=F' />
+  <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%base%\pro\key.txt"`) DO "%base%\pro\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
+  <install cmd='"%base%\sr1off97.exe" /Q /C:"SR1Off97.exe /Q /C:""off97sr1.exe /Q"" "' />
+  <install cmd='"%base%\sr2bof97.exe" /Q /C:"sr2patch.exe /Q"' />
+  <install cmd='"%WPKG%\tools\subinacl.exe" /file "%x32system32%\msjet35.dll" /grant=Everyone=F' />
+  <install cmd='taskkill /f /im wrkgadm.exe'>
+    <exit code='128' />
+  </install>
+  <install cmd='%COMSPEC% /S /C "IF EXIST "%base%\jet35sp3.exe" "%base%\jet35sp3.exe" /q"' />
+  <install cmd='%COMSPEC% /S /C "IF NOT EXIST "%x32system32%\System.mdw" "%x32system32%\wrkgadm.exe" /sil "%x32system32%\system.mdw" "' />
 
   <upgrade   include='install' />
   <downgrade include='install' />
 
-  <remove cmd='"%PKG_DESTINATION%\Setup\Acme.exe" /w Off97Pro.STF /UA /QNT' />
+  <!-- acme.exe doesn't work on Windows 7 x64 -->
+  <remove cmd='"%base%\Pro\Setup.exe" /UA /QNT' />
 </package>
 
 <!--
