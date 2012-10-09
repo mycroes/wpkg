@@ -385,7 +385,7 @@
   <install cmd='%COMSPEC% /C FOR /F "usebackq tokens=*" %A IN (`type "%base%\pro\key.txt"`) DO "%base%\pro\setup.exe" /L Custom\Custom.lst /K "%A" /B2 /QTN' />
   <install cmd='"%base%\sr1off97.exe" /Q /C:"SR1Off97.exe /Q /C:""off97sr1.exe /Q"" "' />
   <install cmd='"%base%\sr2bof97.exe" /Q /C:"sr2patch.exe /Q"' />
-  <install cmd='"%WPKG%\tools\subinacl.exe" /file "%x32system32%\msjet35.dll" /grant=Everyone=F' />
+  <install cmd='"%WPKG%\tools\subinacl.exe" /file "%x32system32%\msjet35.dll" /grant=S-1-1-0=F' />
   <install cmd='taskkill /f /im wrkgadm.exe'>
     <exit code='128' />
   </install>
