@@ -3,7 +3,7 @@
   <!ENTITY name "Dutch Translation">
   <!ENTITY filename "nl.xpi">
   <!ENTITY addon-id "langpack-nl@thunderbird.mozilla.org">
-  <!ENTITY version "15.0">
+  <!ENTITY version "16.0.1">
   <!ENTITY url "http://releases.mozilla.org/pub/mozilla.org/thunderbird/releases/15.0/win32/xpi/nl.xpi">
   <!ENTITY pkg SYSTEM "../templates/mozilla_thunderbird_addon.xml">
 ]>

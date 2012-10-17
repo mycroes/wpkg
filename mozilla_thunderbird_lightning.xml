@@ -1,10 +1,10 @@
 <!DOCTYPE addon [
   <!ENTITY id "lightning">
   <!ENTITY name "Lightning Calendar">
-  <!ENTITY filename "lightning-1.7-sm+tb-windows.xpi">
+  <!ENTITY filename "lightning-1.8-tb+sm-windows.xpi">
   <!ENTITY addon-id "{e2fda1a4-762b-4020-b5ad-a41df1933103}">
-  <!ENTITY version "1.7">
-  <!ENTITY url "https://addons.mozilla.org/thunderbird/downloads/file/164893/lightning-1.7-sm+tb-windows.xpi">
+  <!ENTITY version "1.8">
+  <!ENTITY url "https://addons.mozilla.org/thunderbird/downloads/file/170382/lightning-1.8-tb+sm-windows.xpi">
   <!ENTITY pkg SYSTEM "../templates/mozilla_thunderbird_addon.xml">
 ]>
 <packages>&pkg;</packages>
